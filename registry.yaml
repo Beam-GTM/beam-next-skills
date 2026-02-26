@@ -2,80 +2,6 @@ version: 1
 generated_by: build_registry.py
 skill_count: 237
 skills:
-- name: airtable-connect
-  description: airtable, connect airtable, query [base], add to [table].
-  category: integrations
-  tags:
-  - airtable
-  - connector
-  platform: Airtable
-  version: '1.1'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/airtable/airtable-connect
-- name: airtable-master
-  description: Shared resource library for Airtable integration skills. DO NOT load
-    directly - provides common references (setup, API docs, error handling, field
-    types) and scripts used by airtable-connect, airtable-query, and airtable-sync.
-  category: integrations
-  tags:
-  - airtable
-  - api
-  - master
-  platform: Airtable
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/airtable/airtable-master
-  has_scripts: true
-  has_references: true
-- name: amie-connect
-  description: Work with Amie calendar and meeting notes. Load when user mentions
-    "amie", "meeting notes", "get transcript", "save transcript to file", "export
-    transcript", "action items from meeting", or wants to access Amie data.
-  category: integrations
-  tags:
-  - amie
-  - calendar
-  - connector
-  - meeting
-  - transcript
-  platform: Amie
-  version: '1.0'
-  updated: '2026-02-13'
-  visibility: public
-  path: skills/amie/amie-connect
-- name: amie-master
-  description: Shared resource library for Amie integration skills. DO NOT load directly
-    - provides common references and scripts used by amie-connect and individual Amie
-    skills.
-  category: integrations
-  tags:
-  - amie
-  - master
-  platform: Amie
-  version: '1.0'
-  updated: '2026-02-13'
-  visibility: public
-  path: skills/amie/amie-master
-  has_scripts: true
-  has_references: true
-- name: attio-connect
-  description: 'Manage contacts, notes, and lists in Attio CRM. Use when user says:
-    ''add contact'', ''update CRM'', ''attio'', ''create note'', ''search contacts'',
-    ''add to list'', ''look up in CRM'', ''manage contacts'', or references the Personal
-    CRM project.'
-  category: integrations
-  tags:
-  - attio
-  - connector
-  - crm
-  platform: Attio
-  version: '1.0'
-  updated: '2026-02-16'
-  visibility: public
-  path: skills/attio/attio-connect
-  has_references: true
 - name: beam-connect
   description: Connect to Beam AI workspace for agent management. Load when user mentions
     'beam', 'beam agent', 'beam task', 'beam analytics', 'list agents', 'create task',
@@ -90,7 +16,7 @@ skills:
   version: '1.0'
   updated: '2025-12-18'
   visibility: public
-  path: skills/beam/beam-connect
+  path: skills/beam/beam/beam-connect
 - name: beam-debug-issue-tasks
   description: Debug failed/issue tasks from Beam.ai using Langfuse traces. Load when
     user says "debug issue tasks", "check failed tasks", "why did task fail", "task
@@ -103,7 +29,7 @@ skills:
   version: '1.0'
   updated: '2026-02-26'
   visibility: public
-  path: skills/beam/beam-debug-issue-tasks
+  path: skills/beam/beam/beam-debug-issue-tasks
   has_scripts: true
 - name: beam-master
   description: Shared resource library for Beam AI integration skills. DO NOT load
@@ -118,7 +44,7 @@ skills:
   version: '1.0'
   updated: '2025-12-18'
   visibility: public
-  path: skills/beam/beam-master
+  path: skills/beam/beam/beam-master
   has_scripts: true
   has_references: true
 - name: beam-feedback-automation
@@ -136,7 +62,7 @@ skills:
   version: '1.0'
   updated: '2026-02-02'
   visibility: team
-  path: skills/beam-tools/beam-feedback-automation
+  path: skills/beam/beam-tools/beam-feedback-automation
   has_scripts: true
 - name: beam-get-agent-analytics
   description: Get analytics for a Beam.ai agent including task counts, completion
@@ -152,7 +78,7 @@ skills:
   version: '1.0'
   updated: '2026-01-02'
   visibility: team
-  path: skills/beam-tools/beam-get-agent-analytics
+  path: skills/beam/beam-tools/beam-get-agent-analytics
   has_scripts: true
 - name: beam-get-task-details
   description: Get detailed information about a specific Beam.ai task including status,
@@ -167,7 +93,7 @@ skills:
   version: '1.0'
   updated: '2026-01-02'
   visibility: team
-  path: skills/beam-tools/beam-get-task-details
+  path: skills/beam/beam-tools/beam-get-task-details
   has_scripts: true
 - name: beam-graph-edit
   description: Edit Beam agent graph nodes — update prompts, input/output param descriptions,
@@ -185,7 +111,7 @@ skills:
   version: '1.0'
   updated: '2026-02-19'
   visibility: team
-  path: skills/beam-tools/beam-graph-edit
+  path: skills/beam/beam-tools/beam-graph-edit
   has_scripts: true
 - name: beam-retry-tasks
   description: Retry failed Beam.ai tasks. Load when user says "retry tasks", "rerun
@@ -199,7 +125,7 @@ skills:
   version: '1.0'
   updated: '2025-12-15'
   visibility: public
-  path: skills/beam-tools/beam-retry-tasks
+  path: skills/beam/beam-tools/beam-retry-tasks
   has_scripts: true
 - name: calculate-beam-agent-pricing
   description: Design node architecture and calculate comprehensive pricing for Beam
@@ -216,7 +142,7 @@ skills:
   version: '1.0'
   updated: '2026-02-03'
   visibility: team
-  path: skills/beam-tools/calculate-beam-agent-pricing
+  path: skills/beam/beam-tools/calculate-beam-agent-pricing
   has_references: true
 - name: create-beam-task-auto-trigger
   description: Create an auto-trigger webhook script for a Beam.ai agent task. Supports
@@ -232,7 +158,7 @@ skills:
   version: '1.4'
   updated: '2026-01-06'
   visibility: team
-  path: skills/beam-tools/create-beam-task-auto-trigger
+  path: skills/beam/beam-tools/create-beam-task-auto-trigger
   has_scripts: true
 - name: demo-documentation-generation-agent
   description: Generate comprehensive, fully-detailed documentation for Beam AI agents
@@ -249,7 +175,7 @@ skills:
   version: '1.2'
   updated: '2026-01-06'
   visibility: team
-  path: skills/beam-tools/demo-documentation-generation-agent
+  path: skills/beam/beam-tools/demo-documentation-generation-agent
   has_scripts: true
   has_references: true
 - name: design-beam-agent
@@ -261,7 +187,7 @@ skills:
   version: '1.0'
   updated: '2025-12-10'
   visibility: team
-  path: skills/beam-tools/design-beam-agent
+  path: skills/beam/beam-tools/design-beam-agent
   has_references: true
 - name: document-nodes
   description: Generate human-readable documentation and checklists from Node JSON
@@ -271,7 +197,7 @@ skills:
   version: '1.0'
   updated: '2025-12-10'
   visibility: team
-  path: skills/beam-tools/document-nodes
+  path: skills/beam/beam-tools/document-nodes
   has_references: true
 - name: evaluate-solutions-case-study
   description: Load when user says 'evaluate case study', 'review candidate submission',
@@ -287,7 +213,7 @@ skills:
   version: '1.0'
   updated: '2025-12-10'
   visibility: team
-  path: skills/beam-tools/evaluate-solutions-case-study
+  path: skills/beam/beam-tools/evaluate-solutions-case-study
 - name: generate-demo-agent-sample-input-data
   description: Generate sample test inputs and expected results for Beam.ai agents.
     Load when user says "generate demo data", "create sample inputs for agent", "demo
@@ -301,7 +227,7 @@ skills:
   version: '1.0'
   updated: '2026-01-06'
   visibility: team
-  path: skills/beam-tools/generate-demo-agent-sample-input-data
+  path: skills/beam/beam-tools/generate-demo-agent-sample-input-data
   has_scripts: true
 - name: get-beam-agent-graph
   description: Fetch and save Beam.ai agent graph JSON via API. Load when user says
@@ -317,7 +243,7 @@ skills:
   version: '1.0'
   updated: '2026-01-05'
   visibility: team
-  path: skills/beam-tools/get-beam-agent-graph
+  path: skills/beam/beam-tools/get-beam-agent-graph
   has_scripts: true
   has_references: true
 - name: graph-slicer
@@ -335,7 +261,7 @@ skills:
   version: '1.2'
   updated: '2026-01-12'
   visibility: public
-  path: skills/beam-tools/graph-slicer
+  path: skills/beam/beam-tools/graph-slicer
   has_scripts: true
 - name: select-llm-model
   description: Select optimal LLM model for Beam AI tools based on cost, context,
@@ -350,8 +276,122 @@ skills:
   version: '1.3'
   updated: '2026-02-03'
   visibility: team
-  path: skills/beam-tools/select-llm-model
+  path: skills/beam/beam-tools/select-llm-model
   has_scripts: true
+  has_references: true
+- name: analyze-context
+  description: Upload files for AI analysis. SubAgents extract insights and save structured
+    documents.
+  category: learning
+  tags:
+  - learning
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/beam-next-learning/analyze-context
+  has_scripts: true
+- name: how-beam-next-works
+  description: Learn how Beam Next works - the system tour. ~7 min.
+  category: learning
+  tags:
+  - learning
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/beam-next-learning/how-beam-next-works
+- name: learn-beam-next
+  description: 'Master Beam Next philosophy and best practices. Load when user mentions:
+    learn beam next, beam next tutorial, system mastery, beam next best practices,
+    how beam next works, beam next philosophy, beam next design, understand beam next,
+    beam next deep dive. 15-18 min.'
+  category: learning
+  tags:
+  - learning
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/beam-next-learning/learn-beam-next
+  has_references: true
+- name: learn-integrations
+  description: 'Learn about Beam Next integrations and MCP. Load when user mentions:
+    learn integrations, what is MCP, connect tools, integration tutorial, add integration,
+    external tools, API connections, third party, how to integrate. 10-12 min.'
+  category: learning
+  tags:
+  - api
+  version: '1.0'
+  updated: '2026-02-25'
+  visibility: public
+  path: skills/beam-next-learning/learn-integrations
+- name: learn-projects
+  description: 'Learn how Beam Next builds work. Load when user mentions: learn projects,
+    how do builds work, builds vs skills, build tutorial, what is a project, build
+    structure, build lifecycle, understand builds, explain builds. 8-10 min.'
+  category: learning
+  tags:
+  - learning
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/beam-next-learning/learn-projects
+- name: learn-skills
+  description: 'Learn how Beam Next skills work. Load when user mentions: learn skills,
+    how do skills work, what is a skill, skill tutorial, skill structure, understand
+    skills, explain skills, when to create skill, skill vs build. 10-12 min.'
+  category: learning
+  tags:
+  - learning
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/beam-next-learning/learn-skills
+  has_references: true
+- name: quick-start
+  description: 'Complete onboarding: welcome, language, goals, integrations, workspace,
+    first PROJECT, permissions.'
+  category: learning
+  tags:
+  - learning
+  version: '2.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/beam-next-learning/quick-start
+- name: setup-goals
+  description: Load when user says 'setup goals', 'personalize beam next', 'set my
+    goals', 'define my role'. Captures role, goals, preferences. 8-10 min.
+  category: learning
+  tags:
+  - learning
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/beam-next-learning/setup-goals
+  has_references: true
+- name: setup-memory
+  description: 'Configure Beam Next memory with your role, goals, and preferences.
+    Load when user wants to personalize the system or teach Beam Next about themselves.
+    Keywords: setup memory, personalize, configure, my goals, my role, about me, preferences.
+    8 min.'
+  category: learning
+  tags:
+  - learning
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/beam-next-learning/setup-memory
+  has_references: true
+- name: setup-workspace
+  description: 'Organize your 04-workspace/ folder structure. Load when user mentions:
+    setup workspace, organize folders, folder structure, configure workspace, my files,
+    file organization, where to put files, workspace setup, directories, storage.
+    5-8 min.'
+  category: learning
+  tags:
+  - learning
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/beam-next-learning/setup-workspace
   has_references: true
 - name: qa-test-case-writer
   description: Comprehensive UI test case generation for QA teams. Use when the user
@@ -371,14 +411,12 @@ skills:
   version: '1.0'
   updated: '2026-01-20'
   visibility: team
-  path: skills/engineering/qa-test-case-writer
+  path: skills/general/engineering/qa-test-case-writer
 - name: ui-developer
-  category: engineering
-  tags:
-  - engineering
+  category: general
   version: '1.0'
   visibility: public
-  path: skills/engineering/ui-developer
+  path: skills/general/engineering/ui-developer
 - name: expert-improve
   description: 'Iterative expert refinement until work is excellent. Load when user
     says: ''improve this'', ''make this better'', ''polish until ready'', ''iterate
@@ -389,7 +427,7 @@ skills:
   version: '1.0'
   updated: '2026-02-26'
   visibility: public
-  path: skills/experts/expert-improve
+  path: skills/general/experts/expert-improve
 - name: expert-review
   description: 'Quick expert feedback on any work. Load when user says: ''expert review'',
     ''what do experts think'', ''get feedback'', ''review this'', ''is this good?'',
@@ -400,613 +438,7 @@ skills:
   version: '1.0'
   updated: '2026-02-26'
   visibility: public
-  path: skills/experts/expert-review
-- name: fathom
-  description: Complete Fathom integration skill. Load when user wants to fetch meetings,
-    get transcripts, list recordings, or interact with Fathom meeting data. Supports
-    filtering by attendee domain and extracting summaries/action items.
-  author: Hassaan Ahmed
-  category: general
-  tags:
-  - fathom
-  - meeting
-  - transcript
-  platform: Fathom
-  version: '1.2'
-  updated: '2025-12-24'
-  visibility: team
-  path: skills/fathom/fathom
-- name: fathom-fetch-meetings
-  description: Fetch meeting recordings and transcripts from Fathom API filtered by
-    attendee email domain. Load when user says "fetch meetings", "get fathom recordings",
-    "fathom meetings for [domain]", "list meetings from fathom", "get transcripts",
-    or mentions Fathom.
-  author: Hassaan Ahmed
-  category: general
-  tags:
-  - api
-  - email
-  - fathom
-  - meeting
-  - transcript
-  platform: Fathom
-  version: '1.0'
-  updated: '2025-12-23'
-  visibility: team
-  path: skills/fathom/fathom-fetch-meetings
-- name: fathom-get-transcript
-  description: Fetch full transcript from Fathom using a meeting/recording ID. Load
-    when user says "get transcript", "fetch transcript for [ID]", "fathom transcript",
-    "download meeting transcript", or has a meeting ID and wants the full conversation
-    text.
-  author: Hassaan Ahmed
-  category: general
-  tags:
-  - fathom
-  - meeting
-  - transcript
-  platform: Fathom
-  version: '1.0'
-  updated: '2025-12-23'
-  visibility: team
-  path: skills/fathom/fathom-get-transcript
-  has_scripts: true
-- name: process-client-meeting
-  description: Complete end-to-end workflow to process a client meeting. Load when
-    user says "process meeting", "meeting workflow", "process client meeting", "full
-    meeting processing", "handle meeting for [client]", or "post-meeting workflow".
-    Handles transcript fetching, minutes creation, Linear tickets, client updates,
-    internal updates, and project context sync.
-  author: Hassaan Ahmed
-  category: general
-  tags:
-  - fathom
-  - meeting
-  - transcript
-  platform: Fathom
-  version: '1.0'
-  updated: '2025-12-23'
-  visibility: team
-  path: skills/fathom/process-client-meeting
-- name: beam-design-system
-  description: Access Beam's cached design system tokens and components. Load when
-    user mentions 'beam design system', 'beam colors', 'beam typography', 'design
-    tokens', 'brand colors', 'beam fonts', or asks about Beam's design standards.
-  author: Mo Bekdache
-  category: integrations
-  tags:
-  - figma
-  platform: Figma
-  version: '1.0'
-  updated: '2025-12-24'
-  visibility: public
-  path: skills/figma/beam-design-system
-- name: figma-connect
-  description: Connect to any Figma file for data extraction and asset export. Load
-    when user mentions 'connect figma', 'get figma file', 'figma URL', 'export from
-    figma', 'figma assets', or provides a Figma file URL.
-  author: Mo Bekdache
-  category: general
-  tags:
-  - connector
-  - figma
-  platform: Figma
-  version: '1.0'
-  updated: '2025-12-24'
-  visibility: public
-  path: skills/figma/figma-connect
-- name: gemini-edit-image
-  description: edit image, modify image, change image, gemini edit.
-  category: integrations
-  tags:
-  - google-gemini
-  - update
-  platform: Google Gemini
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/google/gemini-edit-image
-  requires:
-  - google-gemini-image
-  has_scripts: true
-- name: gemini-generate-image
-  description: generate image, create image, text to image, gemini generate.
-  category: integrations
-  tags:
-  - google-gemini
-  platform: Google Gemini
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/google/gemini-generate-image
-  requires:
-  - google-gemini-image
-  has_scripts: true
-- name: gemini-refine-image
-  description: refine image, improve image, iterate image, tweak image.
-  category: integrations
-  tags:
-  - google-gemini
-  platform: Google Gemini
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/google/gemini-refine-image
-  requires:
-  - google-gemini-image
-  has_scripts: true
-- name: gmail
-  description: Read, send, and manage Gmail emails. Load when user mentions 'gmail',
-    'email', 'send email', 'check email', 'inbox', 'draft', or references sending/reading
-    emails.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - email
-  - google-workspace
-  platform: Google Workspace
-  version: '1.3'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/google/gmail
-  requires:
-  - google-connect
-  - google-master
-  has_scripts: true
-- name: google-calendar
-  description: Read, create, and manage Google Calendar events. Load when user mentions
-    'google calendar', 'calendar', 'schedule', 'meeting', 'event', 'appointment',
-    'book time', 'check availability', 'find slots', 'free time', or references scheduling/calendar
-    operations.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - calendar
-  - google-workspace
-  - meeting
-  platform: Google Workspace
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/google/google-calendar
-  requires:
-  - google-connect
-  - google-master
-  has_scripts: true
-- name: google-connect
-  description: connect google, setup google, google integration.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - connector
-  - google-workspace
-  platform: Google Workspace
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/google/google-connect
-- name: google-docs
-  description: Read, write, and manage Google Docs. Load when user mentions 'google
-    docs', 'google document', 'create doc', 'read doc', 'write doc', 'edit document',
-    or references creating/editing text documents in Google Drive.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - google-workspace
-  platform: Google Workspace
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/google/google-docs
-  requires:
-  - google-connect
-  - google-master
-  has_scripts: true
-- name: google-drive
-  description: Manage Google Drive files and folders. Load when user mentions 'google
-    drive', 'drive', 'upload file', 'download file', 'share file', 'create folder',
-    or references cloud file storage operations.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - google-workspace
-  platform: Google Workspace
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/google/google-drive
-  requires:
-  - google-connect
-  - google-master
-  has_scripts: true
-- name: google-gemini-image
-  description: gemini image, generate image, create image, text to image, brand assets,
-    logo generation, hero image.
-  category: integrations
-  tags:
-  - google-workspace
-  platform: Google Workspace
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/google/google-gemini-image
-  requires:
-  - google-connect
-  has_scripts: true
-  has_references: true
-- name: gemini-edit-image
-  description: edit image, modify image, change image, gemini edit.
-  category: integrations
-  tags:
-  - google-gemini
-  - update
-  platform: Google Gemini
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/google/google-gemini-image/gemini-edit-image
-  requires:
-  - google-gemini-image
-  has_scripts: true
-- name: gemini-generate-image
-  description: generate image, create image, text to image, gemini generate.
-  category: integrations
-  tags:
-  - google-gemini
-  platform: Google Gemini
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/google/google-gemini-image/gemini-generate-image
-  requires:
-  - google-gemini-image
-  has_scripts: true
-- name: gemini-refine-image
-  description: refine image, improve image, iterate image, tweak image.
-  category: integrations
-  tags:
-  - google-gemini
-  platform: Google Gemini
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/google/google-gemini-image/gemini-refine-image
-  requires:
-  - google-gemini-image
-  has_scripts: true
-- name: google-integration
-  description: google, gmail, email, google docs, sheets, calendar, drive.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - calendar
-  - email
-  - google-workspace
-  platform: Google Workspace
-  version: '1.1'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/google/google-integration
-- name: gmail
-  description: Read, send, and manage Gmail emails. Load when user mentions 'gmail',
-    'email', 'send email', 'check email', 'inbox', 'draft', or references sending/reading
-    emails.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - email
-  - google-workspace
-  platform: Google Workspace
-  version: '1.3'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/google/google-integration/gmail
-  requires:
-  - google-connect
-  - google-master
-  has_scripts: true
-- name: google-calendar
-  description: Read, create, and manage Google Calendar events. Load when user mentions
-    'google calendar', 'calendar', 'schedule', 'meeting', 'event', 'appointment',
-    'book time', 'check availability', 'find slots', 'free time', or references scheduling/calendar
-    operations.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - calendar
-  - google-workspace
-  - meeting
-  platform: Google Workspace
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/google/google-integration/google-calendar
-  requires:
-  - google-connect
-  - google-master
-  has_scripts: true
-- name: google-connect
-  description: connect google, setup google, google integration.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - connector
-  - google-workspace
-  platform: Google Workspace
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/google/google-integration/google-connect
-- name: google-docs
-  description: Read, write, and manage Google Docs. Load when user mentions 'google
-    docs', 'google document', 'create doc', 'read doc', 'write doc', 'edit document',
-    or references creating/editing text documents in Google Drive.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - google-workspace
-  platform: Google Workspace
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/google/google-integration/google-docs
-  requires:
-  - google-connect
-  - google-master
-  has_scripts: true
-- name: google-drive
-  description: Manage Google Drive files and folders. Load when user mentions 'google
-    drive', 'drive', 'upload file', 'download file', 'share file', 'create folder',
-    or references cloud file storage operations.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - google-workspace
-  platform: Google Workspace
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/google/google-integration/google-drive
-  requires:
-  - google-connect
-  - google-master
-  has_scripts: true
-- name: google-master
-  description: Shared resource library for Google integration skills. DO NOT load
-    directly - provides common references (setup, API docs, error handling, authentication)
-    and scripts used by gmail, google-docs, google-sheets, google-calendar, and future
-    Google skills.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - api
-  - calendar
-  - google-workspace
-  - master
-  platform: Google Workspace
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/google/google-integration/google-master
-  has_scripts: true
-  has_references: true
-- name: google-sheets
-  description: Read and write Google Sheets data. Load when user mentions 'google
-    sheets', 'spreadsheet', 'update sheet', 'read sheet', 'append to sheet', or references
-    extracting data to update a tracking sheet.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - google-workspace
-  platform: Google Workspace
-  version: '1.2'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/google/google-integration/google-sheets
-  requires:
-  - google-connect
-  - google-master
-  has_scripts: true
-- name: google-slides
-  description: Create and manage Google Slides presentations. Load when user mentions
-    'google slides', 'slides', 'presentation', 'create presentation', 'add slide',
-    or references creating/editing slide decks.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - google-workspace
-  platform: Google Workspace
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/google/google-integration/google-slides
-  requires:
-  - google-connect
-  - google-master
-  has_scripts: true
-- name: google-tasks
-  description: Manage Google Tasks and task lists. Load when user mentions 'google
-    tasks', 'tasks', 'todo list', 'create task', 'complete task', or references task/todo
-    management.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - google-workspace
-  platform: Google Workspace
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/google/google-integration/google-tasks
-  requires:
-  - google-connect
-  - google-master
-  has_scripts: true
-- name: google-master
-  description: Shared resource library for Google integration skills. DO NOT load
-    directly - provides common references (setup, API docs, error handling, authentication)
-    and scripts used by gmail, google-docs, google-sheets, google-calendar, and future
-    Google skills.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - api
-  - calendar
-  - google-workspace
-  - master
-  platform: Google Workspace
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/google/google-master
-  has_scripts: true
-  has_references: true
-- name: google-sheets
-  description: Read and write Google Sheets data. Load when user mentions 'google
-    sheets', 'spreadsheet', 'update sheet', 'read sheet', 'append to sheet', or references
-    extracting data to update a tracking sheet.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - google-workspace
-  platform: Google Workspace
-  version: '1.2'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/google/google-sheets
-  requires:
-  - google-connect
-  - google-master
-  has_scripts: true
-- name: google-slides
-  description: Create and manage Google Slides presentations. Load when user mentions
-    'google slides', 'slides', 'presentation', 'create presentation', 'add slide',
-    or references creating/editing slide decks.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - google-workspace
-  platform: Google Workspace
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/google/google-slides
-  requires:
-  - google-connect
-  - google-master
-  has_scripts: true
-- name: google-speech-to-text
-  description: Transcribe audio files to text using Google Cloud Speech-to-Text API.
-    Load when user mentions 'transcribe', 'speech to text', 'audio to text', 'transcribe
-    audio', 'voice to text', 'transcription', or converting audio/recordings to text.
-  category: integrations
-  tags:
-  - api
-  - google-workspace
-  - transcript
-  platform: Google Workspace
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/google/google-speech-to-text
-  requires:
-  - google-connect
-  - google-master
-  has_scripts: true
-  has_references: true
-- name: google-tasks
-  description: Manage Google Tasks and task lists. Load when user mentions 'google
-    tasks', 'tasks', 'todo list', 'create task', 'complete task', or references task/todo
-    management.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - google-workspace
-  platform: Google Workspace
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/google/google-tasks
-  requires:
-  - google-connect
-  - google-master
-  has_scripts: true
-- name: happenstance-connect
-  description: 'Search and research LinkedIn connections via Happenstance API. Use
-    when user says: ''search my network'', ''find someone on LinkedIn'', ''research
-    a person'', ''who do I know that...'', ''happenstance search'', ''look up a contact''.'
-  category: integrations
-  tags:
-  - api
-  - connector
-  - happenstance
-  platform: Happenstance
-  version: '1.0'
-  updated: '2026-02-16'
-  visibility: public
-  path: skills/happenstance/happenstance-connect
-  has_references: true
-- name: heyreach
-  description: heyreach, linkedin outreach, linkedin campaigns, add leads.
-  category: integrations
-  tags:
-  - heyreach
-  platform: HeyReach
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/heyreach/heyreach
-- name: heyreach-connect
-  description: heyreach, linkedin outreach, linkedin campaigns.
-  category: integrations
-  tags:
-  - connector
-  - heyreach
-  platform: HeyReach
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/heyreach/heyreach/heyreach-connect
-- name: heyreach-master
-  description: Internal resource library for HeyReach integration. Contains shared
-    API client, operation scripts, and reference documentation.
-  category: integrations
-  tags:
-  - api
-  - heyreach
-  - master
-  platform: HeyReach
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/heyreach/heyreach/heyreach-master
-  has_scripts: true
-  has_references: true
-- name: heyreach-connect
-  description: heyreach, linkedin outreach, linkedin campaigns.
-  category: integrations
-  tags:
-  - connector
-  - heyreach
-  platform: HeyReach
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/heyreach/heyreach-connect
-- name: heyreach-master
-  description: Internal resource library for HeyReach integration. Contains shared
-    API client, operation scripts, and reference documentation.
-  category: integrations
-  tags:
-  - api
-  - heyreach
-  - master
-  platform: HeyReach
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/heyreach/heyreach-master
-  has_scripts: true
-  has_references: true
+  path: skills/general/experts/expert-review
 - name: candidate-compare
   description: Compare multiple candidates for a role and recommend the best fit.
     Load when user says "compare candidates", "select best candidate", "who should
@@ -1017,7 +449,7 @@ skills:
   version: '1.0'
   updated: '2026-02-16'
   visibility: public
-  path: skills/hiring/candidate-compare
+  path: skills/general/hiring/candidate-compare
 - name: interview-coach
   description: Analyze interview transcripts to help managers improve their interviewing
     skills. Load when user says "review my interview with [name]", "assess my interview",
@@ -1033,1557 +465,7 @@ skills:
   version: '2.0'
   updated: '2026-02-16'
   visibility: public
-  path: skills/hiring/interview-coach
-- name: hubspot-connect
-  description: hubspot, crm, contacts, companies, deals.
-  category: integrations
-  tags:
-  - connector
-  - crm
-  - hubspot
-  platform: HubSpot
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/hubspot/hubspot-connect
-- name: hubspot-create-company
-  description: Create a new company in HubSpot CRM. Load when user says 'create company',
-    'add company', 'new company'. Requires name, optional domain, industry, city.
-  category: integrations
-  tags:
-  - create
-  - crm
-  - hubspot
-  platform: HubSpot
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/hubspot/hubspot-create-company
-- name: hubspot-create-contact
-  description: Create a new contact in HubSpot CRM. Load when user says 'create contact',
-    'add contact', 'new contact'. Requires email, optional firstname, lastname, phone,
-    company.
-  category: integrations
-  tags:
-  - create
-  - crm
-  - email
-  - hubspot
-  platform: HubSpot
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/hubspot/hubspot-create-contact
-- name: hubspot-create-deal
-  description: Create a new deal in HubSpot CRM. Load when user says 'create deal',
-    'add deal', 'new deal', 'new opportunity'. Requires name, optional amount, stage,
-    closedate.
-  category: integrations
-  tags:
-  - create
-  - crm
-  - hubspot
-  platform: HubSpot
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/hubspot/hubspot-create-deal
-- name: hubspot-create-meeting
-  description: Create a meeting engagement in HubSpot CRM. Load when user says 'create
-    meeting', 'add meeting', 'schedule meeting', 'new meeting'. Requires title, start
-    and end times.
-  category: integrations
-  tags:
-  - create
-  - crm
-  - hubspot
-  - meeting
-  platform: HubSpot
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/hubspot/hubspot-create-meeting
-- name: hubspot-create-note
-  description: Create a note engagement in HubSpot CRM. Load when user says 'create
-    note', 'add note', 'new note', 'record note'. Requires body content.
-  category: integrations
-  tags:
-  - create
-  - crm
-  - hubspot
-  platform: HubSpot
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/hubspot/hubspot-create-note
-- name: hubspot-get-associations
-  description: Get associated records in HubSpot CRM. Load when user says 'get associations',
-    'linked records', 'contacts on deal', 'company contacts', 'related records', 'who
-    is on this deal'.
-  category: integrations
-  tags:
-  - crm
-  - hubspot
-  platform: HubSpot
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/hubspot/hubspot-get-associations
-- name: hubspot-list-calls
-  description: List call engagements from HubSpot CRM. Load when user says 'list calls',
-    'show calls', 'call history', 'hubspot calls'. Returns logged call records.
-  category: integrations
-  tags:
-  - crm
-  - hubspot
-  - query
-  platform: HubSpot
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/hubspot/hubspot-list-calls
-- name: hubspot-list-companies
-  description: List companies from HubSpot CRM. Load when user says 'list companies',
-    'show companies', 'get companies', 'hubspot companies'. Returns paginated company
-    list.
-  category: integrations
-  tags:
-  - crm
-  - hubspot
-  - query
-  platform: HubSpot
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/hubspot/hubspot-list-companies
-- name: hubspot-list-contacts
-  description: List contacts from HubSpot CRM. Load when user says 'list contacts',
-    'show contacts', 'get contacts', 'hubspot contacts'. Returns paginated contact
-    list with email, name, phone, company.
-  category: integrations
-  tags:
-  - crm
-  - email
-  - hubspot
-  - query
-  platform: HubSpot
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/hubspot/hubspot-list-contacts
-- name: hubspot-list-deals
-  description: List deals from HubSpot CRM. Load when user says 'list deals', 'show
-    deals', 'show pipeline', 'get deals', 'hubspot deals'. Returns paginated deal
-    list.
-  category: integrations
-  tags:
-  - crm
-  - hubspot
-  - query
-  platform: HubSpot
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/hubspot/hubspot-list-deals
-- name: hubspot-list-emails
-  description: List email engagements from HubSpot CRM. Load when user says 'list
-    emails', 'show emails', 'email history', 'hubspot emails'. Returns logged email
-    records.
-  category: integrations
-  tags:
-  - crm
-  - email
-  - hubspot
-  - query
-  platform: HubSpot
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/hubspot/hubspot-list-emails
-- name: hubspot-list-meetings
-  description: List meeting engagements from HubSpot CRM. Load when user says 'list
-    meetings', 'show meetings', 'meeting history', 'hubspot meetings'. Returns scheduled
-    meeting records.
-  category: integrations
-  tags:
-  - crm
-  - hubspot
-  - meeting
-  - query
-  platform: HubSpot
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/hubspot/hubspot-list-meetings
-- name: hubspot-list-notes
-  description: List note engagements from HubSpot CRM. Load when user says 'list notes',
-    'show notes', 'note history', 'hubspot notes'. Returns logged note records.
-  category: integrations
-  tags:
-  - crm
-  - hubspot
-  - query
-  platform: HubSpot
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/hubspot/hubspot-list-notes
-- name: hubspot-log-call
-  description: Log a call engagement in HubSpot CRM. Load when user says 'log call',
-    'record call', 'add call', 'call made'. Requires title, optional body and duration.
-  category: integrations
-  tags:
-  - crm
-  - hubspot
-  platform: HubSpot
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/hubspot/hubspot-log-call
-- name: hubspot-log-email
-  description: Log an email engagement in HubSpot CRM. Load when user says 'log email',
-    'record email', 'add email', 'email sent'. Requires subject and body.
-  category: integrations
-  tags:
-  - crm
-  - email
-  - hubspot
-  platform: HubSpot
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/hubspot/hubspot-log-email
-- name: hubspot-master
-  description: Shared resource library for HubSpot integration skills. DO NOT load
-    directly - provides common references (setup, API docs, error handling, authentication)
-    and scripts used by hubspot-connect and individual HubSpot skills.
-  category: integrations
-  tags:
-  - api
-  - hubspot
-  - master
-  platform: HubSpot
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/hubspot/hubspot-master
-  has_scripts: true
-  has_references: true
-- name: hubspot-search-companies
-  description: Search companies in HubSpot CRM by name or domain. Load when user says
-    'search companies', 'find company', 'lookup company', 'search for [company]'.
-  category: integrations
-  tags:
-  - crm
-  - hubspot
-  - query
-  platform: HubSpot
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/hubspot/hubspot-search-companies
-- name: hubspot-search-contacts
-  description: Search contacts in HubSpot CRM by email, name, or company. Load when
-    user says 'search contacts', 'find contact', 'lookup contact', 'search for [name]'.
-  category: integrations
-  tags:
-  - crm
-  - email
-  - hubspot
-  - query
-  platform: HubSpot
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/hubspot/hubspot-search-contacts
-- name: hubspot-search-deals
-  description: Search deals in HubSpot CRM by name or amount. Load when user says
-    'search deals', 'find deal', 'lookup deal', 'deals over $X', 'search for [deal]'.
-  category: integrations
-  tags:
-  - crm
-  - hubspot
-  - query
-  platform: HubSpot
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/hubspot/hubspot-search-deals
-- name: hubspot-update-contact
-  description: Update an existing contact in HubSpot CRM. Load when user says 'update
-    contact', 'edit contact', 'modify contact', 'change contact'. Requires contact
-    ID.
-  category: integrations
-  tags:
-  - crm
-  - hubspot
-  - update
-  platform: HubSpot
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/hubspot/hubspot-update-contact
-- name: hubspot-update-deal
-  description: Update an existing deal in HubSpot CRM. Load when user says 'update
-    deal', 'edit deal', 'change deal stage', 'move deal', 'close deal'. Requires deal
-    ID.
-  category: integrations
-  tags:
-  - crm
-  - hubspot
-  - update
-  platform: HubSpot
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/hubspot/hubspot-update-deal
-- name: langfuse-batch-ingest
-  description: Batch ingest traces/spans/events. Load when user says 'batch ingest',
-    'bulk import', 'ingest data'.
-  category: integrations
-  tags:
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-batch-ingest
-  has_scripts: true
-- name: langfuse-connect
-  description: langfuse, traces, observations, llm tracing.
-  category: integrations
-  tags:
-  - connector
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-connect
-- name: langfuse-create-annotation-queue
-  description: Create an annotation queue. Load when user says 'create queue', 'new
-    annotation queue'.
-  category: integrations
-  tags:
-  - create
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-create-annotation-queue
-  has_scripts: true
-- name: langfuse-create-comment
-  description: Add comment to trace/observation. Load when user says 'create comment',
-    'add comment', 'comment on trace'.
-  category: integrations
-  tags:
-  - create
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-create-comment
-  has_scripts: true
-- name: langfuse-create-dataset
-  description: Create a new Langfuse dataset. Load when user says 'create dataset',
-    'new dataset', 'add dataset'.
-  category: integrations
-  tags:
-  - create
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-create-dataset
-  has_scripts: true
-- name: langfuse-create-dataset-item
-  description: Create a dataset item. Load when user says 'create dataset item', 'add
-    item', 'new test case'.
-  category: integrations
-  tags:
-  - create
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-create-dataset-item
-  has_scripts: true
-- name: langfuse-create-dataset-run-item
-  description: Create a dataset run item. Load when user says 'create run item', 'log
-    evaluation', 'add run result'.
-  category: integrations
-  tags:
-  - create
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-create-dataset-run-item
-  has_scripts: true
-- name: langfuse-create-model
-  description: Create a model definition for cost tracking. Load when user says 'create
-    model', 'add model', 'new model'.
-  category: integrations
-  tags:
-  - create
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-create-model
-  has_scripts: true
-- name: langfuse-create-project
-  description: Create a new project. Load when user says 'create langfuse project',
-    'new project'.
-  category: integrations
-  tags:
-  - create
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-create-project
-  has_scripts: true
-- name: langfuse-create-project-api-key
-  description: Create new API key for project. Load when user says 'create api key',
-    'new key', 'generate key'.
-  category: integrations
-  tags:
-  - api
-  - create
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-create-project-api-key
-  has_scripts: true
-- name: langfuse-create-prompt
-  description: Create a new Langfuse prompt. Load when user says 'create prompt',
-    'new prompt', 'add prompt'.
-  category: integrations
-  tags:
-  - create
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-create-prompt
-  has_scripts: true
-- name: langfuse-create-queue-assignment
-  description: Assign reviewer to queue. Load when user says 'assign reviewer', 'add
-    to queue assignment'.
-  category: integrations
-  tags:
-  - create
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-create-queue-assignment
-  has_scripts: true
-- name: langfuse-create-queue-item
-  description: Add item to queue. Load when user says 'add to queue', 'queue trace
-    for review'.
-  category: integrations
-  tags:
-  - create
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-create-queue-item
-  has_scripts: true
-- name: langfuse-create-score
-  description: Create a score. Load when user says 'create score', 'add evaluation',
-    'score trace'.
-  category: integrations
-  tags:
-  - create
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-create-score
-  has_scripts: true
-- name: langfuse-create-score-config
-  description: Create a score configuration. Load when user says 'create score config',
-    'new metric', 'add scoring'.
-  category: integrations
-  tags:
-  - create
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-create-score-config
-  has_scripts: true
-- name: langfuse-delete-dataset-item
-  description: Delete a dataset item. Load when user says 'delete dataset item', 'remove
-    item'.
-  category: integrations
-  tags:
-  - delete
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-delete-dataset-item
-  has_scripts: true
-- name: langfuse-delete-dataset-run
-  description: Delete a dataset run. Load when user says 'delete dataset run', 'remove
-    run'.
-  category: integrations
-  tags:
-  - delete
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-delete-dataset-run
-  has_scripts: true
-- name: langfuse-delete-model
-  description: Delete a model definition. Load when user says 'delete model', 'remove
-    model'.
-  category: integrations
-  tags:
-  - delete
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-delete-model
-  has_scripts: true
-- name: langfuse-delete-org-membership
-  description: Remove member from org. Load when user says 'remove member', 'delete
-    membership', 'revoke access'.
-  category: integrations
-  tags:
-  - delete
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-delete-org-membership
-  has_scripts: true
-- name: langfuse-delete-project
-  description: Delete a project. Load when user says 'delete project', 'remove project'.
-  category: integrations
-  tags:
-  - delete
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-delete-project
-  has_scripts: true
-- name: langfuse-delete-project-api-key
-  description: Delete an API key. Load when user says 'delete api key', 'revoke key',
-    'remove key'.
-  category: integrations
-  tags:
-  - api
-  - delete
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-delete-project-api-key
-  has_scripts: true
-- name: langfuse-delete-prompt
-  description: Delete a Langfuse prompt. Load when user says 'delete prompt', 'remove
-    prompt'.
-  category: integrations
-  tags:
-  - delete
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-delete-prompt
-  has_scripts: true
-- name: langfuse-delete-queue-assignment
-  description: Remove reviewer from queue. Load when user says 'remove assignment',
-    'unassign reviewer'.
-  category: integrations
-  tags:
-  - delete
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-delete-queue-assignment
-  has_scripts: true
-- name: langfuse-delete-queue-item
-  description: Delete a queue item. Load when user says 'delete queue item', 'remove
-    from queue'.
-  category: integrations
-  tags:
-  - delete
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-delete-queue-item
-  has_scripts: true
-- name: langfuse-delete-score
-  description: Delete a score. Load when user says 'delete score', 'remove evaluation'.
-  category: integrations
-  tags:
-  - delete
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-delete-score
-  has_scripts: true
-- name: langfuse-delete-trace
-  description: Delete a single trace. Load when user says 'delete trace', 'remove
-    trace'.
-  category: integrations
-  tags:
-  - delete
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-delete-trace
-  has_scripts: true
-- name: langfuse-delete-traces
-  description: Bulk delete traces. Load when user says 'bulk delete traces', 'delete
-    multiple traces', 'purge traces'.
-  category: integrations
-  tags:
-  - delete
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-delete-traces
-  has_scripts: true
-- name: langfuse-get-annotation-queue
-  description: Get an annotation queue. Load when user says 'get queue', 'queue details'.
-  category: integrations
-  tags:
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-get-annotation-queue
-  has_scripts: true
-- name: langfuse-get-comment
-  description: Get comment by ID. Load when user says 'get comment', 'show comment',
-    'comment details'.
-  category: integrations
-  tags:
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-get-comment
-  has_scripts: true
-- name: langfuse-get-dataset
-  description: Get a Langfuse dataset by name. Load when user says 'get dataset',
-    'show dataset', 'dataset details'.
-  category: integrations
-  tags:
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-get-dataset
-  has_scripts: true
-- name: langfuse-get-dataset-item
-  description: Get a dataset item by ID. Load when user says 'get dataset item', 'show
-    item', 'item details'.
-  category: integrations
-  tags:
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-get-dataset-item
-  has_scripts: true
-- name: langfuse-get-dataset-run
-  description: Get a dataset run by name. Load when user says 'get dataset run', 'show
-    run', 'run details'.
-  category: integrations
-  tags:
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-get-dataset-run
-  has_scripts: true
-- name: langfuse-get-media
-  description: Get media content by ID. Load when user says 'get media', 'download
-    media', 'media content'.
-  category: integrations
-  tags:
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-get-media
-  has_scripts: true
-- name: langfuse-get-model
-  description: Get specific Langfuse model. Load when user says 'get model', 'model
-    details', 'show model {id}'.
-  category: integrations
-  tags:
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-get-model
-  has_scripts: true
-- name: langfuse-get-observation
-  description: Get specific Langfuse observation. Load when user says 'get observation',
-    'observation details', 'show span {id}'.
-  category: integrations
-  tags:
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-get-observation
-  has_scripts: true
-- name: langfuse-get-project
-  description: Get Langfuse project info. Load when user says 'get project', 'current
-    project', 'project info', 'langfuse project'.
-  category: integrations
-  tags:
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-get-project
-  has_scripts: true
-- name: langfuse-get-prompt
-  description: Get a Langfuse prompt by name. Load when user says 'get prompt', 'show
-    prompt', 'prompt details'.
-  category: integrations
-  tags:
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-get-prompt
-  has_scripts: true
-- name: langfuse-get-queue-item
-  description: Get a queue item. Load when user says 'get queue item', 'item details'.
-  category: integrations
-  tags:
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-get-queue-item
-  has_scripts: true
-- name: langfuse-get-score
-  description: Get specific Langfuse score. Load when user says 'get score', 'score
-    details', 'show score {id}'.
-  category: integrations
-  tags:
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-get-score
-  has_scripts: true
-- name: langfuse-get-score-config
-  description: Get a score config by ID. Load when user says 'get score config', 'show
-    metric'.
-  category: integrations
-  tags:
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-get-score-config
-  has_scripts: true
-- name: langfuse-get-session
-  description: Get specific Langfuse session. Load when user says 'get session', 'session
-    details', 'show session {id}'.
-  category: integrations
-  tags:
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-get-session
-  has_scripts: true
-- name: langfuse-get-trace
-  description: Get specific Langfuse trace. Load when user says 'get trace', 'trace
-    details', 'show trace {id}'.
-  category: integrations
-  tags:
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-get-trace
-  has_scripts: true
-- name: langfuse-get-upload-url
-  description: Get presigned upload URL for media. Load when user says 'upload url',
-    'media upload', 'presigned url'.
-  category: integrations
-  tags:
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-get-upload-url
-  has_scripts: true
-- name: langfuse-health
-  description: Check Langfuse health status. Load when user says 'health check', 'is
-    langfuse up', 'check status'.
-  category: integrations
-  tags:
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-health
-  has_scripts: true
-- name: langfuse-help
-  description: langfuse help, langfuse reference, langfuse --help, show langfuse operations,
-    list langfuse skills.
-  category: integrations
-  tags:
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/langfuse/langfuse-help
-- name: langfuse-list-annotation-queues
-  description: List annotation queues. Load when user says 'list queues', 'annotation
-    queues', 'review queues'.
-  category: integrations
-  tags:
-  - langfuse
-  - query
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-list-annotation-queues
-  has_scripts: true
-- name: langfuse-list-comments
-  description: List comments on traces/observations. Load when user says 'list comments',
-    'get comments', 'show comments'.
-  category: integrations
-  tags:
-  - langfuse
-  - query
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-list-comments
-  has_scripts: true
-- name: langfuse-list-dataset-items
-  description: List dataset items. Load when user says 'list dataset items', 'show
-    items', 'dataset items'.
-  category: integrations
-  tags:
-  - langfuse
-  - query
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-list-dataset-items
-  has_scripts: true
-- name: langfuse-list-dataset-run-items
-  description: List dataset run items. Load when user says 'list run items', 'show
-    run results', 'evaluation results'.
-  category: integrations
-  tags:
-  - langfuse
-  - query
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-list-dataset-run-items
-  has_scripts: true
-- name: langfuse-list-dataset-runs
-  description: List dataset runs. Load when user says 'list dataset runs', 'show runs',
-    'dataset experiments'.
-  category: integrations
-  tags:
-  - langfuse
-  - query
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-list-dataset-runs
-  has_scripts: true
-- name: langfuse-list-datasets
-  description: List Langfuse datasets. Load when user says 'list datasets', 'show
-    datasets', 'get datasets'.
-  category: integrations
-  tags:
-  - langfuse
-  - query
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-list-datasets
-  has_scripts: true
-- name: langfuse-list-models
-  description: List Langfuse models. Load when user says 'list models', 'show models',
-    'model costs'.
-  category: integrations
-  tags:
-  - langfuse
-  - query
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-list-models
-  has_scripts: true
-- name: langfuse-list-observations
-  description: List Langfuse observations (spans, generations, events). Load when
-    user says 'list observations', 'show spans', 'get generations'.
-  category: integrations
-  tags:
-  - langfuse
-  - query
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-list-observations
-  has_scripts: true
-- name: langfuse-list-org-api-keys
-  description: List org-level API keys. Load when user says 'org api keys', 'organization
-    keys'.
-  category: integrations
-  tags:
-  - api
-  - langfuse
-  - query
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-list-org-api-keys
-  has_scripts: true
-- name: langfuse-list-org-memberships
-  description: List organization members. Load when user says 'list members', 'org
-    members', 'who has access'.
-  category: integrations
-  tags:
-  - langfuse
-  - query
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-list-org-memberships
-  has_scripts: true
-- name: langfuse-list-org-projects
-  description: List projects in org. Load when user says 'list org projects', 'org
-    projects', 'all projects'.
-  category: integrations
-  tags:
-  - langfuse
-  - query
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-list-org-projects
-  has_scripts: true
-- name: langfuse-list-project-api-keys
-  description: List API keys for project. Load when user says 'list api keys', 'show
-    keys', 'project keys'.
-  category: integrations
-  tags:
-  - api
-  - langfuse
-  - query
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-list-project-api-keys
-  has_scripts: true
-- name: langfuse-list-prompts
-  description: List Langfuse prompts. Load when user says 'list prompts', 'show prompts',
-    'get prompts', 'langfuse prompts'.
-  category: integrations
-  tags:
-  - langfuse
-  - query
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-list-prompts
-  has_scripts: true
-- name: langfuse-list-queue-items
-  description: List queue items. Load when user says 'list queue items', 'show review
-    items'.
-  category: integrations
-  tags:
-  - langfuse
-  - query
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-list-queue-items
-  has_scripts: true
-- name: langfuse-list-score-configs
-  description: List score configurations. Load when user says 'list score configs',
-    'show scoring', 'evaluation configs'.
-  category: integrations
-  tags:
-  - langfuse
-  - query
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-list-score-configs
-  has_scripts: true
-- name: langfuse-list-scores
-  description: List Langfuse scores. Load when user says 'list scores', 'show scores',
-    'get evaluations'.
-  category: integrations
-  tags:
-  - langfuse
-  - query
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-list-scores
-  has_scripts: true
-- name: langfuse-list-sessions
-  description: List Langfuse sessions. Load when user says 'list sessions', 'show
-    sessions', 'get sessions'.
-  category: integrations
-  tags:
-  - langfuse
-  - query
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-list-sessions
-  has_scripts: true
-- name: langfuse-list-traces
-  description: List Langfuse traces. Load when user says 'list traces', 'show traces',
-    'get traces', 'recent traces'.
-  category: integrations
-  tags:
-  - langfuse
-  - query
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-list-traces
-  has_scripts: true
-- name: langfuse-master
-  description: SHARED RESOURCES - DO NOT LOAD DIRECTLY. Contains Langfuse API client,
-    config checker, and reference documentation. Used by langfuse-connect and all
-    operation skills.
-  category: integrations
-  tags:
-  - api
-  - langfuse
-  - master
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-master
-  has_scripts: true
-  has_references: true
-- name: langfuse-metrics
-  description: Get Langfuse metrics. Load when user says 'metrics', 'usage stats',
-    'langfuse usage'.
-  category: integrations
-  tags:
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-metrics
-  has_scripts: true
-- name: langfuse-otel-ingest
-  description: Ingest OpenTelemetry data. Load when user says 'otel ingest', 'opentelemetry',
-    'otlp'.
-  category: integrations
-  tags:
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-otel-ingest
-  has_scripts: true
-- name: langfuse-update-media
-  description: Update media metadata. Load when user says 'update media', 'patch media'.
-  category: integrations
-  tags:
-  - langfuse
-  - update
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-update-media
-  has_scripts: true
-- name: langfuse-update-org-membership
-  description: Update member role. Load when user says 'update member', 'change role',
-    'update membership'.
-  category: integrations
-  tags:
-  - langfuse
-  - update
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-update-org-membership
-  has_scripts: true
-- name: langfuse-update-project
-  description: Update project settings. Load when user says 'update project', 'rename
-    project'.
-  category: integrations
-  tags:
-  - langfuse
-  - update
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-update-project
-  has_scripts: true
-- name: langfuse-update-prompt-version
-  description: Update a Langfuse prompt version labels. Load when user says 'update
-    prompt', 'set prompt label', 'promote prompt'.
-  category: integrations
-  tags:
-  - langfuse
-  - update
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-update-prompt-version
-  has_scripts: true
-- name: langfuse-update-queue-item
-  description: Update a queue item. Load when user says 'update queue item', 'complete
-    review'.
-  category: integrations
-  tags:
-  - langfuse
-  - update
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-update-queue-item
-  has_scripts: true
-- name: langfuse-update-score-config
-  description: Update a score config. Load when user says 'update score config', 'modify
-    metric'.
-  category: integrations
-  tags:
-  - langfuse
-  - update
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/langfuse/langfuse-update-score-config
-  has_scripts: true
-- name: analyze-context
-  description: Upload files for AI analysis. SubAgents extract insights and save structured
-    documents.
-  category: learning
-  tags:
-  - learning
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/learning/analyze-context
-  has_scripts: true
-- name: how-beam-next-works
-  description: Learn how Beam Next works - the system tour. ~7 min.
-  category: learning
-  tags:
-  - learning
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/learning/how-beam-next-works
-- name: learn-beam-next
-  description: 'Master Beam Next philosophy and best practices. Load when user mentions:
-    learn beam next, beam next tutorial, system mastery, beam next best practices,
-    how beam next works, beam next philosophy, beam next design, understand beam next,
-    beam next deep dive. 15-18 min.'
-  category: learning
-  tags:
-  - learning
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/learning/learn-beam-next
-  has_references: true
-- name: learn-integrations
-  description: 'Learn about Beam Next integrations and MCP. Load when user mentions:
-    learn integrations, what is MCP, connect tools, integration tutorial, add integration,
-    external tools, API connections, third party, how to integrate. 10-12 min.'
-  category: learning
-  tags:
-  - api
-  version: '1.0'
-  updated: '2026-02-25'
-  visibility: public
-  path: skills/learning/learn-integrations
-- name: learn-projects
-  description: 'Learn how Beam Next builds work. Load when user mentions: learn projects,
-    how do builds work, builds vs skills, build tutorial, what is a project, build
-    structure, build lifecycle, understand builds, explain builds. 8-10 min.'
-  category: learning
-  tags:
-  - learning
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/learning/learn-projects
-- name: learn-skills
-  description: 'Learn how Beam Next skills work. Load when user mentions: learn skills,
-    how do skills work, what is a skill, skill tutorial, skill structure, understand
-    skills, explain skills, when to create skill, skill vs build. 10-12 min.'
-  category: learning
-  tags:
-  - learning
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/learning/learn-skills
-  has_references: true
-- name: quick-start
-  description: 'Complete onboarding: welcome, language, goals, integrations, workspace,
-    first PROJECT, permissions.'
-  category: learning
-  tags:
-  - learning
-  version: '2.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/learning/quick-start
-- name: setup-goals
-  description: Load when user says 'setup goals', 'personalize beam next', 'set my
-    goals', 'define my role'. Captures role, goals, preferences. 8-10 min.
-  category: learning
-  tags:
-  - learning
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/learning/setup-goals
-  has_references: true
-- name: setup-memory
-  description: 'Configure Beam Next memory with your role, goals, and preferences.
-    Load when user wants to personalize the system or teach Beam Next about themselves.
-    Keywords: setup memory, personalize, configure, my goals, my role, about me, preferences.
-    8 min.'
-  category: learning
-  tags:
-  - learning
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/learning/setup-memory
-  has_references: true
-- name: setup-workspace
-  description: 'Organize your 04-workspace/ folder structure. Load when user mentions:
-    setup workspace, organize folders, folder structure, configure workspace, my files,
-    file organization, where to put files, workspace setup, directories, storage.
-    5-8 min.'
-  category: learning
-  tags:
-  - learning
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/learning/setup-workspace
-  has_references: true
-- name: create-weekly-update
-  description: Generate weekly status update based on Linear ticket activity and project
-    progress. Load when user says "weekly update", "weekly status", "create weekly
-    report", "status update for [project]", "what got done this week". Fetches ticket
-    changes and generates formatted summary.
-  category: general
-  tags:
-  - create
-  - linear
-  - update
-  platform: Linear
-  version: '1.0'
-  updated: '2026-02-09'
-  visibility: team
-  path: skills/linear/create-weekly-update
-- name: generate-linear-project-update
-  description: Generate concise Linear project status updates with issues grouped
-    by status, sub-issue links, and metrics. Load when user mentions "generate project
-    update", "weekly update for [project]", "Linear project summary", "status update",
-    or provides a Linear project URL.
-  author: Jack Li
-  category: general
-  tags:
-  - linear
-  - update
-  platform: Linear
-  version: '1.0'
-  updated: '2025-12-10'
-  visibility: team
-  path: skills/linear/generate-linear-project-update
-- name: linear-create-tickets
-  description: Create Linear tickets from action items or task lists. Load when user
-    says "create linear tickets", "add tickets to linear", "create tickets from meeting",
-    "linear ticket for [task]", or wants to convert action items into Linear issues.
-  author: Hassaan Ahmed
-  category: general
-  tags:
-  - create
-  - linear
-  - meeting
-  platform: Linear
-  version: '1.0'
-  updated: '2025-12-23'
-  visibility: team
-  path: skills/linear/linear-create-tickets
-- name: linear-update-tickets
-  description: Update Linear ticket status or add comments. Load when user says "update
-    linear ticket", "mark ticket as done", "move CLI-XXX to [status]", "change ticket
-    status", "add comment to ticket", or "close ticket".
-  author: Hassaan Ahmed
-  category: general
-  tags:
-  - linear
-  - update
-  platform: Linear
-  version: '1.0'
-  updated: '2025-12-23'
-  visibility: team
-  path: skills/linear/linear-update-tickets
-- name: setup-linear-onboarding-template
-  description: Interactive assistant to fill Linear onboarding template projects with
-    content from user's workspace. Load when user mentions "setup linear template",
-    "fill linear project", "onboard client in linear", or provides a Linear project
-    URL. Guides user through each task, suggests content from workspace folders, and
-    updates Linear issues with approved content.
-  author: Jack Li
-  category: general
-  tags:
-  - linear
-  platform: Linear
-  version: '1.0'
-  updated: '2025-12-10'
-  visibility: team
-  path: skills/linear/setup-linear-onboarding-template
-  has_scripts: true
-  has_references: true
-- name: linkedin-outbounding-automation
-  description: Automate LinkedIn outbound from HubSpot company lists. Load when user
-    says "linkedin outbounding automation", "linkedin outreach from hubspot", "hubspot
-    to heyreach", "prospect C-levels", "run linkedin campaign", or wants to push HubSpot
-    segments to LinkedIn outreach via HeyReach.
-  category: general
-  tags:
-  - automation
-  version: '1.0'
-  updated: '2026-02-27'
-  visibility: public
-  path: skills/linkedin-outbounding-automation
-  has_references: true
-- name: notebooklm
-  description: notebooklm, create notebook, audio overview, podcast.
-  category: integrations
-  tags:
-  - notebooklm
-  platform: NotebookLM
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/notebooklm/notebooklm
-- name: notebooklm-connect
-  description: notebooklm, create notebook, audio overview, podcast.
-  category: integrations
-  tags:
-  - connector
-  - notebooklm
-  platform: NotebookLM
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/notebooklm/notebooklm/notebooklm-connect
-- name: notebooklm-master
-  description: Shared resource library for NotebookLM Enterprise integration skills.
-    DO NOT load directly - provides common references (setup, API docs, error handling,
-    authentication) and scripts used by notebooklm-connect and individual NotebookLM
-    skills.
-  category: integrations
-  tags:
-  - api
-  - master
-  - notebooklm
-  platform: NotebookLM
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/notebooklm/notebooklm/notebooklm-master
-  has_scripts: true
-  has_references: true
-- name: notebooklm-connect
-  description: notebooklm, create notebook, audio overview, podcast.
-  category: integrations
-  tags:
-  - connector
-  - notebooklm
-  platform: NotebookLM
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/notebooklm/notebooklm-connect
-- name: notebooklm-master
-  description: Shared resource library for NotebookLM Enterprise integration skills.
-    DO NOT load directly - provides common references (setup, API docs, error handling,
-    authentication) and scripts used by notebooklm-connect and individual NotebookLM
-    skills.
-  category: integrations
-  tags:
-  - api
-  - master
-  - notebooklm
-  platform: NotebookLM
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/notebooklm/notebooklm-master
-  has_scripts: true
-  has_references: true
-- name: notion-connect
-  description: Connect to any Notion database by name. Load when user mentions 'notion',
-    'connect notion', 'setup notion', 'query [database-name]', 'add to [database]',
-    'notion databases', or any database name from persistent context. Meta-skill that
-    discovers workspace, caches schemas, and routes to appropriate operations.
-  category: integrations
-  tags:
-  - connector
-  - notion
-  platform: Notion
-  version: '1.1'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/notion/notion-connect
-- name: notion-master
-  description: Shared resource library for Notion integration skills. DO NOT load
-    directly - this provides common references (setup, API docs, error handling, database
-    schema) and scripts used by notion-connect, query-notion-db, import-skill-to-beam-next,
-    and export-skill-to-notion.
-  category: integrations
-  tags:
-  - api
-  - master
-  - notion
-  platform: Notion
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/notion/notion-master
-  has_scripts: true
-  has_references: true
-- name: setup-notion-customer-onboarding
-  description: Setup and fill Notion customer onboarding template pages by updating
-    Overview sections, Quick Links, and database tasks. Load when user mentions "setup
-    notion onboarding", "fill customer template", "update onboarding tasks", or provides
-    a Notion onboarding page URL. Uses Notion MCP for all content updates.
-  author: Jack Li
-  category: general
-  tags:
-  - notion
-  platform: Notion
-  version: '1.0'
-  updated: '2025-12-10'
-  visibility: team
-  path: skills/notion-tools/setup-notion-customer-onboarding
-  has_references: true
-- name: update-variables-in-notion
-  description: Extract variables from Beam prompt chain files (.md) and sync to Notion
-    database. Load when user mentions "extract variables", "prompt variables to notion",
-    "update variables", "document variables", or provides a path to prompt files.
-    Handles single files or directories. Creates/updates Notion database with variable
-    metadata (name, description, data type, node).
-  author: Jack Li
-  category: general
-  tags:
-  - notion
-  - update
-  platform: Notion
-  version: '1.0'
-  updated: '2025-12-10'
-  visibility: team
-  path: skills/notion-tools/update-variables-in-notion
-  has_scripts: true
-  has_references: true
+  path: skills/general/hiring/interview-coach
 - name: 1on1-followup
   description: 'Quick post-meeting follow-up for 1-on-1s. Triggers: ''1on1 followup'',
     ''follow up on my 1on1'', ''1on1 with [name]'', ''debrief my 1on1'', ''process
@@ -2595,7 +477,7 @@ skills:
   version: '1.0'
   updated: '2026-02-10'
   visibility: public
-  path: skills/productivity/1on1-followup
+  path: skills/general/productivity/1on1-followup
 - name: 1on1-prep
   description: 'Prepare for an upcoming 1-on-1. Triggers: ''prep my 1on1 with [name]'',
     ''1on1 prep'', ''prepare for my meeting with [name]'', ''what should I cover with
@@ -2607,7 +489,7 @@ skills:
   version: '1.0'
   updated: '2026-02-10'
   visibility: public
-  path: skills/productivity/1on1-prep
+  path: skills/general/productivity/1on1-prep
 - name: 1on1-review
   description: 'Deep expert coaching review of a 1-on-1 meeting. Triggers: ''1on1
     review'', ''review my 1on1 with [name]'', ''coach me on my 1on1'', ''how did my
@@ -2619,7 +501,7 @@ skills:
   version: '1.0'
   updated: '2026-02-10'
   visibility: public
-  path: skills/productivity/1on1-review
+  path: skills/general/productivity/1on1-review
 - name: allhands-prep
   description: Prepare all-hands meetings for Beam. Load when user says 'prepare all-hands',
     'all-hands prep', 'plan all-hands meeting', 'create all-hands agenda', or mentions
@@ -2631,7 +513,7 @@ skills:
   version: '1.0'
   updated: '2026-02-26'
   visibility: public
-  path: skills/productivity/allhands-prep
+  path: skills/general/productivity/allhands-prep
   has_references: true
 - name: create-meeting-minutes
   description: Transform a meeting transcript into formatted meeting minutes. Load
@@ -2647,7 +529,7 @@ skills:
   version: '1.0'
   updated: '2025-12-23'
   visibility: team
-  path: skills/productivity/create-meeting-minutes
+  path: skills/general/productivity/create-meeting-minutes
 - name: create-meeting-presentation-html
   description: Generate a self-contained HTML slide presentation for meetings. Load
     when user says "create presentation", "meeting presentation", "html presentation",
@@ -2662,7 +544,7 @@ skills:
   version: '1.0'
   updated: '2026-02-16'
   visibility: public
-  path: skills/productivity/create-meeting-presentation-html
+  path: skills/general/productivity/create-meeting-presentation-html
 - name: email-automation
   description: Load when user says "process emails", "triage inbox", "email automation",
     "check emails", or "inbox zero"
@@ -2674,7 +556,7 @@ skills:
   version: '1.0'
   updated: '2026-02-16'
   visibility: public
-  path: skills/productivity/email-automation
+  path: skills/general/productivity/email-automation
   has_scripts: true
   has_references: true
 - name: archive-project
@@ -2687,7 +569,7 @@ skills:
   version: '1.0'
   updated: '2026-02-26'
   visibility: public
-  path: skills/projects/archive-project
+  path: skills/general/projects/archive-project
 - name: bulk-complete
   description: Bulk-complete tasks/steps in a project. Load when user says "bulk complete
     [project]", "mark all done", "complete phase X", or needs to finish project tasks
@@ -2698,7 +580,7 @@ skills:
   version: '1.0'
   updated: '2025-12-18'
   visibility: public
-  path: skills/projects/bulk-complete
+  path: skills/general/projects/bulk-complete
   has_scripts: true
 - name: create-client-project
   description: Create a new client project folder with complete structure and templates.
@@ -2711,7 +593,7 @@ skills:
   version: '1.0'
   updated: '2025-12-23'
   visibility: team
-  path: skills/projects/create-client-project
+  path: skills/general/projects/create-client-project
 - name: create-project
   description: 'Create new projects. Load when user wants to START something new with
     a deliverable endpoint. Keywords: create project, new project, start project,
@@ -2722,7 +604,7 @@ skills:
   version: '1.0'
   updated: '2026-02-26'
   visibility: public
-  path: skills/projects/create-project
+  path: skills/general/projects/create-project
   has_scripts: true
   has_references: true
 - name: create-roadmap
@@ -2734,7 +616,7 @@ skills:
   version: '1.0'
   updated: '2026-02-26'
   visibility: public
-  path: skills/projects/create-roadmap
+  path: skills/general/projects/create-roadmap
 - name: execute-project
   description: continue [build], resume, work on, check progress, execute build, build
     [ID/name].
@@ -2744,7 +626,7 @@ skills:
   version: '1.0'
   updated: '2026-02-25'
   visibility: public
-  path: skills/projects/execute-project
+  path: skills/general/projects/execute-project
   has_scripts: true
 - name: plan-project
   description: create build, new project, start build, plan build, build [X].
@@ -2754,7 +636,7 @@ skills:
   version: '1.0'
   updated: '2026-02-26'
   visibility: public
-  path: skills/projects/plan-project
+  path: skills/general/projects/plan-project
   has_scripts: true
   has_references: true
 - name: analyze-competitors
@@ -2770,7 +652,7 @@ skills:
   version: '1.0'
   updated: '2026-02-24'
   visibility: team
-  path: skills/research/analyze-competitors
+  path: skills/general/research/analyze-competitors
 - name: extract-requirements
   description: Extract and organize requirements from meeting transcripts, documents,
     and other sources into structured domain files. Load when user says 'extract requirements',
@@ -2786,7 +668,7 @@ skills:
   version: '1.0'
   updated: '2026-01-07'
   visibility: team
-  path: skills/research/extract-requirements
+  path: skills/general/research/extract-requirements
 - name: write-integration-ticket
   description: Write API integration tickets in structured specification format. Load
     when user mentions 'write integration ticket', 'create integration spec', 'integration
@@ -2800,7 +682,7 @@ skills:
   version: '1.0'
   updated: '2026-01-19'
   visibility: public
-  path: skills/research/write-integration-ticket
+  path: skills/general/research/write-integration-ticket
 - name: dealroom-creation
   description: Quick company folder setup for sales prospects. Load when user mentions
     "create company", "new company", "create dealroom", "company folder", or "setup
@@ -2815,7 +697,7 @@ skills:
   version: '1.0'
   updated: '2025-12-12'
   visibility: team
-  path: skills/sales/dealroom-creation
+  path: skills/general/sales/dealroom-creation
 - name: follow-up-automation
   description: Streamlined follow-up system for sales calls based on call transcripts.
     Load when user mentions "follow-up", "follow up email", "call follow-up", "send
@@ -2836,7 +718,7 @@ skills:
   version: '1.0'
   updated: '2025-12-12'
   visibility: team
-  path: skills/sales/follow-up-automation
+  path: skills/general/sales/follow-up-automation
 - name: lead-research
   description: 'Research sales leads and assess fit for Beam. Use when preparing for
     prospect calls, evaluating inbound leads, or qualifying opportunities. Keywords:
@@ -2850,7 +732,7 @@ skills:
   version: '1.0'
   updated: '2026-01-28'
   visibility: public
-  path: skills/sales/lead-research
+  path: skills/general/sales/lead-research
   has_references: true
 - name: scope-of-work-creation
   description: Create professional proposals and scopes of work (SOW) for client projects
@@ -2864,14 +746,12 @@ skills:
   version: '1.0'
   updated: '2025-12-12'
   visibility: team
-  path: skills/sales/scope-of-work-creation
+  path: skills/general/sales/scope-of-work-creation
 - name: transcript-to-hubspot-sections
-  category: sales
-  tags:
-  - sales
+  category: general
   version: '1.0'
   visibility: public
-  path: skills/sales/transcript-to-hubspot-sections
+  path: skills/general/sales/transcript-to-hubspot-sections
 - name: create-master-skill
   description: create master skill, integration master, shared skill library.
   category: skill-dev
@@ -2881,7 +761,7 @@ skills:
   version: '1.0'
   updated: '2026-02-26'
   visibility: public
-  path: skills/skill-dev/create-master-skill
+  path: skills/general/skill-dev/create-master-skill
   has_scripts: true
   has_references: true
 - name: create-skill
@@ -2892,7 +772,7 @@ skills:
   version: '1.0'
   updated: '2026-02-26'
   visibility: public
-  path: skills/skill-dev/create-skill
+  path: skills/general/skill-dev/create-skill
   has_scripts: true
   has_references: true
 - name: import-skill
@@ -2903,7 +783,7 @@ skills:
   version: '1.0'
   updated: '2026-02-26'
   visibility: public
-  path: skills/skill-dev/import-skill
+  path: skills/general/skill-dev/import-skill
 - name: list-skills
   description: list skills, show skills, what skills, available skills.
   category: system
@@ -2912,7 +792,7 @@ skills:
   version: '1.0'
   updated: '2026-02-26'
   visibility: public
-  path: skills/skill-dev/list-skills
+  path: skills/general/skill-dev/list-skills
 - name: search-skill-database
   description: search skills, find skill, browse skills, skill marketplace.
   category: skill-dev
@@ -2921,7 +801,7 @@ skills:
   version: '1.0'
   updated: '2026-02-26'
   visibility: public
-  path: skills/skill-dev/search-skill-database
+  path: skills/general/skill-dev/search-skill-database
 - name: share-skill
   description: share skill, upload skill, publish skill.
   category: skill-dev
@@ -2930,7 +810,7 @@ skills:
   version: '1.0'
   updated: '2026-02-26'
   visibility: public
-  path: skills/skill-dev/share-skill
+  path: skills/general/skill-dev/share-skill
 - name: validate-skill-functionality
   description: validate skill, check skill, review skill execution.
   category: skill-dev
@@ -2939,98 +819,7 @@ skills:
   version: '1.0'
   updated: '2026-02-25'
   visibility: public
-  path: skills/skill-dev/validate-skill-functionality
-- name: slack
-  description: Complete Slack integration skill. Load when user wants to send messages,
-    search Slack, manage channels, list users, upload files, add reactions, set reminders,
-    or interact with Slack workspace.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - slack
-  platform: Slack
-  version: '1.1'
-  updated: '2025-12-24'
-  visibility: public
-  path: skills/slack/slack
-- name: slack-connect
-  description: Connect to Slack workspace for messaging and channel management. Load
-    when user mentions 'slack', 'connect slack', 'slack message', 'slack channel',
-    'send to slack', or any Slack operations. Meta-skill that validates config, discovers
-    workspace, and routes to appropriate operations.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - connector
-  - slack
-  platform: Slack
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/slack/slack/slack-connect
-- name: slack-master
-  description: Shared resource library for Slack integration skills. DO NOT load directly
-    - provides common references (setup, API docs, error handling, authentication)
-    and scripts used by slack-connect and individual Slack skills.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - api
-  - master
-  - slack
-  platform: Slack
-  version: '1.0'
-  updated: '2025-12-24'
-  visibility: public
-  path: skills/slack/slack/slack-master
-  has_scripts: true
-  has_references: true
-- name: slack-connect
-  description: Connect to Slack workspace for messaging and channel management. Load
-    when user mentions 'slack', 'connect slack', 'slack message', 'slack channel',
-    'send to slack', or any Slack operations. Meta-skill that validates config, discovers
-    workspace, and routes to appropriate operations.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - connector
-  - slack
-  platform: Slack
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/slack/slack-connect
-- name: slack-master
-  description: Shared resource library for Slack integration skills. DO NOT load directly
-    - provides common references (setup, API docs, error handling, authentication)
-    and scripts used by slack-connect and individual Slack skills.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - api
-  - master
-  - slack
-  platform: Slack
-  version: '1.0'
-  updated: '2025-12-24'
-  visibility: public
-  path: skills/slack/slack-master
-  has_scripts: true
-  has_references: true
-- name: tavily-gtm-research
-  description: Load when user mentions "tavily research", "market intelligence", "competitive
-    research", "GTM research", or needs real-time market data for sales, marketing,
-    or vertical strategy.
-  category: general
-  tags:
-  - sales
-  - tavily
-  platform: Tavily
-  version: '1.0'
-  updated: '2026-01-16'
-  visibility: public
-  path: skills/tavily/tavily-gtm-research
-  has_references: true
+  path: skills/general/skill-dev/validate-skill-functionality
 - name: abstract
   description: Zoom out and contextualize overwhelming concepts. Load when user says
     'zoom out', 'abstract', 'I'm lost', 'I'm overwhelmed', 'bigger picture', or expresses
@@ -3040,7 +829,7 @@ skills:
   version: '1.0'
   updated: '2026-01-09'
   visibility: public
-  path: skills/tools/abstract
+  path: skills/general/tools/abstract
   has_references: true
 - name: add-integration
   description: add integration, new integration, integrate with, connect to [service].
@@ -3050,7 +839,7 @@ skills:
   version: '1.0'
   updated: '2026-02-26'
   visibility: public
-  path: skills/tools/add-integration
+  path: skills/general/tools/add-integration
   has_scripts: true
   has_references: true
 - name: better-doc
@@ -3063,7 +852,7 @@ skills:
   version: '1.0'
   updated: '2025-12-11'
   visibility: team
-  path: skills/tools/better-doc
+  path: skills/general/tools/better-doc
   has_references: true
 - name: blackbird
   description: Weekly reflection that helps you see yourself. Load when user says
@@ -3074,7 +863,7 @@ skills:
   version: '1.0'
   updated: '2025-12-11'
   visibility: public
-  path: skills/tools/blackbird
+  path: skills/general/tools/blackbird
 - name: create-data
   description: Generate synthetic training data from a ruleset file. Use when the
     user wants to create training examples, generate augmented data, or produce samples
@@ -3086,7 +875,7 @@ skills:
   version: '1.0'
   updated: '2026-02-25'
   visibility: team
-  path: skills/tools/create-data
+  path: skills/general/tools/create-data
   has_scripts: true
 - name: create-ruleset
   description: Create a ruleset for synthetic data generation. Use when the user wants
@@ -3099,7 +888,7 @@ skills:
   version: '1.0'
   updated: '2026-02-25'
   visibility: team
-  path: skills/tools/create-ruleset
+  path: skills/general/tools/create-ruleset
 - name: data-baker
   description: 'Generate realistic synthetic datasets for AI agent training and testing
     across diverse domains. Use when user provides meeting transcripts, requirements
@@ -3121,7 +910,7 @@ skills:
   version: '1.0'
   updated: '2026-01-05'
   visibility: public
-  path: skills/tools/data-baker
+  path: skills/general/tools/data-baker
   has_references: true
 - name: format-and-lint-code
   description: format code, lint code, pre-commit, before commit, code quality, auto-format
@@ -3131,7 +920,7 @@ skills:
   version: '1.0'
   updated: '2026-02-25'
   visibility: public
-  path: skills/tools/format-and-lint-code
+  path: skills/general/tools/format-and-lint-code
   has_scripts: true
   has_references: true
 - name: generate-philosophy-doc
@@ -3142,7 +931,7 @@ skills:
   version: '1.0'
   updated: '2026-02-25'
   visibility: public
-  path: skills/tools/generate-philosophy-doc
+  path: skills/general/tools/generate-philosophy-doc
   has_scripts: true
   has_references: true
 - name: git
@@ -3155,7 +944,7 @@ skills:
   version: '1.0'
   updated: '2026-02-25'
   visibility: public
-  path: skills/tools/git
+  path: skills/general/tools/git
   has_scripts: true
   has_references: true
 - name: mental-models
@@ -3167,7 +956,7 @@ skills:
   version: '1.0'
   updated: '2026-02-24'
   visibility: public
-  path: skills/tools/mental-models
+  path: skills/general/tools/mental-models
 - name: prompt-versioning
   description: Manage AI prompts with version control, rollback, and Linear integration.
     Load when user mentions 'prompt versioning', 'version prompt', 'rollback prompt',
@@ -3178,7 +967,7 @@ skills:
   version: '1.0'
   updated: '2026-01-12'
   visibility: team
-  path: skills/tools/prompt-versioning
+  path: skills/general/tools/prompt-versioning
   has_scripts: true
 - name: qa-checklist
   description: Transform technical agent/node documentation into business-owner cheatsheets.
@@ -3190,7 +979,7 @@ skills:
   version: '1.0'
   updated: '2025-12-17'
   visibility: public
-  path: skills/tools/qa-checklist
+  path: skills/general/tools/qa-checklist
 - name: ultrathink
   description: Critical analysis that stress-tests content from multiple perspectives
     before shipping. Load when user says "ultrathink", "ultrathink this", "stress
@@ -3206,7 +995,2212 @@ skills:
   version: '1.0'
   updated: '2025-12-12'
   visibility: public
-  path: skills/tools/ultrathink
+  path: skills/general/tools/ultrathink
+- name: airtable-connect
+  description: airtable, connect airtable, query [base], add to [table].
+  category: integrations
+  tags:
+  - airtable
+  - connector
+  platform: Airtable
+  version: '1.1'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/integrations/airtable/airtable-connect
+- name: airtable-master
+  description: Shared resource library for Airtable integration skills. DO NOT load
+    directly - provides common references (setup, API docs, error handling, field
+    types) and scripts used by airtable-connect, airtable-query, and airtable-sync.
+  category: integrations
+  tags:
+  - airtable
+  - api
+  - master
+  platform: Airtable
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/integrations/airtable/airtable-master
+  has_scripts: true
+  has_references: true
+- name: amie-connect
+  description: Work with Amie calendar and meeting notes. Load when user mentions
+    "amie", "meeting notes", "get transcript", "save transcript to file", "export
+    transcript", "action items from meeting", or wants to access Amie data.
+  category: integrations
+  tags:
+  - amie
+  - calendar
+  - connector
+  - meeting
+  - transcript
+  platform: Amie
+  version: '1.0'
+  updated: '2026-02-13'
+  visibility: public
+  path: skills/integrations/amie/amie-connect
+- name: amie-master
+  description: Shared resource library for Amie integration skills. DO NOT load directly
+    - provides common references and scripts used by amie-connect and individual Amie
+    skills.
+  category: integrations
+  tags:
+  - amie
+  - master
+  platform: Amie
+  version: '1.0'
+  updated: '2026-02-13'
+  visibility: public
+  path: skills/integrations/amie/amie-master
+  has_scripts: true
+- name: attio-connect
+  description: 'Manage contacts, notes, and lists in Attio CRM. Use when user says:
+    ''add contact'', ''update CRM'', ''attio'', ''create note'', ''search contacts'',
+    ''add to list'', ''look up in CRM'', ''manage contacts'', or references the Personal
+    CRM project.'
+  category: integrations
+  tags:
+  - attio
+  - connector
+  - crm
+  platform: Attio
+  version: '1.0'
+  updated: '2026-02-16'
+  visibility: public
+  path: skills/integrations/attio/attio-connect
+  has_references: true
+- name: fathom
+  description: Complete Fathom integration skill. Load when user wants to fetch meetings,
+    get transcripts, list recordings, or interact with Fathom meeting data. Supports
+    filtering by attendee domain and extracting summaries/action items.
+  author: Hassaan Ahmed
+  category: general
+  tags:
+  - fathom
+  - meeting
+  - transcript
+  platform: Fathom
+  version: '1.2'
+  updated: '2025-12-24'
+  visibility: team
+  path: skills/integrations/fathom/fathom
+- name: fathom-fetch-meetings
+  description: Fetch meeting recordings and transcripts from Fathom API filtered by
+    attendee email domain. Load when user says "fetch meetings", "get fathom recordings",
+    "fathom meetings for [domain]", "list meetings from fathom", "get transcripts",
+    or mentions Fathom.
+  author: Hassaan Ahmed
+  category: general
+  tags:
+  - api
+  - email
+  - fathom
+  - meeting
+  - transcript
+  platform: Fathom
+  version: '1.0'
+  updated: '2025-12-23'
+  visibility: team
+  path: skills/integrations/fathom/fathom-fetch-meetings
+- name: fathom-get-transcript
+  description: Fetch full transcript from Fathom using a meeting/recording ID. Load
+    when user says "get transcript", "fetch transcript for [ID]", "fathom transcript",
+    "download meeting transcript", or has a meeting ID and wants the full conversation
+    text.
+  author: Hassaan Ahmed
+  category: general
+  tags:
+  - fathom
+  - meeting
+  - transcript
+  platform: Fathom
+  version: '1.0'
+  updated: '2025-12-23'
+  visibility: team
+  path: skills/integrations/fathom/fathom-get-transcript
+  has_scripts: true
+- name: process-client-meeting
+  description: Complete end-to-end workflow to process a client meeting. Load when
+    user says "process meeting", "meeting workflow", "process client meeting", "full
+    meeting processing", "handle meeting for [client]", or "post-meeting workflow".
+    Handles transcript fetching, minutes creation, Linear tickets, client updates,
+    internal updates, and project context sync.
+  author: Hassaan Ahmed
+  category: general
+  tags:
+  - fathom
+  - meeting
+  - transcript
+  platform: Fathom
+  version: '1.0'
+  updated: '2025-12-23'
+  visibility: team
+  path: skills/integrations/fathom/process-client-meeting
+- name: beam-design-system
+  description: Access Beam's cached design system tokens and components. Load when
+    user mentions 'beam design system', 'beam colors', 'beam typography', 'design
+    tokens', 'brand colors', 'beam fonts', or asks about Beam's design standards.
+  author: Mo Bekdache
+  category: integrations
+  tags:
+  - figma
+  platform: Figma
+  version: '1.0'
+  updated: '2025-12-24'
+  visibility: public
+  path: skills/integrations/figma/beam-design-system
+- name: figma-connect
+  description: Connect to any Figma file for data extraction and asset export. Load
+    when user mentions 'connect figma', 'get figma file', 'figma URL', 'export from
+    figma', 'figma assets', or provides a Figma file URL.
+  author: Mo Bekdache
+  category: general
+  tags:
+  - connector
+  - figma
+  platform: Figma
+  version: '1.0'
+  updated: '2025-12-24'
+  visibility: public
+  path: skills/integrations/figma/figma-connect
+- name: gemini-edit-image
+  description: edit image, modify image, change image, gemini edit.
+  category: integrations
+  tags:
+  - google-gemini
+  - update
+  platform: Google Gemini
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/integrations/google/gemini-edit-image
+  requires:
+  - google-gemini-image
+  has_scripts: true
+- name: gemini-generate-image
+  description: generate image, create image, text to image, gemini generate.
+  category: integrations
+  tags:
+  - google-gemini
+  platform: Google Gemini
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/google/gemini-generate-image
+  requires:
+  - google-gemini-image
+  has_scripts: true
+- name: gemini-refine-image
+  description: refine image, improve image, iterate image, tweak image.
+  category: integrations
+  tags:
+  - google-gemini
+  platform: Google Gemini
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/integrations/google/gemini-refine-image
+  requires:
+  - google-gemini-image
+  has_scripts: true
+- name: gmail
+  description: Read, send, and manage Gmail emails. Load when user mentions 'gmail',
+    'email', 'send email', 'check email', 'inbox', 'draft', or references sending/reading
+    emails.
+  author: Fredrik Falk
+  category: integrations
+  tags:
+  - email
+  - google-workspace
+  platform: Google Workspace
+  version: '1.3'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/google/gmail
+  requires:
+  - google-connect
+  - google-master
+  has_scripts: true
+- name: google-calendar
+  description: Read, create, and manage Google Calendar events. Load when user mentions
+    'google calendar', 'calendar', 'schedule', 'meeting', 'event', 'appointment',
+    'book time', 'check availability', 'find slots', 'free time', or references scheduling/calendar
+    operations.
+  author: Fredrik Falk
+  category: integrations
+  tags:
+  - calendar
+  - google-workspace
+  - meeting
+  platform: Google Workspace
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/integrations/google/google-calendar
+  requires:
+  - google-connect
+  - google-master
+  has_scripts: true
+- name: google-connect
+  description: connect google, setup google, google integration.
+  author: Fredrik Falk
+  category: integrations
+  tags:
+  - connector
+  - google-workspace
+  platform: Google Workspace
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/integrations/google/google-connect
+- name: google-docs
+  description: Read, write, and manage Google Docs. Load when user mentions 'google
+    docs', 'google document', 'create doc', 'read doc', 'write doc', 'edit document',
+    or references creating/editing text documents in Google Drive.
+  author: Fredrik Falk
+  category: integrations
+  tags:
+  - google-workspace
+  platform: Google Workspace
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/google/google-docs
+  requires:
+  - google-connect
+  - google-master
+  has_scripts: true
+- name: google-drive
+  description: Manage Google Drive files and folders. Load when user mentions 'google
+    drive', 'drive', 'upload file', 'download file', 'share file', 'create folder',
+    or references cloud file storage operations.
+  author: Fredrik Falk
+  category: integrations
+  tags:
+  - google-workspace
+  platform: Google Workspace
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/google/google-drive
+  requires:
+  - google-connect
+  - google-master
+  has_scripts: true
+- name: google-gemini-image
+  description: gemini image, generate image, create image, text to image, brand assets,
+    logo generation, hero image.
+  category: integrations
+  tags:
+  - google-workspace
+  platform: Google Workspace
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/integrations/google/google-gemini-image
+  requires:
+  - google-connect
+  has_scripts: true
+  has_references: true
+- name: gemini-edit-image
+  description: edit image, modify image, change image, gemini edit.
+  category: integrations
+  tags:
+  - google-gemini
+  - update
+  platform: Google Gemini
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/integrations/google/google-gemini-image/gemini-edit-image
+  requires:
+  - google-gemini-image
+  has_scripts: true
+- name: gemini-generate-image
+  description: generate image, create image, text to image, gemini generate.
+  category: integrations
+  tags:
+  - google-gemini
+  platform: Google Gemini
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/google/google-gemini-image/gemini-generate-image
+  requires:
+  - google-gemini-image
+  has_scripts: true
+- name: gemini-refine-image
+  description: refine image, improve image, iterate image, tweak image.
+  category: integrations
+  tags:
+  - google-gemini
+  platform: Google Gemini
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/integrations/google/google-gemini-image/gemini-refine-image
+  requires:
+  - google-gemini-image
+  has_scripts: true
+- name: google-integration
+  description: google, gmail, email, google docs, sheets, calendar, drive.
+  author: Fredrik Falk
+  category: integrations
+  tags:
+  - calendar
+  - email
+  - google-workspace
+  platform: Google Workspace
+  version: '1.1'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/integrations/google/google-integration
+- name: gmail
+  description: Read, send, and manage Gmail emails. Load when user mentions 'gmail',
+    'email', 'send email', 'check email', 'inbox', 'draft', or references sending/reading
+    emails.
+  author: Fredrik Falk
+  category: integrations
+  tags:
+  - email
+  - google-workspace
+  platform: Google Workspace
+  version: '1.3'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/google/google-integration/gmail
+  requires:
+  - google-connect
+  - google-master
+  has_scripts: true
+- name: google-calendar
+  description: Read, create, and manage Google Calendar events. Load when user mentions
+    'google calendar', 'calendar', 'schedule', 'meeting', 'event', 'appointment',
+    'book time', 'check availability', 'find slots', 'free time', or references scheduling/calendar
+    operations.
+  author: Fredrik Falk
+  category: integrations
+  tags:
+  - calendar
+  - google-workspace
+  - meeting
+  platform: Google Workspace
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/integrations/google/google-integration/google-calendar
+  requires:
+  - google-connect
+  - google-master
+  has_scripts: true
+- name: google-connect
+  description: connect google, setup google, google integration.
+  author: Fredrik Falk
+  category: integrations
+  tags:
+  - connector
+  - google-workspace
+  platform: Google Workspace
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/integrations/google/google-integration/google-connect
+- name: google-docs
+  description: Read, write, and manage Google Docs. Load when user mentions 'google
+    docs', 'google document', 'create doc', 'read doc', 'write doc', 'edit document',
+    or references creating/editing text documents in Google Drive.
+  author: Fredrik Falk
+  category: integrations
+  tags:
+  - google-workspace
+  platform: Google Workspace
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/google/google-integration/google-docs
+  requires:
+  - google-connect
+  - google-master
+  has_scripts: true
+- name: google-drive
+  description: Manage Google Drive files and folders. Load when user mentions 'google
+    drive', 'drive', 'upload file', 'download file', 'share file', 'create folder',
+    or references cloud file storage operations.
+  author: Fredrik Falk
+  category: integrations
+  tags:
+  - google-workspace
+  platform: Google Workspace
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/google/google-integration/google-drive
+  requires:
+  - google-connect
+  - google-master
+  has_scripts: true
+- name: google-master
+  description: Shared resource library for Google integration skills. DO NOT load
+    directly - provides common references (setup, API docs, error handling, authentication)
+    and scripts used by gmail, google-docs, google-sheets, google-calendar, and future
+    Google skills.
+  author: Fredrik Falk
+  category: integrations
+  tags:
+  - api
+  - calendar
+  - google-workspace
+  - master
+  platform: Google Workspace
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/integrations/google/google-integration/google-master
+  has_scripts: true
+  has_references: true
+- name: google-sheets
+  description: Read and write Google Sheets data. Load when user mentions 'google
+    sheets', 'spreadsheet', 'update sheet', 'read sheet', 'append to sheet', or references
+    extracting data to update a tracking sheet.
+  author: Fredrik Falk
+  category: integrations
+  tags:
+  - google-workspace
+  platform: Google Workspace
+  version: '1.2'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/google/google-integration/google-sheets
+  requires:
+  - google-connect
+  - google-master
+  has_scripts: true
+- name: google-slides
+  description: Create and manage Google Slides presentations. Load when user mentions
+    'google slides', 'slides', 'presentation', 'create presentation', 'add slide',
+    or references creating/editing slide decks.
+  author: Fredrik Falk
+  category: integrations
+  tags:
+  - google-workspace
+  platform: Google Workspace
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/google/google-integration/google-slides
+  requires:
+  - google-connect
+  - google-master
+  has_scripts: true
+- name: google-tasks
+  description: Manage Google Tasks and task lists. Load when user mentions 'google
+    tasks', 'tasks', 'todo list', 'create task', 'complete task', or references task/todo
+    management.
+  author: Fredrik Falk
+  category: integrations
+  tags:
+  - google-workspace
+  platform: Google Workspace
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/google/google-integration/google-tasks
+  requires:
+  - google-connect
+  - google-master
+  has_scripts: true
+- name: google-master
+  description: Shared resource library for Google integration skills. DO NOT load
+    directly - provides common references (setup, API docs, error handling, authentication)
+    and scripts used by gmail, google-docs, google-sheets, google-calendar, and future
+    Google skills.
+  author: Fredrik Falk
+  category: integrations
+  tags:
+  - api
+  - calendar
+  - google-workspace
+  - master
+  platform: Google Workspace
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/integrations/google/google-master
+  has_scripts: true
+  has_references: true
+- name: google-sheets
+  description: Read and write Google Sheets data. Load when user mentions 'google
+    sheets', 'spreadsheet', 'update sheet', 'read sheet', 'append to sheet', or references
+    extracting data to update a tracking sheet.
+  author: Fredrik Falk
+  category: integrations
+  tags:
+  - google-workspace
+  platform: Google Workspace
+  version: '1.2'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/google/google-sheets
+  requires:
+  - google-connect
+  - google-master
+  has_scripts: true
+- name: google-slides
+  description: Create and manage Google Slides presentations. Load when user mentions
+    'google slides', 'slides', 'presentation', 'create presentation', 'add slide',
+    or references creating/editing slide decks.
+  author: Fredrik Falk
+  category: integrations
+  tags:
+  - google-workspace
+  platform: Google Workspace
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/google/google-slides
+  requires:
+  - google-connect
+  - google-master
+  has_scripts: true
+- name: google-speech-to-text
+  description: Transcribe audio files to text using Google Cloud Speech-to-Text API.
+    Load when user mentions 'transcribe', 'speech to text', 'audio to text', 'transcribe
+    audio', 'voice to text', 'transcription', or converting audio/recordings to text.
+  category: integrations
+  tags:
+  - api
+  - google-workspace
+  - transcript
+  platform: Google Workspace
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/integrations/google/google-speech-to-text
+  requires:
+  - google-connect
+  - google-master
+  has_scripts: true
+  has_references: true
+- name: google-tasks
+  description: Manage Google Tasks and task lists. Load when user mentions 'google
+    tasks', 'tasks', 'todo list', 'create task', 'complete task', or references task/todo
+    management.
+  author: Fredrik Falk
+  category: integrations
+  tags:
+  - google-workspace
+  platform: Google Workspace
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/google/google-tasks
+  requires:
+  - google-connect
+  - google-master
+  has_scripts: true
+- name: happenstance-connect
+  description: 'Search and research LinkedIn connections via Happenstance API. Use
+    when user says: ''search my network'', ''find someone on LinkedIn'', ''research
+    a person'', ''who do I know that...'', ''happenstance search'', ''look up a contact''.'
+  category: integrations
+  tags:
+  - api
+  - connector
+  - happenstance
+  platform: Happenstance
+  version: '1.0'
+  updated: '2026-02-16'
+  visibility: public
+  path: skills/integrations/happenstance/happenstance-connect
+- name: heyreach
+  description: heyreach, linkedin outreach, linkedin campaigns, add leads.
+  category: integrations
+  tags:
+  - heyreach
+  platform: HeyReach
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/heyreach/heyreach
+- name: heyreach-connect
+  description: heyreach, linkedin outreach, linkedin campaigns.
+  category: integrations
+  tags:
+  - connector
+  - heyreach
+  platform: HeyReach
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/heyreach/heyreach/heyreach-connect
+- name: heyreach-master
+  description: Internal resource library for HeyReach integration. Contains shared
+    API client, operation scripts, and reference documentation.
+  category: integrations
+  tags:
+  - api
+  - heyreach
+  - master
+  platform: HeyReach
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/heyreach/heyreach/heyreach-master
+  has_scripts: true
+  has_references: true
+- name: heyreach-connect
+  description: heyreach, linkedin outreach, linkedin campaigns.
+  category: integrations
+  tags:
+  - connector
+  - heyreach
+  platform: HeyReach
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/heyreach/heyreach-connect
+- name: heyreach-master
+  description: Internal resource library for HeyReach integration. Contains shared
+    API client, operation scripts, and reference documentation.
+  category: integrations
+  tags:
+  - api
+  - heyreach
+  - master
+  platform: HeyReach
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/heyreach/heyreach-master
+  has_scripts: true
+  has_references: true
+- name: hubspot-connect
+  description: hubspot, crm, contacts, companies, deals.
+  category: integrations
+  tags:
+  - connector
+  - crm
+  - hubspot
+  platform: HubSpot
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/hubspot/hubspot-connect
+- name: hubspot-create-company
+  description: Create a new company in HubSpot CRM. Load when user says 'create company',
+    'add company', 'new company'. Requires name, optional domain, industry, city.
+  category: integrations
+  tags:
+  - create
+  - crm
+  - hubspot
+  platform: HubSpot
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/hubspot/hubspot-create-company
+- name: hubspot-create-contact
+  description: Create a new contact in HubSpot CRM. Load when user says 'create contact',
+    'add contact', 'new contact'. Requires email, optional firstname, lastname, phone,
+    company.
+  category: integrations
+  tags:
+  - create
+  - crm
+  - email
+  - hubspot
+  platform: HubSpot
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/hubspot/hubspot-create-contact
+- name: hubspot-create-deal
+  description: Create a new deal in HubSpot CRM. Load when user says 'create deal',
+    'add deal', 'new deal', 'new opportunity'. Requires name, optional amount, stage,
+    closedate.
+  category: integrations
+  tags:
+  - create
+  - crm
+  - hubspot
+  platform: HubSpot
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/hubspot/hubspot-create-deal
+- name: hubspot-create-meeting
+  description: Create a meeting engagement in HubSpot CRM. Load when user says 'create
+    meeting', 'add meeting', 'schedule meeting', 'new meeting'. Requires title, start
+    and end times.
+  category: integrations
+  tags:
+  - create
+  - crm
+  - hubspot
+  - meeting
+  platform: HubSpot
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/hubspot/hubspot-create-meeting
+- name: hubspot-create-note
+  description: Create a note engagement in HubSpot CRM. Load when user says 'create
+    note', 'add note', 'new note', 'record note'. Requires body content.
+  category: integrations
+  tags:
+  - create
+  - crm
+  - hubspot
+  platform: HubSpot
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/hubspot/hubspot-create-note
+- name: hubspot-get-associations
+  description: Get associated records in HubSpot CRM. Load when user says 'get associations',
+    'linked records', 'contacts on deal', 'company contacts', 'related records', 'who
+    is on this deal'.
+  category: integrations
+  tags:
+  - crm
+  - hubspot
+  platform: HubSpot
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/hubspot/hubspot-get-associations
+- name: hubspot-list-calls
+  description: List call engagements from HubSpot CRM. Load when user says 'list calls',
+    'show calls', 'call history', 'hubspot calls'. Returns logged call records.
+  category: integrations
+  tags:
+  - crm
+  - hubspot
+  - query
+  platform: HubSpot
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/hubspot/hubspot-list-calls
+- name: hubspot-list-companies
+  description: List companies from HubSpot CRM. Load when user says 'list companies',
+    'show companies', 'get companies', 'hubspot companies'. Returns paginated company
+    list.
+  category: integrations
+  tags:
+  - crm
+  - hubspot
+  - query
+  platform: HubSpot
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/hubspot/hubspot-list-companies
+- name: hubspot-list-contacts
+  description: List contacts from HubSpot CRM. Load when user says 'list contacts',
+    'show contacts', 'get contacts', 'hubspot contacts'. Returns paginated contact
+    list with email, name, phone, company.
+  category: integrations
+  tags:
+  - crm
+  - email
+  - hubspot
+  - query
+  platform: HubSpot
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/hubspot/hubspot-list-contacts
+- name: hubspot-list-deals
+  description: List deals from HubSpot CRM. Load when user says 'list deals', 'show
+    deals', 'show pipeline', 'get deals', 'hubspot deals'. Returns paginated deal
+    list.
+  category: integrations
+  tags:
+  - crm
+  - hubspot
+  - query
+  platform: HubSpot
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/hubspot/hubspot-list-deals
+- name: hubspot-list-emails
+  description: List email engagements from HubSpot CRM. Load when user says 'list
+    emails', 'show emails', 'email history', 'hubspot emails'. Returns logged email
+    records.
+  category: integrations
+  tags:
+  - crm
+  - email
+  - hubspot
+  - query
+  platform: HubSpot
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/hubspot/hubspot-list-emails
+- name: hubspot-list-meetings
+  description: List meeting engagements from HubSpot CRM. Load when user says 'list
+    meetings', 'show meetings', 'meeting history', 'hubspot meetings'. Returns scheduled
+    meeting records.
+  category: integrations
+  tags:
+  - crm
+  - hubspot
+  - meeting
+  - query
+  platform: HubSpot
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/hubspot/hubspot-list-meetings
+- name: hubspot-list-notes
+  description: List note engagements from HubSpot CRM. Load when user says 'list notes',
+    'show notes', 'note history', 'hubspot notes'. Returns logged note records.
+  category: integrations
+  tags:
+  - crm
+  - hubspot
+  - query
+  platform: HubSpot
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/hubspot/hubspot-list-notes
+- name: hubspot-log-call
+  description: Log a call engagement in HubSpot CRM. Load when user says 'log call',
+    'record call', 'add call', 'call made'. Requires title, optional body and duration.
+  category: integrations
+  tags:
+  - crm
+  - hubspot
+  platform: HubSpot
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/hubspot/hubspot-log-call
+- name: hubspot-log-email
+  description: Log an email engagement in HubSpot CRM. Load when user says 'log email',
+    'record email', 'add email', 'email sent'. Requires subject and body.
+  category: integrations
+  tags:
+  - crm
+  - email
+  - hubspot
+  platform: HubSpot
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/hubspot/hubspot-log-email
+- name: hubspot-master
+  description: Shared resource library for HubSpot integration skills. DO NOT load
+    directly - provides common references (setup, API docs, error handling, authentication)
+    and scripts used by hubspot-connect and individual HubSpot skills.
+  category: integrations
+  tags:
+  - api
+  - hubspot
+  - master
+  platform: HubSpot
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/hubspot/hubspot-master
+  has_scripts: true
+  has_references: true
+- name: hubspot-search-companies
+  description: Search companies in HubSpot CRM by name or domain. Load when user says
+    'search companies', 'find company', 'lookup company', 'search for [company]'.
+  category: integrations
+  tags:
+  - crm
+  - hubspot
+  - query
+  platform: HubSpot
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/hubspot/hubspot-search-companies
+- name: hubspot-search-contacts
+  description: Search contacts in HubSpot CRM by email, name, or company. Load when
+    user says 'search contacts', 'find contact', 'lookup contact', 'search for [name]'.
+  category: integrations
+  tags:
+  - crm
+  - email
+  - hubspot
+  - query
+  platform: HubSpot
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/hubspot/hubspot-search-contacts
+- name: hubspot-search-deals
+  description: Search deals in HubSpot CRM by name or amount. Load when user says
+    'search deals', 'find deal', 'lookup deal', 'deals over $X', 'search for [deal]'.
+  category: integrations
+  tags:
+  - crm
+  - hubspot
+  - query
+  platform: HubSpot
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/hubspot/hubspot-search-deals
+- name: hubspot-update-contact
+  description: Update an existing contact in HubSpot CRM. Load when user says 'update
+    contact', 'edit contact', 'modify contact', 'change contact'. Requires contact
+    ID.
+  category: integrations
+  tags:
+  - crm
+  - hubspot
+  - update
+  platform: HubSpot
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/hubspot/hubspot-update-contact
+- name: hubspot-update-deal
+  description: Update an existing deal in HubSpot CRM. Load when user says 'update
+    deal', 'edit deal', 'change deal stage', 'move deal', 'close deal'. Requires deal
+    ID.
+  category: integrations
+  tags:
+  - crm
+  - hubspot
+  - update
+  platform: HubSpot
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/hubspot/hubspot-update-deal
+- name: langfuse-batch-ingest
+  description: Batch ingest traces/spans/events. Load when user says 'batch ingest',
+    'bulk import', 'ingest data'.
+  category: integrations
+  tags:
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-batch-ingest
+  has_scripts: true
+- name: langfuse-connect
+  description: langfuse, traces, observations, llm tracing.
+  category: integrations
+  tags:
+  - connector
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-connect
+- name: langfuse-create-annotation-queue
+  description: Create an annotation queue. Load when user says 'create queue', 'new
+    annotation queue'.
+  category: integrations
+  tags:
+  - create
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-create-annotation-queue
+  has_scripts: true
+- name: langfuse-create-comment
+  description: Add comment to trace/observation. Load when user says 'create comment',
+    'add comment', 'comment on trace'.
+  category: integrations
+  tags:
+  - create
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-create-comment
+  has_scripts: true
+- name: langfuse-create-dataset
+  description: Create a new Langfuse dataset. Load when user says 'create dataset',
+    'new dataset', 'add dataset'.
+  category: integrations
+  tags:
+  - create
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-create-dataset
+  has_scripts: true
+- name: langfuse-create-dataset-item
+  description: Create a dataset item. Load when user says 'create dataset item', 'add
+    item', 'new test case'.
+  category: integrations
+  tags:
+  - create
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-create-dataset-item
+  has_scripts: true
+- name: langfuse-create-dataset-run-item
+  description: Create a dataset run item. Load when user says 'create run item', 'log
+    evaluation', 'add run result'.
+  category: integrations
+  tags:
+  - create
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-create-dataset-run-item
+  has_scripts: true
+- name: langfuse-create-model
+  description: Create a model definition for cost tracking. Load when user says 'create
+    model', 'add model', 'new model'.
+  category: integrations
+  tags:
+  - create
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-create-model
+  has_scripts: true
+- name: langfuse-create-project
+  description: Create a new project. Load when user says 'create langfuse project',
+    'new project'.
+  category: integrations
+  tags:
+  - create
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-create-project
+  has_scripts: true
+- name: langfuse-create-project-api-key
+  description: Create new API key for project. Load when user says 'create api key',
+    'new key', 'generate key'.
+  category: integrations
+  tags:
+  - api
+  - create
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-create-project-api-key
+  has_scripts: true
+- name: langfuse-create-prompt
+  description: Create a new Langfuse prompt. Load when user says 'create prompt',
+    'new prompt', 'add prompt'.
+  category: integrations
+  tags:
+  - create
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-create-prompt
+  has_scripts: true
+- name: langfuse-create-queue-assignment
+  description: Assign reviewer to queue. Load when user says 'assign reviewer', 'add
+    to queue assignment'.
+  category: integrations
+  tags:
+  - create
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-create-queue-assignment
+  has_scripts: true
+- name: langfuse-create-queue-item
+  description: Add item to queue. Load when user says 'add to queue', 'queue trace
+    for review'.
+  category: integrations
+  tags:
+  - create
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-create-queue-item
+  has_scripts: true
+- name: langfuse-create-score
+  description: Create a score. Load when user says 'create score', 'add evaluation',
+    'score trace'.
+  category: integrations
+  tags:
+  - create
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-create-score
+  has_scripts: true
+- name: langfuse-create-score-config
+  description: Create a score configuration. Load when user says 'create score config',
+    'new metric', 'add scoring'.
+  category: integrations
+  tags:
+  - create
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-create-score-config
+  has_scripts: true
+- name: langfuse-delete-dataset-item
+  description: Delete a dataset item. Load when user says 'delete dataset item', 'remove
+    item'.
+  category: integrations
+  tags:
+  - delete
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-delete-dataset-item
+  has_scripts: true
+- name: langfuse-delete-dataset-run
+  description: Delete a dataset run. Load when user says 'delete dataset run', 'remove
+    run'.
+  category: integrations
+  tags:
+  - delete
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-delete-dataset-run
+  has_scripts: true
+- name: langfuse-delete-model
+  description: Delete a model definition. Load when user says 'delete model', 'remove
+    model'.
+  category: integrations
+  tags:
+  - delete
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-delete-model
+  has_scripts: true
+- name: langfuse-delete-org-membership
+  description: Remove member from org. Load when user says 'remove member', 'delete
+    membership', 'revoke access'.
+  category: integrations
+  tags:
+  - delete
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-delete-org-membership
+  has_scripts: true
+- name: langfuse-delete-project
+  description: Delete a project. Load when user says 'delete project', 'remove project'.
+  category: integrations
+  tags:
+  - delete
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-delete-project
+  has_scripts: true
+- name: langfuse-delete-project-api-key
+  description: Delete an API key. Load when user says 'delete api key', 'revoke key',
+    'remove key'.
+  category: integrations
+  tags:
+  - api
+  - delete
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-delete-project-api-key
+  has_scripts: true
+- name: langfuse-delete-prompt
+  description: Delete a Langfuse prompt. Load when user says 'delete prompt', 'remove
+    prompt'.
+  category: integrations
+  tags:
+  - delete
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-delete-prompt
+  has_scripts: true
+- name: langfuse-delete-queue-assignment
+  description: Remove reviewer from queue. Load when user says 'remove assignment',
+    'unassign reviewer'.
+  category: integrations
+  tags:
+  - delete
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-delete-queue-assignment
+  has_scripts: true
+- name: langfuse-delete-queue-item
+  description: Delete a queue item. Load when user says 'delete queue item', 'remove
+    from queue'.
+  category: integrations
+  tags:
+  - delete
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-delete-queue-item
+  has_scripts: true
+- name: langfuse-delete-score
+  description: Delete a score. Load when user says 'delete score', 'remove evaluation'.
+  category: integrations
+  tags:
+  - delete
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-delete-score
+  has_scripts: true
+- name: langfuse-delete-trace
+  description: Delete a single trace. Load when user says 'delete trace', 'remove
+    trace'.
+  category: integrations
+  tags:
+  - delete
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-delete-trace
+  has_scripts: true
+- name: langfuse-delete-traces
+  description: Bulk delete traces. Load when user says 'bulk delete traces', 'delete
+    multiple traces', 'purge traces'.
+  category: integrations
+  tags:
+  - delete
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-delete-traces
+  has_scripts: true
+- name: langfuse-get-annotation-queue
+  description: Get an annotation queue. Load when user says 'get queue', 'queue details'.
+  category: integrations
+  tags:
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-get-annotation-queue
+  has_scripts: true
+- name: langfuse-get-comment
+  description: Get comment by ID. Load when user says 'get comment', 'show comment',
+    'comment details'.
+  category: integrations
+  tags:
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-get-comment
+  has_scripts: true
+- name: langfuse-get-dataset
+  description: Get a Langfuse dataset by name. Load when user says 'get dataset',
+    'show dataset', 'dataset details'.
+  category: integrations
+  tags:
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-get-dataset
+  has_scripts: true
+- name: langfuse-get-dataset-item
+  description: Get a dataset item by ID. Load when user says 'get dataset item', 'show
+    item', 'item details'.
+  category: integrations
+  tags:
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-get-dataset-item
+  has_scripts: true
+- name: langfuse-get-dataset-run
+  description: Get a dataset run by name. Load when user says 'get dataset run', 'show
+    run', 'run details'.
+  category: integrations
+  tags:
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-get-dataset-run
+  has_scripts: true
+- name: langfuse-get-media
+  description: Get media content by ID. Load when user says 'get media', 'download
+    media', 'media content'.
+  category: integrations
+  tags:
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-get-media
+  has_scripts: true
+- name: langfuse-get-model
+  description: Get specific Langfuse model. Load when user says 'get model', 'model
+    details', 'show model {id}'.
+  category: integrations
+  tags:
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-get-model
+  has_scripts: true
+- name: langfuse-get-observation
+  description: Get specific Langfuse observation. Load when user says 'get observation',
+    'observation details', 'show span {id}'.
+  category: integrations
+  tags:
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-get-observation
+  has_scripts: true
+- name: langfuse-get-project
+  description: Get Langfuse project info. Load when user says 'get project', 'current
+    project', 'project info', 'langfuse project'.
+  category: integrations
+  tags:
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-get-project
+  has_scripts: true
+- name: langfuse-get-prompt
+  description: Get a Langfuse prompt by name. Load when user says 'get prompt', 'show
+    prompt', 'prompt details'.
+  category: integrations
+  tags:
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-get-prompt
+  has_scripts: true
+- name: langfuse-get-queue-item
+  description: Get a queue item. Load when user says 'get queue item', 'item details'.
+  category: integrations
+  tags:
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-get-queue-item
+  has_scripts: true
+- name: langfuse-get-score
+  description: Get specific Langfuse score. Load when user says 'get score', 'score
+    details', 'show score {id}'.
+  category: integrations
+  tags:
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-get-score
+  has_scripts: true
+- name: langfuse-get-score-config
+  description: Get a score config by ID. Load when user says 'get score config', 'show
+    metric'.
+  category: integrations
+  tags:
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-get-score-config
+  has_scripts: true
+- name: langfuse-get-session
+  description: Get specific Langfuse session. Load when user says 'get session', 'session
+    details', 'show session {id}'.
+  category: integrations
+  tags:
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-get-session
+  has_scripts: true
+- name: langfuse-get-trace
+  description: Get specific Langfuse trace. Load when user says 'get trace', 'trace
+    details', 'show trace {id}'.
+  category: integrations
+  tags:
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-get-trace
+  has_scripts: true
+- name: langfuse-get-upload-url
+  description: Get presigned upload URL for media. Load when user says 'upload url',
+    'media upload', 'presigned url'.
+  category: integrations
+  tags:
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-get-upload-url
+  has_scripts: true
+- name: langfuse-health
+  description: Check Langfuse health status. Load when user says 'health check', 'is
+    langfuse up', 'check status'.
+  category: integrations
+  tags:
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-health
+  has_scripts: true
+- name: langfuse-help
+  description: langfuse help, langfuse reference, langfuse --help, show langfuse operations,
+    list langfuse skills.
+  category: integrations
+  tags:
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-help
+- name: langfuse-list-annotation-queues
+  description: List annotation queues. Load when user says 'list queues', 'annotation
+    queues', 'review queues'.
+  category: integrations
+  tags:
+  - langfuse
+  - query
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-list-annotation-queues
+  has_scripts: true
+- name: langfuse-list-comments
+  description: List comments on traces/observations. Load when user says 'list comments',
+    'get comments', 'show comments'.
+  category: integrations
+  tags:
+  - langfuse
+  - query
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-list-comments
+  has_scripts: true
+- name: langfuse-list-dataset-items
+  description: List dataset items. Load when user says 'list dataset items', 'show
+    items', 'dataset items'.
+  category: integrations
+  tags:
+  - langfuse
+  - query
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-list-dataset-items
+  has_scripts: true
+- name: langfuse-list-dataset-run-items
+  description: List dataset run items. Load when user says 'list run items', 'show
+    run results', 'evaluation results'.
+  category: integrations
+  tags:
+  - langfuse
+  - query
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-list-dataset-run-items
+  has_scripts: true
+- name: langfuse-list-dataset-runs
+  description: List dataset runs. Load when user says 'list dataset runs', 'show runs',
+    'dataset experiments'.
+  category: integrations
+  tags:
+  - langfuse
+  - query
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-list-dataset-runs
+  has_scripts: true
+- name: langfuse-list-datasets
+  description: List Langfuse datasets. Load when user says 'list datasets', 'show
+    datasets', 'get datasets'.
+  category: integrations
+  tags:
+  - langfuse
+  - query
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-list-datasets
+  has_scripts: true
+- name: langfuse-list-models
+  description: List Langfuse models. Load when user says 'list models', 'show models',
+    'model costs'.
+  category: integrations
+  tags:
+  - langfuse
+  - query
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-list-models
+  has_scripts: true
+- name: langfuse-list-observations
+  description: List Langfuse observations (spans, generations, events). Load when
+    user says 'list observations', 'show spans', 'get generations'.
+  category: integrations
+  tags:
+  - langfuse
+  - query
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-list-observations
+  has_scripts: true
+- name: langfuse-list-org-api-keys
+  description: List org-level API keys. Load when user says 'org api keys', 'organization
+    keys'.
+  category: integrations
+  tags:
+  - api
+  - langfuse
+  - query
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-list-org-api-keys
+  has_scripts: true
+- name: langfuse-list-org-memberships
+  description: List organization members. Load when user says 'list members', 'org
+    members', 'who has access'.
+  category: integrations
+  tags:
+  - langfuse
+  - query
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-list-org-memberships
+  has_scripts: true
+- name: langfuse-list-org-projects
+  description: List projects in org. Load when user says 'list org projects', 'org
+    projects', 'all projects'.
+  category: integrations
+  tags:
+  - langfuse
+  - query
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-list-org-projects
+  has_scripts: true
+- name: langfuse-list-project-api-keys
+  description: List API keys for project. Load when user says 'list api keys', 'show
+    keys', 'project keys'.
+  category: integrations
+  tags:
+  - api
+  - langfuse
+  - query
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-list-project-api-keys
+  has_scripts: true
+- name: langfuse-list-prompts
+  description: List Langfuse prompts. Load when user says 'list prompts', 'show prompts',
+    'get prompts', 'langfuse prompts'.
+  category: integrations
+  tags:
+  - langfuse
+  - query
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-list-prompts
+  has_scripts: true
+- name: langfuse-list-queue-items
+  description: List queue items. Load when user says 'list queue items', 'show review
+    items'.
+  category: integrations
+  tags:
+  - langfuse
+  - query
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-list-queue-items
+  has_scripts: true
+- name: langfuse-list-score-configs
+  description: List score configurations. Load when user says 'list score configs',
+    'show scoring', 'evaluation configs'.
+  category: integrations
+  tags:
+  - langfuse
+  - query
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-list-score-configs
+  has_scripts: true
+- name: langfuse-list-scores
+  description: List Langfuse scores. Load when user says 'list scores', 'show scores',
+    'get evaluations'.
+  category: integrations
+  tags:
+  - langfuse
+  - query
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-list-scores
+  has_scripts: true
+- name: langfuse-list-sessions
+  description: List Langfuse sessions. Load when user says 'list sessions', 'show
+    sessions', 'get sessions'.
+  category: integrations
+  tags:
+  - langfuse
+  - query
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-list-sessions
+  has_scripts: true
+- name: langfuse-list-traces
+  description: List Langfuse traces. Load when user says 'list traces', 'show traces',
+    'get traces', 'recent traces'.
+  category: integrations
+  tags:
+  - langfuse
+  - query
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-list-traces
+  has_scripts: true
+- name: langfuse-master
+  description: SHARED RESOURCES - DO NOT LOAD DIRECTLY. Contains Langfuse API client,
+    config checker, and reference documentation. Used by langfuse-connect and all
+    operation skills.
+  category: integrations
+  tags:
+  - api
+  - langfuse
+  - master
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-master
+  has_scripts: true
+  has_references: true
+- name: langfuse-metrics
+  description: Get Langfuse metrics. Load when user says 'metrics', 'usage stats',
+    'langfuse usage'.
+  category: integrations
+  tags:
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-metrics
+  has_scripts: true
+- name: langfuse-otel-ingest
+  description: Ingest OpenTelemetry data. Load when user says 'otel ingest', 'opentelemetry',
+    'otlp'.
+  category: integrations
+  tags:
+  - langfuse
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-otel-ingest
+  has_scripts: true
+- name: langfuse-update-media
+  description: Update media metadata. Load when user says 'update media', 'patch media'.
+  category: integrations
+  tags:
+  - langfuse
+  - update
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-update-media
+  has_scripts: true
+- name: langfuse-update-org-membership
+  description: Update member role. Load when user says 'update member', 'change role',
+    'update membership'.
+  category: integrations
+  tags:
+  - langfuse
+  - update
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-update-org-membership
+  has_scripts: true
+- name: langfuse-update-project
+  description: Update project settings. Load when user says 'update project', 'rename
+    project'.
+  category: integrations
+  tags:
+  - langfuse
+  - update
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-update-project
+  has_scripts: true
+- name: langfuse-update-prompt-version
+  description: Update a Langfuse prompt version labels. Load when user says 'update
+    prompt', 'set prompt label', 'promote prompt'.
+  category: integrations
+  tags:
+  - langfuse
+  - update
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-update-prompt-version
+  has_scripts: true
+- name: langfuse-update-queue-item
+  description: Update a queue item. Load when user says 'update queue item', 'complete
+    review'.
+  category: integrations
+  tags:
+  - langfuse
+  - update
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-update-queue-item
+  has_scripts: true
+- name: langfuse-update-score-config
+  description: Update a score config. Load when user says 'update score config', 'modify
+    metric'.
+  category: integrations
+  tags:
+  - langfuse
+  - update
+  platform: Langfuse
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/langfuse/langfuse-update-score-config
+  has_scripts: true
+- name: create-weekly-update
+  description: Generate weekly status update based on Linear ticket activity and project
+    progress. Load when user says "weekly update", "weekly status", "create weekly
+    report", "status update for [project]", "what got done this week". Fetches ticket
+    changes and generates formatted summary.
+  category: general
+  tags:
+  - create
+  - linear
+  - update
+  platform: Linear
+  version: '1.0'
+  updated: '2026-02-09'
+  visibility: team
+  path: skills/integrations/linear/create-weekly-update
+- name: generate-linear-project-update
+  description: Generate concise Linear project status updates with issues grouped
+    by status, sub-issue links, and metrics. Load when user mentions "generate project
+    update", "weekly update for [project]", "Linear project summary", "status update",
+    or provides a Linear project URL.
+  author: Jack Li
+  category: general
+  tags:
+  - linear
+  - update
+  platform: Linear
+  version: '1.0'
+  updated: '2025-12-10'
+  visibility: team
+  path: skills/integrations/linear/generate-linear-project-update
+- name: linear-create-tickets
+  description: Create Linear tickets from action items or task lists. Load when user
+    says "create linear tickets", "add tickets to linear", "create tickets from meeting",
+    "linear ticket for [task]", or wants to convert action items into Linear issues.
+  author: Hassaan Ahmed
+  category: general
+  tags:
+  - create
+  - linear
+  - meeting
+  platform: Linear
+  version: '1.0'
+  updated: '2025-12-23'
+  visibility: team
+  path: skills/integrations/linear/linear-create-tickets
+- name: linear-update-tickets
+  description: Update Linear ticket status or add comments. Load when user says "update
+    linear ticket", "mark ticket as done", "move CLI-XXX to [status]", "change ticket
+    status", "add comment to ticket", or "close ticket".
+  author: Hassaan Ahmed
+  category: general
+  tags:
+  - linear
+  - update
+  platform: Linear
+  version: '1.0'
+  updated: '2025-12-23'
+  visibility: team
+  path: skills/integrations/linear/linear-update-tickets
+- name: setup-linear-onboarding-template
+  description: Interactive assistant to fill Linear onboarding template projects with
+    content from user's workspace. Load when user mentions "setup linear template",
+    "fill linear project", "onboard client in linear", or provides a Linear project
+    URL. Guides user through each task, suggests content from workspace folders, and
+    updates Linear issues with approved content.
+  author: Jack Li
+  category: general
+  tags:
+  - linear
+  platform: Linear
+  version: '1.0'
+  updated: '2025-12-10'
+  visibility: team
+  path: skills/integrations/linear/setup-linear-onboarding-template
+  has_scripts: true
+  has_references: true
+- name: linkedin-outbounding-automation
+  description: Automate LinkedIn outbound from HubSpot company lists. Load when user
+    says "linkedin outbounding automation", "linkedin outreach from hubspot", "hubspot
+    to heyreach", "prospect C-levels", "run linkedin campaign", or wants to push HubSpot
+    segments to LinkedIn outreach via HeyReach.
+  category: general
+  tags:
+  - automation
+  version: '1.0'
+  updated: '2026-02-27'
+  visibility: public
+  path: skills/integrations/linkedin-outbounding-automation
+  has_references: true
+- name: notebooklm
+  description: notebooklm, create notebook, audio overview, podcast.
+  category: integrations
+  tags:
+  - notebooklm
+  platform: NotebookLM
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/notebooklm/notebooklm
+- name: notebooklm-connect
+  description: notebooklm, create notebook, audio overview, podcast.
+  category: integrations
+  tags:
+  - connector
+  - notebooklm
+  platform: NotebookLM
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/notebooklm/notebooklm/notebooklm-connect
+- name: notebooklm-master
+  description: Shared resource library for NotebookLM Enterprise integration skills.
+    DO NOT load directly - provides common references (setup, API docs, error handling,
+    authentication) and scripts used by notebooklm-connect and individual NotebookLM
+    skills.
+  category: integrations
+  tags:
+  - api
+  - master
+  - notebooklm
+  platform: NotebookLM
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/notebooklm/notebooklm/notebooklm-master
+  has_scripts: true
+  has_references: true
+- name: notebooklm-connect
+  description: notebooklm, create notebook, audio overview, podcast.
+  category: integrations
+  tags:
+  - connector
+  - notebooklm
+  platform: NotebookLM
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/notebooklm/notebooklm-connect
+- name: notebooklm-master
+  description: Shared resource library for NotebookLM Enterprise integration skills.
+    DO NOT load directly - provides common references (setup, API docs, error handling,
+    authentication) and scripts used by notebooklm-connect and individual NotebookLM
+    skills.
+  category: integrations
+  tags:
+  - api
+  - master
+  - notebooklm
+  platform: NotebookLM
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/notebooklm/notebooklm-master
+  has_scripts: true
+  has_references: true
+- name: notion-connect
+  description: Connect to any Notion database by name. Load when user mentions 'notion',
+    'connect notion', 'setup notion', 'query [database-name]', 'add to [database]',
+    'notion databases', or any database name from persistent context. Meta-skill that
+    discovers workspace, caches schemas, and routes to appropriate operations.
+  category: integrations
+  tags:
+  - connector
+  - notion
+  platform: Notion
+  version: '1.1'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/integrations/notion/notion-connect
+- name: notion-master
+  description: Shared resource library for Notion integration skills. DO NOT load
+    directly - this provides common references (setup, API docs, error handling, database
+    schema) and scripts used by notion-connect, query-notion-db, import-skill-to-beam-next,
+    and export-skill-to-notion.
+  category: integrations
+  tags:
+  - api
+  - master
+  - notion
+  platform: Notion
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/integrations/notion/notion-master
+  has_scripts: true
+  has_references: true
+- name: setup-notion-customer-onboarding
+  description: Setup and fill Notion customer onboarding template pages by updating
+    Overview sections, Quick Links, and database tasks. Load when user mentions "setup
+    notion onboarding", "fill customer template", "update onboarding tasks", or provides
+    a Notion onboarding page URL. Uses Notion MCP for all content updates.
+  author: Jack Li
+  category: general
+  tags:
+  - notion
+  platform: Notion
+  version: '1.0'
+  updated: '2025-12-10'
+  visibility: team
+  path: skills/integrations/notion-tools/setup-notion-customer-onboarding
+  has_references: true
+- name: update-variables-in-notion
+  description: Extract variables from Beam prompt chain files (.md) and sync to Notion
+    database. Load when user mentions "extract variables", "prompt variables to notion",
+    "update variables", "document variables", or provides a path to prompt files.
+    Handles single files or directories. Creates/updates Notion database with variable
+    metadata (name, description, data type, node).
+  author: Jack Li
+  category: general
+  tags:
+  - notion
+  - update
+  platform: Notion
+  version: '1.0'
+  updated: '2025-12-10'
+  visibility: team
+  path: skills/integrations/notion-tools/update-variables-in-notion
+  has_scripts: true
+  has_references: true
+- name: slack
+  description: Complete Slack integration skill. Load when user wants to send messages,
+    search Slack, manage channels, list users, upload files, add reactions, set reminders,
+    or interact with Slack workspace.
+  author: Fredrik Falk
+  category: integrations
+  tags:
+  - slack
+  platform: Slack
+  version: '1.1'
+  updated: '2025-12-24'
+  visibility: public
+  path: skills/integrations/slack/slack
+- name: slack-connect
+  description: Connect to Slack workspace for messaging and channel management. Load
+    when user mentions 'slack', 'connect slack', 'slack message', 'slack channel',
+    'send to slack', or any Slack operations. Meta-skill that validates config, discovers
+    workspace, and routes to appropriate operations.
+  author: Fredrik Falk
+  category: integrations
+  tags:
+  - connector
+  - slack
+  platform: Slack
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/integrations/slack/slack/slack-connect
+- name: slack-master
+  description: Shared resource library for Slack integration skills. DO NOT load directly
+    - provides common references (setup, API docs, error handling, authentication)
+    and scripts used by slack-connect and individual Slack skills.
+  author: Fredrik Falk
+  category: integrations
+  tags:
+  - api
+  - master
+  - slack
+  platform: Slack
+  version: '1.0'
+  updated: '2025-12-24'
+  visibility: public
+  path: skills/integrations/slack/slack/slack-master
+  has_scripts: true
+  has_references: true
+- name: slack-connect
+  description: Connect to Slack workspace for messaging and channel management. Load
+    when user mentions 'slack', 'connect slack', 'slack message', 'slack channel',
+    'send to slack', or any Slack operations. Meta-skill that validates config, discovers
+    workspace, and routes to appropriate operations.
+  author: Fredrik Falk
+  category: integrations
+  tags:
+  - connector
+  - slack
+  platform: Slack
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/integrations/slack/slack-connect
+- name: slack-master
+  description: Shared resource library for Slack integration skills. DO NOT load directly
+    - provides common references (setup, API docs, error handling, authentication)
+    and scripts used by slack-connect and individual Slack skills.
+  author: Fredrik Falk
+  category: integrations
+  tags:
+  - api
+  - master
+  - slack
+  platform: Slack
+  version: '1.0'
+  updated: '2025-12-24'
+  visibility: public
+  path: skills/integrations/slack/slack-master
+  has_scripts: true
+  has_references: true
+- name: tavily-gtm-research
+  description: Load when user mentions "tavily research", "market intelligence", "competitive
+    research", "GTM research", or needs real-time market data for sales, marketing,
+    or vertical strategy.
+  category: general
+  tags:
+  - sales
+  - tavily
+  platform: Tavily
+  version: '1.0'
+  updated: '2026-01-16'
+  visibility: public
+  path: skills/integrations/tavily/tavily-gtm-research
+  has_references: true
 - name: workable-master
   description: All Workable ATS operations — fetch JDs, search candidates, post assessments/reviews.
     Load when user says "fetch JD", "search workable", "push to workable", "post review",
@@ -3221,5 +3215,5 @@ skills:
   version: '2.0'
   updated: '2026-02-16'
   visibility: public
-  path: skills/workable/workable-master
+  path: skills/integrations/workable/workable-master
   has_scripts: true
