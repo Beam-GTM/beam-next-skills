@@ -1,8 +1,21 @@
 ---
 name: google-master
-description: Shared resource library for Google integration skills. DO NOT load directly - provides common references (setup, API docs, error handling, authentication) and scripts used by gmail, google-docs, google-sheets, google-calendar, and future Google skills.
+version: '1.0'
+description: Shared resource library for Google integration skills. DO NOT load directly
+  - provides common references (setup, API docs, error handling, authentication) and
+  scripts used by gmail, google-docs, google-sheets, google-calendar, and future Google
+  skills.
+author: Fredrik Falk
+category: integrations
+tags:
+- api
+- calendar
+- google-workspace
+- master
+platform: Google Workspace
+updated: '2026-02-26'
+visibility: public
 ---
-
 # Google Master
 
 **This is NOT a user-facing skill.** It's a shared resource library referenced by all Google integration skills.

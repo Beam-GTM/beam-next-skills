@@ -1,8 +1,17 @@
 ---
 name: amie-master
-description: Shared resource library for Amie integration skills. DO NOT load directly - provides common references and scripts used by amie-connect and individual Amie skills.
+version: '1.0'
+description: Shared resource library for Amie integration skills. DO NOT load directly
+  - provides common references and scripts used by amie-connect and individual Amie
+  skills.
+category: integrations
+tags:
+- amie
+- master
+platform: Amie
+updated: '2026-02-13'
+visibility: public
 ---
-
 # Amie Master
 
 **This is NOT a user-facing skill.** It's a shared resource library referenced by Amie integration skills.

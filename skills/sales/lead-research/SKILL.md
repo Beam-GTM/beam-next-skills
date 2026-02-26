@@ -1,8 +1,18 @@
 ---
 name: lead-research
-description: "Research sales leads and assess fit for Beam. Use when preparing for prospect calls, evaluating inbound leads, or qualifying opportunities. Keywords: lead research, call prep, prospect research, fit assessment, sales call preparation, qualify lead, discovery call prep."
+version: '1.0'
+description: 'Research sales leads and assess fit for Beam. Use when preparing for
+  prospect calls, evaluating inbound leads, or qualifying opportunities. Keywords:
+  lead research, call prep, prospect research, fit assessment, sales call preparation,
+  qualify lead, discovery call prep.'
+author: Jonas Diezun
+category: general
+tags:
+- sales
+platform: Beam AI
+updated: '2026-01-28'
+visibility: public
 ---
-
 # Lead Research & Fit Assessment
 
 Research prospects and assess whether they fit Beam's focus on automating outsourced work (BPO/RPO, document processing, data extraction at scale).

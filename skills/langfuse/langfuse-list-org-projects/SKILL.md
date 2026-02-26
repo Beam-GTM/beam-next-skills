@@ -1,8 +1,16 @@
 ---
 name: langfuse-list-org-projects
-description: "List projects in org. Load when user says 'list org projects', 'org projects', 'all projects'."
+version: '1.0'
+description: List projects in org. Load when user says 'list org projects', 'org projects',
+  'all projects'.
+category: integrations
+tags:
+- langfuse
+- query
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # List Organization Projects
 
 List all projects in an organization.

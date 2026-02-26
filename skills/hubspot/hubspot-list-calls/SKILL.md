@@ -1,8 +1,17 @@
 ---
 name: hubspot-list-calls
-description: "List call engagements from HubSpot CRM. Load when user says 'list calls', 'show calls', 'call history', 'hubspot calls'. Returns logged call records."
+version: '1.0'
+description: List call engagements from HubSpot CRM. Load when user says 'list calls',
+  'show calls', 'call history', 'hubspot calls'. Returns logged call records.
+category: integrations
+tags:
+- crm
+- hubspot
+- query
+platform: HubSpot
+updated: '2026-02-24'
+visibility: public
 ---
-
 # List HubSpot Calls
 
 **Specialized skill** for listing call engagements from HubSpot CRM.

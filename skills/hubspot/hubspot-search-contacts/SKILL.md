@@ -1,8 +1,18 @@
 ---
 name: hubspot-search-contacts
-description: "Search contacts in HubSpot CRM by email, name, or company. Load when user says 'search contacts', 'find contact', 'lookup contact', 'search for [name]'."
+version: '1.0'
+description: Search contacts in HubSpot CRM by email, name, or company. Load when
+  user says 'search contacts', 'find contact', 'lookup contact', 'search for [name]'.
+category: integrations
+tags:
+- crm
+- email
+- hubspot
+- query
+platform: HubSpot
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Search HubSpot Contacts
 
 **Specialized skill** for searching contacts in HubSpot CRM.

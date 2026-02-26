@@ -1,8 +1,11 @@
 ---
 name: import-skill
-description: "import skill, download skill, install skill, get skill."
+version: '1.0'
+description: import skill, download skill, install skill, get skill.
+category: skill-dev
+updated: '2026-02-26'
+visibility: public
 ---
-
 # Import Skill from Marketplace
 
 Download skills from the central Skill Marketplace (Airtable) into your local Beam Next.

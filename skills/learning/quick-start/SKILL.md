@@ -1,13 +1,16 @@
 ---
 name: quick-start
-description: "Complete onboarding: welcome, language, goals, integrations, workspace, first PROJECT, permissions."
+version: '2.0'
+description: 'Complete onboarding: welcome, language, goals, integrations, workspace,
+  first PROJECT, permissions.'
+category: learning
+updated: '2026-02-26'
+visibility: public
 onboarding: true
 priority: critical
-duration: "15-20 min"
+duration: 15-20 min
 cross_session_continuity: true
-version: "2.0"
 ---
-
 # Quick Start
 
 Complete onboarding flow: welcome, language selection, optionally upload context, capture your goal, **discover integrations**, optionally create a roadmap, set up your workspace **(with concrete proposals)**, plan your first PROJECT **(using plan-project skill)**, configure permissions, **clear session restart instructions**.

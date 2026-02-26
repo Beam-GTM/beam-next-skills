@@ -1,8 +1,16 @@
 ---
 name: langfuse-delete-model
-description: "Delete a model definition. Load when user says 'delete model', 'remove model'."
+version: '1.0'
+description: Delete a model definition. Load when user says 'delete model', 'remove
+  model'.
+category: integrations
+tags:
+- delete
+- langfuse
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Delete Model
 
 Delete a model definition by ID.

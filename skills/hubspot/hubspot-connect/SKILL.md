@@ -1,8 +1,16 @@
 ---
 name: hubspot-connect
-description: "hubspot, crm, contacts, companies, deals."
+version: '1.0'
+description: hubspot, crm, contacts, companies, deals.
+category: integrations
+tags:
+- connector
+- crm
+- hubspot
+platform: HubSpot
+updated: '2026-02-24'
+visibility: public
 ---
-
 # HubSpot Connect
 
 **User-facing meta-skill** for HubSpot CRM integration.

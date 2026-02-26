@@ -1,8 +1,16 @@
 ---
 name: langfuse-delete-prompt
-description: "Delete a Langfuse prompt. Load when user says 'delete prompt', 'remove prompt'."
+version: '1.0'
+description: Delete a Langfuse prompt. Load when user says 'delete prompt', 'remove
+  prompt'.
+category: integrations
+tags:
+- delete
+- langfuse
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Delete Prompt
 
 Delete a prompt from Langfuse by name. This deletes all versions of the prompt.

@@ -1,8 +1,14 @@
 ---
 name: heyreach
-description: "heyreach, linkedin outreach, linkedin campaigns, add leads."
+version: '1.0'
+description: heyreach, linkedin outreach, linkedin campaigns, add leads.
+category: integrations
+tags:
+- heyreach
+platform: HeyReach
+updated: '2026-02-24'
+visibility: public
 ---
-
 # HeyReach Integration
 
 Complete integration for HeyReach LinkedIn automation platform.

@@ -1,8 +1,11 @@
 ---
 name: generate-philosophy-doc
-description: "create philosophy doc, generate standards, build best practices guide."
+version: '1.0'
+description: create philosophy doc, generate standards, build best practices guide.
+category: tools
+updated: '2026-02-25'
+visibility: public
 ---
-
 # Generate Philosophy Document
 
 Create comprehensive, research-backed philosophy and standards documents for any domain.

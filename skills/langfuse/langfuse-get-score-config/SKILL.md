@@ -1,8 +1,15 @@
 ---
 name: langfuse-get-score-config
-description: "Get a score config by ID. Load when user says 'get score config', 'show metric'."
+version: '1.0'
+description: Get a score config by ID. Load when user says 'get score config', 'show
+  metric'.
+category: integrations
+tags:
+- langfuse
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Get Score Config
 
 Get a specific score configuration by ID.

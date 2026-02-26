@@ -1,8 +1,15 @@
 ---
 name: create-project
-description: "Create new projects. Load when user wants to START something new with a deliverable endpoint. Keywords: create project, new project, start project, plan project."
+version: '1.0'
+description: 'Create new projects. Load when user wants to START something new with
+  a deliverable endpoint. Keywords: create project, new project, start project, plan
+  project.'
+category: projects
+tags:
+- create
+updated: '2026-02-26'
+visibility: public
 ---
-
 ## 🎯 Onboarding Awareness (CHECK BEFORE STARTING)
 
 **Before creating a project, AI MUST check user-config.yaml for incomplete onboarding:**

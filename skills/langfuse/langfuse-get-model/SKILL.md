@@ -1,8 +1,15 @@
 ---
 name: langfuse-get-model
-description: "Get specific Langfuse model. Load when user says 'get model', 'model details', 'show model {id}'."
+version: '1.0'
+description: Get specific Langfuse model. Load when user says 'get model', 'model
+  details', 'show model {id}'.
+category: integrations
+tags:
+- langfuse
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Get Model
 
 Get detailed view of a specific model.

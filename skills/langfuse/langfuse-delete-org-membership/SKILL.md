@@ -1,8 +1,16 @@
 ---
 name: langfuse-delete-org-membership
-description: "Remove member from org. Load when user says 'remove member', 'delete membership', 'revoke access'."
+version: '1.0'
+description: Remove member from org. Load when user says 'remove member', 'delete
+  membership', 'revoke access'.
+category: integrations
+tags:
+- delete
+- langfuse
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Delete Organization Membership
 
 Remove a member from the organization.

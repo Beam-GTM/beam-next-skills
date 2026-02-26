@@ -1,8 +1,15 @@
 ---
 name: langfuse-otel-ingest
-description: "Ingest OpenTelemetry data. Load when user says 'otel ingest', 'opentelemetry', 'otlp'."
+version: '1.0'
+description: Ingest OpenTelemetry data. Load when user says 'otel ingest', 'opentelemetry',
+  'otlp'.
+category: integrations
+tags:
+- langfuse
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # OpenTelemetry Ingest
 
 Ingest OpenTelemetry Protocol (OTLP) data into Langfuse.

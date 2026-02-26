@@ -1,8 +1,15 @@
 ---
 name: langfuse-get-trace
-description: "Get specific Langfuse trace. Load when user says 'get trace', 'trace details', 'show trace {id}'."
+version: '1.0'
+description: Get specific Langfuse trace. Load when user says 'get trace', 'trace
+  details', 'show trace {id}'.
+category: integrations
+tags:
+- langfuse
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Get Trace
 
 Get detailed view of a specific trace.

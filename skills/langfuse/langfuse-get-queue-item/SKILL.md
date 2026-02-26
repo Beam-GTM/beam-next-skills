@@ -1,8 +1,14 @@
 ---
 name: langfuse-get-queue-item
-description: "Get a queue item. Load when user says 'get queue item', 'item details'."
+version: '1.0'
+description: Get a queue item. Load when user says 'get queue item', 'item details'.
+category: integrations
+tags:
+- langfuse
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Get Queue Item
 
 Get a specific queue item.

@@ -1,9 +1,21 @@
 ---
 name: gmail
 version: 1.3
-description: "Read, send, and manage Gmail emails. Load when user mentions 'gmail', 'email', 'send email', 'check email', 'inbox', 'draft', or references sending/reading emails."
+description: Read, send, and manage Gmail emails. Load when user mentions 'gmail',
+  'email', 'send email', 'check email', 'inbox', 'draft', or references sending/reading
+  emails.
+author: Fredrik Falk
+category: integrations
+tags:
+- email
+- google-workspace
+platform: Google Workspace
+requires:
+- google-connect
+- google-master
+updated: '2026-02-24'
+visibility: public
 ---
-
 ## Purpose
 
 Automate Gmail operations including reading, sending, replying, forwarding, and managing emails. Useful for email automation, inbox management, and communication workflows.

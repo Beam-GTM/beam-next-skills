@@ -1,8 +1,19 @@
 ---
 name: hubspot-create-meeting
-description: "Create a meeting engagement in HubSpot CRM. Load when user says 'create meeting', 'add meeting', 'schedule meeting', 'new meeting'. Requires title, start and end times."
+version: '1.0'
+description: Create a meeting engagement in HubSpot CRM. Load when user says 'create
+  meeting', 'add meeting', 'schedule meeting', 'new meeting'. Requires title, start
+  and end times.
+category: integrations
+tags:
+- create
+- crm
+- hubspot
+- meeting
+platform: HubSpot
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Create HubSpot Meeting
 
 **Specialized skill** for creating meeting engagements in HubSpot CRM.

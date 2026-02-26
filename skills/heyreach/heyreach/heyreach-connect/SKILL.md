@@ -1,8 +1,15 @@
 ---
 name: heyreach-connect
-description: "heyreach, linkedin outreach, linkedin campaigns."
+version: '1.0'
+description: heyreach, linkedin outreach, linkedin campaigns.
+category: integrations
+tags:
+- connector
+- heyreach
+platform: HeyReach
+updated: '2026-02-24'
+visibility: public
 ---
-
 # HeyReach Connect
 
 Meta-skill for HeyReach LinkedIn automation integration.

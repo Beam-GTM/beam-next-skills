@@ -1,8 +1,16 @@
 ---
 name: langfuse-create-model
-description: "Create a model definition for cost tracking. Load when user says 'create model', 'add model', 'new model'."
+version: '1.0'
+description: Create a model definition for cost tracking. Load when user says 'create
+  model', 'add model', 'new model'.
+category: integrations
+tags:
+- create
+- langfuse
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Create Model
 
 Create a new model definition for cost tracking.

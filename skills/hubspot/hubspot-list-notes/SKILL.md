@@ -1,8 +1,17 @@
 ---
 name: hubspot-list-notes
-description: "List note engagements from HubSpot CRM. Load when user says 'list notes', 'show notes', 'note history', 'hubspot notes'. Returns logged note records."
+version: '1.0'
+description: List note engagements from HubSpot CRM. Load when user says 'list notes',
+  'show notes', 'note history', 'hubspot notes'. Returns logged note records.
+category: integrations
+tags:
+- crm
+- hubspot
+- query
+platform: HubSpot
+updated: '2026-02-24'
+visibility: public
 ---
-
 # List HubSpot Notes
 
 **Specialized skill** for listing note engagements from HubSpot CRM.

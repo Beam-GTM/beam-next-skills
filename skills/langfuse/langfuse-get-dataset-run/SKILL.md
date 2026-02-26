@@ -1,8 +1,15 @@
 ---
 name: langfuse-get-dataset-run
-description: "Get a dataset run by name. Load when user says 'get dataset run', 'show run', 'run details'."
+version: '1.0'
+description: Get a dataset run by name. Load when user says 'get dataset run', 'show
+  run', 'run details'.
+category: integrations
+tags:
+- langfuse
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Get Dataset Run
 
 Retrieve a specific evaluation run from a dataset.

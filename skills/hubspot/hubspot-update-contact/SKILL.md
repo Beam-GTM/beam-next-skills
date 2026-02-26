@@ -1,8 +1,17 @@
 ---
 name: hubspot-update-contact
-description: "Update an existing contact in HubSpot CRM. Load when user says 'update contact', 'edit contact', 'modify contact', 'change contact'. Requires contact ID."
+version: '1.0'
+description: Update an existing contact in HubSpot CRM. Load when user says 'update
+  contact', 'edit contact', 'modify contact', 'change contact'. Requires contact ID.
+category: integrations
+tags:
+- crm
+- hubspot
+- update
+platform: HubSpot
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Update HubSpot Contact
 
 **Specialized skill** for updating contacts in HubSpot CRM.

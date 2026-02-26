@@ -1,8 +1,21 @@
 ---
 name: google-speech-to-text
-description: "Transcribe audio files to text using Google Cloud Speech-to-Text API. Load when user mentions 'transcribe', 'speech to text', 'audio to text', 'transcribe audio', 'voice to text', 'transcription', or converting audio/recordings to text."
+version: '1.0'
+description: Transcribe audio files to text using Google Cloud Speech-to-Text API.
+  Load when user mentions 'transcribe', 'speech to text', 'audio to text', 'transcribe
+  audio', 'voice to text', 'transcription', or converting audio/recordings to text.
+category: integrations
+tags:
+- api
+- google-workspace
+- transcript
+platform: Google Workspace
+requires:
+- google-connect
+- google-master
+updated: '2026-02-26'
+visibility: public
 ---
-
 # Google Speech-to-Text
 
 Transcribe audio files (MP3, WAV, FLAC, etc.) to text using Google Cloud Speech-to-Text API. Supports short files (sync) and long files (batch via Cloud Storage).

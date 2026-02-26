@@ -1,8 +1,17 @@
 ---
 name: beam-debug-issue-tasks
-description: Debug failed/issue tasks from Beam.ai using Langfuse traces. Load when user says "debug issue tasks", "check failed tasks", "why did task fail", "task errors", "debug agent", or needs to investigate task failures.
+version: '1.0'
+description: Debug failed/issue tasks from Beam.ai using Langfuse traces. Load when
+  user says "debug issue tasks", "check failed tasks", "why did task fail", "task
+  errors", "debug agent", or needs to investigate task failures.
+author: Jack Li
+category: integrations
+tags:
+- beam-ai
+platform: Beam AI
+updated: '2026-02-26'
+visibility: public
 ---
-
 # Beam Debug Issue Tasks
 
 **Debug failed Beam.ai tasks using Langfuse traces.**

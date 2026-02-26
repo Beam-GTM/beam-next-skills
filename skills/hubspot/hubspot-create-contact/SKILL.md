@@ -1,8 +1,19 @@
 ---
 name: hubspot-create-contact
-description: "Create a new contact in HubSpot CRM. Load when user says 'create contact', 'add contact', 'new contact'. Requires email, optional firstname, lastname, phone, company."
+version: '1.0'
+description: Create a new contact in HubSpot CRM. Load when user says 'create contact',
+  'add contact', 'new contact'. Requires email, optional firstname, lastname, phone,
+  company.
+category: integrations
+tags:
+- create
+- crm
+- email
+- hubspot
+platform: HubSpot
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Create HubSpot Contact
 
 **Specialized skill** for creating contacts in HubSpot CRM.

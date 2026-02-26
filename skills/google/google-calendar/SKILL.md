@@ -1,9 +1,23 @@
 ---
 name: google-calendar
 version: 1.0
-description: "Read, create, and manage Google Calendar events. Load when user mentions 'google calendar', 'calendar', 'schedule', 'meeting', 'event', 'appointment', 'book time', 'check availability', 'find slots', 'free time', or references scheduling/calendar operations."
+description: Read, create, and manage Google Calendar events. Load when user mentions
+  'google calendar', 'calendar', 'schedule', 'meeting', 'event', 'appointment', 'book
+  time', 'check availability', 'find slots', 'free time', or references scheduling/calendar
+  operations.
+author: Fredrik Falk
+category: integrations
+tags:
+- calendar
+- google-workspace
+- meeting
+platform: Google Workspace
+requires:
+- google-connect
+- google-master
+updated: '2026-02-26'
+visibility: public
 ---
-
 ## Purpose
 
 Automate Google Calendar operations including listing events, checking availability, creating meetings, and managing attendees. Particularly useful for sales teams scheduling calls, finding available slots to propose to clients, and managing recurring meetings.

@@ -1,8 +1,15 @@
 ---
 name: langfuse-get-comment
-description: "Get comment by ID. Load when user says 'get comment', 'show comment', 'comment details'."
+version: '1.0'
+description: Get comment by ID. Load when user says 'get comment', 'show comment',
+  'comment details'.
+category: integrations
+tags:
+- langfuse
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Get Comment
 
 Retrieve a specific comment by ID.

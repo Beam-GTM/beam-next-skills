@@ -1,11 +1,17 @@
 ---
 name: create-roadmap
-description: "Create a prioritized roadmap of what to build next. Dynamic items based on your goals."
+version: '1.0'
+description: Create a prioritized roadmap of what to build next. Dynamic items based
+  on your goals.
+category: learning
+tags:
+- create
+updated: '2026-02-26'
+visibility: public
 priority: high
-duration: "3-5 min"
+duration: 3-5 min
 standalone: true
 ---
-
 # Create Roadmap
 
 Plan what to build next. AI suggests items based on your goals and context, you refine and prioritize.

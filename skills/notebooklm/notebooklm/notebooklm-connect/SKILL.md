@@ -1,8 +1,15 @@
 ---
 name: notebooklm-connect
-description: "notebooklm, create notebook, audio overview, podcast."
+version: '1.0'
+description: notebooklm, create notebook, audio overview, podcast.
+category: integrations
+tags:
+- connector
+- notebooklm
+platform: NotebookLM
+updated: '2026-02-24'
+visibility: public
 ---
-
 # NotebookLM Connect
 
 Meta-skill for NotebookLM Enterprise operations. Routes to appropriate skills based on user intent.

@@ -1,8 +1,17 @@
 ---
 name: hubspot-search-deals
-description: "Search deals in HubSpot CRM by name or amount. Load when user says 'search deals', 'find deal', 'lookup deal', 'deals over $X', 'search for [deal]'."
+version: '1.0'
+description: Search deals in HubSpot CRM by name or amount. Load when user says 'search
+  deals', 'find deal', 'lookup deal', 'deals over $X', 'search for [deal]'.
+category: integrations
+tags:
+- crm
+- hubspot
+- query
+platform: HubSpot
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Search HubSpot Deals
 
 **Specialized skill** for searching deals in HubSpot CRM.

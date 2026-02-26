@@ -1,8 +1,16 @@
 ---
 name: langfuse-list-dataset-runs
-description: "List dataset runs. Load when user says 'list dataset runs', 'show runs', 'dataset experiments'."
+version: '1.0'
+description: List dataset runs. Load when user says 'list dataset runs', 'show runs',
+  'dataset experiments'.
+category: integrations
+tags:
+- langfuse
+- query
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # List Dataset Runs
 
 Get list of evaluation runs for a dataset.

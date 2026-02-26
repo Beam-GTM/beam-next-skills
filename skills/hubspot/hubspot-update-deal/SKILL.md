@@ -1,8 +1,17 @@
 ---
 name: hubspot-update-deal
-description: "Update an existing deal in HubSpot CRM. Load when user says 'update deal', 'edit deal', 'change deal stage', 'move deal', 'close deal'. Requires deal ID."
+version: '1.0'
+description: Update an existing deal in HubSpot CRM. Load when user says 'update deal',
+  'edit deal', 'change deal stage', 'move deal', 'close deal'. Requires deal ID.
+category: integrations
+tags:
+- crm
+- hubspot
+- update
+platform: HubSpot
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Update HubSpot Deal
 
 **Specialized skill** for updating deals in HubSpot CRM.

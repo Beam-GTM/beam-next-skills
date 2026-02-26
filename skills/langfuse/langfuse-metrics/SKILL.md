@@ -1,8 +1,15 @@
 ---
 name: langfuse-metrics
-description: "Get Langfuse metrics. Load when user says 'metrics', 'usage stats', 'langfuse usage'."
+version: '1.0'
+description: Get Langfuse metrics. Load when user says 'metrics', 'usage stats', 'langfuse
+  usage'.
+category: integrations
+tags:
+- langfuse
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Metrics
 
 Get metrics and usage statistics from Langfuse.

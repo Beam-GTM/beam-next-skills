@@ -1,8 +1,16 @@
 ---
 name: langfuse-update-prompt-version
-description: "Update a Langfuse prompt version labels. Load when user says 'update prompt', 'set prompt label', 'promote prompt'."
+version: '1.0'
+description: Update a Langfuse prompt version labels. Load when user says 'update
+  prompt', 'set prompt label', 'promote prompt'.
+category: integrations
+tags:
+- langfuse
+- update
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Update Prompt Version
 
 Update labels on a specific prompt version. Use this to promote versions to production or add/remove labels.

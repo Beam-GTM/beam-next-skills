@@ -1,8 +1,16 @@
 ---
 name: langfuse-create-project
-description: "Create a new project. Load when user says 'create langfuse project', 'new project'."
+version: '1.0'
+description: Create a new project. Load when user says 'create langfuse project',
+  'new project'.
+category: integrations
+tags:
+- create
+- langfuse
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Create Project
 
 Create a new Langfuse project.

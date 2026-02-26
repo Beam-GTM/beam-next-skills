@@ -1,8 +1,11 @@
 ---
 name: validate-skill-functionality
-description: "validate skill, check skill, review skill execution."
+version: '1.0'
+description: validate skill, check skill, review skill execution.
+category: skill-dev
+updated: '2026-02-25'
+visibility: public
 ---
-
 # Validate Skill Functionality
 
 **Purpose**: Systematic post-execution review to validate skill functionality and document findings.

@@ -1,9 +1,18 @@
 ---
 name: notion-connect
-description: "Connect to any Notion database by name. Load when user mentions 'notion', 'connect notion', 'setup notion', 'query [database-name]', 'add to [database]', 'notion databases', or any database name from persistent context. Meta-skill that discovers workspace, caches schemas, and routes to appropriate operations."
-version: "1.1"
+version: '1.1'
+description: Connect to any Notion database by name. Load when user mentions 'notion',
+  'connect notion', 'setup notion', 'query [database-name]', 'add to [database]',
+  'notion databases', or any database name from persistent context. Meta-skill that
+  discovers workspace, caches schemas, and routes to appropriate operations.
+category: integrations
+tags:
+- connector
+- notion
+platform: Notion
+updated: '2026-02-26'
+visibility: public
 ---
-
 # Notion Connect
 
 **Meta-skill for complete Notion workspace integration.**

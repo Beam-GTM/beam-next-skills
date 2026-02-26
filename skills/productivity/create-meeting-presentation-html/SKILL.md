@@ -1,8 +1,19 @@
 ---
 name: create-meeting-presentation-html
-description: Generate a self-contained HTML slide presentation for meetings. Load when user says "create presentation", "meeting presentation", "html presentation", "slide deck", "make slides", "presentation for meeting", "create slides for". User describes their use case, context, and goals — AI generates a polished dark-themed HTML deck with arrow-key navigation.
+version: '1.0'
+description: Generate a self-contained HTML slide presentation for meetings. Load
+  when user says "create presentation", "meeting presentation", "html presentation",
+  "slide deck", "make slides", "presentation for meeting", "create slides for". User
+  describes their use case, context, and goals — AI generates a polished dark-themed
+  HTML deck with arrow-key navigation.
+author: Hassaan Ahmed
+category: general
+tags:
+- create
+- meeting
+updated: '2026-02-16'
+visibility: public
 ---
-
 # Create Meeting Presentation (HTML)
 
 Generate a self-contained, browser-based HTML slide presentation from a user's meeting brief.

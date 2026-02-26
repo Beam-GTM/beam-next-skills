@@ -1,8 +1,12 @@
 ---
 name: execute-project
-description: "continue [build], resume, work on, check progress, execute build, build [ID/name]."
+version: '1.0'
+description: continue [build], resume, work on, check progress, execute build, build
+  [ID/name].
+category: projects
+updated: '2026-02-25'
+visibility: public
 ---
-
 # Execute Build
 
 Execute build work systematically with progress tracking.

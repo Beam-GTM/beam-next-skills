@@ -1,8 +1,16 @@
 ---
 name: langfuse-update-org-membership
-description: "Update member role. Load when user says 'update member', 'change role', 'update membership'."
+version: '1.0'
+description: Update member role. Load when user says 'update member', 'change role',
+  'update membership'.
+category: integrations
+tags:
+- langfuse
+- update
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Update Organization Membership
 
 Update a member's role in the organization.

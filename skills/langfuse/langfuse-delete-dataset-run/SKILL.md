@@ -1,8 +1,16 @@
 ---
 name: langfuse-delete-dataset-run
-description: "Delete a dataset run. Load when user says 'delete dataset run', 'remove run'."
+version: '1.0'
+description: Delete a dataset run. Load when user says 'delete dataset run', 'remove
+  run'.
+category: integrations
+tags:
+- delete
+- langfuse
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Delete Dataset Run
 
 Delete a specific evaluation run from a dataset.

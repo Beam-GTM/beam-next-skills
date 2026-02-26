@@ -1,9 +1,17 @@
 ---
 name: email-automation
-description: Load when user says "process emails", "triage inbox", "email automation", "check emails", or "inbox zero"
+version: '1.0'
+description: Load when user says "process emails", "triage inbox", "email automation",
+  "check emails", or "inbox zero"
+author: Jonas Diezun
+category: productivity
+tags:
+- automation
+- email
+updated: '2026-02-16'
+visibility: public
 priority: high
 ---
-
 # Email Automation Skill
 
 **Purpose**: Automatically triage your inbox, draft responses, and recommend actions (archive, snooze, create task).

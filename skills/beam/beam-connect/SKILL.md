@@ -1,8 +1,19 @@
 ---
 name: beam-connect
-description: "Connect to Beam AI workspace for agent management. Load when user mentions 'beam', 'beam agent', 'beam task', 'beam analytics', 'list agents', 'create task', or any Beam AI operations. Meta-skill that validates config, discovers agents, and routes to appropriate operations."
+version: '1.0'
+description: Connect to Beam AI workspace for agent management. Load when user mentions
+  'beam', 'beam agent', 'beam task', 'beam analytics', 'list agents', 'create task',
+  or any Beam AI operations. Meta-skill that validates config, discovers agents, and
+  routes to appropriate operations.
+category: integrations
+tags:
+- analytics
+- beam-ai
+- connector
+platform: Beam AI
+updated: '2025-12-18'
+visibility: public
 ---
-
 # Beam Connect
 
 **User-facing meta-skill** for Beam AI workspace integration.

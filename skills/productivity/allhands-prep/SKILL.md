@@ -1,8 +1,16 @@
 ---
 name: allhands-prep
-description: "Prepare all-hands meetings for Beam. Load when user says 'prepare all-hands', 'all-hands prep', 'plan all-hands meeting', 'create all-hands agenda', or mentions preparing for company-wide meetings. Helps structure the meeting, draft talking points, create prep checklists, and follow Beam's all-hands guidelines."
+version: '1.0'
+description: Prepare all-hands meetings for Beam. Load when user says 'prepare all-hands',
+  'all-hands prep', 'plan all-hands meeting', 'create all-hands agenda', or mentions
+  preparing for company-wide meetings. Helps structure the meeting, draft talking
+  points, create prep checklists, and follow Beam's all-hands guidelines.
+category: system
+tags:
+- meeting
+updated: '2026-02-26'
+visibility: public
 ---
-
 # All-Hands Preparation
 
 Helps prepare structured, energizing all-hands meetings following Beam's established guidelines and format.

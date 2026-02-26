@@ -1,11 +1,15 @@
 ---
 name: analyze-context
-description: "Upload files for AI analysis. SubAgents extract insights and save structured documents."
+version: '1.0'
+description: Upload files for AI analysis. SubAgents extract insights and save structured
+  documents.
+category: learning
+updated: '2026-02-26'
+visibility: public
 priority: high
-duration: "3-5 min"
+duration: 3-5 min
 standalone: true
 ---
-
 # Analyze Context
 
 Upload your existing files (docs, PDFs, code) and let SubAgents extract structured insights. Results are saved as clean documents - not dumped into chat context.

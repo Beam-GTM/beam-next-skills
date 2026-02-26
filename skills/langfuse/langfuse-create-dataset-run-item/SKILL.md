@@ -1,8 +1,16 @@
 ---
 name: langfuse-create-dataset-run-item
-description: "Create a dataset run item. Load when user says 'create run item', 'log evaluation', 'add run result'."
+version: '1.0'
+description: Create a dataset run item. Load when user says 'create run item', 'log
+  evaluation', 'add run result'.
+category: integrations
+tags:
+- create
+- langfuse
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Create Dataset Run Item
 
 Link a trace/observation to a dataset item as part of an evaluation run.

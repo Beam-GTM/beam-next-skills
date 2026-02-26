@@ -1,8 +1,16 @@
 ---
 name: gemini-refine-image
-description: "refine image, improve image, iterate image, tweak image."
+version: '1.0'
+description: refine image, improve image, iterate image, tweak image.
+category: integrations
+tags:
+- google-gemini
+platform: Google Gemini
+requires:
+- google-gemini-image
+updated: '2026-02-26'
+visibility: public
 ---
-
 # Refine Image with Gemini
 
 Iteratively refine previously generated images.

@@ -1,8 +1,18 @@
 ---
 name: hubspot-create-deal
-description: "Create a new deal in HubSpot CRM. Load when user says 'create deal', 'add deal', 'new deal', 'new opportunity'. Requires name, optional amount, stage, closedate."
+version: '1.0'
+description: Create a new deal in HubSpot CRM. Load when user says 'create deal',
+  'add deal', 'new deal', 'new opportunity'. Requires name, optional amount, stage,
+  closedate.
+category: integrations
+tags:
+- create
+- crm
+- hubspot
+platform: HubSpot
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Create HubSpot Deal
 
 **Specialized skill** for creating deals in HubSpot CRM.

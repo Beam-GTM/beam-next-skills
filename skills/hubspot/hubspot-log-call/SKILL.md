@@ -1,8 +1,16 @@
 ---
 name: hubspot-log-call
-description: "Log a call engagement in HubSpot CRM. Load when user says 'log call', 'record call', 'add call', 'call made'. Requires title, optional body and duration."
+version: '1.0'
+description: Log a call engagement in HubSpot CRM. Load when user says 'log call',
+  'record call', 'add call', 'call made'. Requires title, optional body and duration.
+category: integrations
+tags:
+- crm
+- hubspot
+platform: HubSpot
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Log HubSpot Call
 
 **Specialized skill** for logging call engagements in HubSpot CRM.

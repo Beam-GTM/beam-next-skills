@@ -1,8 +1,18 @@
 ---
 name: happenstance-connect
-description: "Search and research LinkedIn connections via Happenstance API. Use when user says: 'search my network', 'find someone on LinkedIn', 'research a person', 'who do I know that...', 'happenstance search', 'look up a contact'."
+version: '1.0'
+description: 'Search and research LinkedIn connections via Happenstance API. Use when
+  user says: ''search my network'', ''find someone on LinkedIn'', ''research a person'',
+  ''who do I know that...'', ''happenstance search'', ''look up a contact''.'
+category: integrations
+tags:
+- api
+- connector
+- happenstance
+platform: Happenstance
+updated: '2026-02-16'
+visibility: public
 ---
-
 # Happenstance Connect
 
 Search your LinkedIn network and research people using the Happenstance API.

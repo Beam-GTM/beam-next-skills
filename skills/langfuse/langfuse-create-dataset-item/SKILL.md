@@ -1,8 +1,16 @@
 ---
 name: langfuse-create-dataset-item
-description: "Create a dataset item. Load when user says 'create dataset item', 'add item', 'new test case'."
+version: '1.0'
+description: Create a dataset item. Load when user says 'create dataset item', 'add
+  item', 'new test case'.
+category: integrations
+tags:
+- create
+- langfuse
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Create Dataset Item
 
 Add a new item (test case) to a dataset.

@@ -1,8 +1,17 @@
 ---
 name: gemini-edit-image
-description: "edit image, modify image, change image, gemini edit."
+version: '1.0'
+description: edit image, modify image, change image, gemini edit.
+category: integrations
+tags:
+- google-gemini
+- update
+platform: Google Gemini
+requires:
+- google-gemini-image
+updated: '2026-02-26'
+visibility: public
 ---
-
 # Edit Image with Gemini
 
 Modify existing images using text instructions.

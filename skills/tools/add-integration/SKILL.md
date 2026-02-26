@@ -1,8 +1,11 @@
 ---
 name: add-integration
-description: "add integration, new integration, integrate with, connect to [service]."
+version: '1.0'
+description: add integration, new integration, integrate with, connect to [service].
+category: system
+updated: '2026-02-26'
+visibility: public
 ---
-
 ## Onboarding Awareness (CHECK BEFORE STARTING)
 
 **Before building an integration, AI MUST check `stats.pending_onboarding` for `learn_integrations`:**

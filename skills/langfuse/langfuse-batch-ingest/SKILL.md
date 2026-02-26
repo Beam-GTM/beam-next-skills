@@ -1,8 +1,15 @@
 ---
 name: langfuse-batch-ingest
-description: "Batch ingest traces/spans/events. Load when user says 'batch ingest', 'bulk import', 'ingest data'."
+version: '1.0'
+description: Batch ingest traces/spans/events. Load when user says 'batch ingest',
+  'bulk import', 'ingest data'.
+category: integrations
+tags:
+- langfuse
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Batch Ingest
 
 Ingest multiple traces, spans, generations, and events in a single request.

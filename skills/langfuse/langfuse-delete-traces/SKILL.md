@@ -1,8 +1,16 @@
 ---
 name: langfuse-delete-traces
-description: "Bulk delete traces. Load when user says 'bulk delete traces', 'delete multiple traces', 'purge traces'."
+version: '1.0'
+description: Bulk delete traces. Load when user says 'bulk delete traces', 'delete
+  multiple traces', 'purge traces'.
+category: integrations
+tags:
+- delete
+- langfuse
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Bulk Delete Traces
 
 Delete multiple traces matching filter criteria.

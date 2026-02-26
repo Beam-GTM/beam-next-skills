@@ -1,8 +1,16 @@
 ---
 name: langfuse-list-score-configs
-description: "List score configurations. Load when user says 'list score configs', 'show scoring', 'evaluation configs'."
+version: '1.0'
+description: List score configurations. Load when user says 'list score configs',
+  'show scoring', 'evaluation configs'.
+category: integrations
+tags:
+- langfuse
+- query
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # List Score Configs
 
 Get list of score configurations for evaluation metrics.

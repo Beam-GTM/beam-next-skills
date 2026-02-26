@@ -1,8 +1,16 @@
 ---
 name: langfuse-create-comment
-description: "Add comment to trace/observation. Load when user says 'create comment', 'add comment', 'comment on trace'."
+version: '1.0'
+description: Add comment to trace/observation. Load when user says 'create comment',
+  'add comment', 'comment on trace'.
+category: integrations
+tags:
+- create
+- langfuse
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Create Comment
 
 Add a comment to a trace or observation.

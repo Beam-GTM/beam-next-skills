@@ -1,8 +1,19 @@
 ---
 name: slack-master
-description: Shared resource library for Slack integration skills. DO NOT load directly - provides common references (setup, API docs, error handling, authentication) and scripts used by slack-connect and individual Slack skills.
+version: '1.0'
+description: Shared resource library for Slack integration skills. DO NOT load directly
+  - provides common references (setup, API docs, error handling, authentication) and
+  scripts used by slack-connect and individual Slack skills.
+author: Fredrik Falk
+category: integrations
+tags:
+- api
+- master
+- slack
+platform: Slack
+updated: '2025-12-24'
+visibility: public
 ---
-
 # Slack Master
 
 **This is NOT a user-facing skill.** It's a shared resource library referenced by Slack integration skills.

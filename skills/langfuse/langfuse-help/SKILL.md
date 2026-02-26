@@ -1,8 +1,15 @@
 ---
 name: langfuse-help
-description: "langfuse help, langfuse reference, langfuse --help, show langfuse operations, list langfuse skills."
+version: '1.0'
+description: langfuse help, langfuse reference, langfuse --help, show langfuse operations,
+  list langfuse skills.
+category: integrations
+tags:
+- langfuse
+platform: Langfuse
+updated: '2026-02-26'
+visibility: public
 ---
-
 # Langfuse Help
 
 Quick reference for Langfuse operations. For detailed patterns, see full reference:

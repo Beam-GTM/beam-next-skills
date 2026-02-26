@@ -1,9 +1,19 @@
 ---
 name: workable-master
-description: All Workable ATS operations — fetch JDs, search candidates, post assessments/reviews. Load when user says "fetch JD", "search workable", "push to workable", "post review", "rate candidate", "workable", "push assessment", "list jobs", or after interview-coach completes an evaluation. Replaces workable-fetch-jd and workable-push-assessment.
 version: 2.0
+description: All Workable ATS operations — fetch JDs, search candidates, post assessments/reviews.
+  Load when user says "fetch JD", "search workable", "push to workable", "post review",
+  "rate candidate", "workable", "push assessment", "list jobs", or after interview-coach
+  completes an evaluation. Replaces workable-fetch-jd and workable-push-assessment.
+author: Jonas Diezun
+category: integrations
+tags:
+- master
+- workable
+platform: Workable
+updated: '2026-02-16'
+visibility: public
 ---
-
 # Workable Master
 
 *Single skill for all Workable ATS operations — JDs, candidates, assessments, and reviews.*

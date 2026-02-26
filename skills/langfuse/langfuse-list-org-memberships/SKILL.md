@@ -1,8 +1,16 @@
 ---
 name: langfuse-list-org-memberships
-description: "List organization members. Load when user says 'list members', 'org members', 'who has access'."
+version: '1.0'
+description: List organization members. Load when user says 'list members', 'org members',
+  'who has access'.
+category: integrations
+tags:
+- langfuse
+- query
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # List Organization Memberships
 
 List all members of an organization.

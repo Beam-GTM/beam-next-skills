@@ -1,9 +1,17 @@
 ---
 name: google-integration
 version: 1.1
-description: "google, gmail, email, google docs, sheets, calendar, drive."
+description: google, gmail, email, google docs, sheets, calendar, drive.
+author: Fredrik Falk
+category: integrations
+tags:
+- calendar
+- email
+- google-workspace
+platform: Google Workspace
+updated: '2026-02-26'
+visibility: public
 ---
-
 # Google Integration
 
 Complete Google Workspace integration with unified OAuth authentication. One login grants access to Gmail, Google Docs, Google Sheets, Google Calendar, Google Drive, Google Tasks, and Google Slides.

@@ -1,8 +1,16 @@
 ---
 name: langfuse-list-scores
-description: "List Langfuse scores. Load when user says 'list scores', 'show scores', 'get evaluations'."
+version: '1.0'
+description: List Langfuse scores. Load when user says 'list scores', 'show scores',
+  'get evaluations'.
+category: integrations
+tags:
+- langfuse
+- query
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # List Scores
 
 Get list of evaluation scores from Langfuse.

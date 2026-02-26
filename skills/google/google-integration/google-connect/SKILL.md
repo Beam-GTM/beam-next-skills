@@ -1,9 +1,16 @@
 ---
 name: google-connect
-description: "connect google, setup google, google integration."
-version: "1.0"
+version: '1.0'
+description: connect google, setup google, google integration.
+author: Fredrik Falk
+category: integrations
+tags:
+- connector
+- google-workspace
+platform: Google Workspace
+updated: '2026-02-26'
+visibility: public
 ---
-
 # Google Connect
 
 **Setup wizard for Google Workspace integration.**

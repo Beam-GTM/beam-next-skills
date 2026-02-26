@@ -1,8 +1,15 @@
 ---
 name: langfuse-update-media
-description: "Update media metadata. Load when user says 'update media', 'patch media'."
+version: '1.0'
+description: Update media metadata. Load when user says 'update media', 'patch media'.
+category: integrations
+tags:
+- langfuse
+- update
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Update Media
 
 Update media metadata (e.g., mark as uploaded).

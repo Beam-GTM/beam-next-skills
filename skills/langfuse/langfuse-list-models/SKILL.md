@@ -1,8 +1,16 @@
 ---
 name: langfuse-list-models
-description: "List Langfuse models. Load when user says 'list models', 'show models', 'model costs'."
+version: '1.0'
+description: List Langfuse models. Load when user says 'list models', 'show models',
+  'model costs'.
+category: integrations
+tags:
+- langfuse
+- query
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # List Models
 
 Get list of configured models (for cost tracking).

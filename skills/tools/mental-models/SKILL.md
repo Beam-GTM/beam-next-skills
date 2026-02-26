@@ -1,8 +1,11 @@
 ---
 name: mental-models
-description: "mental model, think through this, help me decide, first principles, pre-mortem."
+version: '1.0'
+description: mental model, think through this, help me decide, first principles, pre-mortem.
+category: tools
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Mental Models
 
 Apply structured thinking frameworks to decisions, problems, and planning.

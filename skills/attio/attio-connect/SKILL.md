@@ -1,8 +1,19 @@
 ---
 name: attio-connect
-description: "Manage contacts, notes, and lists in Attio CRM. Use when user says: 'add contact', 'update CRM', 'attio', 'create note', 'search contacts', 'add to list', 'look up in CRM', 'manage contacts', or references the Personal CRM project."
+version: '1.0'
+description: 'Manage contacts, notes, and lists in Attio CRM. Use when user says:
+  ''add contact'', ''update CRM'', ''attio'', ''create note'', ''search contacts'',
+  ''add to list'', ''look up in CRM'', ''manage contacts'', or references the Personal
+  CRM project.'
+category: integrations
+tags:
+- attio
+- connector
+- crm
+platform: Attio
+updated: '2026-02-16'
+visibility: public
 ---
-
 # Attio Connect
 
 Create, read, update, and manage contacts, notes, and lists in Attio CRM via the REST API v2.

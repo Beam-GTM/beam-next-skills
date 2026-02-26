@@ -1,8 +1,13 @@
 ---
 name: create-skill
-description: "create skill, new skill, automate this, make reusable."
+version: '1.0'
+description: create skill, new skill, automate this, make reusable.
+category: skill-dev
+tags:
+- create
+updated: '2026-02-26'
+visibility: public
 ---
-
 ## Onboarding Awareness (CHECK BEFORE STARTING)
 
 **Before creating a skill, AI MUST check `stats.pending_onboarding` for `learn_skills`:**

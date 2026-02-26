@@ -1,10 +1,16 @@
 ---
 name: setup-memory
-description: "Configure Beam Next memory with your role, goals, and preferences. Load when user wants to personalize the system or teach Beam Next about themselves. Keywords: setup memory, personalize, configure, my goals, my role, about me, preferences. 8 min."
+version: '1.0'
+description: 'Configure Beam Next memory with your role, goals, and preferences. Load
+  when user wants to personalize the system or teach Beam Next about themselves. Keywords:
+  setup memory, personalize, configure, my goals, my role, about me, preferences.
+  8 min.'
+category: learning
+updated: '2026-02-24'
+visibility: public
 onboarding: true
 priority: critical
 ---
-
 ## 🎯 AI Proactive Triggering (ONBOARDING SKILL - CRITICAL PRIORITY)
 
 **This is the FIRST onboarding skill with CRITICAL priority. Suggest early and often.**

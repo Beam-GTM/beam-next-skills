@@ -1,10 +1,15 @@
 ---
 name: learn-skills
-description: "Learn how Beam Next skills work. Load when user mentions: learn skills, how do skills work, what is a skill, skill tutorial, skill structure, understand skills, explain skills, when to create skill, skill vs build. 10-12 min."
+version: '1.0'
+description: 'Learn how Beam Next skills work. Load when user mentions: learn skills,
+  how do skills work, what is a skill, skill tutorial, skill structure, understand
+  skills, explain skills, when to create skill, skill vs build. 10-12 min.'
+category: learning
+updated: '2026-02-26'
+visibility: public
 onboarding: true
 priority: high
 ---
-
 ## [TARGET] Build-First Onboarding (CONTEXTUAL SUGGESTION)
 
 **This is a learning skill. With Build-First onboarding, suggest AFTER first task execution, not before.**

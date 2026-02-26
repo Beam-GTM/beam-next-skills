@@ -1,8 +1,15 @@
 ---
 name: langfuse-get-prompt
-description: "Get a Langfuse prompt by name. Load when user says 'get prompt', 'show prompt', 'prompt details'."
+version: '1.0'
+description: Get a Langfuse prompt by name. Load when user says 'get prompt', 'show
+  prompt', 'prompt details'.
+category: integrations
+tags:
+- langfuse
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Get Prompt
 
 Retrieve a specific prompt from Langfuse by name, optionally with specific version or label.

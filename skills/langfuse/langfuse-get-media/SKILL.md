@@ -1,8 +1,15 @@
 ---
 name: langfuse-get-media
-description: "Get media content by ID. Load when user says 'get media', 'download media', 'media content'."
+version: '1.0'
+description: Get media content by ID. Load when user says 'get media', 'download media',
+  'media content'.
+category: integrations
+tags:
+- langfuse
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Get Media
 
 Retrieve media content (images, audio, etc.) by ID.

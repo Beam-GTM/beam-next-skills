@@ -1,8 +1,19 @@
 ---
 name: hubspot-list-contacts
-description: "List contacts from HubSpot CRM. Load when user says 'list contacts', 'show contacts', 'get contacts', 'hubspot contacts'. Returns paginated contact list with email, name, phone, company."
+version: '1.0'
+description: List contacts from HubSpot CRM. Load when user says 'list contacts',
+  'show contacts', 'get contacts', 'hubspot contacts'. Returns paginated contact list
+  with email, name, phone, company.
+category: integrations
+tags:
+- crm
+- email
+- hubspot
+- query
+platform: HubSpot
+updated: '2026-02-24'
+visibility: public
 ---
-
 # List HubSpot Contacts
 
 **Specialized skill** for listing contacts from HubSpot CRM.

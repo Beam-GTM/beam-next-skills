@@ -1,8 +1,16 @@
 ---
 name: langfuse-create-dataset
-description: "Create a new Langfuse dataset. Load when user says 'create dataset', 'new dataset', 'add dataset'."
+version: '1.0'
+description: Create a new Langfuse dataset. Load when user says 'create dataset',
+  'new dataset', 'add dataset'.
+category: integrations
+tags:
+- create
+- langfuse
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Create Dataset
 
 Create a new dataset in Langfuse for storing evaluation test cases.

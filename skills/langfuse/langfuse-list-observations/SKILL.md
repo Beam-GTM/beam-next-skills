@@ -1,8 +1,16 @@
 ---
 name: langfuse-list-observations
-description: "List Langfuse observations (spans, generations, events). Load when user says 'list observations', 'show spans', 'get generations'."
+version: '1.0'
+description: List Langfuse observations (spans, generations, events). Load when user
+  says 'list observations', 'show spans', 'get generations'.
+category: integrations
+tags:
+- langfuse
+- query
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # List Observations
 
 Get list of observations (spans, generations, events) from Langfuse.

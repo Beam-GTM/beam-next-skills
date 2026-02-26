@@ -1,9 +1,17 @@
 ---
 name: slack
-description: Complete Slack integration skill. Load when user wants to send messages, search Slack, manage channels, list users, upload files, add reactions, set reminders, or interact with Slack workspace.
-version: "1.1"
+version: '1.1'
+description: Complete Slack integration skill. Load when user wants to send messages,
+  search Slack, manage channels, list users, upload files, add reactions, set reminders,
+  or interact with Slack workspace.
+author: Fredrik Falk
+category: integrations
+tags:
+- slack
+platform: Slack
+updated: '2025-12-24'
+visibility: public
 ---
-
 # Slack Integration
 
 Complete Slack integration with 32+ API operations using User OAuth.

@@ -1,8 +1,20 @@
 ---
 name: google-docs
-description: "Read, write, and manage Google Docs. Load when user mentions 'google docs', 'google document', 'create doc', 'read doc', 'write doc', 'edit document', or references creating/editing text documents in Google Drive."
+version: '1.0'
+description: Read, write, and manage Google Docs. Load when user mentions 'google
+  docs', 'google document', 'create doc', 'read doc', 'write doc', 'edit document',
+  or references creating/editing text documents in Google Drive.
+author: Fredrik Falk
+category: integrations
+tags:
+- google-workspace
+platform: Google Workspace
+requires:
+- google-connect
+- google-master
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Google Docs
 
 Read, write, create, and manage Google Docs via OAuth authentication.

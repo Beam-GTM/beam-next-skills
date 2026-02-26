@@ -1,8 +1,16 @@
 ---
 name: langfuse-update-queue-item
-description: "Update a queue item. Load when user says 'update queue item', 'complete review'."
+version: '1.0'
+description: Update a queue item. Load when user says 'update queue item', 'complete
+  review'.
+category: integrations
+tags:
+- langfuse
+- update
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Update Queue Item
 
 Update a queue item status.

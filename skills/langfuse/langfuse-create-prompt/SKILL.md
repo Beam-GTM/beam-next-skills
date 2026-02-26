@@ -1,8 +1,16 @@
 ---
 name: langfuse-create-prompt
-description: "Create a new Langfuse prompt. Load when user says 'create prompt', 'new prompt', 'add prompt'."
+version: '1.0'
+description: Create a new Langfuse prompt. Load when user says 'create prompt', 'new
+  prompt', 'add prompt'.
+category: integrations
+tags:
+- create
+- langfuse
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Create Prompt
 
 Create a new prompt in Langfuse with versioning support.

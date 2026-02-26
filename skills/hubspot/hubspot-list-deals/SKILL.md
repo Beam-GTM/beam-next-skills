@@ -1,8 +1,17 @@
 ---
 name: hubspot-list-deals
-description: "List deals from HubSpot CRM. Load when user says 'list deals', 'show deals', 'show pipeline', 'get deals', 'hubspot deals'. Returns paginated deal list."
+version: '1.0'
+description: List deals from HubSpot CRM. Load when user says 'list deals', 'show
+  deals', 'show pipeline', 'get deals', 'hubspot deals'. Returns paginated deal list.
+category: integrations
+tags:
+- crm
+- hubspot
+- query
+platform: HubSpot
+updated: '2026-02-24'
+visibility: public
 ---
-
 # List HubSpot Deals
 
 **Specialized skill** for listing deals from HubSpot CRM.

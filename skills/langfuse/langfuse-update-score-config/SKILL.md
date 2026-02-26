@@ -1,8 +1,16 @@
 ---
 name: langfuse-update-score-config
-description: "Update a score config. Load when user says 'update score config', 'modify metric'."
+version: '1.0'
+description: Update a score config. Load when user says 'update score config', 'modify
+  metric'.
+category: integrations
+tags:
+- langfuse
+- update
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Update Score Config
 
 Update an existing score configuration.

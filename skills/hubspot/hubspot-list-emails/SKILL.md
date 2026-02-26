@@ -1,8 +1,18 @@
 ---
 name: hubspot-list-emails
-description: "List email engagements from HubSpot CRM. Load when user says 'list emails', 'show emails', 'email history', 'hubspot emails'. Returns logged email records."
+version: '1.0'
+description: List email engagements from HubSpot CRM. Load when user says 'list emails',
+  'show emails', 'email history', 'hubspot emails'. Returns logged email records.
+category: integrations
+tags:
+- crm
+- email
+- hubspot
+- query
+platform: HubSpot
+updated: '2026-02-24'
+visibility: public
 ---
-
 # List HubSpot Emails
 
 **Specialized skill** for listing email engagements from HubSpot CRM.

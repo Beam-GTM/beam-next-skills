@@ -1,9 +1,20 @@
 ---
 name: google-sheets
-description: "Read and write Google Sheets data. Load when user mentions 'google sheets', 'spreadsheet', 'update sheet', 'read sheet', 'append to sheet', or references extracting data to update a tracking sheet."
 version: 1.2
+description: Read and write Google Sheets data. Load when user mentions 'google sheets',
+  'spreadsheet', 'update sheet', 'read sheet', 'append to sheet', or references extracting
+  data to update a tracking sheet.
+author: Fredrik Falk
+category: integrations
+tags:
+- google-workspace
+platform: Google Workspace
+requires:
+- google-connect
+- google-master
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Google Sheets
 
 Read, write, and manage Google Sheets via OAuth authentication.

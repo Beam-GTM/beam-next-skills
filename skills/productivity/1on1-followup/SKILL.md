@@ -1,9 +1,16 @@
 ---
 name: 1on1-followup
-description: "Quick post-meeting follow-up for 1-on-1s. Triggers: '1on1 followup', 'follow up on my 1on1', '1on1 with [name]', 'debrief my 1on1', 'process my 1on1 with [name]'."
-category: micro
+version: '1.0'
+description: 'Quick post-meeting follow-up for 1-on-1s. Triggers: ''1on1 followup'',
+  ''follow up on my 1on1'', ''1on1 with [name]'', ''debrief my 1on1'', ''process my
+  1on1 with [name]''.'
+author: Jonas Diezun
+category: productivity
+tags:
+- meeting
+updated: '2026-02-10'
+visibility: public
 ---
-
 # 1on1 Follow-Up
 
 Quick debrief after any 1-on-1. Fetches the latest transcript, extracts commitments, and gives you 3 sharp coaching notes. Takes 2 minutes.

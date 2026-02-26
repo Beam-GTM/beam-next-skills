@@ -1,8 +1,16 @@
 ---
 name: langfuse-list-comments
-description: "List comments on traces/observations. Load when user says 'list comments', 'get comments', 'show comments'."
+version: '1.0'
+description: List comments on traces/observations. Load when user says 'list comments',
+  'get comments', 'show comments'.
+category: integrations
+tags:
+- langfuse
+- query
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # List Comments
 
 List comments filtered by object type and ID.

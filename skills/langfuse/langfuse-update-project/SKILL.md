@@ -1,8 +1,16 @@
 ---
 name: langfuse-update-project
-description: "Update project settings. Load when user says 'update project', 'rename project'."
+version: '1.0'
+description: Update project settings. Load when user says 'update project', 'rename
+  project'.
+category: integrations
+tags:
+- langfuse
+- update
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Update Project
 
 Update project settings.

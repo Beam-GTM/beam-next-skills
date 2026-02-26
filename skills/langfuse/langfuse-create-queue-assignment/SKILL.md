@@ -1,8 +1,16 @@
 ---
 name: langfuse-create-queue-assignment
-description: "Assign reviewer to queue. Load when user says 'assign reviewer', 'add to queue assignment'."
+version: '1.0'
+description: Assign reviewer to queue. Load when user says 'assign reviewer', 'add
+  to queue assignment'.
+category: integrations
+tags:
+- create
+- langfuse
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Create Queue Assignment
 
 Assign a user to an annotation queue.

@@ -1,8 +1,16 @@
 ---
 name: langfuse-create-score-config
-description: "Create a score configuration. Load when user says 'create score config', 'new metric', 'add scoring'."
+version: '1.0'
+description: Create a score configuration. Load when user says 'create score config',
+  'new metric', 'add scoring'.
+category: integrations
+tags:
+- create
+- langfuse
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Create Score Config
 
 Create a new score configuration for evaluation metrics.

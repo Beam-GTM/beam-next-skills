@@ -1,8 +1,15 @@
 ---
 name: langfuse-delete-project
-description: "Delete a project. Load when user says 'delete project', 'remove project'."
+version: '1.0'
+description: Delete a project. Load when user says 'delete project', 'remove project'.
+category: integrations
+tags:
+- delete
+- langfuse
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Delete Project
 
 Delete a Langfuse project.

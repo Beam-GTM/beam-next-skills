@@ -1,8 +1,16 @@
 ---
 name: langfuse-list-dataset-items
-description: "List dataset items. Load when user says 'list dataset items', 'show items', 'dataset items'."
+version: '1.0'
+description: List dataset items. Load when user says 'list dataset items', 'show items',
+  'dataset items'.
+category: integrations
+tags:
+- langfuse
+- query
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # List Dataset Items
 
 Get list of items in a dataset for evaluation.

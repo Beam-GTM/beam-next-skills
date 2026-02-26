@@ -1,0 +1,57 @@
+{
+  "agent_id": "05cef0fe-ef16-4017-a40f-f0b9a2ddbd21",
+  "agent_name": "Unknown Agent",
+  "description": "",
+  "inputs": [],
+  "outputs": [],
+  "nodes": [
+    {
+      "id": "8256021e-db4a-40c2-a51c-da91469dca6d",
+      "name": "Unknown Node",
+      "type": "unknown",
+      "objective": "Extract Candidate Info"
+    },
+    {
+      "id": "8c1473df-f743-49dd-84fc-fbcfdd28a945",
+      "name": "Unknown Node",
+      "type": "unknown",
+      "objective": "Get Candidate By Email"
+    },
+    {
+      "id": "5483de79-3d63-4d40-bb08-57ae1ddfabea",
+      "name": "Unknown Node",
+      "type": "unknown",
+      "objective": ""
+    },
+    {
+      "id": "05ae02ce-b0b7-4ab3-973f-94f78138e9b6",
+      "name": "Unknown Node",
+      "type": "unknown",
+      "objective": "Get Job Description Using Job Opening ID"
+    },
+    {
+      "id": "1e36a0d8-66ef-4aa3-b8aa-eb108d672702",
+      "name": "Unknown Node",
+      "type": "unknown",
+      "objective": "Get Attachment ID"
+    },
+    {
+      "id": "313674a5-6545-40ca-8f13-d264ae4cc380",
+      "name": "Unknown Node",
+      "type": "unknown",
+      "objective": "Create Airtable Record"
+    },
+    {
+      "id": "609ab904-261a-4fee-92d8-1bda4a2aa03b",
+      "name": "Unknown Node",
+      "type": "unknown",
+      "objective": "Generate Candidate Highlights"
+    },
+    {
+      "id": "4efd8a21-9b94-4609-977c-ee6419704055",
+      "name": "Unknown Node",
+      "type": "unknown",
+      "objective": "Entry Node"
+    }
+  ]
+}

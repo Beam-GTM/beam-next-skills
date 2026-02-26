@@ -1,8 +1,15 @@
 ---
 name: langfuse-get-observation
-description: "Get specific Langfuse observation. Load when user says 'get observation', 'observation details', 'show span {id}'."
+version: '1.0'
+description: Get specific Langfuse observation. Load when user says 'get observation',
+  'observation details', 'show span {id}'.
+category: integrations
+tags:
+- langfuse
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Get Observation
 
 Get detailed view of a specific observation.

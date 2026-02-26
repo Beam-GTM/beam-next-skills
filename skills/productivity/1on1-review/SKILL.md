@@ -1,8 +1,16 @@
 ---
 name: 1on1-review
-description: "Deep expert coaching review of a 1-on-1 meeting. Triggers: '1on1 review', 'review my 1on1 with [name]', 'coach me on my 1on1', 'how did my 1on1 go', 'deep review my 1on1', 'expert feedback on my meeting with [name]'."
+version: '1.0'
+description: 'Deep expert coaching review of a 1-on-1 meeting. Triggers: ''1on1 review'',
+  ''review my 1on1 with [name]'', ''coach me on my 1on1'', ''how did my 1on1 go'',
+  ''deep review my 1on1'', ''expert feedback on my meeting with [name]''.'
+author: Jonas Diezun
+category: productivity
+tags:
+- meeting
+updated: '2026-02-10'
+visibility: public
 ---
-
 # 1on1 Review
 
 Deep coaching analysis of a 1-on-1 meeting using 5 expert personas. Scores your meeting, identifies patterns, and gives you specific improvement actions with rewritten examples from the actual transcript.

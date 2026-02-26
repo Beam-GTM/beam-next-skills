@@ -1,8 +1,18 @@
 ---
 name: langfuse-master
-description: "SHARED RESOURCES - DO NOT LOAD DIRECTLY. Contains Langfuse API client, config checker, and reference documentation. Used by langfuse-connect and all operation skills."
+version: '1.0'
+description: SHARED RESOURCES - DO NOT LOAD DIRECTLY. Contains Langfuse API client,
+  config checker, and reference documentation. Used by langfuse-connect and all operation
+  skills.
+category: integrations
+tags:
+- api
+- langfuse
+- master
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Langfuse Master (Shared Resources)
 
 **DO NOT LOAD THIS SKILL DIRECTLY** - This is a resource library for other Langfuse skills.

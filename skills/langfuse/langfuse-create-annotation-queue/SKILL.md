@@ -1,8 +1,16 @@
 ---
 name: langfuse-create-annotation-queue
-description: "Create an annotation queue. Load when user says 'create queue', 'new annotation queue'."
+version: '1.0'
+description: Create an annotation queue. Load when user says 'create queue', 'new
+  annotation queue'.
+category: integrations
+tags:
+- create
+- langfuse
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Create Annotation Queue
 
 Create a new annotation queue for human review.

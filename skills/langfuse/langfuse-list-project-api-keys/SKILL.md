@@ -1,8 +1,17 @@
 ---
 name: langfuse-list-project-api-keys
-description: "List API keys for project. Load when user says 'list api keys', 'show keys', 'project keys'."
+version: '1.0'
+description: List API keys for project. Load when user says 'list api keys', 'show
+  keys', 'project keys'.
+category: integrations
+tags:
+- api
+- langfuse
+- query
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # List Project API Keys
 
 List all API keys for a project.

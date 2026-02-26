@@ -1,8 +1,18 @@
 ---
 name: airtable-master
-description: Shared resource library for Airtable integration skills. DO NOT load directly - provides common references (setup, API docs, error handling, field types) and scripts used by airtable-connect, airtable-query, and airtable-sync.
+version: '1.0'
+description: Shared resource library for Airtable integration skills. DO NOT load
+  directly - provides common references (setup, API docs, error handling, field types)
+  and scripts used by airtable-connect, airtable-query, and airtable-sync.
+category: integrations
+tags:
+- airtable
+- api
+- master
+platform: Airtable
+updated: '2026-02-26'
+visibility: public
 ---
-
 # Airtable Master
 
 **This is NOT a user-facing skill.** It's a shared resource library.

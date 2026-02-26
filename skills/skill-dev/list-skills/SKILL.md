@@ -1,8 +1,13 @@
 ---
 name: list-skills
-description: "list skills, show skills, what skills, available skills."
+version: '1.0'
+description: list skills, show skills, what skills, available skills.
+category: system
+tags:
+- query
+updated: '2026-02-26'
+visibility: public
 ---
-
 # List Skills
 
 Display all available skills organized by category with descriptions.

@@ -1,10 +1,16 @@
 ---
 name: learn-beam-next
-description: "Master Beam Next philosophy and best practices. Load when user mentions: learn beam next, beam next tutorial, system mastery, beam next best practices, how beam next works, beam next philosophy, beam next design, understand beam next, beam next deep dive. 15-18 min."
+version: '1.0'
+description: 'Master Beam Next philosophy and best practices. Load when user mentions:
+  learn beam next, beam next tutorial, system mastery, beam next best practices, how
+  beam next works, beam next philosophy, beam next design, understand beam next, beam
+  next deep dive. 15-18 min.'
+category: learning
+updated: '2026-02-26'
+visibility: public
 onboarding: true
 priority: medium
 ---
-
 ## 🎯 AI Proactive Triggering (ONBOARDING SKILL)
 
 **This is an ONBOARDING skill with MEDIUM PRIORITY (suggest after core onboarding complete).**

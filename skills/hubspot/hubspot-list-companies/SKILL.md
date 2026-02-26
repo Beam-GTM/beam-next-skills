@@ -1,8 +1,18 @@
 ---
 name: hubspot-list-companies
-description: "List companies from HubSpot CRM. Load when user says 'list companies', 'show companies', 'get companies', 'hubspot companies'. Returns paginated company list."
+version: '1.0'
+description: List companies from HubSpot CRM. Load when user says 'list companies',
+  'show companies', 'get companies', 'hubspot companies'. Returns paginated company
+  list.
+category: integrations
+tags:
+- crm
+- hubspot
+- query
+platform: HubSpot
+updated: '2026-02-24'
+visibility: public
 ---
-
 # List HubSpot Companies
 
 **Specialized skill** for listing companies from HubSpot CRM.

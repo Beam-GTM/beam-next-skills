@@ -1,8 +1,15 @@
 ---
 name: langfuse-get-score
-description: "Get specific Langfuse score. Load when user says 'get score', 'score details', 'show score {id}'."
+version: '1.0'
+description: Get specific Langfuse score. Load when user says 'get score', 'score
+  details', 'show score {id}'.
+category: integrations
+tags:
+- langfuse
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Get Score
 
 Get detailed view of a specific score.

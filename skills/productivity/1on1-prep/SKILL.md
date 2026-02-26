@@ -1,9 +1,16 @@
 ---
 name: 1on1-prep
-description: "Prepare for an upcoming 1-on-1. Triggers: 'prep my 1on1 with [name]', '1on1 prep', 'prepare for my meeting with [name]', 'what should I cover with [name]', 'get ready for 1on1'."
-category: micro
+version: '1.0'
+description: 'Prepare for an upcoming 1-on-1. Triggers: ''prep my 1on1 with [name]'',
+  ''1on1 prep'', ''prepare for my meeting with [name]'', ''what should I cover with
+  [name]'', ''get ready for 1on1''.'
+author: Jonas Diezun
+category: productivity
+tags:
+- meeting
+updated: '2026-02-10'
+visibility: public
 ---
-
 # 1on1 Prep
 
 Generate a sharp prep sheet before a 1-on-1. Pulls open commitments, unresolved loops, and patterns from prior meetings so you walk in with a plan, not an improvisation.

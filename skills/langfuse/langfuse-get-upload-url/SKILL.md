@@ -1,8 +1,15 @@
 ---
 name: langfuse-get-upload-url
-description: "Get presigned upload URL for media. Load when user says 'upload url', 'media upload', 'presigned url'."
+version: '1.0'
+description: Get presigned upload URL for media. Load when user says 'upload url',
+  'media upload', 'presigned url'.
+category: integrations
+tags:
+- langfuse
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Get Upload URL
 
 Get a presigned URL to upload media (images, audio, etc.).

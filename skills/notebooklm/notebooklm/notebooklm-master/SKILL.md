@@ -1,8 +1,19 @@
 ---
 name: notebooklm-master
-description: Shared resource library for NotebookLM Enterprise integration skills. DO NOT load directly - provides common references (setup, API docs, error handling, authentication) and scripts used by notebooklm-connect and individual NotebookLM skills.
+version: '1.0'
+description: Shared resource library for NotebookLM Enterprise integration skills.
+  DO NOT load directly - provides common references (setup, API docs, error handling,
+  authentication) and scripts used by notebooklm-connect and individual NotebookLM
+  skills.
+category: integrations
+tags:
+- api
+- master
+- notebooklm
+platform: NotebookLM
+updated: '2026-02-24'
+visibility: public
 ---
-
 # NotebookLM Master
 
 **This is NOT a user-facing skill.** It's a shared resource library referenced by NotebookLM integration skills.

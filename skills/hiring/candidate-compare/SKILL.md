@@ -1,9 +1,14 @@
 ---
 name: candidate-compare
-description: Compare multiple candidates for a role and recommend the best fit. Load when user says "compare candidates", "select best candidate", "who should we hire", "compare [names] for [role]", "rank candidates", or "best candidate for [role]".
 version: 1.0
+description: Compare multiple candidates for a role and recommend the best fit. Load
+  when user says "compare candidates", "select best candidate", "who should we hire",
+  "compare [names] for [role]", "rank candidates", or "best candidate for [role]".
+author: Manahil Shaikh
+category: general
+updated: '2026-02-16'
+visibility: public
 ---
-
 # Candidate Compare
 
 *Data-driven candidate selection based on interview performance.*

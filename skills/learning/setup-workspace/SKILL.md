@@ -1,10 +1,16 @@
 ---
 name: setup-workspace
-description: "Organize your 04-workspace/ folder structure. Load when user mentions: setup workspace, organize folders, folder structure, configure workspace, my files, file organization, where to put files, workspace setup, directories, storage. 5-8 min."
+version: '1.0'
+description: 'Organize your 04-workspace/ folder structure. Load when user mentions:
+  setup workspace, organize folders, folder structure, configure workspace, my files,
+  file organization, where to put files, workspace setup, directories, storage. 5-8
+  min.'
+category: learning
+updated: '2026-02-24'
+visibility: public
 onboarding: true
 priority: high
 ---
-
 ## 🎯 AI Proactive Triggering (ONBOARDING SKILL)
 
 **This is an ONBOARDING skill with HIGH PRIORITY. Natural follow-up after setup-goals.**

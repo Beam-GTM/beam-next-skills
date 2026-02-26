@@ -1,8 +1,17 @@
 ---
 name: hubspot-create-company
-description: "Create a new company in HubSpot CRM. Load when user says 'create company', 'add company', 'new company'. Requires name, optional domain, industry, city."
+version: '1.0'
+description: Create a new company in HubSpot CRM. Load when user says 'create company',
+  'add company', 'new company'. Requires name, optional domain, industry, city.
+category: integrations
+tags:
+- create
+- crm
+- hubspot
+platform: HubSpot
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Create HubSpot Company
 
 **Specialized skill** for creating companies in HubSpot CRM.

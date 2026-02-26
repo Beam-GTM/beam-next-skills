@@ -1,9 +1,20 @@
 ---
 name: interview-coach
-description: Analyze interview transcripts to help managers improve their interviewing skills. Load when user says "review my interview with [name]", "assess my interview", "how's the candidate", "interview feedback", "interview coach", "hr round review with [name]", "technical round review with [name]", "final round review with [name]", or provides an interview transcript. Supports 3 interview types - HR (cultural fit), Technical (skill assessment), Final (career aspirations).
 version: 2.0
+description: Analyze interview transcripts to help managers improve their interviewing
+  skills. Load when user says "review my interview with [name]", "assess my interview",
+  "how's the candidate", "interview feedback", "interview coach", "hr round review
+  with [name]", "technical round review with [name]", "final round review with [name]",
+  or provides an interview transcript. Supports 3 interview types - HR (cultural fit),
+  Technical (skill assessment), Final (career aspirations).
+author: Jonas Diezun
+category: general
+tags:
+- transcript
+platform: workable
+updated: '2026-02-16'
+visibility: public
 ---
-
 # Interview Coach
 
 *Honest feedback to help you become a better interviewer.*

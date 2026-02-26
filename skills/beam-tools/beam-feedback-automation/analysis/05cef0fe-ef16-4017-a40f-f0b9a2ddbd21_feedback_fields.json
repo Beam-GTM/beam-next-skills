@@ -1,0 +1,63 @@
+{
+  "agent_id": "05cef0fe-ef16-4017-a40f-f0b9a2ddbd21",
+  "agent_name": "Highlights Generation Agent - 1",
+  "generated_at": "2026-02-02T12:30:00.000Z",
+  "total_fields": 8,
+  "fields": [
+    {
+      "name": "task_id",
+      "label": "Task ID",
+      "type": "text",
+      "description": "Beam task ID",
+      "is_metadata": true
+    },
+    {
+      "name": "task_url",
+      "label": "Task URL",
+      "type": "url",
+      "description": "Link to Beam task",
+      "is_metadata": true
+    },
+    {
+      "name": "cv_fetched_correctly",
+      "label": "CV Fetched Correctly",
+      "type": "select",
+      "options": ["Yes", "No"],
+      "description": "Was the CV/resume data fetched correctly?"
+    },
+    {
+      "name": "jd_fetched_correctly",
+      "label": "JD Fetched Correctly",
+      "type": "select",
+      "options": ["Yes", "No"],
+      "description": "Was the Job Description fetched correctly?"
+    },
+    {
+      "name": "transcript_fetched_correctly",
+      "label": "Transcript Fetched Correctly",
+      "type": "select",
+      "options": ["Yes", "No"],
+      "description": "Was the interview transcript fetched correctly?"
+    },
+    {
+      "name": "highlights_generated_correctly",
+      "label": "Highlights Generated Correctly",
+      "type": "select",
+      "options": ["Yes", "No"],
+      "description": "Were the highlights generated correctly?"
+    },
+    {
+      "name": "verification_status",
+      "label": "Verification Status",
+      "type": "select",
+      "options": ["Pass", "Fail", "Needs Review"],
+      "description": "Overall verification result"
+    },
+    {
+      "name": "comments",
+      "label": "Comments",
+      "type": "text",
+      "description": "Additional feedback or notes"
+    }
+  ]
+}

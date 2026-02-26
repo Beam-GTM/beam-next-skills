@@ -1,9 +1,20 @@
 ---
 name: google-slides
 version: 1.0
-description: "Create and manage Google Slides presentations. Load when user mentions 'google slides', 'slides', 'presentation', 'create presentation', 'add slide', or references creating/editing slide decks."
+description: Create and manage Google Slides presentations. Load when user mentions
+  'google slides', 'slides', 'presentation', 'create presentation', 'add slide', or
+  references creating/editing slide decks.
+author: Fredrik Falk
+category: integrations
+tags:
+- google-workspace
+platform: Google Workspace
+requires:
+- google-connect
+- google-master
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Google Slides
 
 Create, edit, and manage Google Slides presentations via OAuth authentication.

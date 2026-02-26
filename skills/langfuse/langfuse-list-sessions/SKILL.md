@@ -1,8 +1,16 @@
 ---
 name: langfuse-list-sessions
-description: "List Langfuse sessions. Load when user says 'list sessions', 'show sessions', 'get sessions'."
+version: '1.0'
+description: List Langfuse sessions. Load when user says 'list sessions', 'show sessions',
+  'get sessions'.
+category: integrations
+tags:
+- langfuse
+- query
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # List Sessions
 
 Get list of user sessions from Langfuse.

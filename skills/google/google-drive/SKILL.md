@@ -1,9 +1,20 @@
 ---
 name: google-drive
 version: 1.0
-description: "Manage Google Drive files and folders. Load when user mentions 'google drive', 'drive', 'upload file', 'download file', 'share file', 'create folder', or references cloud file storage operations."
+description: Manage Google Drive files and folders. Load when user mentions 'google
+  drive', 'drive', 'upload file', 'download file', 'share file', 'create folder',
+  or references cloud file storage operations.
+author: Fredrik Falk
+category: integrations
+tags:
+- google-workspace
+platform: Google Workspace
+requires:
+- google-connect
+- google-master
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Google Drive
 
 Upload, download, and manage files and folders in Google Drive via OAuth authentication.

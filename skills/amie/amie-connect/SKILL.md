@@ -1,8 +1,20 @@
 ---
 name: amie-connect
-description: Work with Amie calendar and meeting notes. Load when user mentions "amie", "meeting notes", "get transcript", "save transcript to file", "export transcript", "action items from meeting", or wants to access Amie data.
+version: '1.0'
+description: Work with Amie calendar and meeting notes. Load when user mentions "amie",
+  "meeting notes", "get transcript", "save transcript to file", "export transcript",
+  "action items from meeting", or wants to access Amie data.
+category: integrations
+tags:
+- amie
+- calendar
+- connector
+- meeting
+- transcript
+platform: Amie
+updated: '2026-02-13'
+visibility: public
 ---
-
 # Amie Connect
 
 Access your Amie calendar, meeting notes, transcripts, and action items.

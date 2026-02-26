@@ -1,8 +1,13 @@
 ---
 name: archive-project
-description: Load when user says "archive project", "archive [project-name]", "move to archived". Moves completed projects to 05-archived/ folder for clean project list.
+version: '1.0'
+description: Load when user says "archive project", "archive [project-name]", "move
+  to archived". Moves completed projects to 05-archived/ folder for clean project
+  list.
+category: projects
+updated: '2026-02-26'
+visibility: public
 ---
-
 # Archive Project
 
 Move completed projects to archive for a clean, focused project list.

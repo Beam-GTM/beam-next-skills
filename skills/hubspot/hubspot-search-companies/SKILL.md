@@ -1,8 +1,17 @@
 ---
 name: hubspot-search-companies
-description: "Search companies in HubSpot CRM by name or domain. Load when user says 'search companies', 'find company', 'lookup company', 'search for [company]'."
+version: '1.0'
+description: Search companies in HubSpot CRM by name or domain. Load when user says
+  'search companies', 'find company', 'lookup company', 'search for [company]'.
+category: integrations
+tags:
+- crm
+- hubspot
+- query
+platform: HubSpot
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Search HubSpot Companies
 
 **Specialized skill** for searching companies in HubSpot CRM.

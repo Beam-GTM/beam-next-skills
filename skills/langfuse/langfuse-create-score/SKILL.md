@@ -1,8 +1,16 @@
 ---
 name: langfuse-create-score
-description: "Create a score. Load when user says 'create score', 'add evaluation', 'score trace'."
+version: '1.0'
+description: Create a score. Load when user says 'create score', 'add evaluation',
+  'score trace'.
+category: integrations
+tags:
+- create
+- langfuse
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Create Score
 
 Add a score/evaluation to a trace or observation.

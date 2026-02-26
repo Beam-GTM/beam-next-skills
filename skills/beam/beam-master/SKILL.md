@@ -1,8 +1,18 @@
 ---
 name: beam-master
-description: Shared resource library for Beam AI integration skills. DO NOT load directly - provides common references (setup, API docs, error handling, authentication) and scripts used by beam-connect and individual Beam skills.
+version: '1.0'
+description: Shared resource library for Beam AI integration skills. DO NOT load directly
+  - provides common references (setup, API docs, error handling, authentication) and
+  scripts used by beam-connect and individual Beam skills.
+category: integrations
+tags:
+- api
+- beam-ai
+- master
+platform: Beam AI
+updated: '2025-12-18'
+visibility: public
 ---
-
 # Beam Master
 
 **This is NOT a user-facing skill.** It's a shared resource library referenced by Beam integration skills.

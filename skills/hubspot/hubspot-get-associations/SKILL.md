@@ -1,8 +1,17 @@
 ---
 name: hubspot-get-associations
-description: "Get associated records in HubSpot CRM. Load when user says 'get associations', 'linked records', 'contacts on deal', 'company contacts', 'related records', 'who is on this deal'."
+version: '1.0'
+description: Get associated records in HubSpot CRM. Load when user says 'get associations',
+  'linked records', 'contacts on deal', 'company contacts', 'related records', 'who
+  is on this deal'.
+category: integrations
+tags:
+- crm
+- hubspot
+platform: HubSpot
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Get HubSpot Associations
 
 **Specialized skill** for retrieving associated records between HubSpot CRM objects.

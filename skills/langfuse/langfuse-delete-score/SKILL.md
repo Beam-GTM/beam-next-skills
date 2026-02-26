@@ -1,8 +1,15 @@
 ---
 name: langfuse-delete-score
-description: "Delete a score. Load when user says 'delete score', 'remove evaluation'."
+version: '1.0'
+description: Delete a score. Load when user says 'delete score', 'remove evaluation'.
+category: integrations
+tags:
+- delete
+- langfuse
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Delete Score
 
 Delete a score by ID.

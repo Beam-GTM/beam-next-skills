@@ -1,8 +1,17 @@
 ---
 name: hubspot-create-note
-description: "Create a note engagement in HubSpot CRM. Load when user says 'create note', 'add note', 'new note', 'record note'. Requires body content."
+version: '1.0'
+description: Create a note engagement in HubSpot CRM. Load when user says 'create
+  note', 'add note', 'new note', 'record note'. Requires body content.
+category: integrations
+tags:
+- create
+- crm
+- hubspot
+platform: HubSpot
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Create HubSpot Note
 
 **Specialized skill** for creating note engagements in HubSpot CRM.

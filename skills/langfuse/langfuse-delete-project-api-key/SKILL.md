@@ -1,8 +1,17 @@
 ---
 name: langfuse-delete-project-api-key
-description: "Delete an API key. Load when user says 'delete api key', 'revoke key', 'remove key'."
+version: '1.0'
+description: Delete an API key. Load when user says 'delete api key', 'revoke key',
+  'remove key'.
+category: integrations
+tags:
+- api
+- delete
+- langfuse
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Delete Project API Key
 
 Delete an API key from a project.

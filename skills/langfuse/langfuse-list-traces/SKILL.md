@@ -1,8 +1,16 @@
 ---
 name: langfuse-list-traces
-description: "List Langfuse traces. Load when user says 'list traces', 'show traces', 'get traces', 'recent traces'."
+version: '1.0'
+description: List Langfuse traces. Load when user says 'list traces', 'show traces',
+  'get traces', 'recent traces'.
+category: integrations
+tags:
+- langfuse
+- query
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # List Traces
 
 Get list of LLM traces from Langfuse.

@@ -1,8 +1,13 @@
 ---
 name: search-skill-database
-description: "search skills, find skill, browse skills, skill marketplace."
+version: '1.0'
+description: search skills, find skill, browse skills, skill marketplace.
+category: skill-dev
+tags:
+- query
+updated: '2026-02-26'
+visibility: public
 ---
-
 # Search Skill Marketplace
 
 Browse and search the central Skill Marketplace (120+ skills) to find what you need.

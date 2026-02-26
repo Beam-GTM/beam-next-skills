@@ -1,8 +1,15 @@
 ---
 name: langfuse-get-dataset
-description: "Get a Langfuse dataset by name. Load when user says 'get dataset', 'show dataset', 'dataset details'."
+version: '1.0'
+description: Get a Langfuse dataset by name. Load when user says 'get dataset', 'show
+  dataset', 'dataset details'.
+category: integrations
+tags:
+- langfuse
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Get Dataset
 
 Retrieve a specific dataset from Langfuse by name.

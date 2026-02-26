@@ -1,8 +1,11 @@
 ---
 name: plan-project
-description: "create build, new project, start build, plan build, build [X]."
+version: '1.0'
+description: create build, new project, start build, plan build, build [X].
+category: projects
+updated: '2026-02-26'
+visibility: public
 ---
-
 ## Onboarding Awareness (CHECK BEFORE STARTING)
 
 **Before creating a project, AI MUST check user-config.yaml for incomplete onboarding:**

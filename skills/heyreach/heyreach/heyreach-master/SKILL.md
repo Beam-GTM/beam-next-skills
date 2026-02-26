@@ -1,8 +1,17 @@
 ---
 name: heyreach-master
-description: "Internal resource library for HeyReach integration. Contains shared API client, operation scripts, and reference documentation."
+version: '1.0'
+description: Internal resource library for HeyReach integration. Contains shared API
+  client, operation scripts, and reference documentation.
+category: integrations
+tags:
+- api
+- heyreach
+- master
+platform: HeyReach
+updated: '2026-02-24'
+visibility: public
 ---
-
 # HeyReach Master (Internal)
 
 Internal resource library containing:

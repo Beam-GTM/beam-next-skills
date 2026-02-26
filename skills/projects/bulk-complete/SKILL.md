@@ -1,8 +1,13 @@
 ---
 name: bulk-complete
-description: Bulk-complete tasks/steps in a project. Load when user says "bulk complete [project]", "mark all done", "complete phase X", or needs to finish project tasks efficiently. Works with both steps.md and tasks.md formats.
+version: '1.0'
+description: Bulk-complete tasks/steps in a project. Load when user says "bulk complete
+  [project]", "mark all done", "complete phase X", or needs to finish project tasks
+  efficiently. Works with both steps.md and tasks.md formats.
+category: projects
+updated: '2025-12-18'
+visibility: public
 ---
-
 # Bulk Complete
 
 Efficiently mark tasks complete in project steps.md files.

@@ -1,8 +1,19 @@
 ---
 name: notion-master
-description: Shared resource library for Notion integration skills. DO NOT load directly - this provides common references (setup, API docs, error handling, database schema) and scripts used by notion-connect, query-notion-db, import-skill-to-beam-next, and export-skill-to-notion.
+version: '1.0'
+description: Shared resource library for Notion integration skills. DO NOT load directly
+  - this provides common references (setup, API docs, error handling, database schema)
+  and scripts used by notion-connect, query-notion-db, import-skill-to-beam-next,
+  and export-skill-to-notion.
+category: integrations
+tags:
+- api
+- master
+- notion
+platform: Notion
+updated: '2026-02-26'
+visibility: public
 ---
-
 # Notion Master
 
 **This is NOT a user-facing skill.** It's a shared resource library referenced by Notion integration skills.

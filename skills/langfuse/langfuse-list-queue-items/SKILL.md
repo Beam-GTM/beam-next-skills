@@ -1,8 +1,16 @@
 ---
 name: langfuse-list-queue-items
-description: "List queue items. Load when user says 'list queue items', 'show review items'."
+version: '1.0'
+description: List queue items. Load when user says 'list queue items', 'show review
+  items'.
+category: integrations
+tags:
+- langfuse
+- query
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # List Queue Items
 
 Get items in an annotation queue.

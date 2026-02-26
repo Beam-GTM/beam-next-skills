@@ -1,10 +1,17 @@
 ---
 name: learn-integrations
-description: "Learn about Beam Next integrations and MCP. Load when user mentions: learn integrations, what is MCP, connect tools, integration tutorial, add integration, external tools, API connections, third party, how to integrate. 10-12 min."
+version: '1.0'
+description: 'Learn about Beam Next integrations and MCP. Load when user mentions:
+  learn integrations, what is MCP, connect tools, integration tutorial, add integration,
+  external tools, API connections, third party, how to integrate. 10-12 min.'
+category: learning
+tags:
+- api
+updated: '2026-02-25'
+visibility: public
 onboarding: true
 priority: high
 ---
-
 ## [TARGET] AI Proactive Triggering (ONBOARDING SKILL)
 
 **This is an ONBOARDING skill with HIGH PRIORITY for proactive suggestion.**

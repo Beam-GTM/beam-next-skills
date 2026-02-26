@@ -1,8 +1,14 @@
 ---
 name: langfuse-get-annotation-queue
-description: "Get an annotation queue. Load when user says 'get queue', 'queue details'."
+version: '1.0'
+description: Get an annotation queue. Load when user says 'get queue', 'queue details'.
+category: integrations
+tags:
+- langfuse
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Get Annotation Queue
 
 Get an annotation queue by ID.

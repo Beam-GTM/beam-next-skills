@@ -1,8 +1,16 @@
 ---
 name: langfuse-list-prompts
-description: "List Langfuse prompts. Load when user says 'list prompts', 'show prompts', 'get prompts', 'langfuse prompts'."
+version: '1.0'
+description: List Langfuse prompts. Load when user says 'list prompts', 'show prompts',
+  'get prompts', 'langfuse prompts'.
+category: integrations
+tags:
+- langfuse
+- query
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # List Prompts
 
 Get list of prompts from Langfuse with optional filtering.

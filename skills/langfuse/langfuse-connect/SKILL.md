@@ -1,8 +1,15 @@
 ---
 name: langfuse-connect
-description: "langfuse, traces, observations, llm tracing."
+version: '1.0'
+description: langfuse, traces, observations, llm tracing.
+category: integrations
+tags:
+- connector
+- langfuse
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Langfuse Connect
 
 User-facing entry point for Langfuse integration. Routes to appropriate operation skills.

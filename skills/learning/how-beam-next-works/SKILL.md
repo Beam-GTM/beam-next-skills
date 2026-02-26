@@ -1,11 +1,14 @@
 ---
 name: how-beam-next-works
-description: "Learn how Beam Next works - the system tour. ~7 min."
+version: '1.0'
+description: Learn how Beam Next works - the system tour. ~7 min.
+category: learning
+updated: '2026-02-26'
+visibility: public
 onboarding: false
 priority: high
-duration: "7 min"
+duration: 7 min
 ---
-
 # How Beam Next Works
 
 Quick 7-minute tour of Beam Next concepts and workflows.

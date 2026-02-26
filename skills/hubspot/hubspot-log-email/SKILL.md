@@ -1,8 +1,17 @@
 ---
 name: hubspot-log-email
-description: "Log an email engagement in HubSpot CRM. Load when user says 'log email', 'record email', 'add email', 'email sent'. Requires subject and body."
+version: '1.0'
+description: Log an email engagement in HubSpot CRM. Load when user says 'log email',
+  'record email', 'add email', 'email sent'. Requires subject and body.
+category: integrations
+tags:
+- crm
+- email
+- hubspot
+platform: HubSpot
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Log HubSpot Email
 
 **Specialized skill** for logging email engagements in HubSpot CRM.

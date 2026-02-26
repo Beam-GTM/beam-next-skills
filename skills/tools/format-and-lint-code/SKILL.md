@@ -1,8 +1,11 @@
 ---
 name: format-and-lint-code
-description: "format code, lint code, pre-commit, before commit, code quality, auto-format"
+version: '1.0'
+description: format code, lint code, pre-commit, before commit, code quality, auto-format
+category: tools
+updated: '2026-02-25'
+visibility: public
 ---
-
 # Format and Lint Code
 
 Automatically formats and lints code before commits to maintain consistency and code quality.

@@ -1,8 +1,18 @@
 ---
 name: hubspot-master
-description: Shared resource library for HubSpot integration skills. DO NOT load directly - provides common references (setup, API docs, error handling, authentication) and scripts used by hubspot-connect and individual HubSpot skills.
+version: '1.0'
+description: Shared resource library for HubSpot integration skills. DO NOT load directly
+  - provides common references (setup, API docs, error handling, authentication) and
+  scripts used by hubspot-connect and individual HubSpot skills.
+category: integrations
+tags:
+- api
+- hubspot
+- master
+platform: HubSpot
+updated: '2026-02-24'
+visibility: public
 ---
-
 # HubSpot Master
 
 **This is NOT a user-facing skill.** It's a shared resource library referenced by HubSpot integration skills.

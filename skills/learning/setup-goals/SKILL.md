@@ -1,10 +1,14 @@
 ---
 name: setup-goals
-description: "Load when user says 'setup goals', 'personalize beam next', 'set my goals', 'define my role'. Captures role, goals, preferences. 8-10 min."
+version: '1.0'
+description: Load when user says 'setup goals', 'personalize beam next', 'set my goals',
+  'define my role'. Captures role, goals, preferences. 8-10 min.
+category: learning
+updated: '2026-02-26'
+visibility: public
 onboarding: true
 priority: critical
 ---
-
 ## 🎯 AI Proactive Triggering (ONBOARDING SKILL - CRITICAL PRIORITY)
 
 **This is the FIRST onboarding skill with CRITICAL priority. Suggest early and often.**

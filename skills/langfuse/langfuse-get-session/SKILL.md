@@ -1,8 +1,15 @@
 ---
 name: langfuse-get-session
-description: "Get specific Langfuse session. Load when user says 'get session', 'session details', 'show session {id}'."
+version: '1.0'
+description: Get specific Langfuse session. Load when user says 'get session', 'session
+  details', 'show session {id}'.
+category: integrations
+tags:
+- langfuse
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Get Session
 
 Get detailed view of a specific session with its traces.

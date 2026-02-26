@@ -1,9 +1,15 @@
 ---
 name: airtable-connect
-description: "airtable, connect airtable, query [base], add to [table]."
-version: "1.1"
+version: '1.1'
+description: airtable, connect airtable, query [base], add to [table].
+category: integrations
+tags:
+- airtable
+- connector
+platform: Airtable
+updated: '2026-02-26'
+visibility: public
 ---
-
 # Airtable Connect
 
 **Meta-skill for complete Airtable workspace integration.**

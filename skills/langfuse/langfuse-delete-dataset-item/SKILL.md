@@ -1,8 +1,16 @@
 ---
 name: langfuse-delete-dataset-item
-description: "Delete a dataset item. Load when user says 'delete dataset item', 'remove item'."
+version: '1.0'
+description: Delete a dataset item. Load when user says 'delete dataset item', 'remove
+  item'.
+category: integrations
+tags:
+- delete
+- langfuse
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Delete Dataset Item
 
 Delete a dataset item by ID.

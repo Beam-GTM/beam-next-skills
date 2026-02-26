@@ -1,9 +1,19 @@
 ---
 name: google-tasks
 version: 1.0
-description: "Manage Google Tasks and task lists. Load when user mentions 'google tasks', 'tasks', 'todo list', 'create task', 'complete task', or references task/todo management."
+description: Manage Google Tasks and task lists. Load when user mentions 'google tasks',
+  'tasks', 'todo list', 'create task', 'complete task', or references task/todo management.
+author: Fredrik Falk
+category: integrations
+tags:
+- google-workspace
+platform: Google Workspace
+requires:
+- google-connect
+- google-master
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Google Tasks
 
 Create, update, and manage tasks and task lists in Google Tasks via OAuth authentication.

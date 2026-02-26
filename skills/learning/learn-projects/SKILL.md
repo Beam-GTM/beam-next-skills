@@ -1,10 +1,15 @@
 ---
 name: learn-projects
-description: "Learn how Beam Next builds work. Load when user mentions: learn projects, how do builds work, builds vs skills, build tutorial, what is a project, build structure, build lifecycle, understand builds, explain builds. 8-10 min."
+version: '1.0'
+description: 'Learn how Beam Next builds work. Load when user mentions: learn projects,
+  how do builds work, builds vs skills, build tutorial, what is a project, build structure,
+  build lifecycle, understand builds, explain builds. 8-10 min.'
+category: learning
+updated: '2026-02-26'
+visibility: public
 onboarding: true
 priority: high
 ---
-
 ## [TARGET] Build-First Onboarding (CONTEXTUAL SUGGESTION)
 
 **This is a learning skill. With Build-First onboarding, suggest AFTER first project, not before.**

@@ -1,9 +1,18 @@
 ---
 name: google-gemini-image
-description: "gemini image, generate image, create image, text to image, brand assets, logo generation, hero image."
+version: '1.0'
+description: gemini image, generate image, create image, text to image, brand assets,
+  logo generation, hero image.
+category: integrations
+tags:
+- google-workspace
+platform: Google Workspace
+requires:
+- google-connect
+updated: '2026-02-26'
+visibility: public
 priority: MUST_LOAD_BEFORE_GENERATION
 ---
-
 # Google Gemini Image Generation
 
 Generate brand-consistent images using AI with color theory and prompt engineering.

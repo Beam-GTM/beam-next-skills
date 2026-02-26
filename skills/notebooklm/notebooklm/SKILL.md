@@ -1,8 +1,14 @@
 ---
 name: notebooklm
-description: "notebooklm, create notebook, audio overview, podcast."
+version: '1.0'
+description: notebooklm, create notebook, audio overview, podcast.
+category: integrations
+tags:
+- notebooklm
+platform: NotebookLM
+updated: '2026-02-24'
+visibility: public
 ---
-
 # NotebookLM Integration
 
 Complete integration for Google NotebookLM Enterprise API.

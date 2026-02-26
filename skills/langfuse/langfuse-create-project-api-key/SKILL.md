@@ -1,8 +1,17 @@
 ---
 name: langfuse-create-project-api-key
-description: "Create new API key for project. Load when user says 'create api key', 'new key', 'generate key'."
+version: '1.0'
+description: Create new API key for project. Load when user says 'create api key',
+  'new key', 'generate key'.
+category: integrations
+tags:
+- api
+- create
+- langfuse
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Create Project API Key
 
 Create a new API key for a project.

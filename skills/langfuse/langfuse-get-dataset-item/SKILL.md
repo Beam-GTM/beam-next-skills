@@ -1,8 +1,15 @@
 ---
 name: langfuse-get-dataset-item
-description: "Get a dataset item by ID. Load when user says 'get dataset item', 'show item', 'item details'."
+version: '1.0'
+description: Get a dataset item by ID. Load when user says 'get dataset item', 'show
+  item', 'item details'.
+category: integrations
+tags:
+- langfuse
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Get Dataset Item
 
 Retrieve a specific dataset item by ID.

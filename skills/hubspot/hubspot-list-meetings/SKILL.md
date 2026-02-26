@@ -1,8 +1,19 @@
 ---
 name: hubspot-list-meetings
-description: "List meeting engagements from HubSpot CRM. Load when user says 'list meetings', 'show meetings', 'meeting history', 'hubspot meetings'. Returns scheduled meeting records."
+version: '1.0'
+description: List meeting engagements from HubSpot CRM. Load when user says 'list
+  meetings', 'show meetings', 'meeting history', 'hubspot meetings'. Returns scheduled
+  meeting records.
+category: integrations
+tags:
+- crm
+- hubspot
+- meeting
+- query
+platform: HubSpot
+updated: '2026-02-24'
+visibility: public
 ---
-
 # List HubSpot Meetings
 
 **Specialized skill** for listing meeting engagements from HubSpot CRM.

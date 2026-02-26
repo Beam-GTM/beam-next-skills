@@ -1,8 +1,16 @@
 ---
 name: gemini-generate-image
-description: "generate image, create image, text to image, gemini generate."
+version: '1.0'
+description: generate image, create image, text to image, gemini generate.
+category: integrations
+tags:
+- google-gemini
+platform: Google Gemini
+requires:
+- google-gemini-image
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Generate Image with Gemini
 
 Create images from text prompts using Google's Gemini AI.

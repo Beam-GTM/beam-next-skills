@@ -1,8 +1,15 @@
 ---
 name: langfuse-get-project
-description: "Get Langfuse project info. Load when user says 'get project', 'current project', 'project info', 'langfuse project'."
+version: '1.0'
+description: Get Langfuse project info. Load when user says 'get project', 'current
+  project', 'project info', 'langfuse project'.
+category: integrations
+tags:
+- langfuse
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Get Project
 
 Get the project associated with the current API key.

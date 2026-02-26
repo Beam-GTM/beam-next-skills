@@ -1,8 +1,16 @@
 ---
 name: langfuse-list-datasets
-description: "List Langfuse datasets. Load when user says 'list datasets', 'show datasets', 'get datasets'."
+version: '1.0'
+description: List Langfuse datasets. Load when user says 'list datasets', 'show datasets',
+  'get datasets'.
+category: integrations
+tags:
+- langfuse
+- query
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # List Datasets
 
 Get list of datasets from Langfuse for experiment evaluation.

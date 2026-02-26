@@ -1,8 +1,13 @@
 ---
 name: expert-review
-description: "Quick expert feedback on any work. Load when user says: 'expert review', 'what do experts think', 'get feedback', 'review this', 'is this good?', 'what's wrong with this?'"
+version: '1.0'
+description: 'Quick expert feedback on any work. Load when user says: ''expert review'',
+  ''what do experts think'', ''get feedback'', ''review this'', ''is this good?'',
+  ''what''s wrong with this?'''
+category: experts
+updated: '2026-02-26'
+visibility: public
 ---
-
 # Expert Review
 
 Get quick, directional feedback from expert perspectives. Single pass, no iteration — just insights.

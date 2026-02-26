@@ -1,8 +1,11 @@
 ---
 name: share-skill
-description: "share skill, upload skill, publish skill."
+version: '1.0'
+description: share skill, upload skill, publish skill.
+category: skill-dev
+updated: '2026-02-26'
+visibility: public
 ---
-
 # Share Skill to Marketplace
 
 Upload your local skill to the central Skill Marketplace (Airtable) for others to use.

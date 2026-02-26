@@ -1,8 +1,16 @@
 ---
 name: langfuse-create-queue-item
-description: "Add item to queue. Load when user says 'add to queue', 'queue trace for review'."
+version: '1.0'
+description: Add item to queue. Load when user says 'add to queue', 'queue trace for
+  review'.
+category: integrations
+tags:
+- create
+- langfuse
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # Create Queue Item
 
 Add a trace/observation to an annotation queue.

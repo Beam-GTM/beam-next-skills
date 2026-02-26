@@ -1,8 +1,16 @@
 ---
 name: langfuse-list-dataset-run-items
-description: "List dataset run items. Load when user says 'list run items', 'show run results', 'evaluation results'."
+version: '1.0'
+description: List dataset run items. Load when user says 'list run items', 'show run
+  results', 'evaluation results'.
+category: integrations
+tags:
+- langfuse
+- query
+platform: Langfuse
+updated: '2026-02-24'
+visibility: public
 ---
-
 # List Dataset Run Items
 
 Get list of items from a dataset evaluation run.

@@ -1,0 +1,45 @@
+---
+# Beam Feedback Automation Configuration
+
+# Beam API Configuration
+beam:
+  api_key_env: BEAM_API_KEY  # Environment variable name
+  base_url: https://api.beam.ai/v1
+
+# Google Sheets Configuration
+google_sheets:
+  credentials_path: ~/.config/gcloud/application_default_credentials.json
+  template_id: null  # Optional: Use a template sheet
+  default_sheet_name: "Feedback Collection"
+
+# Email Configuration
+email:
+  default_reviewer: team@example.com  # Default reviewer email
+  smtp:
+    enabled: false  # Use Gmail API instead
+    host: smtp.gmail.com
+    port: 587
+
+# Feedback Field Generation
+feedback:
+  auto_approve: false  # Auto-approve generated fields without confirmation
+  include_overall_fields: true  # Add overall quality/comments fields
+  field_customization:
+    rating_scale: 5  # 1-5 scale for ratings
+    include_comments: true  # Always include comment fields
+
+# Automation Settings
+automation:
+  batch_size: 50  # Default number of tasks to process
+  auto_send_emails: false  # Automatically send emails after sheet creation
+  task_filters:
+    status: completed  # Only fetch completed tasks
+    min_confidence: null  # Optional: Filter by confidence score
+
+# Output Directories
+directories:
+  analysis: analysis  # Agent schema storage
+  reports: reports  # Feedback reports
+  scripts: scripts  # Generated Apps Scripts
+
+---

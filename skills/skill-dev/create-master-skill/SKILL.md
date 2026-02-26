@@ -1,8 +1,14 @@
 ---
 name: create-master-skill
-description: "create master skill, integration master, shared skill library."
+version: '1.0'
+description: create master skill, integration master, shared skill library.
+category: skill-dev
+tags:
+- create
+- master
+updated: '2026-02-26'
+visibility: public
 ---
-
 -------------------------------------------------------
 [!] CRITICAL EXECUTION REQUIREMENTS [!]
 
