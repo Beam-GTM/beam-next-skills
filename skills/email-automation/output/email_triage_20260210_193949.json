@@ -1,0 +1,142 @@
+[
+  {
+    "from": "support@awssome.io",
+    "subject": "Oops! Your Private Offer Has Expired",
+    "category": "URGENT",
+    "action": "draft_response",
+    "has_draft": true
+  },
+  {
+    "from": "Brex <no-reply@travel.brex.com>",
+    "subject": "Seat changed by airline for Jonas Diezun - Feb 8, 2026 - Cape Town, New York City, and Newark",
+    "category": "DELETE",
+    "action": "archive",
+    "has_draft": false
+  },
+  {
+    "from": "Oliver Wang <owang@sageviewcapital.com>",
+    "subject": "RE: Intro - Beam/Sageview",
+    "category": "URGENT",
+    "action": "draft_response",
+    "has_draft": true
+  },
+  {
+    "from": "Stefan Holwe <sh@horizn-studios.com>",
+    "subject": "BCG next steps",
+    "category": "DEFER",
+    "action": "snooze",
+    "has_draft": false
+  },
+  {
+    "from": "Laurin <lauvogel32@gmail.com>",
+    "subject": "Re: Head of Operations (m/w/d) - Beam AI",
+    "category": "RESPOND",
+    "action": "draft_response",
+    "has_draft": true
+  },
+  {
+    "from": "Workable <notifications@notifications.workablemail.com>",
+    "subject": "Pending evaluation for Laurin Vogel",
+    "category": "DELETE",
+    "action": "archive",
+    "has_draft": false
+  },
+  {
+    "from": "Giuseppe Gullo <giuseppe.gullo@gmail.com>",
+    "subject": "Re: Head of Operations (m/w/d) - Beam AI",
+    "category": "URGENT",
+    "action": "draft_response",
+    "has_draft": true
+  },
+  {
+    "from": "Reminder <reminder@superhuman.com>",
+    "subject": "Re: RE: Rescheduling",
+    "category": "URGENT",
+    "action": "draft_response",
+    "has_draft": true
+  },
+  {
+    "from": "Reminder <reminder@superhuman.com>",
+    "subject": "Re: Connecting from Smash Cap (ElevenLabs, MagicSchool, Personio Investors)",
+    "category": "URGENT",
+    "action": "draft_response",
+    "has_draft": true
+  },
+  {
+    "from": "Reminder <reminder@superhuman.com>",
+    "subject": "Re: catch-up",
+    "category": "RESPOND",
+    "action": "draft_response",
+    "has_draft": true
+  },
+  {
+    "from": "Reminder <reminder@superhuman.com>",
+    "subject": "Re: Happy New Year",
+    "category": "RESPOND",
+    "action": "draft_response",
+    "has_draft": true
+  },
+  {
+    "from": "Reminder <reminder@superhuman.com>",
+    "subject": "Re: Left Lane x Beam",
+    "category": "DEFER",
+    "action": "snooze",
+    "has_draft": false
+  },
+  {
+    "from": "Reminder <reminder@superhuman.com>",
+    "subject": "Re: Catch-up",
+    "category": "RESPOND",
+    "action": "draft_response",
+    "has_draft": true
+  },
+  {
+    "from": "Reminder <reminder@superhuman.com>",
+    "subject": "Re: Catch-up",
+    "category": "RESPOND",
+    "action": "draft_response",
+    "has_draft": true
+  },
+  {
+    "from": "Reminder <reminder@superhuman.com>",
+    "subject": "Re: beam AI <> Armira",
+    "category": "RESPOND",
+    "action": "draft_response",
+    "has_draft": true
+  },
+  {
+    "from": "Reminder <reminder@superhuman.com>",
+    "subject": "Re: Eight Roads - join us for drinks in Berlin!",
+    "category": "RESPOND",
+    "action": "draft_response",
+    "has_draft": true
+  },
+  {
+    "from": "Reminder <reminder@superhuman.com>",
+    "subject": "Re: Fund V - Silversmith",
+    "category": "RESPOND",
+    "action": "draft_response",
+    "has_draft": true
+  },
+  {
+    "from": "Reminder <reminder@superhuman.com>",
+    "subject": "Re: 645 Ventures <> Beam",
+    "category": "RESPOND",
+    "action": "draft_response",
+    "has_draft": true
+  },
+  {
+    "from": "Reminder <reminder@superhuman.com>",
+    "subject": "Re: Beam (New York)\u200b <> Forgepoint Capital Intro",
+    "category": "URGENT",
+    "action": "draft_response",
+    "has_draft": true
+  },
+  {
+    "from": "Reminder <reminder@superhuman.com>",
+    "subject": "Re: Intro: Serena Alboni <> Jonas from Beam",
+    "category": "RESPOND",
+    "action": "draft_response",
+    "has_draft": true
+  }
+]

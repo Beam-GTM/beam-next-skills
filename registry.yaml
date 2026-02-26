@@ -1,0 +1,1653 @@
+version: 1
+generated_by: build_registry.py
+skill_count: 189
+skills:
+- name: 1on1-followup
+  description: 'Quick post-meeting follow-up for 1-on-1s. Triggers: ''1on1 followup'',
+    ''follow up on my 1on1'', ''1on1 with [name]'', ''debrief my 1on1'', ''process
+    my 1on1 with [name]''.'
+  category: micro
+  tags:
+  - micro
+  version: '1.0'
+  path: skills/1on1-followup
+- name: 1on1-prep
+  description: 'Prepare for an upcoming 1-on-1. Triggers: ''prep my 1on1 with [name]'',
+    ''1on1 prep'', ''prepare for my meeting with [name]'', ''what should I cover with
+    [name]'', ''get ready for 1on1''.'
+  category: micro
+  tags:
+  - micro
+  version: '1.0'
+  path: skills/1on1-prep
+- name: 1on1-review
+  description: 'Deep expert coaching review of a 1-on-1 meeting. Triggers: ''1on1
+    review'', ''review my 1on1 with [name]'', ''coach me on my 1on1'', ''how did my
+    1on1 go'', ''deep review my 1on1'', ''expert feedback on my meeting with [name]''.'
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/1on1-review
+- name: add-integration
+  description: add integration, new integration, integrate with, connect to [service].
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/add-integration
+  has_scripts: true
+  has_references: true
+- name: airtable-connect
+  description: airtable, connect airtable, query [base], add to [table].
+  category: general
+  tags:
+  - connector
+  version: '1.1'
+  path: skills/airtable-connect
+- name: airtable-master
+  description: Shared resource library for Airtable integration skills. DO NOT load
+    directly - provides common references (setup, API docs, error handling, field
+    types) and scripts used by airtable-connect, airtable-query, and airtable-sync.
+  category: general
+  tags:
+  - master
+  - api
+  version: '1.0'
+  path: skills/airtable-master
+  has_scripts: true
+  has_references: true
+- name: allhands-prep
+  description: Prepare all-hands meetings for Beam. Load when user says 'prepare all-hands',
+    'all-hands prep', 'plan all-hands meeting', 'create all-hands agenda', or mentions
+    preparing for company-wide meetings. Helps structure the meeting, draft talking
+    points, create prep checklists, and follow Beam's all-hands guidelines.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/allhands-prep
+  has_references: true
+- name: amie-connect
+  description: Work with Amie calendar and meeting notes. Load when user mentions
+    "amie", "meeting notes", "get transcript", "save transcript to file", "export
+    transcript", "action items from meeting", or wants to access Amie data.
+  category: general
+  tags:
+  - connector
+  - calendar
+  version: '1.0'
+  path: skills/amie-connect
+- name: amie-master
+  description: Shared resource library for Amie integration skills. DO NOT load directly
+    - provides common references and scripts used by amie-connect and individual Amie
+    skills.
+  category: general
+  tags:
+  - master
+  version: '1.0'
+  path: skills/amie-master
+  has_scripts: true
+  has_references: true
+- name: analyze-context
+  description: Upload files for AI analysis. SubAgents extract insights and save structured
+    documents.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/analyze-context
+  has_scripts: true
+- name: archive-project
+  description: Load when user says "archive project", "archive [project-name]", "move
+    to archived". Moves completed projects to 05-archived/ folder for clean project
+    list.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/archive-project
+- name: attio-connect
+  description: 'Manage contacts, notes, and lists in Attio CRM. Use when user says:
+    ''add contact'', ''update CRM'', ''attio'', ''create note'', ''search contacts'',
+    ''add to list'', ''look up in CRM'', ''manage contacts'', or references the Personal
+    CRM project.'
+  category: general
+  tags:
+  - connector
+  - crm
+  version: '1.0'
+  path: skills/attio-connect
+  has_references: true
+- name: beam-connect
+  description: Connect to Beam AI workspace for agent management. Load when user mentions
+    'beam', 'beam agent', 'beam task', 'beam analytics', 'list agents', 'create task',
+    or any Beam AI operations. Meta-skill that validates config, discovers agents,
+    and routes to appropriate operations.
+  category: general
+  tags:
+  - connector
+  version: '1.0'
+  path: skills/beam-connect
+- name: beam-debug-issue-tasks
+  description: Debug failed/issue tasks from Beam.ai using Langfuse traces. Load when
+    user says "debug issue tasks", "check failed tasks", "why did task fail", "task
+    errors", "debug agent", or needs to investigate task failures.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/beam-debug-issue-tasks
+  has_scripts: true
+- name: beam-master
+  description: Shared resource library for Beam AI integration skills. DO NOT load
+    directly - provides common references (setup, API docs, error handling, authentication)
+    and scripts used by beam-connect and individual Beam skills.
+  category: general
+  tags:
+  - master
+  - api
+  version: '1.0'
+  path: skills/beam-master
+  has_scripts: true
+  has_references: true
+- name: bulk-complete
+  description: Bulk-complete tasks/steps in a project. Load when user says "bulk complete
+    [project]", "mark all done", "complete phase X", or needs to finish project tasks
+    efficiently. Works with both steps.md and tasks.md formats.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/bulk-complete
+  has_scripts: true
+- name: candidate-compare
+  description: Compare multiple candidates for a role and recommend the best fit.
+    Load when user says "compare candidates", "select best candidate", "who should
+    we hire", "compare [names] for [role]", "rank candidates", or "best candidate
+    for [role]".
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/candidate-compare
+- name: create-master-skill
+  description: create master skill, integration master, shared skill library.
+  category: general
+  tags:
+  - master
+  version: '1.0'
+  path: skills/create-master-skill
+  has_scripts: true
+  has_references: true
+- name: create-meeting-presentation-html
+  description: Generate a self-contained HTML slide presentation for meetings. Load
+    when user says "create presentation", "meeting presentation", "html presentation",
+    "slide deck", "make slides", "presentation for meeting", "create slides for".
+    User describes their use case, context, and goals — AI generates a polished dark-themed
+    HTML deck with arrow-key navigation.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/create-meeting-presentation-html
+- name: create-project
+  description: 'Create new projects. Load when user wants to START something new with
+    a deliverable endpoint. Keywords: create project, new project, start project,
+    plan project.'
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/create-project
+  has_scripts: true
+  has_references: true
+- name: create-roadmap
+  description: Create a prioritized roadmap of what to build next. Dynamic items based
+    on your goals.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/create-roadmap
+- name: create-skill
+  description: create skill, new skill, automate this, make reusable.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/create-skill
+  has_scripts: true
+  has_references: true
+- name: email-automation
+  description: Load when user says "process emails", "triage inbox", "email automation",
+    "check emails", or "inbox zero"
+  category: general
+  tags:
+  - email
+  - automation
+  version: '1.0'
+  path: skills/email-automation
+  has_scripts: true
+  has_references: true
+- name: execute-project
+  description: continue [build], resume, work on, check progress, execute build, build
+    [ID/name].
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/execute-project
+  has_scripts: true
+- name: expert-improve
+  description: 'Iterative expert refinement until work is excellent. Load when user
+    says: ''improve this'', ''make this better'', ''polish until ready'', ''iterate
+    with experts'', ''refine this'''
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/expert-improve
+- name: expert-review
+  description: 'Quick expert feedback on any work. Load when user says: ''expert review'',
+    ''what do experts think'', ''get feedback'', ''review this'', ''is this good?'',
+    ''what''s wrong with this?'''
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/expert-review
+- name: format-and-lint-code
+  description: format code, lint code, pre-commit, before commit, code quality, auto-format
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/format-and-lint-code
+  has_scripts: true
+  has_references: true
+- name: gemini-edit-image
+  description: edit image, modify image, change image, gemini edit.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/gemini-edit-image
+  has_scripts: true
+- name: gemini-generate-image
+  description: generate image, create image, text to image, gemini generate.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/gemini-generate-image
+  has_scripts: true
+- name: gemini-refine-image
+  description: refine image, improve image, iterate image, tweak image.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/gemini-refine-image
+  has_scripts: true
+- name: generate-philosophy-doc
+  description: create philosophy doc, generate standards, build best practices guide.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/generate-philosophy-doc
+  has_scripts: true
+  has_references: true
+- name: gmail
+  description: Read, send, and manage Gmail emails. Load when user mentions 'gmail',
+    'email', 'send email', 'check email', 'inbox', 'draft', or references sending/reading
+    emails.
+  category: general
+  tags:
+  - email
+  version: '1.3'
+  path: skills/gmail
+  has_scripts: true
+- name: google-calendar
+  description: Read, create, and manage Google Calendar events. Load when user mentions
+    'google calendar', 'calendar', 'schedule', 'meeting', 'event', 'appointment',
+    'book time', 'check availability', 'find slots', 'free time', or references scheduling/calendar
+    operations.
+  category: general
+  tags:
+  - calendar
+  version: '1.0'
+  path: skills/google-calendar
+  has_scripts: true
+- name: google-connect
+  description: connect google, setup google, google integration.
+  category: general
+  tags:
+  - connector
+  version: '1.0'
+  path: skills/google-connect
+- name: google-docs
+  description: Read, write, and manage Google Docs. Load when user mentions 'google
+    docs', 'google document', 'create doc', 'read doc', 'write doc', 'edit document',
+    or references creating/editing text documents in Google Drive.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/google-docs
+  has_scripts: true
+- name: google-drive
+  description: Manage Google Drive files and folders. Load when user mentions 'google
+    drive', 'drive', 'upload file', 'download file', 'share file', 'create folder',
+    or references cloud file storage operations.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/google-drive
+  has_scripts: true
+- name: google-gemini-image
+  description: gemini image, generate image, create image, text to image, brand assets,
+    logo generation, hero image.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/google-gemini-image
+  has_scripts: true
+  has_references: true
+- name: gemini-edit-image
+  description: edit image, modify image, change image, gemini edit.
+  category: google-gemini-image
+  tags:
+  - google-gemini-image
+  version: '1.0'
+  path: skills/google-gemini-image/gemini-edit-image
+  has_scripts: true
+- name: gemini-generate-image
+  description: generate image, create image, text to image, gemini generate.
+  category: google-gemini-image
+  tags:
+  - google-gemini-image
+  version: '1.0'
+  path: skills/google-gemini-image/gemini-generate-image
+  has_scripts: true
+- name: gemini-refine-image
+  description: refine image, improve image, iterate image, tweak image.
+  category: google-gemini-image
+  tags:
+  - google-gemini-image
+  version: '1.0'
+  path: skills/google-gemini-image/gemini-refine-image
+  has_scripts: true
+- name: google-integration
+  description: google, gmail, email, google docs, sheets, calendar, drive.
+  category: general
+  tags:
+  - email
+  - calendar
+  version: '1.1'
+  path: skills/google-integration
+- name: gmail
+  description: Read, send, and manage Gmail emails. Load when user mentions 'gmail',
+    'email', 'send email', 'check email', 'inbox', 'draft', or references sending/reading
+    emails.
+  category: google-integration
+  tags:
+  - google-integration
+  - email
+  version: '1.3'
+  path: skills/google-integration/gmail
+  has_scripts: true
+- name: google-calendar
+  description: Read, create, and manage Google Calendar events. Load when user mentions
+    'google calendar', 'calendar', 'schedule', 'meeting', 'event', 'appointment',
+    'book time', 'check availability', 'find slots', 'free time', or references scheduling/calendar
+    operations.
+  category: google-integration
+  tags:
+  - google-integration
+  - calendar
+  version: '1.0'
+  path: skills/google-integration/google-calendar
+  has_scripts: true
+- name: google-connect
+  description: connect google, setup google, google integration.
+  category: google-integration
+  tags:
+  - google-integration
+  - connector
+  version: '1.0'
+  path: skills/google-integration/google-connect
+- name: google-docs
+  description: Read, write, and manage Google Docs. Load when user mentions 'google
+    docs', 'google document', 'create doc', 'read doc', 'write doc', 'edit document',
+    or references creating/editing text documents in Google Drive.
+  category: google-integration
+  tags:
+  - google-integration
+  version: '1.0'
+  path: skills/google-integration/google-docs
+  has_scripts: true
+- name: google-drive
+  description: Manage Google Drive files and folders. Load when user mentions 'google
+    drive', 'drive', 'upload file', 'download file', 'share file', 'create folder',
+    or references cloud file storage operations.
+  category: google-integration
+  tags:
+  - google-integration
+  version: '1.0'
+  path: skills/google-integration/google-drive
+  has_scripts: true
+- name: google-master
+  description: Shared resource library for Google integration skills. DO NOT load
+    directly - provides common references (setup, API docs, error handling, authentication)
+    and scripts used by gmail, google-docs, google-sheets, google-calendar, and future
+    Google skills.
+  category: google-integration
+  tags:
+  - google-integration
+  - master
+  - calendar
+  - api
+  version: '1.0'
+  path: skills/google-integration/google-master
+  has_scripts: true
+  has_references: true
+- name: google-sheets
+  description: Read and write Google Sheets data. Load when user mentions 'google
+    sheets', 'spreadsheet', 'update sheet', 'read sheet', 'append to sheet', or references
+    extracting data to update a tracking sheet.
+  category: google-integration
+  tags:
+  - google-integration
+  version: '1.2'
+  path: skills/google-integration/google-sheets
+  has_scripts: true
+- name: google-slides
+  description: Create and manage Google Slides presentations. Load when user mentions
+    'google slides', 'slides', 'presentation', 'create presentation', 'add slide',
+    or references creating/editing slide decks.
+  category: google-integration
+  tags:
+  - google-integration
+  version: '1.0'
+  path: skills/google-integration/google-slides
+  has_scripts: true
+- name: google-tasks
+  description: Manage Google Tasks and task lists. Load when user mentions 'google
+    tasks', 'tasks', 'todo list', 'create task', 'complete task', or references task/todo
+    management.
+  category: google-integration
+  tags:
+  - google-integration
+  version: '1.0'
+  path: skills/google-integration/google-tasks
+  has_scripts: true
+- name: google-master
+  description: Shared resource library for Google integration skills. DO NOT load
+    directly - provides common references (setup, API docs, error handling, authentication)
+    and scripts used by gmail, google-docs, google-sheets, google-calendar, and future
+    Google skills.
+  category: general
+  tags:
+  - master
+  - calendar
+  - api
+  version: '1.0'
+  path: skills/google-master
+  has_scripts: true
+  has_references: true
+- name: google-sheets
+  description: Read and write Google Sheets data. Load when user mentions 'google
+    sheets', 'spreadsheet', 'update sheet', 'read sheet', 'append to sheet', or references
+    extracting data to update a tracking sheet.
+  category: general
+  tags: []
+  version: '1.2'
+  path: skills/google-sheets
+  has_scripts: true
+- name: google-slides
+  description: Create and manage Google Slides presentations. Load when user mentions
+    'google slides', 'slides', 'presentation', 'create presentation', 'add slide',
+    or references creating/editing slide decks.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/google-slides
+  has_scripts: true
+- name: google-speech-to-text
+  description: Transcribe audio files to text using Google Cloud Speech-to-Text API.
+    Load when user mentions 'transcribe', 'speech to text', 'audio to text', 'transcribe
+    audio', 'voice to text', 'transcription', or converting audio/recordings to text.
+  category: general
+  tags:
+  - api
+  version: '1.0'
+  path: skills/google-speech-to-text
+  has_scripts: true
+  has_references: true
+- name: google-tasks
+  description: Manage Google Tasks and task lists. Load when user mentions 'google
+    tasks', 'tasks', 'todo list', 'create task', 'complete task', or references task/todo
+    management.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/google-tasks
+  has_scripts: true
+- name: happenstance-connect
+  description: 'Search and research LinkedIn connections via Happenstance API. Use
+    when user says: ''search my network'', ''find someone on LinkedIn'', ''research
+    a person'', ''who do I know that...'', ''happenstance search'', ''look up a contact''.'
+  category: general
+  tags:
+  - connector
+  - api
+  version: '1.0'
+  path: skills/happenstance-connect
+  has_references: true
+- name: heyreach
+  description: heyreach, linkedin outreach, linkedin campaigns, add leads.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/heyreach
+- name: heyreach-connect
+  description: heyreach, linkedin outreach, linkedin campaigns.
+  category: heyreach
+  tags:
+  - heyreach
+  - connector
+  version: '1.0'
+  path: skills/heyreach/heyreach-connect
+- name: heyreach-master
+  description: Internal resource library for HeyReach integration. Contains shared
+    API client, operation scripts, and reference documentation.
+  category: heyreach
+  tags:
+  - heyreach
+  - master
+  - api
+  version: '1.0'
+  path: skills/heyreach/heyreach-master
+  has_scripts: true
+  has_references: true
+- name: heyreach-connect
+  description: heyreach, linkedin outreach, linkedin campaigns.
+  category: general
+  tags:
+  - connector
+  version: '1.0'
+  path: skills/heyreach-connect
+- name: heyreach-master
+  description: Internal resource library for HeyReach integration. Contains shared
+    API client, operation scripts, and reference documentation.
+  category: general
+  tags:
+  - master
+  - api
+  version: '1.0'
+  path: skills/heyreach-master
+  has_scripts: true
+  has_references: true
+- name: how-beam-next-works
+  description: Learn how Beam Next works - the system tour. ~7 min.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/how-beam-next-works
+- name: hubspot-connect
+  description: hubspot, crm, contacts, companies, deals.
+  category: general
+  tags:
+  - connector
+  - crm
+  version: '1.0'
+  path: skills/hubspot-connect
+- name: hubspot-create-company
+  description: Create a new company in HubSpot CRM. Load when user says 'create company',
+    'add company', 'new company'. Requires name, optional domain, industry, city.
+  category: general
+  tags:
+  - crm
+  version: '1.0'
+  path: skills/hubspot-create-company
+- name: hubspot-create-contact
+  description: Create a new contact in HubSpot CRM. Load when user says 'create contact',
+    'add contact', 'new contact'. Requires email, optional firstname, lastname, phone,
+    company.
+  category: general
+  tags:
+  - crm
+  - email
+  version: '1.0'
+  path: skills/hubspot-create-contact
+- name: hubspot-create-deal
+  description: Create a new deal in HubSpot CRM. Load when user says 'create deal',
+    'add deal', 'new deal', 'new opportunity'. Requires name, optional amount, stage,
+    closedate.
+  category: general
+  tags:
+  - crm
+  version: '1.0'
+  path: skills/hubspot-create-deal
+- name: hubspot-create-meeting
+  description: Create a meeting engagement in HubSpot CRM. Load when user says 'create
+    meeting', 'add meeting', 'schedule meeting', 'new meeting'. Requires title, start
+    and end times.
+  category: general
+  tags:
+  - crm
+  version: '1.0'
+  path: skills/hubspot-create-meeting
+- name: hubspot-create-note
+  description: Create a note engagement in HubSpot CRM. Load when user says 'create
+    note', 'add note', 'new note', 'record note'. Requires body content.
+  category: general
+  tags:
+  - crm
+  version: '1.0'
+  path: skills/hubspot-create-note
+- name: hubspot-get-associations
+  description: Get associated records in HubSpot CRM. Load when user says 'get associations',
+    'linked records', 'contacts on deal', 'company contacts', 'related records', 'who
+    is on this deal'.
+  category: general
+  tags:
+  - crm
+  version: '1.0'
+  path: skills/hubspot-get-associations
+- name: hubspot-list-calls
+  description: List call engagements from HubSpot CRM. Load when user says 'list calls',
+    'show calls', 'call history', 'hubspot calls'. Returns logged call records.
+  category: general
+  tags:
+  - crm
+  version: '1.0'
+  path: skills/hubspot-list-calls
+- name: hubspot-list-companies
+  description: List companies from HubSpot CRM. Load when user says 'list companies',
+    'show companies', 'get companies', 'hubspot companies'. Returns paginated company
+    list.
+  category: general
+  tags:
+  - crm
+  version: '1.0'
+  path: skills/hubspot-list-companies
+- name: hubspot-list-contacts
+  description: List contacts from HubSpot CRM. Load when user says 'list contacts',
+    'show contacts', 'get contacts', 'hubspot contacts'. Returns paginated contact
+    list with email, name, phone, company.
+  category: general
+  tags:
+  - crm
+  - email
+  version: '1.0'
+  path: skills/hubspot-list-contacts
+- name: hubspot-list-deals
+  description: List deals from HubSpot CRM. Load when user says 'list deals', 'show
+    deals', 'show pipeline', 'get deals', 'hubspot deals'. Returns paginated deal
+    list.
+  category: general
+  tags:
+  - crm
+  version: '1.0'
+  path: skills/hubspot-list-deals
+- name: hubspot-list-emails
+  description: List email engagements from HubSpot CRM. Load when user says 'list
+    emails', 'show emails', 'email history', 'hubspot emails'. Returns logged email
+    records.
+  category: general
+  tags:
+  - crm
+  - email
+  version: '1.0'
+  path: skills/hubspot-list-emails
+- name: hubspot-list-meetings
+  description: List meeting engagements from HubSpot CRM. Load when user says 'list
+    meetings', 'show meetings', 'meeting history', 'hubspot meetings'. Returns scheduled
+    meeting records.
+  category: general
+  tags:
+  - crm
+  version: '1.0'
+  path: skills/hubspot-list-meetings
+- name: hubspot-list-notes
+  description: List note engagements from HubSpot CRM. Load when user says 'list notes',
+    'show notes', 'note history', 'hubspot notes'. Returns logged note records.
+  category: general
+  tags:
+  - crm
+  version: '1.0'
+  path: skills/hubspot-list-notes
+- name: hubspot-log-call
+  description: Log a call engagement in HubSpot CRM. Load when user says 'log call',
+    'record call', 'add call', 'call made'. Requires title, optional body and duration.
+  category: general
+  tags:
+  - crm
+  version: '1.0'
+  path: skills/hubspot-log-call
+- name: hubspot-log-email
+  description: Log an email engagement in HubSpot CRM. Load when user says 'log email',
+    'record email', 'add email', 'email sent'. Requires subject and body.
+  category: general
+  tags:
+  - crm
+  - email
+  version: '1.0'
+  path: skills/hubspot-log-email
+- name: hubspot-master
+  description: Shared resource library for HubSpot integration skills. DO NOT load
+    directly - provides common references (setup, API docs, error handling, authentication)
+    and scripts used by hubspot-connect and individual HubSpot skills.
+  category: general
+  tags:
+  - master
+  - api
+  version: '1.0'
+  path: skills/hubspot-master
+  has_scripts: true
+  has_references: true
+- name: hubspot-search-companies
+  description: Search companies in HubSpot CRM by name or domain. Load when user says
+    'search companies', 'find company', 'lookup company', 'search for [company]'.
+  category: general
+  tags:
+  - crm
+  version: '1.0'
+  path: skills/hubspot-search-companies
+- name: hubspot-search-contacts
+  description: Search contacts in HubSpot CRM by email, name, or company. Load when
+    user says 'search contacts', 'find contact', 'lookup contact', 'search for [name]'.
+  category: general
+  tags:
+  - crm
+  - email
+  version: '1.0'
+  path: skills/hubspot-search-contacts
+- name: hubspot-search-deals
+  description: Search deals in HubSpot CRM by name or amount. Load when user says
+    'search deals', 'find deal', 'lookup deal', 'deals over $X', 'search for [deal]'.
+  category: general
+  tags:
+  - crm
+  version: '1.0'
+  path: skills/hubspot-search-deals
+- name: hubspot-update-contact
+  description: Update an existing contact in HubSpot CRM. Load when user says 'update
+    contact', 'edit contact', 'modify contact', 'change contact'. Requires contact
+    ID.
+  category: general
+  tags:
+  - crm
+  version: '1.0'
+  path: skills/hubspot-update-contact
+- name: hubspot-update-deal
+  description: Update an existing deal in HubSpot CRM. Load when user says 'update
+    deal', 'edit deal', 'change deal stage', 'move deal', 'close deal'. Requires deal
+    ID.
+  category: general
+  tags:
+  - crm
+  version: '1.0'
+  path: skills/hubspot-update-deal
+- name: import-skill
+  description: import skill, download skill, install skill, get skill.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/import-skill
+- name: interview-coach
+  description: Analyze interview transcripts to help managers improve their interviewing
+    skills. Load when user says "review my interview with [name]", "assess my interview",
+    "how's the candidate", "interview feedback", "interview coach", "hr round review
+    with [name]", "technical round review with [name]", "final round review with [name]",
+    or provides an interview transcript. Supports 3 interview types - HR (cultural
+    fit), Technical (skill assessment), Final (career aspirations).
+  category: general
+  tags: []
+  version: '2.0'
+  path: skills/interview-coach
+- name: langfuse-batch-ingest
+  description: Batch ingest traces/spans/events. Load when user says 'batch ingest',
+    'bulk import', 'ingest data'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-batch-ingest
+  has_scripts: true
+- name: langfuse-connect
+  description: langfuse, traces, observations, llm tracing.
+  category: general
+  tags:
+  - connector
+  version: '1.0'
+  path: skills/langfuse-connect
+- name: langfuse-create-annotation-queue
+  description: Create an annotation queue. Load when user says 'create queue', 'new
+    annotation queue'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-create-annotation-queue
+  has_scripts: true
+- name: langfuse-create-comment
+  description: Add comment to trace/observation. Load when user says 'create comment',
+    'add comment', 'comment on trace'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-create-comment
+  has_scripts: true
+- name: langfuse-create-dataset
+  description: Create a new Langfuse dataset. Load when user says 'create dataset',
+    'new dataset', 'add dataset'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-create-dataset
+  has_scripts: true
+- name: langfuse-create-dataset-item
+  description: Create a dataset item. Load when user says 'create dataset item', 'add
+    item', 'new test case'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-create-dataset-item
+  has_scripts: true
+- name: langfuse-create-dataset-run-item
+  description: Create a dataset run item. Load when user says 'create run item', 'log
+    evaluation', 'add run result'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-create-dataset-run-item
+  has_scripts: true
+- name: langfuse-create-model
+  description: Create a model definition for cost tracking. Load when user says 'create
+    model', 'add model', 'new model'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-create-model
+  has_scripts: true
+- name: langfuse-create-project
+  description: Create a new project. Load when user says 'create langfuse project',
+    'new project'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-create-project
+  has_scripts: true
+- name: langfuse-create-project-api-key
+  description: Create new API key for project. Load when user says 'create api key',
+    'new key', 'generate key'.
+  category: general
+  tags:
+  - api
+  version: '1.0'
+  path: skills/langfuse-create-project-api-key
+  has_scripts: true
+- name: langfuse-create-prompt
+  description: Create a new Langfuse prompt. Load when user says 'create prompt',
+    'new prompt', 'add prompt'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-create-prompt
+  has_scripts: true
+- name: langfuse-create-queue-assignment
+  description: Assign reviewer to queue. Load when user says 'assign reviewer', 'add
+    to queue assignment'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-create-queue-assignment
+  has_scripts: true
+- name: langfuse-create-queue-item
+  description: Add item to queue. Load when user says 'add to queue', 'queue trace
+    for review'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-create-queue-item
+  has_scripts: true
+- name: langfuse-create-score
+  description: Create a score. Load when user says 'create score', 'add evaluation',
+    'score trace'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-create-score
+  has_scripts: true
+- name: langfuse-create-score-config
+  description: Create a score configuration. Load when user says 'create score config',
+    'new metric', 'add scoring'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-create-score-config
+  has_scripts: true
+- name: langfuse-delete-dataset-item
+  description: Delete a dataset item. Load when user says 'delete dataset item', 'remove
+    item'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-delete-dataset-item
+  has_scripts: true
+- name: langfuse-delete-dataset-run
+  description: Delete a dataset run. Load when user says 'delete dataset run', 'remove
+    run'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-delete-dataset-run
+  has_scripts: true
+- name: langfuse-delete-model
+  description: Delete a model definition. Load when user says 'delete model', 'remove
+    model'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-delete-model
+  has_scripts: true
+- name: langfuse-delete-org-membership
+  description: Remove member from org. Load when user says 'remove member', 'delete
+    membership', 'revoke access'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-delete-org-membership
+  has_scripts: true
+- name: langfuse-delete-project
+  description: Delete a project. Load when user says 'delete project', 'remove project'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-delete-project
+  has_scripts: true
+- name: langfuse-delete-project-api-key
+  description: Delete an API key. Load when user says 'delete api key', 'revoke key',
+    'remove key'.
+  category: general
+  tags:
+  - api
+  version: '1.0'
+  path: skills/langfuse-delete-project-api-key
+  has_scripts: true
+- name: langfuse-delete-prompt
+  description: Delete a Langfuse prompt. Load when user says 'delete prompt', 'remove
+    prompt'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-delete-prompt
+  has_scripts: true
+- name: langfuse-delete-queue-assignment
+  description: Remove reviewer from queue. Load when user says 'remove assignment',
+    'unassign reviewer'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-delete-queue-assignment
+  has_scripts: true
+- name: langfuse-delete-queue-item
+  description: Delete a queue item. Load when user says 'delete queue item', 'remove
+    from queue'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-delete-queue-item
+  has_scripts: true
+- name: langfuse-delete-score
+  description: Delete a score. Load when user says 'delete score', 'remove evaluation'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-delete-score
+  has_scripts: true
+- name: langfuse-delete-trace
+  description: Delete a single trace. Load when user says 'delete trace', 'remove
+    trace'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-delete-trace
+  has_scripts: true
+- name: langfuse-delete-traces
+  description: Bulk delete traces. Load when user says 'bulk delete traces', 'delete
+    multiple traces', 'purge traces'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-delete-traces
+  has_scripts: true
+- name: langfuse-get-annotation-queue
+  description: Get an annotation queue. Load when user says 'get queue', 'queue details'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-get-annotation-queue
+  has_scripts: true
+- name: langfuse-get-comment
+  description: Get comment by ID. Load when user says 'get comment', 'show comment',
+    'comment details'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-get-comment
+  has_scripts: true
+- name: langfuse-get-dataset
+  description: Get a Langfuse dataset by name. Load when user says 'get dataset',
+    'show dataset', 'dataset details'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-get-dataset
+  has_scripts: true
+- name: langfuse-get-dataset-item
+  description: Get a dataset item by ID. Load when user says 'get dataset item', 'show
+    item', 'item details'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-get-dataset-item
+  has_scripts: true
+- name: langfuse-get-dataset-run
+  description: Get a dataset run by name. Load when user says 'get dataset run', 'show
+    run', 'run details'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-get-dataset-run
+  has_scripts: true
+- name: langfuse-get-media
+  description: Get media content by ID. Load when user says 'get media', 'download
+    media', 'media content'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-get-media
+  has_scripts: true
+- name: langfuse-get-model
+  description: Get specific Langfuse model. Load when user says 'get model', 'model
+    details', 'show model {id}'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-get-model
+  has_scripts: true
+- name: langfuse-get-observation
+  description: Get specific Langfuse observation. Load when user says 'get observation',
+    'observation details', 'show span {id}'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-get-observation
+  has_scripts: true
+- name: langfuse-get-project
+  description: Get Langfuse project info. Load when user says 'get project', 'current
+    project', 'project info', 'langfuse project'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-get-project
+  has_scripts: true
+- name: langfuse-get-prompt
+  description: Get a Langfuse prompt by name. Load when user says 'get prompt', 'show
+    prompt', 'prompt details'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-get-prompt
+  has_scripts: true
+- name: langfuse-get-queue-item
+  description: Get a queue item. Load when user says 'get queue item', 'item details'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-get-queue-item
+  has_scripts: true
+- name: langfuse-get-score
+  description: Get specific Langfuse score. Load when user says 'get score', 'score
+    details', 'show score {id}'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-get-score
+  has_scripts: true
+- name: langfuse-get-score-config
+  description: Get a score config by ID. Load when user says 'get score config', 'show
+    metric'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-get-score-config
+  has_scripts: true
+- name: langfuse-get-session
+  description: Get specific Langfuse session. Load when user says 'get session', 'session
+    details', 'show session {id}'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-get-session
+  has_scripts: true
+- name: langfuse-get-trace
+  description: Get specific Langfuse trace. Load when user says 'get trace', 'trace
+    details', 'show trace {id}'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-get-trace
+  has_scripts: true
+- name: langfuse-get-upload-url
+  description: Get presigned upload URL for media. Load when user says 'upload url',
+    'media upload', 'presigned url'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-get-upload-url
+  has_scripts: true
+- name: langfuse-health
+  description: Check Langfuse health status. Load when user says 'health check', 'is
+    langfuse up', 'check status'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-health
+  has_scripts: true
+- name: langfuse-help
+  description: langfuse help, langfuse reference, langfuse --help, show langfuse operations,
+    list langfuse skills.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-help
+- name: langfuse-list-annotation-queues
+  description: List annotation queues. Load when user says 'list queues', 'annotation
+    queues', 'review queues'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-list-annotation-queues
+  has_scripts: true
+- name: langfuse-list-comments
+  description: List comments on traces/observations. Load when user says 'list comments',
+    'get comments', 'show comments'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-list-comments
+  has_scripts: true
+- name: langfuse-list-dataset-items
+  description: List dataset items. Load when user says 'list dataset items', 'show
+    items', 'dataset items'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-list-dataset-items
+  has_scripts: true
+- name: langfuse-list-dataset-run-items
+  description: List dataset run items. Load when user says 'list run items', 'show
+    run results', 'evaluation results'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-list-dataset-run-items
+  has_scripts: true
+- name: langfuse-list-dataset-runs
+  description: List dataset runs. Load when user says 'list dataset runs', 'show runs',
+    'dataset experiments'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-list-dataset-runs
+  has_scripts: true
+- name: langfuse-list-datasets
+  description: List Langfuse datasets. Load when user says 'list datasets', 'show
+    datasets', 'get datasets'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-list-datasets
+  has_scripts: true
+- name: langfuse-list-models
+  description: List Langfuse models. Load when user says 'list models', 'show models',
+    'model costs'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-list-models
+  has_scripts: true
+- name: langfuse-list-observations
+  description: List Langfuse observations (spans, generations, events). Load when
+    user says 'list observations', 'show spans', 'get generations'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-list-observations
+  has_scripts: true
+- name: langfuse-list-org-api-keys
+  description: List org-level API keys. Load when user says 'org api keys', 'organization
+    keys'.
+  category: general
+  tags:
+  - api
+  version: '1.0'
+  path: skills/langfuse-list-org-api-keys
+  has_scripts: true
+- name: langfuse-list-org-memberships
+  description: List organization members. Load when user says 'list members', 'org
+    members', 'who has access'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-list-org-memberships
+  has_scripts: true
+- name: langfuse-list-org-projects
+  description: List projects in org. Load when user says 'list org projects', 'org
+    projects', 'all projects'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-list-org-projects
+  has_scripts: true
+- name: langfuse-list-project-api-keys
+  description: List API keys for project. Load when user says 'list api keys', 'show
+    keys', 'project keys'.
+  category: general
+  tags:
+  - api
+  version: '1.0'
+  path: skills/langfuse-list-project-api-keys
+  has_scripts: true
+- name: langfuse-list-prompts
+  description: List Langfuse prompts. Load when user says 'list prompts', 'show prompts',
+    'get prompts', 'langfuse prompts'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-list-prompts
+  has_scripts: true
+- name: langfuse-list-queue-items
+  description: List queue items. Load when user says 'list queue items', 'show review
+    items'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-list-queue-items
+  has_scripts: true
+- name: langfuse-list-score-configs
+  description: List score configurations. Load when user says 'list score configs',
+    'show scoring', 'evaluation configs'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-list-score-configs
+  has_scripts: true
+- name: langfuse-list-scores
+  description: List Langfuse scores. Load when user says 'list scores', 'show scores',
+    'get evaluations'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-list-scores
+  has_scripts: true
+- name: langfuse-list-sessions
+  description: List Langfuse sessions. Load when user says 'list sessions', 'show
+    sessions', 'get sessions'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-list-sessions
+  has_scripts: true
+- name: langfuse-list-traces
+  description: List Langfuse traces. Load when user says 'list traces', 'show traces',
+    'get traces', 'recent traces'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-list-traces
+  has_scripts: true
+- name: langfuse-master
+  description: SHARED RESOURCES - DO NOT LOAD DIRECTLY. Contains Langfuse API client,
+    config checker, and reference documentation. Used by langfuse-connect and all
+    operation skills.
+  category: general
+  tags:
+  - master
+  - api
+  version: '1.0'
+  path: skills/langfuse-master
+  has_scripts: true
+  has_references: true
+- name: langfuse-metrics
+  description: Get Langfuse metrics. Load when user says 'metrics', 'usage stats',
+    'langfuse usage'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-metrics
+  has_scripts: true
+- name: langfuse-otel-ingest
+  description: Ingest OpenTelemetry data. Load when user says 'otel ingest', 'opentelemetry',
+    'otlp'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-otel-ingest
+  has_scripts: true
+- name: langfuse-update-media
+  description: Update media metadata. Load when user says 'update media', 'patch media'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-update-media
+  has_scripts: true
+- name: langfuse-update-org-membership
+  description: Update member role. Load when user says 'update member', 'change role',
+    'update membership'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-update-org-membership
+  has_scripts: true
+- name: langfuse-update-project
+  description: Update project settings. Load when user says 'update project', 'rename
+    project'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-update-project
+  has_scripts: true
+- name: langfuse-update-prompt-version
+  description: Update a Langfuse prompt version labels. Load when user says 'update
+    prompt', 'set prompt label', 'promote prompt'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-update-prompt-version
+  has_scripts: true
+- name: langfuse-update-queue-item
+  description: Update a queue item. Load when user says 'update queue item', 'complete
+    review'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-update-queue-item
+  has_scripts: true
+- name: langfuse-update-score-config
+  description: Update a score config. Load when user says 'update score config', 'modify
+    metric'.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/langfuse-update-score-config
+  has_scripts: true
+- name: lead-research
+  description: 'Research sales leads and assess fit for Beam. Use when preparing for
+    prospect calls, evaluating inbound leads, or qualifying opportunities. Keywords:
+    lead research, call prep, prospect research, fit assessment, sales call preparation,
+    qualify lead, discovery call prep.'
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/lead-research
+  has_references: true
+- name: learn-beam-next
+  description: 'Master Beam Next philosophy and best practices. Load when user mentions:
+    learn beam next, beam next tutorial, system mastery, beam next best practices,
+    how beam next works, beam next philosophy, beam next design, understand beam next,
+    beam next deep dive. 15-18 min.'
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/learn-beam-next
+  has_references: true
+- name: learn-integrations
+  description: 'Learn about Beam Next integrations and MCP. Load when user mentions:
+    learn integrations, what is MCP, connect tools, integration tutorial, add integration,
+    external tools, API connections, third party, how to integrate. 10-12 min.'
+  category: general
+  tags:
+  - api
+  version: '1.0'
+  path: skills/learn-integrations
+- name: learn-projects
+  description: 'Learn how Beam Next builds work. Load when user mentions: learn projects,
+    how do builds work, builds vs skills, build tutorial, what is a project, build
+    structure, build lifecycle, understand builds, explain builds. 8-10 min.'
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/learn-projects
+- name: learn-skills
+  description: 'Learn how Beam Next skills work. Load when user mentions: learn skills,
+    how do skills work, what is a skill, skill tutorial, skill structure, understand
+    skills, explain skills, when to create skill, skill vs build. 10-12 min.'
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/learn-skills
+  has_references: true
+- name: list-skills
+  description: list skills, show skills, what skills, available skills.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/list-skills
+- name: mental-models
+  description: mental model, think through this, help me decide, first principles,
+    pre-mortem.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/mental-models
+- name: notebooklm
+  description: notebooklm, create notebook, audio overview, podcast.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/notebooklm
+- name: notebooklm-connect
+  description: notebooklm, create notebook, audio overview, podcast.
+  category: notebooklm
+  tags:
+  - notebooklm
+  - connector
+  version: '1.0'
+  path: skills/notebooklm/notebooklm-connect
+- name: notebooklm-master
+  description: Shared resource library for NotebookLM Enterprise integration skills.
+    DO NOT load directly - provides common references (setup, API docs, error handling,
+    authentication) and scripts used by notebooklm-connect and individual NotebookLM
+    skills.
+  category: notebooklm
+  tags:
+  - notebooklm
+  - master
+  - api
+  version: '1.0'
+  path: skills/notebooklm/notebooklm-master
+  has_scripts: true
+  has_references: true
+- name: notebooklm-connect
+  description: notebooklm, create notebook, audio overview, podcast.
+  category: general
+  tags:
+  - connector
+  version: '1.0'
+  path: skills/notebooklm-connect
+- name: notebooklm-master
+  description: Shared resource library for NotebookLM Enterprise integration skills.
+    DO NOT load directly - provides common references (setup, API docs, error handling,
+    authentication) and scripts used by notebooklm-connect and individual NotebookLM
+    skills.
+  category: general
+  tags:
+  - master
+  - api
+  version: '1.0'
+  path: skills/notebooklm-master
+  has_scripts: true
+  has_references: true
+- name: notion-connect
+  description: Connect to any Notion database by name. Load when user mentions 'notion',
+    'connect notion', 'setup notion', 'query [database-name]', 'add to [database]',
+    'notion databases', or any database name from persistent context. Meta-skill that
+    discovers workspace, caches schemas, and routes to appropriate operations.
+  category: general
+  tags:
+  - connector
+  version: '1.1'
+  path: skills/notion-connect
+- name: notion-master
+  description: Shared resource library for Notion integration skills. DO NOT load
+    directly - this provides common references (setup, API docs, error handling, database
+    schema) and scripts used by notion-connect, query-notion-db, import-skill-to-beam-next,
+    and export-skill-to-notion.
+  category: general
+  tags:
+  - master
+  - api
+  version: '1.0'
+  path: skills/notion-master
+  has_scripts: true
+  has_references: true
+- name: plan-project
+  description: create build, new project, start build, plan build, build [X].
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/plan-project
+  has_scripts: true
+  has_references: true
+- name: production-handover
+  description: Generate comprehensive production handover document by scanning branch
+    changes, checking API status, analyzing component usage, and identifying production
+    readiness gaps. Designed for vibe-coding → production transitions.
+  category: general
+  tags:
+  - api
+  version: '1.0'
+  path: skills/production-handover
+- name: quick-start
+  description: 'Complete onboarding: welcome, language, goals, integrations, workspace,
+    first PROJECT, permissions.'
+  category: general
+  tags: []
+  version: '2.0'
+  path: skills/quick-start
+- name: search-skill-database
+  description: search skills, find skill, browse skills, skill marketplace.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/search-skill-database
+- name: setup-goals
+  description: Load when user says 'setup goals', 'personalize beam next', 'set my
+    goals', 'define my role'. Captures role, goals, preferences. 8-10 min.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/setup-goals
+  has_references: true
+- name: setup-memory
+  description: 'Configure Beam Next memory with your role, goals, and preferences.
+    Load when user wants to personalize the system or teach Beam Next about themselves.
+    Keywords: setup memory, personalize, configure, my goals, my role, about me, preferences.
+    8 min.'
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/setup-memory
+  has_references: true
+- name: setup-workspace
+  description: 'Organize your 04-workspace/ folder structure. Load when user mentions:
+    setup workspace, organize folders, folder structure, configure workspace, my files,
+    file organization, where to put files, workspace setup, directories, storage.
+    5-8 min.'
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/setup-workspace
+  has_references: true
+- name: share-skill
+  description: share skill, upload skill, publish skill.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/share-skill
+- name: slack
+  description: Complete Slack integration skill. Load when user wants to send messages,
+    search Slack, manage channels, list users, upload files, add reactions, set reminders,
+    or interact with Slack workspace.
+  category: general
+  tags:
+  - slack
+  version: '1.1'
+  path: skills/slack
+- name: slack-connect
+  description: Connect to Slack workspace for messaging and channel management. Load
+    when user mentions 'slack', 'connect slack', 'slack message', 'slack channel',
+    'send to slack', or any Slack operations. Meta-skill that validates config, discovers
+    workspace, and routes to appropriate operations.
+  category: slack
+  tags:
+  - slack
+  - connector
+  version: '1.0'
+  path: skills/slack/slack-connect
+- name: slack-master
+  description: Shared resource library for Slack integration skills. DO NOT load directly
+    - provides common references (setup, API docs, error handling, authentication)
+    and scripts used by slack-connect and individual Slack skills.
+  category: slack
+  tags:
+  - slack
+  - master
+  - api
+  version: '1.0'
+  path: skills/slack/slack-master
+  has_scripts: true
+  has_references: true
+- name: slack-connect
+  description: Connect to Slack workspace for messaging and channel management. Load
+    when user mentions 'slack', 'connect slack', 'slack message', 'slack channel',
+    'send to slack', or any Slack operations. Meta-skill that validates config, discovers
+    workspace, and routes to appropriate operations.
+  category: general
+  tags:
+  - connector
+  - slack
+  version: '1.0'
+  path: skills/slack-connect
+- name: slack-master
+  description: Shared resource library for Slack integration skills. DO NOT load directly
+    - provides common references (setup, API docs, error handling, authentication)
+    and scripts used by slack-connect and individual Slack skills.
+  category: general
+  tags:
+  - master
+  - slack
+  - api
+  version: '1.0'
+  path: skills/slack-master
+  has_scripts: true
+  has_references: true
+- name: validate-skill-functionality
+  description: validate skill, check skill, review skill execution.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/validate-skill-functionality
+- name: vibe-coding-handoff
+  description: Review and clean up vibe-coding changes before handoff. Identifies
+    unused components, simplification opportunities, duplicate code, and generates
+    a comprehensive handoff report.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/vibe-coding-handoff
+- name: workable-master
+  description: All Workable ATS operations — fetch JDs, search candidates, post assessments/reviews.
+    Load when user says "fetch JD", "search workable", "push to workable", "post review",
+    "rate candidate", "workable", "push assessment", "list jobs", or after interview-coach
+    completes an evaluation. Replaces workable-fetch-jd and workable-push-assessment.
+  category: general
+  tags:
+  - master
+  version: '2.0'
+  path: skills/workable-master
+  has_scripts: true
+- name: workable-push-assessment
+  description: Push interview assessments and candidate evaluations to Workable ATS.
+    Load when user says "push assessment to workable", "post evaluation to workable",
+    "send assessment to workable", "update workable with assessment", "push to workable",
+    or after interview-coach completes an evaluation.
+  category: general
+  tags: []
+  version: '1.0'
+  path: skills/workable-push-assessment
+  has_scripts: true
