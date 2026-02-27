@@ -1,6 +1,6 @@
 version: 1
 generated_by: build_registry.py
-skill_count: 237
+skill_count: 238
 skills:
 - name: beam-connect
   description: Connect to Beam AI workspace for agent management. Load when user mentions
@@ -392,6 +392,22 @@ skills:
   updated: '2026-02-24'
   visibility: public
   path: skills/beam-next-learning/setup-workspace
+  has_references: true
+- name: deploy-to-beam
+  description: Deploy Beam Next skills as Beam Platform agents. Load when user mentions
+    'deploy to beam', 'create beam agent', 'deploy agent', 'skill to agent', 'push
+    to beam', 'beam deploy', or 'deploy-to-beam'.
+  category: system
+  tags:
+  - beam-ai
+  - deployment
+  - agents
+  platform: Beam AI
+  version: '1.0'
+  updated: '2026-02-27'
+  visibility: public
+  path: skills/deploy-to-beam
+  has_scripts: true
   has_references: true
 - name: qa-test-case-writer
   description: Comprehensive UI test case generation for QA teams. Use when the user
