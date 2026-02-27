@@ -1,6 +1,6 @@
 version: 1
 generated_by: build_registry.py
-skill_count: 239
+skill_count: 240
 skills:
 - name: beam-connect
   description: Connect to Beam AI workspace for agent management. Load when user mentions
@@ -393,6 +393,20 @@ skills:
   visibility: public
   path: skills/beam-next-learning/setup-workspace
   has_references: true
+- name: calendar-cleanup
+  description: Suggest what to do with upcoming meetings. Load when user says calendar
+    cleanup, clean up my calendar, which meetings should I decline, review my meetings.
+    Uses calendar (Google Calendar or export) and optionally goals/focus to produce
+    per-meeting suggestions (decline, shorten, delegate, merge, or keep).
+  category: productivity
+  tags:
+  - calendar
+  - meetings
+  - focus
+  version: '1.0'
+  updated: '2026-02-27'
+  visibility: public
+  path: skills/calendar-cleanup
 - name: 1on1-followup
   description: 'Quick post-meeting follow-up for 1-on-1s. Triggers: ''1on1 followup'',
     ''follow up on my 1on1'', ''1on1 with [name]'', ''debrief my 1on1'', ''process
