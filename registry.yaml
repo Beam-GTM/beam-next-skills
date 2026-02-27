@@ -1,6 +1,6 @@
 version: 1
 generated_by: build_registry.py
-skill_count: 237
+skill_count: 239
 skills:
 - name: beam-connect
   description: Connect to Beam AI workspace for agent management. Load when user mentions
@@ -393,79 +393,6 @@ skills:
   visibility: public
   path: skills/beam-next-learning/setup-workspace
   has_references: true
-- name: qa-test-case-writer
-  description: Comprehensive UI test case generation for QA teams. Use when the user
-    wants to write test cases for a feature, project, or webpage. Generates happy
-    flow, edge cases, and security test cases for client-facing UI (not API tests).
-    Creates test cases in Notion databases following standardized format with Test
-    Case ID, Title, Pre-condition, Test Steps, Expected Result, Test Data, Post-condition,
-    Priority (P0-P3), and status tracking. Triggers on requests like "write test cases
-    for [feature]", "create QA tests", "generate test scenarios", or when user provides
-    feature documentation to test.
-  author: Ahsun Iqbal
-  category: general
-  tags:
-  - api
-  - notion
-  platform: Notion
-  version: '1.0'
-  updated: '2026-01-20'
-  visibility: team
-  path: skills/general/engineering/qa-test-case-writer
-- name: ui-developer
-  category: general
-  version: '1.0'
-  visibility: public
-  path: skills/general/engineering/ui-developer
-- name: expert-improve
-  description: 'Iterative expert refinement until work is excellent. Load when user
-    says: ''improve this'', ''make this better'', ''polish until ready'', ''iterate
-    with experts'', ''refine this'''
-  category: experts
-  tags:
-  - experts
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/general/experts/expert-improve
-- name: expert-review
-  description: 'Quick expert feedback on any work. Load when user says: ''expert review'',
-    ''what do experts think'', ''get feedback'', ''review this'', ''is this good?'',
-    ''what''s wrong with this?'''
-  category: experts
-  tags:
-  - experts
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/general/experts/expert-review
-- name: candidate-compare
-  description: Compare multiple candidates for a role and recommend the best fit.
-    Load when user says "compare candidates", "select best candidate", "who should
-    we hire", "compare [names] for [role]", "rank candidates", or "best candidate
-    for [role]".
-  author: Manahil Shaikh
-  category: general
-  version: '1.0'
-  updated: '2026-02-16'
-  visibility: public
-  path: skills/general/hiring/candidate-compare
-- name: interview-coach
-  description: Analyze interview transcripts to help managers improve their interviewing
-    skills. Load when user says "review my interview with [name]", "assess my interview",
-    "how's the candidate", "interview feedback", "interview coach", "hr round review
-    with [name]", "technical round review with [name]", "final round review with [name]",
-    or provides an interview transcript. Supports 3 interview types - HR (cultural
-    fit), Technical (skill assessment), Final (career aspirations).
-  author: Jonas Diezun
-  category: general
-  tags:
-  - transcript
-  platform: workable
-  version: '2.0'
-  updated: '2026-02-16'
-  visibility: public
-  path: skills/general/hiring/interview-coach
 - name: 1on1-followup
   description: 'Quick post-meeting follow-up for 1-on-1s. Triggers: ''1on1 followup'',
     ''follow up on my 1on1'', ''1on1 with [name]'', ''debrief my 1on1'', ''process
@@ -477,7 +404,7 @@ skills:
   version: '1.0'
   updated: '2026-02-10'
   visibility: public
-  path: skills/general/productivity/1on1-followup
+  path: skills/general/1on1-followup
 - name: 1on1-prep
   description: 'Prepare for an upcoming 1-on-1. Triggers: ''prep my 1on1 with [name]'',
     ''1on1 prep'', ''prepare for my meeting with [name]'', ''what should I cover with
@@ -489,7 +416,7 @@ skills:
   version: '1.0'
   updated: '2026-02-10'
   visibility: public
-  path: skills/general/productivity/1on1-prep
+  path: skills/general/1on1-prep
 - name: 1on1-review
   description: 'Deep expert coaching review of a 1-on-1 meeting. Triggers: ''1on1
     review'', ''review my 1on1 with [name]'', ''coach me on my 1on1'', ''how did my
@@ -501,7 +428,29 @@ skills:
   version: '1.0'
   updated: '2026-02-10'
   visibility: public
-  path: skills/general/productivity/1on1-review
+  path: skills/general/1on1-review
+- name: abstract
+  description: Zoom out and contextualize overwhelming concepts. Load when user says
+    'zoom out', 'abstract', 'I'm lost', 'I'm overwhelmed', 'bigger picture', or expresses
+    confusion about where a concept fits. Identifies paradigms, shows hierarchies,
+    teaches with analogies, and connects to user's goals.
+  category: general
+  version: '1.0'
+  updated: '2026-01-09'
+  visibility: public
+  path: skills/general/abstract
+  has_references: true
+- name: add-integration
+  description: add integration, new integration, integrate with, connect to [service].
+  category: system
+  tags:
+  - system
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/general/add-integration
+  has_scripts: true
+  has_references: true
 - name: allhands-prep
   description: Prepare all-hands meetings for Beam. Load when user says 'prepare all-hands',
     'all-hands prep', 'plan all-hands meeting', 'create all-hands agenda', or mentions
@@ -513,7 +462,114 @@ skills:
   version: '1.0'
   updated: '2026-02-26'
   visibility: public
-  path: skills/general/productivity/allhands-prep
+  path: skills/general/allhands-prep
+  has_references: true
+- name: analyze-competitors
+  description: Conduct competitor analysis for product design. Load when user says
+    'analyze competitors', 'competitor research', 'competitive analysis', 'check how
+    [competitor] does this'. Guides exploration of Zapier, n8n, Lindy, Relevance.ai
+    and other automation platforms.
+  author: Mahnoor Jawed
+  category: general
+  tags:
+  - api
+  - automation
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: team
+  path: skills/general/analyze-competitors
+- name: archive-project
+  description: Load when user says "archive project", "archive [project-name]", "move
+    to archived". Moves completed projects to 05-archived/ folder for clean project
+    list.
+  category: projects
+  tags:
+  - projects
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/general/archive-project
+- name: better-doc
+  description: Improve documents for clarity, precision, and impact. Load when user
+    says "better doc", "improve writing", "make clearer", "smart brevity", or provides
+    text asking for style improvements. Uses Classical Style (Pinker) and Smart Brevity
+    (Axios) principles.
+  author: Jack Li
+  category: general
+  version: '1.0'
+  updated: '2025-12-11'
+  visibility: team
+  path: skills/general/better-doc
+  has_references: true
+- name: blackbird
+  description: Weekly reflection that helps you see yourself. Load when user says
+    "blackbird", "reflect", "review my week", "coach me", "am I on track", or "what
+    should I focus on".
+  author: Jack Li
+  category: general
+  version: '1.0'
+  updated: '2025-12-11'
+  visibility: public
+  path: skills/general/blackbird
+- name: bulk-complete
+  description: Bulk-complete tasks/steps in a project. Load when user says "bulk complete
+    [project]", "mark all done", "complete phase X", or needs to finish project tasks
+    efficiently. Works with both steps.md and tasks.md formats.
+  category: projects
+  tags:
+  - projects
+  version: '1.0'
+  updated: '2025-12-18'
+  visibility: public
+  path: skills/general/bulk-complete
+  has_scripts: true
+- name: candidate-compare
+  description: Compare multiple candidates for a role and recommend the best fit.
+    Load when user says "compare candidates", "select best candidate", "who should
+    we hire", "compare [names] for [role]", "rank candidates", or "best candidate
+    for [role]".
+  author: Manahil Shaikh
+  category: general
+  version: '1.0'
+  updated: '2026-02-16'
+  visibility: public
+  path: skills/general/candidate-compare
+- name: create-client-project
+  description: Create a new client project folder with complete structure and templates.
+    Load when user says "create client project", "new client", "add client [name]",
+    "onboard new client", "setup client folder", or "create project for [client]".
+  author: Hassaan Ahmed
+  category: general
+  tags:
+  - create
+  version: '1.0'
+  updated: '2025-12-23'
+  visibility: team
+  path: skills/general/create-client-project
+- name: create-data
+  description: Generate synthetic training data from a ruleset file. Use when the
+    user wants to create training examples, generate augmented data, or produce samples
+    following defined rules.
+  author: Aqib Ansari
+  category: general
+  tags:
+  - create
+  version: '1.0'
+  updated: '2026-02-25'
+  visibility: team
+  path: skills/general/create-data
+  has_scripts: true
+- name: create-master-skill
+  description: create master skill, integration master, shared skill library.
+  category: skill-dev
+  tags:
+  - create
+  - master
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/general/create-master-skill
+  has_scripts: true
   has_references: true
 - name: create-meeting-minutes
   description: Transform a meeting transcript into formatted meeting minutes. Load
@@ -529,7 +585,7 @@ skills:
   version: '1.0'
   updated: '2025-12-23'
   visibility: team
-  path: skills/general/productivity/create-meeting-minutes
+  path: skills/general/create-meeting-minutes
 - name: create-meeting-presentation-html
   description: Generate a self-contained HTML slide presentation for meetings. Load
     when user says "create presentation", "meeting presentation", "html presentation",
@@ -544,56 +600,7 @@ skills:
   version: '1.0'
   updated: '2026-02-16'
   visibility: public
-  path: skills/general/productivity/create-meeting-presentation-html
-- name: email-automation
-  description: Load when user says "process emails", "triage inbox", "email automation",
-    "check emails", or "inbox zero"
-  author: Jonas Diezun
-  category: productivity
-  tags:
-  - automation
-  - email
-  version: '1.0'
-  updated: '2026-02-16'
-  visibility: public
-  path: skills/general/productivity/email-automation
-  has_scripts: true
-  has_references: true
-- name: archive-project
-  description: Load when user says "archive project", "archive [project-name]", "move
-    to archived". Moves completed projects to 05-archived/ folder for clean project
-    list.
-  category: projects
-  tags:
-  - projects
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/general/projects/archive-project
-- name: bulk-complete
-  description: Bulk-complete tasks/steps in a project. Load when user says "bulk complete
-    [project]", "mark all done", "complete phase X", or needs to finish project tasks
-    efficiently. Works with both steps.md and tasks.md formats.
-  category: projects
-  tags:
-  - projects
-  version: '1.0'
-  updated: '2025-12-18'
-  visibility: public
-  path: skills/general/projects/bulk-complete
-  has_scripts: true
-- name: create-client-project
-  description: Create a new client project folder with complete structure and templates.
-    Load when user says "create client project", "new client", "add client [name]",
-    "onboard new client", "setup client folder", or "create project for [client]".
-  author: Hassaan Ahmed
-  category: general
-  tags:
-  - create
-  version: '1.0'
-  updated: '2025-12-23'
-  visibility: team
-  path: skills/general/projects/create-client-project
+  path: skills/general/create-meeting-presentation-html
 - name: create-project
   description: 'Create new projects. Load when user wants to START something new with
     a deliverable endpoint. Keywords: create project, new project, start project,
@@ -604,7 +611,7 @@ skills:
   version: '1.0'
   updated: '2026-02-26'
   visibility: public
-  path: skills/general/projects/create-project
+  path: skills/general/create-project
   has_scripts: true
   has_references: true
 - name: create-roadmap
@@ -616,267 +623,7 @@ skills:
   version: '1.0'
   updated: '2026-02-26'
   visibility: public
-  path: skills/general/projects/create-roadmap
-- name: execute-project
-  description: continue [build], resume, work on, check progress, execute build, build
-    [ID/name].
-  category: projects
-  tags:
-  - projects
-  version: '1.0'
-  updated: '2026-02-25'
-  visibility: public
-  path: skills/general/projects/execute-project
-  has_scripts: true
-- name: plan-project
-  description: create build, new project, start build, plan build, build [X].
-  category: projects
-  tags:
-  - projects
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/general/projects/plan-project
-  has_scripts: true
-  has_references: true
-- name: analyze-competitors
-  description: Conduct competitor analysis for product design. Load when user says
-    'analyze competitors', 'competitor research', 'competitive analysis', 'check how
-    [competitor] does this'. Guides exploration of Zapier, n8n, Lindy, Relevance.ai
-    and other automation platforms.
-  author: Mahnoor Jawed
-  category: general
-  tags:
-  - api
-  - automation
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: team
-  path: skills/general/research/analyze-competitors
-- name: extract-requirements
-  description: Extract and organize requirements from meeting transcripts, documents,
-    and other sources into structured domain files. Load when user says 'extract requirements',
-    'gather requirements', 'requirements from meetings', 'document requirements',
-    or needs to consolidate requirements from multiple sources into organized documentation.
-  author: Sven Djokic
-  category: general
-  tags:
-  - beam-ai
-  - meeting
-  - transcript
-  platform: Beam AI
-  version: '1.0'
-  updated: '2026-01-07'
-  visibility: team
-  path: skills/general/research/extract-requirements
-- name: write-integration-ticket
-  description: Write API integration tickets in structured specification format. Load
-    when user mentions 'write integration ticket', 'create integration spec', 'integration
-    specification', 'API action ticket', or wants to document an API integration with
-    endpoints, parameters, acceptance criteria, and error handling. Creates Linear
-    tickets with Integration label assigned to Adeel Akram.
-  author: Saqib
-  category: general
-  tags:
-  - api
-  version: '1.0'
-  updated: '2026-01-19'
-  visibility: public
-  path: skills/general/research/write-integration-ticket
-- name: dealroom-creation
-  description: Quick company folder setup for sales prospects. Load when user mentions
-    "create company", "new company", "create dealroom", "company folder", or "setup
-    [company name]". Creates simple folder structure for organizing company documents,
-    call transcripts, and emails.
-  author: Quentin
-  category: general
-  tags:
-  - email
-  - sales
-  - transcript
-  version: '1.0'
-  updated: '2025-12-12'
-  visibility: team
-  path: skills/general/sales/dealroom-creation
-- name: follow-up-automation
-  description: Streamlined follow-up system for sales calls based on call transcripts.
-    Load when user mentions "follow-up", "follow up email", "call follow-up", "send
-    follow-up", "post-call follow-up", "follow-up automation", "create follow-up",
-    "generate follow-up", or when user provides a call transcript and needs to send
-    follow-up communication and update CRM. Analyzes call transcripts to extract technical
-    requirements, decision makers, timeline, and pain points, then generates concise
-    technical follow-up emails (under 200 words) and updates CRM with lead status
-    and next steps.
-  author: Quentin
-  category: general
-  tags:
-  - automation
-  - crm
-  - email
-  - sales
-  - transcript
-  version: '1.0'
-  updated: '2025-12-12'
-  visibility: team
-  path: skills/general/sales/follow-up-automation
-- name: lead-research
-  description: 'Research sales leads and assess fit for Beam. Use when preparing for
-    prospect calls, evaluating inbound leads, or qualifying opportunities. Keywords:
-    lead research, call prep, prospect research, fit assessment, sales call preparation,
-    qualify lead, discovery call prep.'
-  author: Jonas Diezun
-  category: general
-  tags:
-  - sales
-  platform: Beam AI
-  version: '1.0'
-  updated: '2026-01-28'
-  visibility: public
-  path: skills/general/sales/lead-research
-  has_references: true
-- name: scope-of-work-creation
-  description: Create professional proposals and scopes of work (SOW) for client projects
-    using phased approach with success gates. Load when user mentions "SOW", "scope
-    of work", "proposal", "create proposal", "generate SOW", "write scope", "project
-    proposal", "statement of work", or when preparing client proposals with phased
-    deliverables, pricing, and success criteria. Structures proposals with clear phases,
-    cost breakdowns, deliverables, success gates, out-of-scope items, and legal terms.
-  author: Quentin
-  category: general
-  version: '1.0'
-  updated: '2025-12-12'
-  visibility: team
-  path: skills/general/sales/scope-of-work-creation
-- name: transcript-to-hubspot-sections
-  category: general
-  version: '1.0'
-  visibility: public
-  path: skills/general/sales/transcript-to-hubspot-sections
-- name: create-master-skill
-  description: create master skill, integration master, shared skill library.
-  category: skill-dev
-  tags:
-  - create
-  - master
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/general/skill-dev/create-master-skill
-  has_scripts: true
-  has_references: true
-- name: create-skill
-  description: create skill, new skill, automate this, make reusable.
-  category: skill-dev
-  tags:
-  - create
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/general/skill-dev/create-skill
-  has_scripts: true
-  has_references: true
-- name: import-skill
-  description: import skill, download skill, install skill, get skill.
-  category: skill-dev
-  tags:
-  - skill-dev
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/general/skill-dev/import-skill
-- name: list-skills
-  description: list skills, show skills, what skills, available skills.
-  category: system
-  tags:
-  - query
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/general/skill-dev/list-skills
-- name: search-skill-database
-  description: search skills, find skill, browse skills, skill marketplace.
-  category: skill-dev
-  tags:
-  - query
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/general/skill-dev/search-skill-database
-- name: share-skill
-  description: share skill, upload skill, publish skill.
-  category: skill-dev
-  tags:
-  - skill-dev
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/general/skill-dev/share-skill
-- name: validate-skill-functionality
-  description: validate skill, check skill, review skill execution.
-  category: skill-dev
-  tags:
-  - skill-dev
-  version: '1.0'
-  updated: '2026-02-25'
-  visibility: public
-  path: skills/general/skill-dev/validate-skill-functionality
-- name: abstract
-  description: Zoom out and contextualize overwhelming concepts. Load when user says
-    'zoom out', 'abstract', 'I'm lost', 'I'm overwhelmed', 'bigger picture', or expresses
-    confusion about where a concept fits. Identifies paradigms, shows hierarchies,
-    teaches with analogies, and connects to user's goals.
-  category: general
-  version: '1.0'
-  updated: '2026-01-09'
-  visibility: public
-  path: skills/general/tools/abstract
-  has_references: true
-- name: add-integration
-  description: add integration, new integration, integrate with, connect to [service].
-  category: system
-  tags:
-  - system
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/general/tools/add-integration
-  has_scripts: true
-  has_references: true
-- name: better-doc
-  description: Improve documents for clarity, precision, and impact. Load when user
-    says "better doc", "improve writing", "make clearer", "smart brevity", or provides
-    text asking for style improvements. Uses Classical Style (Pinker) and Smart Brevity
-    (Axios) principles.
-  author: Jack Li
-  category: general
-  version: '1.0'
-  updated: '2025-12-11'
-  visibility: team
-  path: skills/general/tools/better-doc
-  has_references: true
-- name: blackbird
-  description: Weekly reflection that helps you see yourself. Load when user says
-    "blackbird", "reflect", "review my week", "coach me", "am I on track", or "what
-    should I focus on".
-  author: Jack Li
-  category: general
-  version: '1.0'
-  updated: '2025-12-11'
-  visibility: public
-  path: skills/general/tools/blackbird
-- name: create-data
-  description: Generate synthetic training data from a ruleset file. Use when the
-    user wants to create training examples, generate augmented data, or produce samples
-    following defined rules.
-  author: Aqib Ansari
-  category: general
-  tags:
-  - create
-  version: '1.0'
-  updated: '2026-02-25'
-  visibility: team
-  path: skills/general/tools/create-data
-  has_scripts: true
+  path: skills/general/create-roadmap
 - name: create-ruleset
   description: Create a ruleset for synthetic data generation. Use when the user wants
     to define rules for generating training data, create a new dataset domain, or
@@ -888,7 +635,18 @@ skills:
   version: '1.0'
   updated: '2026-02-25'
   visibility: team
-  path: skills/general/tools/create-ruleset
+  path: skills/general/create-ruleset
+- name: create-skill
+  description: create skill, new skill, automate this, make reusable.
+  category: skill-dev
+  tags:
+  - create
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/general/create-skill
+  has_scripts: true
+  has_references: true
 - name: data-baker
   description: 'Generate realistic synthetic datasets for AI agent training and testing
     across diverse domains. Use when user provides meeting transcripts, requirements
@@ -910,8 +668,107 @@ skills:
   version: '1.0'
   updated: '2026-01-05'
   visibility: public
-  path: skills/general/tools/data-baker
+  path: skills/general/data-baker
   has_references: true
+- name: dealroom-creation
+  description: Quick company folder setup for sales prospects. Load when user mentions
+    "create company", "new company", "create dealroom", "company folder", or "setup
+    [company name]". Creates simple folder structure for organizing company documents,
+    call transcripts, and emails.
+  author: Quentin
+  category: general
+  tags:
+  - email
+  - sales
+  - transcript
+  version: '1.0'
+  updated: '2025-12-12'
+  visibility: team
+  path: skills/general/dealroom-creation
+- name: email-automation
+  description: Load when user says "process emails", "triage inbox", "email automation",
+    "check emails", or "inbox zero"
+  author: Jonas Diezun
+  category: productivity
+  tags:
+  - automation
+  - email
+  version: '1.0'
+  updated: '2026-02-16'
+  visibility: public
+  path: skills/general/email-automation
+  has_scripts: true
+  has_references: true
+- name: execute-project
+  description: continue [build], resume, work on, check progress, execute build, build
+    [ID/name].
+  category: projects
+  tags:
+  - projects
+  version: '1.0'
+  updated: '2026-02-25'
+  visibility: public
+  path: skills/general/execute-project
+  has_scripts: true
+- name: expert-improve
+  description: 'Iterative expert refinement until work is excellent. Load when user
+    says: ''improve this'', ''make this better'', ''polish until ready'', ''iterate
+    with experts'', ''refine this'''
+  category: experts
+  tags:
+  - experts
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/general/expert-improve
+- name: expert-review
+  description: 'Quick expert feedback on any work. Load when user says: ''expert review'',
+    ''what do experts think'', ''get feedback'', ''review this'', ''is this good?'',
+    ''what''s wrong with this?'''
+  category: experts
+  tags:
+  - experts
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/general/expert-review
+- name: extract-requirements
+  description: Extract and organize requirements from meeting transcripts, documents,
+    and other sources into structured domain files. Load when user says 'extract requirements',
+    'gather requirements', 'requirements from meetings', 'document requirements',
+    or needs to consolidate requirements from multiple sources into organized documentation.
+  author: Sven Djokic
+  category: general
+  tags:
+  - beam-ai
+  - meeting
+  - transcript
+  platform: Beam AI
+  version: '1.0'
+  updated: '2026-01-07'
+  visibility: team
+  path: skills/general/extract-requirements
+- name: follow-up-automation
+  description: Streamlined follow-up system for sales calls based on call transcripts.
+    Load when user mentions "follow-up", "follow up email", "call follow-up", "send
+    follow-up", "post-call follow-up", "follow-up automation", "create follow-up",
+    "generate follow-up", or when user provides a call transcript and needs to send
+    follow-up communication and update CRM. Analyzes call transcripts to extract technical
+    requirements, decision makers, timeline, and pain points, then generates concise
+    technical follow-up emails (under 200 words) and updates CRM with lead status
+    and next steps.
+  author: Quentin
+  category: general
+  tags:
+  - automation
+  - crm
+  - email
+  - sales
+  - transcript
+  version: '1.0'
+  updated: '2025-12-12'
+  visibility: team
+  path: skills/general/follow-up-automation
 - name: format-and-lint-code
   description: format code, lint code, pre-commit, before commit, code quality, auto-format
   category: tools
@@ -920,7 +777,7 @@ skills:
   version: '1.0'
   updated: '2026-02-25'
   visibility: public
-  path: skills/general/tools/format-and-lint-code
+  path: skills/general/format-and-lint-code
   has_scripts: true
   has_references: true
 - name: generate-philosophy-doc
@@ -931,7 +788,7 @@ skills:
   version: '1.0'
   updated: '2026-02-25'
   visibility: public
-  path: skills/general/tools/generate-philosophy-doc
+  path: skills/general/generate-philosophy-doc
   has_scripts: true
   has_references: true
 - name: git
@@ -944,9 +801,58 @@ skills:
   version: '1.0'
   updated: '2026-02-25'
   visibility: public
-  path: skills/general/tools/git
+  path: skills/general/git
   has_scripts: true
   has_references: true
+- name: import-skill
+  description: import skill, download skill, install skill, get skill.
+  category: skill-dev
+  tags:
+  - skill-dev
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/general/import-skill
+- name: interview-coach
+  description: Analyze interview transcripts to help managers improve their interviewing
+    skills. Load when user says "review my interview with [name]", "assess my interview",
+    "how's the candidate", "interview feedback", "interview coach", "hr round review
+    with [name]", "technical round review with [name]", "final round review with [name]",
+    or provides an interview transcript. Supports 3 interview types - HR (cultural
+    fit), Technical (skill assessment), Final (career aspirations).
+  author: Jonas Diezun
+  category: general
+  tags:
+  - transcript
+  platform: workable
+  version: '2.0'
+  updated: '2026-02-16'
+  visibility: public
+  path: skills/general/interview-coach
+- name: lead-research
+  description: 'Research sales leads and assess fit for Beam. Use when preparing for
+    prospect calls, evaluating inbound leads, or qualifying opportunities. Keywords:
+    lead research, call prep, prospect research, fit assessment, sales call preparation,
+    qualify lead, discovery call prep.'
+  author: Jonas Diezun
+  category: general
+  tags:
+  - sales
+  platform: Beam AI
+  version: '1.0'
+  updated: '2026-01-28'
+  visibility: public
+  path: skills/general/lead-research
+  has_references: true
+- name: list-skills
+  description: list skills, show skills, what skills, available skills.
+  category: system
+  tags:
+  - query
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/general/list-skills
 - name: mental-models
   description: mental model, think through this, help me decide, first principles,
     pre-mortem.
@@ -956,7 +862,18 @@ skills:
   version: '1.0'
   updated: '2026-02-24'
   visibility: public
-  path: skills/general/tools/mental-models
+  path: skills/general/mental-models
+- name: plan-project
+  description: create build, new project, start build, plan build, build [X].
+  category: projects
+  tags:
+  - projects
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/general/plan-project
+  has_scripts: true
+  has_references: true
 - name: prompt-versioning
   description: Manage AI prompts with version control, rollback, and Linear integration.
     Load when user mentions 'prompt versioning', 'version prompt', 'rollback prompt',
@@ -967,7 +884,7 @@ skills:
   version: '1.0'
   updated: '2026-01-12'
   visibility: team
-  path: skills/general/tools/prompt-versioning
+  path: skills/general/prompt-versioning
   has_scripts: true
 - name: qa-checklist
   description: Transform technical agent/node documentation into business-owner cheatsheets.
@@ -979,7 +896,67 @@ skills:
   version: '1.0'
   updated: '2025-12-17'
   visibility: public
-  path: skills/general/tools/qa-checklist
+  path: skills/general/qa-checklist
+- name: qa-test-case-writer
+  description: Comprehensive UI test case generation for QA teams. Use when the user
+    wants to write test cases for a feature, project, or webpage. Generates happy
+    flow, edge cases, and security test cases for client-facing UI (not API tests).
+    Creates test cases in Notion databases following standardized format with Test
+    Case ID, Title, Pre-condition, Test Steps, Expected Result, Test Data, Post-condition,
+    Priority (P0-P3), and status tracking. Triggers on requests like "write test cases
+    for [feature]", "create QA tests", "generate test scenarios", or when user provides
+    feature documentation to test.
+  author: Ahsun Iqbal
+  category: general
+  tags:
+  - api
+  - notion
+  platform: Notion
+  version: '1.0'
+  updated: '2026-01-20'
+  visibility: team
+  path: skills/general/qa-test-case-writer
+- name: scope-of-work-creation
+  description: Create professional proposals and scopes of work (SOW) for client projects
+    using phased approach with success gates. Load when user mentions "SOW", "scope
+    of work", "proposal", "create proposal", "generate SOW", "write scope", "project
+    proposal", "statement of work", or when preparing client proposals with phased
+    deliverables, pricing, and success criteria. Structures proposals with clear phases,
+    cost breakdowns, deliverables, success gates, out-of-scope items, and legal terms.
+  author: Quentin
+  category: general
+  version: '1.0'
+  updated: '2025-12-12'
+  visibility: team
+  path: skills/general/scope-of-work-creation
+- name: search-skill-database
+  description: search skills, find skill, browse skills, skill marketplace.
+  category: skill-dev
+  tags:
+  - query
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/general/search-skill-database
+- name: share-skill
+  description: share skill, upload skill, publish skill.
+  category: skill-dev
+  tags:
+  - skill-dev
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/general/share-skill
+- name: transcript-to-hubspot-sections
+  category: general
+  version: '1.0'
+  visibility: public
+  path: skills/general/transcript-to-hubspot-sections
+- name: ui-developer
+  category: general
+  version: '1.0'
+  visibility: public
+  path: skills/general/ui-developer
 - name: ultrathink
   description: Critical analysis that stress-tests content from multiple perspectives
     before shipping. Load when user says "ultrathink", "ultrathink this", "stress
@@ -995,7 +972,30 @@ skills:
   version: '1.0'
   updated: '2025-12-12'
   visibility: public
-  path: skills/general/tools/ultrathink
+  path: skills/general/ultrathink
+- name: validate-skill-functionality
+  description: validate skill, check skill, review skill execution.
+  category: skill-dev
+  tags:
+  - skill-dev
+  version: '1.0'
+  updated: '2026-02-25'
+  visibility: public
+  path: skills/general/validate-skill-functionality
+- name: write-integration-ticket
+  description: Write API integration tickets in structured specification format. Load
+    when user mentions 'write integration ticket', 'create integration spec', 'integration
+    specification', 'API action ticket', or wants to document an API integration with
+    endpoints, parameters, acceptance criteria, and error handling. Creates Linear
+    tickets with Integration label assigned to Adeel Akram.
+  author: Saqib
+  category: general
+  tags:
+  - api
+  version: '1.0'
+  updated: '2026-01-19'
+  visibility: public
+  path: skills/general/write-integration-ticket
 - name: airtable-connect
   description: airtable, connect airtable, query [base], add to [table].
   category: integrations
@@ -1598,6 +1598,26 @@ skills:
   - google-connect
   - google-master
   has_scripts: true
+- name: create-deal
+  description: Create a new HubSpot deal after a successful sales call where a demo
+    has been committed. Use this skill whenever the user says a call went well and
+    a demo was booked, or asks to "log a deal", "create a deal from this call", "add
+    to HubSpot", or "turn this into a deal". Only trigger when there's a clear signal
+    that a demo or next commitment was secured — do NOT trigger for exploratory calls
+    with no outcome, post-demo follow-ups, or existing deals being updated. Pulls
+    notes from Granola automatically, extracts key fields, asks the user for any missing
+    info, and creates the deal in HubSpot with all required fields and associations.
+  category: integrations
+  tags:
+  - granola
+  - hubspot
+  - deal
+  - crm
+  platform: Granola
+  version: '1.0'
+  updated: '2026-02-27'
+  visibility: public
+  path: skills/integrations/granola/create-deal
 - name: happenstance-connect
   description: 'Search and research LinkedIn connections via Happenstance API. Use
     when user says: ''search my network'', ''find someone on LinkedIn'', ''research
@@ -1728,6 +1748,26 @@ skills:
   updated: '2026-02-24'
   visibility: public
   path: skills/integrations/hubspot/hubspot-create-deal
+- name: hubspot-create-deal-from-transcript
+  description: Create a new HubSpot deal from a user-provided call transcript or meeting
+    notes. Use this skill when the user says "create deal from transcript", "log deal
+    from my notes", "create deal from call notes", "turn these notes into a deal",
+    or pastes a transcript and asks to create a deal. Only trigger when there's a
+    clear signal that a demo or next commitment was secured — do NOT trigger for exploratory
+    calls with no outcome, post-demo follow-ups, or existing deals being updated.
+    Accepts any transcript format, extracts key fields, asks the user for any missing
+    info, and creates the deal in HubSpot with all required fields and associations.
+  category: integrations
+  tags:
+  - hubspot
+  - deal
+  - crm
+  - transcript
+  platform: HubSpot
+  version: '1.0'
+  updated: '2026-02-27'
+  visibility: public
+  path: skills/integrations/hubspot/hubspot-create-deal-from-transcript
 - name: hubspot-create-meeting
   description: Create a meeting engagement in HubSpot CRM. Load when user says 'create
     meeting', 'add meeting', 'schedule meeting', 'new meeting'. Requires title, start
