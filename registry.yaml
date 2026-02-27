@@ -1,6 +1,6 @@
 version: 1
 generated_by: build_registry.py
-skill_count: 239
+skill_count: 240
 skills:
 - name: beam-connect
   description: Connect to Beam AI workspace for agent management. Load when user mentions
@@ -3257,3 +3257,18 @@ skills:
   visibility: public
   path: skills/integrations/workable/workable-master
   has_scripts: true
+- name: slack-cleanup
+  description: Suggest which Slack channels to leave or archive. Load when user says
+    "slack cleanup", "clean up my channels", "which channels should I leave", "slack
+    channel audit". Lists channels, checks recent activity (e.g. last 6 months), optionally
+    cross-references CRM (HubSpot/Salesforce) for relevance, then outputs a recommendation
+    list with rationale. Does not auto-leave channels.
+  category: productivity
+  tags:
+  - slack
+  - cleanup
+  - channels
+  version: '1.0'
+  updated: '2026-02-27'
+  visibility: public
+  path: skills/slack-cleanup
