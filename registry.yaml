@@ -1,6 +1,6 @@
 version: 1
 generated_by: build_registry.py
-skill_count: 237
+skill_count: 238
 skills:
 - name: beam-connect
   description: Connect to Beam AI workspace for agent management. Load when user mentions
@@ -279,6 +279,21 @@ skills:
   path: skills/beam/beam-tools/select-llm-model
   has_scripts: true
   has_references: true
+- name: beam-connect
+  description: Connect to Beam AI workspace for agent management. Load when user mentions
+    'beam', 'beam agent', 'beam task', 'beam analytics', 'list agents', 'create task',
+    or any Beam AI operations. Meta-skill that validates config, discovers agents,
+    and routes to appropriate operations.
+  category: integrations
+  tags:
+  - analytics
+  - beam-ai
+  - connector
+  platform: Beam AI
+  version: '1.0'
+  updated: '2025-12-18'
+  visibility: public
+  path: skills/beam-connect
 - name: analyze-context
   description: Upload files for AI analysis. SubAgents extract insights and save structured
     documents.
