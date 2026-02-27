@@ -1,6 +1,6 @@
 version: 1
 generated_by: build_registry.py
-skill_count: 237
+skill_count: 223
 skills:
 - name: beam-connect
   description: Connect to Beam AI workspace for agent management. Load when user mentions
@@ -64,69 +64,6 @@ skills:
   visibility: team
   path: skills/beam/beam-tools/beam-feedback-automation
   has_scripts: true
-- name: beam-get-agent-analytics
-  description: Get analytics for a Beam.ai agent including task counts, completion
-    rates, evaluation scores, and performance trends. Load when user says "agent analytics",
-    "beam analytics", "agent performance", "task stats for agent", "how is agent performing",
-    or needs agent metrics.
-  author: Hassaan Ahmed
-  category: integrations
-  tags:
-  - analytics
-  - beam-ai
-  platform: Beam AI
-  version: '1.0'
-  updated: '2026-01-02'
-  visibility: team
-  path: skills/beam/beam-tools/beam-get-agent-analytics
-  has_scripts: true
-- name: beam-get-task-details
-  description: Get detailed information about a specific Beam.ai task including status,
-    parameters, node execution, and graph state. Load when user says "get task details",
-    "task info", "show task", "task status", "what happened with task", or needs to
-    inspect a specific task.
-  author: Hassaan Ahmed
-  category: integrations
-  tags:
-  - beam-ai
-  platform: Beam AI
-  version: '1.0'
-  updated: '2026-01-02'
-  visibility: team
-  path: skills/beam/beam-tools/beam-get-task-details
-  has_scripts: true
-- name: beam-graph-edit
-  description: Edit Beam agent graph nodes — update prompts, input/output param descriptions,
-    and push changes via PUT. Load when user says 'edit beam graph', 'update beam
-    node', 'change beam prompt', 'push graph changes', 'modify agent graph', 'update
-    param description', or needs to modify a live Beam agent's graph configuration.
-    Uses the proven GET-clean-modify-PUT cycle that bypasses the unreliable PATCH
-    endpoint.
-  author: Anas Duksi
-  category: integrations
-  tags:
-  - beam-ai
-  - update
-  platform: Beam AI
-  version: '1.0'
-  updated: '2026-02-19'
-  visibility: team
-  path: skills/beam/beam-tools/beam-graph-edit
-  has_scripts: true
-- name: beam-retry-tasks
-  description: Retry failed Beam.ai tasks. Load when user says "retry tasks", "rerun
-    failed tasks", "retry beam tasks", "resubmit tasks", or needs to re-execute failed
-    agent tasks.
-  author: Jack Li
-  category: integrations
-  tags:
-  - beam-ai
-  platform: Beam AI
-  version: '1.0'
-  updated: '2025-12-15'
-  visibility: public
-  path: skills/beam/beam-tools/beam-retry-tasks
-  has_scripts: true
 - name: calculate-beam-agent-pricing
   description: Design node architecture and calculate comprehensive pricing for Beam
     AI agents based on requirements. Load when user says 'calculate agent pricing',
@@ -143,40 +80,6 @@ skills:
   updated: '2026-02-03'
   visibility: team
   path: skills/beam/beam-tools/calculate-beam-agent-pricing
-  has_references: true
-- name: create-beam-task-auto-trigger
-  description: Create an auto-trigger webhook script for a Beam.ai agent task. Supports
-    simple query-based, query with attachments/data (base64-encoded), and email-triggered
-    (Gmail/Workable) agents. Load when user says "create auto trigger", "create task
-    auto trigger", "convert task to webhook", "create beam webhook", "automate beam
-    task", or provides a Beam task URL to create a webhook trigger script.
-  author: Safi Haider
-  category: general
-  tags:
-  - create
-  - email
-  version: '1.4'
-  updated: '2026-01-06'
-  visibility: team
-  path: skills/beam/beam-tools/create-beam-task-auto-trigger
-  has_scripts: true
-- name: demo-documentation-generation-agent
-  description: Generate comprehensive, fully-detailed documentation for Beam AI agents
-    from graph.json files. Load when user says "document beam agent", "create agent
-    documentation", "generate agent docs", "document this agent", "demo documentation",
-    or provides a Beam agent graph file. Analyzes graph structure, extracts workflow,
-    tools, integrations, descriptions, and generates complete documentation with NO
-    placeholders.
-  author: Safi Haider
-  category: general
-  tags:
-  - beam-ai
-  platform: Beam AI
-  version: '1.2'
-  updated: '2026-01-06'
-  visibility: team
-  path: skills/beam/beam-tools/demo-documentation-generation-agent
-  has_scripts: true
   has_references: true
 - name: design-beam-agent
   description: Design complete Beam.ai agent node architecture from a scoping document.
@@ -214,38 +117,6 @@ skills:
   updated: '2025-12-10'
   visibility: team
   path: skills/beam/beam-tools/evaluate-solutions-case-study
-- name: generate-demo-agent-sample-input-data
-  description: Generate sample test inputs and expected results for Beam.ai agents.
-    Load when user says "generate demo data", "create sample inputs for agent", "demo
-    data for beam agent", "test data for agent", "sample input data", or provides
-    a Beam agent URL asking for test cases.
-  author: Hassaan Ahmed, Safi Haider
-  category: general
-  tags:
-  - beam-ai
-  platform: Beam AI
-  version: '1.0'
-  updated: '2026-01-06'
-  visibility: team
-  path: skills/beam/beam-tools/generate-demo-agent-sample-input-data
-  has_scripts: true
-- name: get-beam-agent-graph
-  description: Fetch and save Beam.ai agent graph JSON via API. Load when user says
-    "get agent graph", "fetch beam graph", "download agent graph", "beam agent graph",
-    "get graph for agent", or provides a workspace ID and agent ID to retrieve the
-    graph structure.
-  author: Safi Haider
-  category: general
-  tags:
-  - api
-  - beam-ai
-  platform: Beam AI
-  version: '1.0'
-  updated: '2026-01-05'
-  visibility: team
-  path: skills/beam/beam-tools/get-beam-agent-graph
-  has_scripts: true
-  has_references: true
 - name: graph-slicer
   description: Slice Beam.ai agent graphs into separate node files with topology-aware
     naming and Mermaid flowchart generation. Supports both exported JSON files with
@@ -545,20 +416,6 @@ skills:
   updated: '2026-02-16'
   visibility: public
   path: skills/general/productivity/create-meeting-presentation-html
-- name: email-automation
-  description: Load when user says "process emails", "triage inbox", "email automation",
-    "check emails", or "inbox zero"
-  author: Jonas Diezun
-  category: productivity
-  tags:
-  - automation
-  - email
-  version: '1.0'
-  updated: '2026-02-16'
-  visibility: public
-  path: skills/general/productivity/email-automation
-  has_scripts: true
-  has_references: true
 - name: archive-project
   description: Load when user says "archive project", "archive [project-name]", "move
     to archived". Moves completed projects to 05-archived/ folder for clean project
@@ -934,19 +791,6 @@ skills:
   path: skills/general/tools/generate-philosophy-doc
   has_scripts: true
   has_references: true
-- name: git
-  description: 'Git operations for Nexus. Load when user mentions: git, sync upstream,
-    fetch upstream, fetch origin, push origin, pull, commit, git status, git add,
-    git log, git branch, git stash, git reset, git revert, undo commit, update from
-    template, setup git, ssh key, clone repo, git config.'
-  author: Abdul Rafay
-  category: general
-  version: '1.0'
-  updated: '2026-02-25'
-  visibility: public
-  path: skills/general/tools/git
-  has_scripts: true
-  has_references: true
 - name: mental-models
   description: mental model, think through this, help me decide, first principles,
     pre-mortem.
@@ -957,18 +801,6 @@ skills:
   updated: '2026-02-24'
   visibility: public
   path: skills/general/tools/mental-models
-- name: prompt-versioning
-  description: Manage AI prompts with version control, rollback, and Linear integration.
-    Load when user mentions 'prompt versioning', 'version prompt', 'rollback prompt',
-    'prompt history', 'create prompt version', or needs to manage prompts across client
-    projects.
-  author: Anas Duksi
-  category: general
-  version: '1.0'
-  updated: '2026-01-12'
-  visibility: team
-  path: skills/general/tools/prompt-versioning
-  has_scripts: true
 - name: qa-checklist
   description: Transform technical agent/node documentation into business-owner cheatsheets.
     Use when asked to create "cheatsheet", "review guide", "QA checklist", "validation
@@ -1084,41 +916,6 @@ skills:
   updated: '2025-12-24'
   visibility: team
   path: skills/integrations/fathom/fathom
-- name: fathom-fetch-meetings
-  description: Fetch meeting recordings and transcripts from Fathom API filtered by
-    attendee email domain. Load when user says "fetch meetings", "get fathom recordings",
-    "fathom meetings for [domain]", "list meetings from fathom", "get transcripts",
-    or mentions Fathom.
-  author: Hassaan Ahmed
-  category: general
-  tags:
-  - api
-  - email
-  - fathom
-  - meeting
-  - transcript
-  platform: Fathom
-  version: '1.0'
-  updated: '2025-12-23'
-  visibility: team
-  path: skills/integrations/fathom/fathom-fetch-meetings
-- name: fathom-get-transcript
-  description: Fetch full transcript from Fathom using a meeting/recording ID. Load
-    when user says "get transcript", "fetch transcript for [ID]", "fathom transcript",
-    "download meeting transcript", or has a meeting ID and wants the full conversation
-    text.
-  author: Hassaan Ahmed
-  category: general
-  tags:
-  - fathom
-  - meeting
-  - transcript
-  platform: Fathom
-  version: '1.0'
-  updated: '2025-12-23'
-  visibility: team
-  path: skills/integrations/fathom/fathom-get-transcript
-  has_scripts: true
 - name: process-client-meeting
   description: Complete end-to-end workflow to process a client meeting. Load when
     user says "process meeting", "meeting workflow", "process client meeting", "full
@@ -3201,19 +2998,3 @@ skills:
   visibility: public
   path: skills/integrations/tavily/tavily-gtm-research
   has_references: true
-- name: workable-master
-  description: All Workable ATS operations — fetch JDs, search candidates, post assessments/reviews.
-    Load when user says "fetch JD", "search workable", "push to workable", "post review",
-    "rate candidate", "workable", "push assessment", "list jobs", or after interview-coach
-    completes an evaluation. Replaces workable-fetch-jd and workable-push-assessment.
-  author: Jonas Diezun
-  category: integrations
-  tags:
-  - master
-  - workable
-  platform: Workable
-  version: '2.0'
-  updated: '2026-02-16'
-  visibility: public
-  path: skills/integrations/workable/workable-master
-  has_scripts: true
