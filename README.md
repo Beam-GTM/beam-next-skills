@@ -1,6 +1,6 @@
 # Beam Next Skills Library
 
-Installable skills for [Beam Next](https://github.com/Beam-GTM/beam-next-raw). 239 skills across integrations, general workflows, learning, and more.
+Installable skills for [Beam Next](https://github.com/Beam-GTM/beam-next-raw). 240 skills across integrations, general workflows, learning, and more.
 
 ## Install a Skill
 
@@ -249,6 +249,7 @@ Extended index with owner and version. See `registry.yaml` for the full machine-
 | add-integration | — | 1.0 | system |
 | allhands-prep | — | 1.0 | system |
 | list-skills | — | 1.0 | system |
+| mid-session-cleanup | — | 1.0 | system |
 | format-and-lint-code | — | 1.0 | tools |
 | generate-philosophy-doc | — | 1.0 | tools |
 | mental-models | — | 1.0 | tools |
@@ -257,10 +258,8 @@ Extended index with owner and version. See `registry.yaml` for the full machine-
 
 1. Add your skill folder under the appropriate category
 2. Ensure it has a valid `SKILL.md` with YAML frontmatter (required: `name`, `description`; recommended: `author`, `version`, `category`)
-3. Regenerate the index and overview:
+3. Regenerate the index (README overview updates automatically):
    ```bash
    python3 build_registry.py .
-   python3 build_readme_overview.py --registry registry.yaml --markdown
    ```
-   Then replace the **Skills overview** section in this README with the output.
 4. Open a PR
