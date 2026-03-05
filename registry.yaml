@@ -1,6 +1,6 @@
 version: 1
 generated_by: build_registry.py
-skill_count: 239
+skill_count: 240
 skills:
 - name: beam-connect
   description: Connect to Beam AI workspace for agent management. Load when user mentions
@@ -3256,4 +3256,18 @@ skills:
   updated: '2026-02-16'
   visibility: public
   path: skills/integrations/workable/workable-master
+  has_scripts: true
+- name: push-to-beam-next-raw
+  description: 'Push a filtered copy of this repo to beam-next-raw (no projects, memory,
+    apps, workspace). Triggers: ''push to beam next raw'', ''release beam next raw'',
+    ''sync beam-next-raw'', ''publish upstream''.'
+  category: system
+  tags:
+  - release
+  - upstream
+  - beam-next-raw
+  version: '1.0'
+  updated: '2026-02-27'
+  visibility: public
+  path: skills/push-to-beam-next-raw
   has_scripts: true
