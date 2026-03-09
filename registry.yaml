@@ -1,6 +1,6 @@
 version: 1
 generated_by: build_registry.py
-skill_count: 244
+skill_count: 246
 skills:
 - name: beam-connect
   description: Connect to Beam AI workspace for agent management. Load when user mentions
@@ -432,6 +432,24 @@ skills:
   version: '1.0'
   visibility: public
   path: skills/expand
+- name: deep-thinking
+  description: Structured deep thinking for hard problems. Load when user says "deep
+    think", "think deeply", "frame this", "what's the real question", "eigenquestion",
+    "challenge this", "ultrathink", "stress test this", "apply a framework", "get
+    expert feedback on this". Frames the problem (one-sentence problem, binding constraint,
+    eigenquestion), then runs either stress-test (multi-perspective critique), mental
+    framework (pre-mortem, decision-matrix, etc.), or expert review (persona-based
+    feedback).
+  category: tools
+  tags:
+  - thinking
+  - strategy
+  - critique
+  version: '1.0'
+  updated: '2026-02-27'
+  visibility: public
+  path: skills/deep-thinking
+
 - name: 1on1-followup
   description: 'Quick post-meeting follow-up for 1-on-1s. Triggers: ''1on1 followup'',
     ''follow up on my 1on1'', ''1on1 with [name]'', ''debrief my 1on1'', ''process
@@ -3306,3 +3324,20 @@ skills:
   version: '1.0'
   visibility: public
   path: skills/voice-check
+- name: markdown-to-pdf
+  description: 'Convert markdown files to professionally styled PDFs. Triggers: ''render
+    pdf'', ''markdown to pdf'', ''create pdf'', ''export pdf'', ''generate pdf'',
+    ''make pdf''.'
+  category: tools
+  tags:
+  - pdf
+  - markdown
+  - export
+  - documents
+  version: '1.0'
+  updated: '2026-03-03'
+  visibility: public
+  path: skills/markdown-to-pdf
+  requires:
+  - markdown2pdf-mcp (npm, global)
+  has_scripts: true
