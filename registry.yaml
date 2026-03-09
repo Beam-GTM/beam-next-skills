@@ -3271,3 +3271,20 @@ skills:
   visibility: public
   path: skills/integrations/workable/workable-master
   has_scripts: true
+- name: markdown-to-pdf
+  description: 'Convert markdown files to professionally styled PDFs. Triggers: ''render
+    pdf'', ''markdown to pdf'', ''create pdf'', ''export pdf'', ''generate pdf'',
+    ''make pdf''.'
+  category: tools
+  tags:
+  - pdf
+  - markdown
+  - export
+  - documents
+  version: '1.0'
+  updated: '2026-03-03'
+  visibility: public
+  path: skills/markdown-to-pdf
+  requires:
+  - markdown2pdf-mcp (npm, global)
+  has_scripts: true
