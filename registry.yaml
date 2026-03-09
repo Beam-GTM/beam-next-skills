@@ -3257,6 +3257,19 @@ skills:
   visibility: public
   path: skills/integrations/workable/workable-master
   has_scripts: true
+- name: push-to-beam-next-raw
+  description: 'Push a filtered copy of this repo to beam-next-raw (no projects, memory,
+    apps, workspace). Triggers: ''push to beam next raw'', ''release beam next raw'',
+    ''sync beam-next-raw'', ''publish upstream''.'
+  category: system
+  tags:
+  - release
+  - upstream
+  - beam-next-raw
+  version: '1.0'
+  updated: '2026-02-27'
+  visibility: public
+  path: skills/push-to-beam-next-raw
 - name: markdown-to-pdf
   description: 'Convert markdown files to professionally styled PDFs. Triggers: ''render
     pdf'', ''markdown to pdf'', ''create pdf'', ''export pdf'', ''generate pdf'',
@@ -3273,4 +3286,4 @@ skills:
   path: skills/markdown-to-pdf
   requires:
   - markdown2pdf-mcp (npm, global)
-  has_scripts: true
+
