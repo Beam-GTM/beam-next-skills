@@ -252,6 +252,7 @@ Extended index with owner and version. See `registry.yaml` for the full machine-
 | mid-session-cleanup | — | 1.0 | system |
 | format-and-lint-code | — | 1.0 | tools |
 | generate-philosophy-doc | — | 1.0 | tools |
+| markdown-to-pdf | — | 1.0 | tools |
 | mental-models | — | 1.0 | tools |
 
 ## Contribute
