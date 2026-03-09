@@ -585,3 +585,125 @@ Retrieve task execution nodes that used a specific tool function. Useful for ana
   "count": 50
 }
 ```
+
+---
+
+## Complex Graph Patterns & Examples
+
+This section documents real-world complex graph patterns for creating agents with the Complete Graph API.
+
+### Pattern 1: Conditional Fan-Out (1-to-Many Routing)
+
+A single router node inspects extracted data and branches to N specialized processors, each terminating at its own Send Data node.
+
+#### Example: BID Debt Collection (9 nodes, 4 conditions)
+
+```
+Entry Node
+    │
+    ▼ (unconditional)
+0. Receptionist (router + initial extraction, 8 eval criteria, 6 outputs)
+    │
+    ├── "subfolder = Schreiben Schuldner" → Schreiben Schuldner (37 eval criteria, 3 outputs) → Send Data
+    ├── "subfolder = Schreiben Bank" → Schreiben Bank (4 eval criteria, 3 outputs) → Send Data
+    ├── "sub_folder contains 'Zurück' or 'zurück'" → TZV Zurück (3 eval criteria, 3 outputs, 1 linked param) → Send Data
+    └── "sub_folder is not matched to any criteria" → Send Data (fallback)
+```
+
+**Key details:**
+- Receptionist outputs: `case_id`, `output_receptionist` (object), `contact_array` (array), `debtor_information` (object), `debtorActivityStates` (array), `bankInformation` (array)
+- Schreiben Schuldner has 18 reasoning+value pairs in a single `output_schreiben_schuldner` object + `keyIndicators` array + `cClassificationDecision` object
+- TZV Zurück has a **linked param** `bank_information` → linked to Receptionist's `bankInformation` via `linkedOutputParamNodeId` pointing to the **tool config ID**
+- All 4 Send Data nodes are identical: `CustomApiTool_SendData-Ratenzuhlung` with 44 ai_fill input params
+- All prompts are **empty** — nodes rely on `toolFunctionName`, `paramDescriptions`, and `evaluationCriteria`
+
+### Pattern 2: Multi-Level Routing (Nested Sub-Routers)
+
+A main router fans out to branches, some of which contain their own sub-routers for further conditional branching.
+
+#### Example: E-commerce Order Processing (16 nodes, 8 conditions)
+
+```
+Entry Node
+    │
+    ▼ (unconditional)
+Order Intake (main router, 6 eval criteria, 4 outputs)
+    │
+    ├── "order_type = subscription"
+    │       ▼
+    │   Subscription Processor (5 eval) ──linked──→ Payment Validator (4 eval) → Send Data
+    │
+    ├── "order_type = one_time"
+    │       ▼
+    │   Inventory Checker (4 eval, sub-router)
+    │       ├── "in_stock = true"  → Shipping Calculator (4 eval, linked) → Send Data
+    │       └── "in_stock = false" → Backorder Handler (4 eval) → Send Data
+    │
+    ├── "order_type = return"
+    │       ▼
+    │   Return Analyzer (5 eval, sub-router)
+    │       ├── "return_eligible = true"  → Refund Processor (4 eval, linked) → Send Data
+    │       └── "return_eligible = false" → Rejection Notifier (3 eval) → Send Data
+    │
+    └── "order_type not matched" → Send Data (fallback)
+```
+
+**Key details:**
+- 3 linked params: Payment Validator←Subscription Processor, Shipping Calculator←Inventory Checker, Refund Processor←Return Analyzer
+- 2-level routing depth (main router + 2 sub-routers)
+- 6 Send Data terminal nodes with 17 shared input params each
+- 39 total evaluation criteria across 10 processing nodes
+
+### Critical Implementation Rules
+
+#### Linked Parameters
+- `linkedOutputParamNodeId` must point to the **tool configuration ID** (NOT the node ID)
+- Use `fillType: "linked"` + `linkedOutputParamName` (name of the output param on parent) + `linkedOutputParamNodeId` (parent's tool config UUID)
+
+#### Edge Mirroring
+- Every edge must appear in BOTH the source node's `childEdges[]` AND the target node's `parentEdges[]` with identical condition and `isAttachmentDataPulledIn`
+
+#### Terminal Nodes
+- Send Data leaf nodes do NOT need `isExitNode: true` — empty `childEdges: []` is sufficient
+- Multiple Send Data nodes can share the same `toolFunctionName`
+
+#### Evaluation Criteria Scale
+- Processing nodes can have 3-37+ evaluation criteria
+- Entry nodes and Send Data nodes typically have 0 criteria with `isEvaluationEnabled: false`
+- Each criterion should be a specific, testable statement about the expected output
+
+#### Output Parameter Patterns
+- Position 0 is NOT always `reasoning_steps` — can be domain-specific (e.g., `output_schreiben_schuldner`)
+- Complex nested objects: use JSON-stringified schemas in `paramDescription`
+- Arrays: set `isArray: true` with schema in `paramDescription`
+- Reasoning+value pairs: `"reasoning_fieldName": "<string, 5-7 sentences>"` + `"fieldName": "<type or null>"`
+
+#### Required Fields on Every Node
+- `memoryLookupInstruction`: `""` (empty string, required)
+- `reloadProps`: `false` (required on all input params)
+- `remoteOptions`: `false` (required on all input params)
+- `isAttachmentDataPulledIn`: `true` (on nodes and edges)
+
+#### Free Plan Limitations
+- Max 3 agents per workspace
+- `fallbackModels` must be empty string `""` (not allowed on free plan)
+- `preferredModel` can be `null`
+
+### Send Data Node Template (BID Standard — 44 fields)
+
+```
+CaseMetaData: case_id, main_folder, sub_folder, receptionist_beam_task_id, cBeamAgentVersion
+Letter info: dLetterDate, cLetterLanguage
+Death flags: bIsDead, dDeathDate
+Debtor details: nDebtorIncome, cDebtorEmployer, nDebtorChildrenCount, dDebtorBirthDate, cDebtorMaritalStatus, cDebtorCountry
+TZV fields: bIsSignatureTZV, cFrequencyInstalments, nClaimAmount
+Payment amounts: nAmountFirstInstalment, nAmountFurtherInstalments, dDateFirstInstalment
+Comparison/depositor: dDateComparisonPayment, bIsDepositorEqualsDebtor, bIsBankersOrderStatus
+Payment booleans: bIsOfferedTotalPayment, bIsInstallmentOffered, bPayIn2Rates, bIsDeferment, bIsFoa, bIsPaymentDate, bIsBankDetailsRequest, bIsPaypal
+Payment dates: dExactTotalPaymentDate, dDefermentDate, nDefermentDurationMonths
+Dispute flags: bIsClaimDisputed, bIsPaymentCompleted
+Classification: cCaseClassification, cClassificationReasoning, cClassificationDecisionVariables
+Complex arrays: contacts[], debtorActivityStates[], bankInformation[], keyIndicators[]
+```
+
+All fields use `fillType: "ai_fill"`, `dataType: "string"` (or `"array"` for complex arrays), `required: false`.
