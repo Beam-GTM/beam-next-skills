@@ -3257,6 +3257,22 @@ skills:
   visibility: public
   path: skills/integrations/workable/workable-master
   has_scripts: true
+- name: project-cleanup
+  description: 'Audit and fix Beam Next project references after archiving. Also:
+    archive completed docs within a project. Triggers: ''project cleanup'', ''fix
+    project links'', ''audit projects'', ''update archive references'', ''check project
+    refs'', ''docs cleanup'', ''clean up docs'', ''archive done docs''.'
+  category: system
+  tags:
+  - projects
+  - archive
+  - cleanup
+  - references
+  - docs
+  version: '2.0'
+  updated: '2026-03-05'
+  visibility: public
+  path: skills/project-cleanup
 - name: markdown-to-pdf
   description: 'Convert markdown files to professionally styled PDFs. Triggers: ''render
     pdf'', ''markdown to pdf'', ''create pdf'', ''export pdf'', ''generate pdf'',
@@ -3273,4 +3289,3 @@ skills:
   path: skills/markdown-to-pdf
   requires:
   - markdown2pdf-mcp (npm, global)
-  has_scripts: true
