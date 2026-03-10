@@ -69,6 +69,41 @@ python3 03-skills/okr-self-review/scripts/fetch_okrs.py \
 
 Returns JSON with 5 sections: `functional_okrs`, `ai_native_okrs`, `key_projects`, `functional_skills`, `core_behaviours`. Each entry includes: `page_id`, `text`, `status`, `self_rating`, `checkin_6months`, `checkin_3months`, `quarter`, `year`, and `_prop_map` (actual Notion property names/types for write-back).
 
+**If Step 1 returns zero OKRs** (exit code 2, empty databases, or no Notion page): proceed to Step 1.5.
+
+### Step 1.5: Infer OKRs from Evidence (No-OKR Fallback)
+
+Triggered when the individual has **no active OKRs** in Notion. Instead of stopping, the skill reverse-engineers objectives from activity data.
+
+1. Notify the user:
+   ```
+   No active OKRs found in Notion for {name}. Switching to inference mode —
+   I'll reverse-engineer objectives from your activity data across all available sources.
+   ```
+
+2. Proceed to Step 2 (Gather Evidence) as normal — collect all available sources
+
+3. **Analyze evidence to extract work themes**:
+   - From **Fathom meetings**: recurring topics, projects discussed, decisions made, action items owned by the individual
+   - From **Chat logs**: tasks completed, skills used, tools built, problems solved
+   - From **BEO data**: any OKR updates logged in Google Sheets (even if not in Notion)
+   - From **Workspace artifacts**: deliverables produced (proposals, analyses, templates, code)
+
+4. **Cluster themes into 3–6 inferred OKRs**:
+   - Group related activities into objectives (e.g., "Improved onboarding process", "Built AI-powered automation tools")
+   - Classify each as **Functional** or **AI Native** based on whether AI was the primary method
+   - Extract key projects as standalone entries
+   - Infer skills demonstrated and core behaviours from the evidence
+
+5. **Flag as inferred**: All inferred items are marked `[Inferred]` in the output so the reviewer knows these were not from Notion
+
+6. **Write-back handling**: Since there are no existing Notion rows, skip the normal write-back. Instead, after showing the review, offer:
+   ```
+   These OKRs were inferred from your activity data. Would you like me to:
+   1. Create these as OKRs in your Notion page?
+   2. Save the review as-is (no Notion changes)?
+   ```
+
 ### Step 2: Gather Evidence
 
 From all available sources in parallel:
@@ -162,12 +197,15 @@ Use famous evaluators whose domain matches the work being reviewed. Keep feedbac
 
 ## Output Template
 
+Use the standard template when OKRs exist in Notion. When OKRs are **inferred** (Step 1.5), use the `[Inferred]` variant below.
+
 ```
 # Performance Review Cycle Ph {phase}, {year}
 # Self-Review: {name}
 
 **Review Period**: {start_date} to {end_date}
 **Data Sources**: {list}
+**Mode**: {Standard | Inferred — "Inferred" when no OKRs found in Notion}
 
 ---
 
@@ -202,11 +240,29 @@ Use famous evaluators whose domain matches the work being reviewed. Keep feedbac
 
 ---
 
+### [Inferred] OKR Template (used when Step 1.5 is triggered)
+
+### OKR {N}: {text} [Inferred]
+**Source**: {Fathom, Chat, BEO, Workspace — primary evidence sources}
+
+**Evidence**:
+- {bullet 1 — specific evidence with source tag [Chat], [BEO], [Fathom], [Workspace]}
+- {bullet 2}
+- {bullet 3}
+- {bullet 4 — max 4-5 bullets}
+
+**Suggested Rating**: {X}/5
+
+**Feedback** *({Persona Name})*: "{2-3 lines. Direct, specific, actionable.}"
+
+---
+
 ## Key Projects
 
 Use Key Projects from Notion. If the Notion list is incomplete,
 supplement with major projects identified from evidence (chat logs,
 workspace artifacts, Fathom meetings).
+When in inference mode, extract all key projects from evidence.
 
 ### Project {N}: {text}
 **Related OKRs**: {which OKRs this contributes to}
@@ -261,6 +317,8 @@ Reference actual work. End with one clear action for next period.}
 | **No Notion page ID** | Ask user; save to user-config.yaml |
 | **Database names differ** | List found databases; ask user |
 | **All OKRs Done** | Include them (--include-done flag) |
+| **No active OKRs in Notion** | Trigger Step 1.5: infer OKRs from evidence sources (Fathom, chat, BEO, workspace). Mark as `[Inferred]`. Offer to create in Notion. |
+| **No Notion page at all** | Skip Step 1 entirely. Gather evidence from all other sources. Run full inference mode. |
 | **Missing data sources** | Skip gracefully; note in sources list |
 | **Key Projects list incomplete in Notion** | Supplement from evidence |
 | **Core behaviours not in Notion** | Use defaults: Ownership, Execution, Collaboration, Growth, AI-Native, Quality, Experimentation |
@@ -278,4 +336,4 @@ Reference actual work. End with one clear action for next period.}
 
 ---
 
-**Version**: 2.1 | **Updated**: 2026-03-05
+**Version**: 2.2 | **Updated**: 2026-03-05
