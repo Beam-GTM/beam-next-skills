@@ -1,0 +1,291 @@
+{
+  "agentName": "Novus Pricing Matrix Report",
+  "agentDescription": "Daily automated report agent for Novus Management. Extracts rent increase, car park, and storage schedule data from Yardi SharePoint exports, validates and transforms records, generates a Pricing Matrix report, and notifies the team on Slack.",
+  "personality": "Professional, precise, data-focused. Reports findings clearly with numbers and percentages. Flags anomalies proactively.",
+  "restrictions": "Never modify source data. Never send reports externally. Always validate data before generating reports.",
+  "prompts": [
+    "Generate today's Pricing Matrix Report",
+    "Run the daily pricing matrix update",
+    "Pull the latest Yardi data and build the pricing matrix"
+  ],
+  "nodes": [
+    {
+      "key": "entry",
+      "name": "Entry Node",
+      "objective": "Entry Node",
+      "is_entry": true,
+      "is_exit": false,
+      "x": -50,
+      "y": 150,
+      "on_error": "STOP",
+      "input_params": [],
+      "output_params": [],
+      "edges": [
+        { "target": "extract-yardi-data", "name": "Start", "condition": "" }
+      ]
+    },
+    {
+      "key": "extract-yardi-data",
+      "name": "Extract Yardi Data",
+      "objective": "Extract the three source data files from the Yardi SharePoint export folder: rent_increases.csv, car_park_schedule.csv, and storage_schedule.csv. Read each CSV file and return the raw data as structured records. Report the number of records found in each file.",
+      "is_entry": false,
+      "is_exit": false,
+      "x": 250,
+      "y": 150,
+      "model": "BEDROCK_CLAUDE_SONNET_4",
+      "tool_name": "SharePoint File Reader",
+      "tool_description": "Reads CSV files from the Yardi SharePoint export folder",
+      "prompt": "Read the three Yardi export CSV files from the SharePoint folder:\n1. rent_increases.csv — contains unit_id, property, unit_number, tenant_name, lease_start, lease_end, current_rent_weekly, proposed_rent_weekly, increase_pct, increase_status, effective_date, notice_sent\n2. car_park_schedule.csv — contains bay_id, property, bay_number, bay_type, tenant_name, unit_id, monthly_rate, lease_start, lease_end, status\n3. storage_schedule.csv — contains storage_id, property, cage_number, size_sqm, tenant_name, unit_id, monthly_rate, lease_start, lease_end, status\n\nReturn all records as structured JSON grouped by source file.",
+      "on_error": "STOP",
+      "enable_retry": true,
+      "retry_count": 2,
+      "retry_wait_ms": 3000,
+      "fallback_models": null,
+      "evaluation_criteria": [],
+      "input_params": [
+        {
+          "name": "folder_path",
+          "description": "SharePoint folder path containing Yardi CSV exports",
+          "type": "string",
+          "fill_type": "static",
+          "static_value": "/sites/NovusManagement/Shared Documents/Yardi Exports/Daily",
+          "required": true,
+          "position": 0
+        },
+        {
+          "name": "file_names",
+          "description": "CSV files to extract",
+          "type": "string",
+          "fill_type": "static",
+          "static_value": "rent_increases.csv, car_park_schedule.csv, storage_schedule.csv",
+          "required": true,
+          "position": 1
+        }
+      ],
+      "output_params": [
+        {
+          "name": "rent_increases",
+          "description": "Rent increase records from Yardi — unit details, current vs proposed rent, increase status",
+          "type": "object",
+          "is_array": true,
+          "position": 0
+        },
+        {
+          "name": "car_park_schedule",
+          "description": "Car park bay records — bay details, tenant assignments, monthly rates, occupancy status",
+          "type": "object",
+          "is_array": true,
+          "position": 1
+        },
+        {
+          "name": "storage_schedule",
+          "description": "Storage cage records — cage details, tenant assignments, monthly rates, occupancy status",
+          "type": "object",
+          "is_array": true,
+          "position": 2
+        },
+        {
+          "name": "extraction_summary",
+          "description": "Summary of extraction: record counts per file, any missing or malformed files",
+          "type": "string",
+          "position": 3
+        }
+      ],
+      "edges": [
+        { "target": "transform-validate", "name": "Raw data extracted", "condition": "" }
+      ]
+    },
+    {
+      "key": "transform-validate",
+      "name": "Transform & Validate",
+      "objective": "Transform and validate the raw Yardi data into report-ready structures. For each property, calculate rent increases (count by status, average increase %, total current vs proposed weekly rent, weekly and annual uplift), car park (total bays, occupied vs vacant, occupancy %, total monthly revenue), and storage (total cages, occupied vs vacant, occupancy %, total monthly revenue). Calculate portfolio-wide totals. Flag anomalies: increase % above 10%, expired leases, occupied bays/cages with no monthly rate.",
+      "is_entry": false,
+      "is_exit": false,
+      "x": 550,
+      "y": 150,
+      "model": "BEDROCK_CLAUDE_SONNET_4",
+      "tool_name": "Data Transformer",
+      "tool_description": "Transforms raw CSV data into aggregated report metrics per property and portfolio-wide",
+      "prompt": "You are a data transformation agent for property management reporting.\n\nProcess the three input datasets and produce structured output with:\n\n1. Per-property breakdown (grouped by property name):\n   - Rent: unit count, approved/pending/declined counts, avg increase %, total current weekly, total proposed weekly, weekly uplift, annual uplift\n   - Car park: total bays, occupied, vacant, occupancy %, monthly revenue\n   - Storage: total cages, occupied, vacant, occupancy %, monthly revenue\n\n2. Portfolio totals (all properties combined):\n   - Same metrics aggregated across all properties\n\n3. Anomalies (flag but don't block):\n   - Rent increases > 10%\n   - Expired leases (end date before today)\n   - Occupied units with missing rates\n\nReturn as structured JSON with keys: properties, portfolio, anomalies, validation_summary.",
+      "on_error": "STOP",
+      "enable_retry": false,
+      "retry_count": 1,
+      "retry_wait_ms": 1000,
+      "fallback_models": null,
+      "evaluation_criteria": [],
+      "input_params": [
+        {
+          "name": "rent_increases",
+          "description": "Raw rent increase records from extraction",
+          "type": "object",
+          "fill_type": "linked",
+          "linked_node": "extract-yardi-data",
+          "linked_param": "rent_increases",
+          "required": true,
+          "position": 0
+        },
+        {
+          "name": "car_park_schedule",
+          "description": "Raw car park records from extraction",
+          "type": "object",
+          "fill_type": "linked",
+          "linked_node": "extract-yardi-data",
+          "linked_param": "car_park_schedule",
+          "required": true,
+          "position": 1
+        },
+        {
+          "name": "storage_schedule",
+          "description": "Raw storage records from extraction",
+          "type": "object",
+          "fill_type": "linked",
+          "linked_node": "extract-yardi-data",
+          "linked_param": "storage_schedule",
+          "required": true,
+          "position": 2
+        }
+      ],
+      "output_params": [
+        {
+          "name": "report_data",
+          "description": "Transformed report data: per-property metrics and portfolio totals",
+          "type": "object",
+          "position": 0
+        },
+        {
+          "name": "anomalies",
+          "description": "List of flagged anomalies found during validation",
+          "type": "object",
+          "is_array": true,
+          "position": 1
+        },
+        {
+          "name": "validation_summary",
+          "description": "Summary: total records processed, properties found, anomalies flagged",
+          "type": "string",
+          "position": 2
+        }
+      ],
+      "edges": [
+        { "target": "generate-report", "name": "Data validated", "condition": "" }
+      ]
+    },
+    {
+      "key": "generate-report",
+      "name": "Generate Report",
+      "objective": "Generate the Pricing Matrix Report as a formatted document. Include: header with date and Novus Management branding, portfolio KPIs (total units, approved/pending/declined counts, average increase %, weekly and annual uplift, car park and storage occupancy and revenue), per-property sections (KPI summary row, rent increase table, car park schedule table, storage schedule table, occupancy and revenue footer), anomalies flagged during validation, and footer (Beam AI x Novus, report date, agent version).",
+      "is_entry": false,
+      "is_exit": false,
+      "x": 850,
+      "y": 150,
+      "model": "BEDROCK_CLAUDE_OPUS_4_5",
+      "tool_name": "Report Generator",
+      "tool_description": "Generates a formatted Pricing Matrix report from transformed data",
+      "prompt": "You are a report generation agent for Novus Management property reporting.\n\nGenerate a professional Pricing Matrix Report from the provided data. The report should be clear, data-dense, and suitable for executive review.\n\nStructure:\n- Portfolio-wide KPI dashboard at the top\n- Per-property sections with detailed tables\n- Anomaly callouts if any exist\n- Clean professional formatting\n\nOutput the report as formatted HTML that can be viewed in a browser.",
+      "on_error": "STOP",
+      "enable_retry": false,
+      "retry_count": 1,
+      "retry_wait_ms": 1000,
+      "fallback_models": null,
+      "evaluation_criteria": [],
+      "input_params": [
+        {
+          "name": "report_data",
+          "description": "Transformed report data with per-property and portfolio metrics",
+          "type": "object",
+          "fill_type": "linked",
+          "linked_node": "transform-validate",
+          "linked_param": "report_data",
+          "required": true,
+          "position": 0
+        },
+        {
+          "name": "anomalies",
+          "description": "Validation anomalies to include in the report",
+          "type": "object",
+          "fill_type": "linked",
+          "linked_node": "transform-validate",
+          "linked_param": "anomalies",
+          "required": true,
+          "position": 1
+        }
+      ],
+      "output_params": [
+        {
+          "name": "report_html",
+          "description": "Complete HTML pricing matrix report",
+          "type": "string",
+          "position": 0
+        },
+        {
+          "name": "report_summary",
+          "description": "One-paragraph executive summary of the report contents",
+          "type": "string",
+          "position": 1
+        }
+      ],
+      "edges": [
+        { "target": "notify-team", "name": "Report generated", "condition": "" }
+      ]
+    },
+    {
+      "key": "notify-team",
+      "name": "Notify Team",
+      "objective": "Send a Slack notification to the #novus-reports channel confirming the Pricing Matrix Report has been generated. Include key metrics from the portfolio summary: total units, approved/pending counts, weekly and annual uplift, car park and storage occupancy rates. If any anomalies were flagged, mention the count.",
+      "is_entry": false,
+      "is_exit": true,
+      "x": 1150,
+      "y": 150,
+      "model": "BEDROCK_CLAUDE_SONNET_4",
+      "tool_name": "Slack Notifier",
+      "tool_description": "Sends report completion notification to Slack",
+      "prompt": "Send a concise Slack notification about the completed Pricing Matrix Report.\n\nFormat the message as:\n✅ *Pricing Matrix Report — [today's date]*\n\n📊 *Portfolio Summary*\n• [total units] units | [approved] approved | [pending] pending\n• Weekly uplift: $[amount] | Annual: $[amount]\n• Car park: [X]% occupied | Storage: [X]% occupied\n\n[If anomalies: ⚠️ [N] anomalies flagged — review report for details]\n\n_Report generated by Beam AI agent_",
+      "on_error": "CONTINUE",
+      "enable_retry": false,
+      "retry_count": 1,
+      "retry_wait_ms": 1000,
+      "fallback_models": null,
+      "evaluation_criteria": [],
+      "input_params": [
+        {
+          "name": "channel",
+          "description": "Slack channel to post notification",
+          "type": "string",
+          "fill_type": "static",
+          "static_value": "#novus-reports",
+          "required": true,
+          "position": 0
+        },
+        {
+          "name": "report_summary",
+          "description": "Executive summary from report generation",
+          "type": "string",
+          "fill_type": "linked",
+          "linked_node": "generate-report",
+          "linked_param": "report_summary",
+          "required": true,
+          "position": 1
+        },
+        {
+          "name": "anomalies",
+          "description": "Anomalies to mention in notification",
+          "type": "object",
+          "fill_type": "linked",
+          "linked_node": "transform-validate",
+          "linked_param": "anomalies",
+          "required": false,
+          "position": 2
+        }
+      ],
+      "output_params": [
+        {
+          "name": "notification_status",
+          "description": "Confirmation that Slack notification was sent",
+          "type": "string",
+          "position": 0
+        }
+      ],
+      "edges": []
+    }
+  ]
+}

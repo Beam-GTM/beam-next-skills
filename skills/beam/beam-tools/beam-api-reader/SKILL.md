@@ -1,23 +1,27 @@
 ---
 name: beam-api-reader
-version: '1.0'
+version: '2.0'
 description: Comprehensive Beam AI API reference with all endpoints, authentication,
-  request/response schemas, and usage examples. Load when user says "beam api", "api
-  reference", "beam endpoints", "how to call beam api", "beam api docs", or needs
-  to interact with the Beam AI REST API.
+  request/response schemas, usage examples, and full agent creation workflow. Load
+  when user says "beam api", "api reference", "beam endpoints", "how to call beam
+  api", "beam api docs", "create beam agent", "deploy beam agent", "build a beam agent",
+  "create agent from yaml", or needs to interact with the Beam AI REST API or deploy
+  a new agent.
 author: Danyal Sandeelo
 category: integrations
 tags:
 - api
 - beam-ai
 - reference
+- create
+- agent
 platform: Beam AI
-updated: '2026-03-05'
+updated: '2026-03-11'
 visibility: team
 ---
 # Beam API Reader
 
-**Complete reference for the Beam AI REST API — all endpoints, authentication, schemas, and examples.**
+**Complete reference for the Beam AI REST API — all endpoints, authentication, schemas, examples, and agent creation workflow.**
 
 ## When to Use
 
@@ -25,6 +29,7 @@ visibility: team
 - Understand authentication requirements for API calls
 - Create, list, or inspect agent tasks via the API
 - Build, update, or configure agents and workflows programmatically
+- **Create a new Beam agent from a YAML description**
 - Manage agent setup, views, context files, and tool optimization
 - Connect via MCP (Model Context Protocol)
 
@@ -183,6 +188,121 @@ response = requests.patch(
     headers=headers, json=prompt_payload
 )
 ```
+
+---
+
+---
+
+## Create Agent from YAML
+
+Deploy a new Beam agent from a YAML description using `scripts/create_agent_from_prompt.py`.
+
+### Key Rules
+
+1. **Entry node is always bare** — no tool config, no params, no prompt. Objective = `"Entry Node"`. If the YAML marks a processing node as `is_entry: true`, prepend a separate bare entry node and connect it to that processing node.
+2. **`toolFunctionName` is auto-generated** by the script as `GPTAction_Custom_{CamelCaseName}` — never set manually.
+3. **Linked params use `linked_node` + `linked_param`** in the spec. `linked_node` = the `key` of the source node (= YAML `id` value). YAML may call this field `linked_node_id` — remap it.
+4. **No UUIDs in the spec** — the script generates all UUIDs.
+5. **`on_error: "CONTINUE"`** only for non-critical nodes (e.g. Slack notifications). All others: `"STOP"`.
+
+### Spec Format
+
+```json
+{
+  "agentName": "string",
+  "agentDescription": "string",
+  "personality": "string",
+  "restrictions": "string",
+  "prompts": ["example prompt 1"],
+  "nodes": [
+    {
+      "key": "entry",
+      "objective": "Entry Node",
+      "is_entry": true,
+      "x": 250, "y": 0,
+      "edges": [{ "target": "first-node-key", "name": "", "condition": "" }]
+    },
+    {
+      "key": "node-key",
+      "name": "Tool Display Name",
+      "objective": "What this node does",
+      "is_entry": false,
+      "x": 250, "y": 200,
+      "model": "BEDROCK_CLAUDE_SONNET_4",
+      "tool_name": "Tool Display Name",
+      "tool_description": "One-line description",
+      "prompt": "Full LLM instruction prompt",
+      "on_error": "STOP",
+      "enable_retry": false,
+      "retry_count": 1,
+      "retry_wait_ms": 1000,
+      "fallback_models": null,
+      "evaluation_criteria": [],
+      "input_params": [
+        {
+          "name": "param_name",
+          "description": "what this param is",
+          "type": "string|object|number|boolean",
+          "is_array": false,
+          "fill_type": "static|linked|user_fill|ai_fill",
+          "static_value": null,
+          "linked_node": null,
+          "linked_param": null,
+          "output_example": null,
+          "required": true,
+          "position": 0
+        }
+      ],
+      "output_params": [
+        {
+          "name": "param_name",
+          "description": "what this output contains",
+          "type": "string|object|number|boolean",
+          "is_array": false,
+          "output_example": null,
+          "position": 0
+        }
+      ],
+      "edges": [{ "target": "next-key", "name": "Edge label", "condition": "" }]
+    }
+  ]
+}
+```
+
+**Positioning:** entry at `y=0`, processing nodes at `y=200`, x increments by 300 per step.
+**Models:** `BEDROCK_CLAUDE_SONNET_4` (default) or `BEDROCK_CLAUDE_OPUS_4_5` (complex generation).
+**Conditional edges:** `"condition": ""` = unconditional; `"condition": "sum is odd"` = conditional branch.
+
+### Workflow
+
+**Step 1: Parse YAML**
+Extract agent metadata and all node definitions. Map YAML `linked_node_id` → spec `linked_node`.
+
+**Step 2: Build spec JSON**
+- Prepend a bare entry node connecting to the first processing node
+- All processing nodes: `is_entry: false`
+- Write to `/tmp/beam_agent_spec.json`
+
+**Step 3: Dry run**
+```bash
+python3 scripts/create_agent_from_prompt.py --spec-file /tmp/beam_agent_spec.json --dry-run 2>&1 | head -30
+```
+Verify node names, input/output counts, and linked params look correct.
+
+**Step 4: Create agent**
+```bash
+python3 scripts/create_agent_from_prompt.py --spec-file /tmp/beam_agent_spec.json
+```
+Report Agent ID and Draft Graph ID to the user.
+
+### Error Reference
+
+| Error | Cause | Fix |
+|---|---|---|
+| `Linked param 'node.param' not found` | `linked_node`/`linked_param` typo | Check source node `key` and output param `name` match exactly |
+| `API Error 400` | Malformed payload | Run `--dry-run`, inspect JSON |
+| `API Error 401` | Bad API key | Check `BEAM_API_KEY` in `.env` |
+| Agent created but nodes empty | Wrong tool function prefix | Ensure `tool_name` is set on every non-entry node |
 
 ---
 
