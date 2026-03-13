@@ -152,7 +152,7 @@ def build_payload(spec: dict) -> dict:
         return [v for k, v in EDGES.items() if k.endswith(f"→{tgt}")]
 
     def build_input_param(ip):
-        ft = ip["fill_type"]
+        ft = ip.get("fill_type", "user_fill")
         base = {
             "position":          ip["position"],
             "paramName":         ip["name"],
@@ -223,7 +223,7 @@ def build_payload(spec: dict) -> dict:
             "inputParams": [
                 {
                     "dataType":         ip["type"],
-                    "fillType":         ip["fill_type"],
+                    "fillType":         ip.get("fill_type", "user_fill"),
                     "position":         ip["position"],
                     "required":         ip.get("required", True),
                     "paramName":        ip["name"],
@@ -235,7 +235,7 @@ def build_payload(spec: dict) -> dict:
                     "staticValue":      ip.get("static_value", None),
                     "linkParamOutputId": (
                         OP.get(f"{ip['linked_node']}.{ip['linked_param']}")
-                        if ip["fill_type"] == "linked" else None
+                        if ip.get("fill_type") == "linked" else None
                     ),
                     "options":  None,
                     "paramTip": None,

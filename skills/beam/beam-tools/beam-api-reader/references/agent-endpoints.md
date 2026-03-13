@@ -541,6 +541,52 @@ Returns test execution results.
 
 ---
 
+## Publish Agent Graph
+
+Publish a draft agent graph, making it the active/live version. Call this after making changes to push the draft to production.
+
+**Endpoint:** `PATCH /agent-graphs/{graphId}/publish`
+
+### Path Parameters
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `graphId` | string | Yes | Draft graph UUID to publish |
+
+### Headers
+
+| Header | Required | Description |
+|--------|----------|-------------|
+| `x-api-key` | Yes | Your Beam AI API key |
+| `current-workspace-id` | Yes | Your workspace identifier |
+
+### Response (200 OK)
+
+Returns the published agent graph object with:
+- `id`, `agentId` — graph and agent identifiers
+- `isPublished: true`, `isDraft: false` — publication status
+- `isEdited: false` — reset after publish
+- Full node configuration (objectives, tool configs, edges, retry settings, evaluation criteria)
+- `isEverExecuted`, `isEverUsedForTemplate` — execution history flags
+- Associated `agent` summary
+
+### Example
+
+```bash
+curl -X PATCH "https://api.beamlearning.io/agent-graphs/YOUR_GRAPH_ID/publish" \
+  -H "x-api-key: YOUR_API_KEY" \
+  -H "current-workspace-id: YOUR_WORKSPACE_ID"
+```
+
+### When to Use
+
+Call this after any of the following to push changes live:
+- Creating a new agent via `POST /agent-graphs/complete`
+- Updating the draft graph via `PUT /agent-graphs/{agentId}`
+- Modifying nodes via `PATCH /agent-graphs/update-node`
+
+---
+
 ## Get Task Nodes by Tool
 
 Retrieve task execution nodes that used a specific tool function. Useful for analysis and optimization.

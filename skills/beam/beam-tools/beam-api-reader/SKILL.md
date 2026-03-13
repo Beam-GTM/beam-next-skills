@@ -16,7 +16,7 @@ tags:
 - create
 - agent
 platform: Beam AI
-updated: '2026-03-11'
+updated: '2026-03-13'
 visibility: team
 ---
 # Beam API Reader
@@ -82,6 +82,7 @@ See [authentication.md](references/authentication.md) for setup details and code
 | POST | `/agent-graphs/complete` | Create new agent with complete graph |
 | PUT | `/agent-graphs/{agentId}` | Update agent and its draft graph |
 | PATCH | `/agent-graphs/update-node` | Update a graph node |
+| PATCH | `/agent-graphs/{graphId}/publish` | Publish draft graph as active |
 | PATCH | `/agent-graphs/{agentId}/nodes/{nodeId}/prompt` | Update node tool prompt |
 | PATCH | `/agent-graphs/{agentId}/nodes/{nodeId}/input-output-params` | Update node I/O parameters |
 | PUT | `/agent-graphs/update-edge/{edgeId}` | Update edge condition |
@@ -128,10 +129,11 @@ See [authentication.md](references/authentication.md) for setup details and code
 |--------|----------|-------------|
 | GET | `/context/agent/{agentId}/file/{fileId}/download` | Download a context file |
 
-### Tool Optimization
+### Tool Optimization & Models
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
+| GET | `/custom-tool/preferred-models` | Get list of available/preferred LLM models |
 | POST | `/tool/optimize/{toolFunctionName}` | Optimize tool performance |
 | POST | `/tool/optimization-status/thread/{threadId}` | Check optimization status |
 
@@ -244,7 +246,8 @@ Deploy a new Beam agent from a YAML description using `scripts/create_agent_from
           "description": "what this param is",
           "type": "string|object|number|boolean",
           "is_array": false,
-          "fill_type": "static|linked|user_fill|ai_fill",
+          "fill_type": "user_fill",
+          "fill_type_options": "user_fill (default)|ai_fill|static|linked|from_memory",
           "static_value": null,
           "linked_node": null,
           "linked_param": null,

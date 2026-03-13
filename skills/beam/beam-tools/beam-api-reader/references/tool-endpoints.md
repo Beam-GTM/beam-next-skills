@@ -4,6 +4,71 @@ Endpoints for optimizing tool performance.
 
 ---
 
+## Get Preferred Models
+
+Retrieve the list of LLM models available and preferred for the workspace. Use this to get valid model values for `preferredModel` and `fallbackModels` fields when creating or updating agent nodes.
+
+**Endpoint:** `GET /custom-tool/preferred-models`
+
+### Headers
+
+| Header | Required | Description |
+|--------|----------|-------------|
+| `x-api-key` | Yes | Your Beam AI API key |
+| `current-workspace-id` | Yes | Your workspace identifier |
+
+### Response (200 OK)
+
+Returns an array of model objects:
+
+```json
+[
+  {
+    "id": "model-uuid",
+    "name": "Claude Sonnet 4",
+    "value": "BEDROCK_CLAUDE_SONNET_4",
+    "isDefault": true,
+    "workspaceGroupId": "group-uuid",
+    "isPremium": false,
+    "creditsCost": 10,
+    "inputTokenPrice": 0.000003,
+    "outputTokenPrice": 0.000015,
+    "isChatEnabled": true,
+    "LlmsGroup": {
+      "id": "group-uuid",
+      "name": "Anthropic",
+      "description": "Anthropic Claude models",
+      "icon": "https://...",
+      "isActive": true,
+      "createdAt": "2024-01-01T00:00:00Z",
+      "updatedAt": "2024-01-01T00:00:00Z",
+      "models": [...]
+    }
+  }
+]
+```
+
+### Key Fields
+
+| Field | Description |
+|-------|-------------|
+| `value` | Use this as the `preferredModel` or in `fallbackModels` string |
+| `isDefault` | Whether this is the workspace default model |
+| `isPremium` | Premium models may have usage restrictions |
+| `isChatEnabled` | Whether the model can be used for chat/agent tasks |
+| `creditsCost` | Credits consumed per use |
+| `LlmsGroup` | Parent model group (e.g. Anthropic, OpenAI, Google) |
+
+### Example
+
+```bash
+curl -X GET "https://api.beamlearning.io/custom-tool/preferred-models" \
+  -H "x-api-key: YOUR_API_KEY" \
+  -H "current-workspace-id: YOUR_WORKSPACE_ID"
+```
+
+---
+
 ## Optimize Tool
 
 Optimize a tool's prompt and configuration based on usage patterns and feedback from task executions.
