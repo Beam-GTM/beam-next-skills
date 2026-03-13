@@ -326,7 +326,294 @@ def build_payload(spec: dict) -> dict:
     }
 
 
-# ── API call ───────────────────────────────────────────────────────────────────
+# ── Merge-update: GET existing graph then overlay spec changes ─────────────────
+def get_agent_graph(agent_id: str, api_key: str, workspace_id: str) -> dict:
+    headers = {"x-api-key": api_key, "current-workspace-id": workspace_id}
+    resp = requests.get(f"{BASE_URL}/agent-graphs/{agent_id}", headers=headers, timeout=30)
+    if resp.status_code == 200:
+        return resp.json()
+    print(f"GET Error {resp.status_code}: {resp.text}", file=sys.stderr)
+    sys.exit(1)
+
+
+def build_payload_update(spec: dict, existing_graph_resp: dict) -> dict:
+    """
+    Build PUT payload by merging spec onto the existing graph.
+
+    Strategy:
+      - Spec node matches existing node (by toolFunctionName) → keep existing node
+        object verbatim (preserves static values, linked params, etc.), update edges only.
+      - Spec node has no match in existing → build fresh from spec.
+      - Existing node not referenced in spec → dropped.
+    """
+    nodes_spec     = spec["nodes"]
+    existing_nodes = existing_graph_resp["graph"]["nodes"]
+
+    def get_fn(node):
+        tc = node.get("toolConfiguration") or {}
+        return tc.get("toolFunctionName", "")
+
+    existing_by_fn = {get_fn(n): n for n in existing_nodes if not n.get("isEntryNode")}
+    existing_entry = next((n for n in existing_nodes if n.get("isEntryNode")), None)
+
+    # Compute toolFunctionName for every non-entry spec node
+    spec_fn = {
+        ns["key"]: tool_function_name(ns.get("tool_name", ns.get("name", "")))
+        for ns in nodes_spec if not ns.get("is_entry")
+    }
+
+    # ── Assign node UUIDs: reuse existing where matched ────────────────────────
+    NODE = {}
+    for ns in nodes_spec:
+        k = ns["key"]
+        if ns.get("is_entry"):
+            NODE[k] = existing_entry["id"] if existing_entry else g()
+        else:
+            fn = spec_fn[k]
+            NODE[k] = existing_by_fn[fn]["id"] if fn in existing_by_fn else g()
+
+    # ── For NEW nodes only: generate TC + OP UUIDs ─────────────────────────────
+    TC = {}
+    OP = {}
+    for ns in nodes_spec:
+        if ns.get("is_entry"):
+            continue
+        k  = ns["key"]
+        fn = spec_fn[k]
+        if fn in existing_by_fn:
+            # Reuse existing IDs so linked params remain valid
+            ex_tc = existing_by_fn[fn].get("toolConfiguration") or {}
+            TC[k] = ex_tc.get("id", g())
+            for op in ex_tc.get("outputParams", []):
+                OP[f"{k}.{op['paramName']}"] = op["id"]
+        else:
+            TC[k] = g()
+            for op in ns.get("output_params", []):
+                OP[f"{k}.{op['name']}"] = g()
+
+    # ── Build edge objects ──────────────────────────────────────────────────────
+    EDGES = {}
+    for ns in nodes_spec:
+        for e in ns.get("edges", []):
+            ek = f"{ns['key']}→{e['target']}"
+            EDGES[ek] = {
+                "sourceAgentGraphNodeId": NODE[ns["key"]],
+                "targetAgentGraphNodeId": NODE[e["target"]],
+                "condition":              e.get("condition", ""),
+                "name":                   e.get("name", ""),
+                "isAttachmentDataPulledIn": True,
+            }
+
+    def child_edges(src):
+        return [v for k, v in EDGES.items() if k.startswith(f"{src}→")]
+
+    def parent_edges(tgt):
+        return [v for k, v in EDGES.items() if k.endswith(f"→{tgt}")]
+
+    # ── Helpers for building NEW nodes ─────────────────────────────────────────
+    def build_ip(ip):
+        ft = ip.get("fill_type", "user_fill")
+        base = {
+            "position":          ip["position"],
+            "paramName":         ip["name"],
+            "paramDescription":  ip["description"],
+            "fillType":          ft,
+            "required":          ip.get("required", True),
+            "dataType":          ip["type"],
+            "isArray":           ip.get("is_array", False),
+            "outputExample":     ip.get("output_example", None),
+            "reloadProps":       False,
+            "remoteOptions":     False,
+            "question":          None,
+            "options":           None,
+            "paramTip":          None,
+            "staticValue":       None,
+            "linkParamOutputId": None,
+        }
+        if ft == "static":
+            base["staticValue"] = ip.get("static_value", "")
+        elif ft == "linked":
+            op_key = f"{ip['linked_node']}.{ip['linked_param']}"
+            if op_key not in OP:
+                raise ValueError(f"Linked param '{op_key}' not found.\nAvailable: {list(OP.keys())}")
+            base["linkParamOutputId"] = OP[op_key]
+        return base
+
+    def build_op(op, nk):
+        return {
+            "id":                       OP[f"{nk}.{op['name']}"],
+            "position":                 op["position"],
+            "paramName":                op["name"],
+            "paramDescription":         op["description"],
+            "dataType":                 op["type"],
+            "isArray":                  op.get("is_array", False),
+            "outputExample":            op.get("output_example", None),
+            "agentToolConfigurationId": TC[nk],
+            "parentId":                 None,
+            "paramPath":                None,
+            "typeOptions":              None,
+        }
+
+    def build_original_tool_new(ns):
+        fn  = spec_fn[ns["key"]]
+        ips = ns.get("input_params", [])
+        ops = ns.get("output_params", [])
+        return {
+            "toolName":         ns.get("tool_name", ns["name"]),
+            "toolFunctionName": fn,
+            "iconSrc":          None,
+            "type":             "custom_gpt_tool",
+            "prompt":           ns.get("prompt", ""),
+            "description":      ns.get("tool_description", ""),
+            "preferredModel":   ns.get("model", None),
+            "meta": {
+                "type":            "custom_gpt_tool",
+                "prompt":          ns.get("prompt", ""),
+                "content":         ns.get("tool_description", ""),
+                "icon_src":        None,
+                "tool_name":       ns.get("tool_name", ns["name"]),
+                "description":     ns.get("tool_description", ""),
+                "function_name":   fn,
+                "preferred_model": ns.get("model", None),
+            },
+            "integrationId":          None,
+            "isIntegrationRequired":  False,
+            "isIntegrationConnected": False,
+            "inputParams": [
+                {
+                    "dataType":          ip["type"],
+                    "fillType":          ip.get("fill_type", "user_fill"),
+                    "position":          ip["position"],
+                    "required":          ip.get("required", True),
+                    "paramName":         ip["name"],
+                    "reloadProps":       False,
+                    "outputExample":     ip.get("output_example", None),
+                    "remoteOptions":     False,
+                    "paramDescription":  ip["description"],
+                    "isArray":           ip.get("is_array", False),
+                    "staticValue":       ip.get("static_value", None),
+                    "linkParamOutputId": (
+                        OP.get(f"{ip['linked_node']}.{ip['linked_param']}")
+                        if ip.get("fill_type") == "linked" else None
+                    ),
+                    "options":  None,
+                    "paramTip": None,
+                }
+                for ip in ips
+            ],
+            "outputParams": [
+                {
+                    "id":               OP[f"{ns['key']}.{op['name']}"],
+                    "isArray":          op.get("is_array", False),
+                    "dataType":         op["type"],
+                    "position":         op["position"],
+                    "paramName":        op["name"],
+                    "outputExample":    op.get("output_example", None),
+                    "paramDescription": op["description"],
+                    "typeOptions":      None,
+                }
+                for op in ops
+            ],
+        }
+
+    def build_new_node(ns):
+        fn       = spec_fn[ns["key"]]
+        criteria = ns.get("evaluation_criteria", [])
+        tc = {
+            "id":               TC[ns["key"]],
+            "toolFunctionName": fn,
+            "toolName":         ns.get("tool_name", ns["name"]),
+            "iconSrc":          None,
+            "description":      ns.get("tool_description", ""),
+            "prompt":           ns.get("prompt", ""),
+            "preferredModel":   ns.get("model", "BEDROCK_CLAUDE_SONNET_4"),
+            "fallbackModels":   ns.get("fallback_models", None),
+            "accuracyScore":    None,
+            "requiresConsent":  False,
+            "isMemoryTool":     False,
+            "memoryLookupInstruction": "",
+            "isBackgroundTool":        False,
+            "isBatchExecutionEnabled": False,
+            "isCodeExecutionEnabled":  False,
+            "isAvailableToWorkspace":  False,
+            "dynamicPropsId":          None,
+            "integrationProviderId":   None,
+            "inputParams":  [build_ip(ip)       for ip in ns.get("input_params",  [])],
+            "outputParams": [build_op(op, ns["key"]) for op in ns.get("output_params", [])],
+            "originalTool": build_original_tool_new(ns),
+        }
+        return {
+            "id":               NODE[ns["key"]],
+            "objective":        ns["objective"],
+            "evaluationCriteria": criteria,
+            "isEntryNode":      False,
+            "isExitNode":       ns.get("is_exit", False),
+            "xCoordinate":      ns.get("x", 250),
+            "yCoordinate":      ns.get("y", 150),
+            "isEvaluationEnabled":      bool(criteria),
+            "isAttachmentDataPulledIn": True,
+            "onError":          ns.get("on_error", "STOP"),
+            "enableAutoRetryWhenFailure": ns.get("enable_retry", False),
+            "autoRetryCountWhenFailure":  ns.get("retry_count", 1),
+            "autoRetryWaitTimeWhenFailureInMs": ns.get("retry_wait_ms", 1000),
+            "autoRetryWhenAccuracyLessThan":    80,
+            "autoRetryLimitWhenAccuracyIsLow":  1,
+            "enableAutoRetryWhenAccuracyIsLow": False,
+            "autoRetryDescription":      None,
+            "enableAutoRetryDescription": False,
+            "isEdited":         False,
+            "toolConfiguration": tc,
+            "childEdges":  child_edges(ns["key"]),
+            "parentEdges": parent_edges(ns["key"]),
+        }
+
+    # ── Assemble final nodes ────────────────────────────────────────────────────
+    final_nodes = []
+    for ns in nodes_spec:
+        k  = ns["key"]
+        ce = child_edges(k)
+        pe = parent_edges(k)
+
+        if ns.get("is_entry"):
+            node = dict(existing_entry) if existing_entry else {
+                "id": NODE[k], "objective": "Entry Node",
+                "evaluationCriteria": [], "isEntryNode": True, "isExitNode": False,
+                "xCoordinate": ns.get("x", 250), "yCoordinate": ns.get("y", 0),
+                "isEvaluationEnabled": False, "isAttachmentDataPulledIn": True,
+                "onError": "STOP", "enableAutoRetryWhenFailure": False,
+                "autoRetryCountWhenFailure": 1, "autoRetryWaitTimeWhenFailureInMs": 1000,
+                "autoRetryWhenAccuracyLessThan": 80, "autoRetryLimitWhenAccuracyIsLow": 1,
+                "enableAutoRetryWhenAccuracyIsLow": False,
+                "autoRetryDescription": None, "enableAutoRetryDescription": False,
+                "isEdited": False,
+            }
+            node["childEdges"]  = ce
+            node["parentEdges"] = pe
+            final_nodes.append(node)
+        else:
+            fn = spec_fn[k]
+            if fn in existing_by_fn:
+                # ← Keep existing node verbatim; only rewire edges
+                node = dict(existing_by_fn[fn])
+                node["childEdges"]  = ce
+                node["parentEdges"] = pe
+                final_nodes.append(node)
+            else:
+                final_nodes.append(build_new_node(ns))
+
+    return {
+        "agentName":        spec["agentName"],
+        "agentDescription": spec.get("agentDescription", ""),
+        "settings": {
+            "prompts":           spec.get("prompts", []),
+            "agentPersonality":  spec.get("personality", ""),
+            "agentRestrictions": spec.get("restrictions", ""),
+        },
+        "nodes": final_nodes,
+    }
+
+
+# ── API calls ──────────────────────────────────────────────────────────────────
 def create_agent(payload: dict, api_key: str, workspace_id: str) -> dict:
     headers = {
         "x-api-key":            api_key,
@@ -346,6 +633,25 @@ def create_agent(payload: dict, api_key: str, workspace_id: str) -> dict:
     sys.exit(1)
 
 
+def update_agent(agent_id: str, payload: dict, api_key: str, workspace_id: str) -> dict:
+    headers = {
+        "x-api-key":            api_key,
+        "current-workspace-id": workspace_id,
+        "Content-Type":         "application/json",
+    }
+    resp = requests.put(
+        f"{BASE_URL}/agent-graphs/{agent_id}",
+        headers=headers,
+        json=payload,
+        timeout=60,
+    )
+    if resp.status_code in (200, 201):
+        return resp.json()
+    print(f"API Error {resp.status_code}:", file=sys.stderr)
+    print(resp.text, file=sys.stderr)
+    sys.exit(1)
+
+
 # ── Main ───────────────────────────────────────────────────────────────────────
 def main():
     parser = argparse.ArgumentParser(
@@ -353,6 +659,7 @@ def main():
     )
     parser.add_argument("--spec-file", help="Path to JSON spec file (default: read from stdin)")
     parser.add_argument("--dry-run", action="store_true", help="Print payload without calling API")
+    parser.add_argument("--agent-id", help="Existing agent UUID — uses PUT to update instead of POST to create")
     args = parser.parse_args()
 
     env          = load_env()
@@ -377,8 +684,13 @@ def main():
 
     spec = json.loads(raw)
 
-    # Build payload
-    payload = build_payload(spec)
+    # Build payload — GET existing graph first when updating (preserves manual changes)
+    if args.agent_id:
+        print(f"Fetching existing graph for {args.agent_id}...", file=sys.stderr)
+        existing_graph = get_agent_graph(args.agent_id, beam_api_key, workspace_id)
+        payload = build_payload_update(spec, existing_graph)
+    else:
+        payload = build_payload(spec)
 
     if args.dry_run:
         print(json.dumps(payload, indent=2))
@@ -386,7 +698,8 @@ def main():
         return
 
     # Summary
-    print(f"Creating: {payload['agentName']}  ({len(payload['nodes'])} nodes)")
+    action = f"Updating [{args.agent_id}]" if args.agent_id else "Creating"
+    print(f"{action}: {payload['agentName']}  ({len(payload['nodes'])} nodes)")
     for n in payload["nodes"]:
         tc     = n.get("toolConfiguration") or {}
         role   = "ENTRY" if n["isEntryNode"] else tc.get("toolName", "?")
@@ -396,12 +709,19 @@ def main():
         print(f"  [{role:35s}]  {ins} in / {outs} out"
               + (f"  linked={linked}" if linked else ""))
 
-    result = create_agent(payload, beam_api_key, workspace_id)
-    print("\nAgent created!")
-    print(f"  Agent ID:    {result.get('agentId')}")
-    print(f"  Agent Name:  {result.get('agentName')}")
-    print(f"  Draft Graph: {result.get('draftGraphId')}")
-    print(f"  Active Graph:{result.get('activeGraphId')}")
+    if args.agent_id:
+        result = update_agent(args.agent_id, payload, beam_api_key, workspace_id)
+        print("\nAgent updated!")
+        print(f"  Agent ID:    {result.get('agentId')}")
+        print(f"  Agent Name:  {result.get('agentName')}")
+        print(f"  Draft Graph: {result.get('draftGraphId')}")
+    else:
+        result = create_agent(payload, beam_api_key, workspace_id)
+        print("\nAgent created!")
+        print(f"  Agent ID:    {result.get('agentId')}")
+        print(f"  Agent Name:  {result.get('agentName')}")
+        print(f"  Draft Graph: {result.get('draftGraphId')}")
+        print(f"  Active Graph:{result.get('activeGraphId')}")
 
 
 if __name__ == "__main__":
