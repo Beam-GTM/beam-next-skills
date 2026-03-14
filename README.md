@@ -31,6 +31,7 @@ Extended index with owner and version. See `registry.yaml` for the full machine-
 
 | Skill | Owner | Version | Category |
 |-------|-------|---------|----------|
+| sentry-triage | JBD | 2.0 | devops |
 | expert-improve | — | 1.0 | experts |
 | expert-review | — | 1.0 | experts |
 | abstract | — | 1.0 | general |

@@ -3274,6 +3274,22 @@ skills:
   visibility: public
   path: skills/integrations/workable/workable-master
   has_scripts: true
+- name: sentry-triage
+  description: Triage, analyze, and resolve Sentry errors for any project. Connects
+    directly to the Sentry API — no MCP needed. Load when user says "check sentry",
+    "sentry errors", "triage errors", "resolve sentry issues", "error report", or
+    "what's broken".
+  author: JBD
+  category: devops
+  tags:
+  - sentry
+  - errors
+  - triage
+  - monitoring
+  version: '2.0'
+  updated: '2026-03-02'
+  visibility: personal
+  path: skills/sentry-triage
 - name: markdown-to-pdf
   description: 'Convert markdown files to professionally styled PDFs. Triggers: ''render
     pdf'', ''markdown to pdf'', ''create pdf'', ''export pdf'', ''generate pdf'',
