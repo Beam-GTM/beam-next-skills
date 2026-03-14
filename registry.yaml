@@ -3274,6 +3274,16 @@ skills:
   visibility: public
   path: skills/integrations/workable/workable-master
   has_scripts: true
+- name: mid-session-cleanup
+  description: cleanup, check, review, lint, mid-session, sanity check, health check
+  category: system
+  tags:
+  - system
+  version: '1.0'
+  updated: '2026-03-02'
+  visibility: public
+  path: skills/mid-session-cleanup
+  has_references: true
 - name: markdown-to-pdf
   description: 'Convert markdown files to professionally styled PDFs. Triggers: ''render
     pdf'', ''markdown to pdf'', ''create pdf'', ''export pdf'', ''generate pdf'',
