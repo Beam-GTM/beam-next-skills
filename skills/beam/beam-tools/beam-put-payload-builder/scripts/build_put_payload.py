@@ -75,9 +75,11 @@ def get_graph(agent_id, api_key, workspace_id, base_url):
     return api_request('GET', url, headers)
 
 
-def put_graph(agent_id, payload, api_key, workspace_id, base_url):
-    """Send PUT to update agent graph."""
+def put_graph(agent_id, payload, api_key, workspace_id, base_url, save_and_publish=False):
+    """Send PUT to update agent graph. Use save_and_publish=True to publish in the same request."""
     url = f"{base_url}/agent-graphs/{agent_id}"
+    if save_and_publish:
+        url += "?saveAndPublish=true"
     headers = {
         'x-api-key': api_key,
         'current-workspace-id': workspace_id,
@@ -347,6 +349,19 @@ def build_put_payload(get_response):
 
 
 # ---------------------------------------------------------------------------
+# Structural change detection
+# ---------------------------------------------------------------------------
+
+def detect_new_nodes(payload_nodes, live_nodes):
+    """Compare payload node IDs with live graph node IDs to detect additions/deletions."""
+    live_ids = {n['id'] for n in live_nodes}
+    payload_ids = {n['id'] for n in payload_nodes}
+    new_ids = payload_ids - live_ids
+    removed_ids = live_ids - payload_ids
+    return new_ids, removed_ids
+
+
+# ---------------------------------------------------------------------------
 # CLI
 # ---------------------------------------------------------------------------
 
@@ -436,20 +451,41 @@ def main():
         print("Error: --agent-id required for PUT", file=sys.stderr)
         sys.exit(1)
 
-    print(f"\nSending PUT to /agent-graphs/{agent_id}...")
-    result = put_graph(agent_id, payload, api_key, workspace_id, args.base_url)
+    # Detect structural changes (new nodes) to decide publish strategy
+    has_new_nodes = False
+    if args.publish and args.from_file and api_key and workspace_id:
+        # Payload was built from file — fetch live graph to compare
+        print("Fetching live graph to detect structural changes...")
+        live_graph = get_graph(agent_id, api_key, workspace_id, args.base_url)
+        live_nodes = live_graph.get('graph', live_graph).get('nodes', [])
+        new_ids, removed_ids = detect_new_nodes(payload['nodes'], live_nodes)
+        if new_ids:
+            has_new_nodes = True
+            print(f"  Detected {len(new_ids)} new node(s) — will use PATCH publish workflow")
+        elif removed_ids:
+            print(f"  Detected {len(removed_ids)} removed node(s) — will use saveAndPublish")
+        else:
+            print("  No structural node changes — will use saveAndPublish")
+    # If --agent-id only (no --from-file): payload built from same graph, no new nodes possible
+
+    save_and_publish = args.publish and not has_new_nodes
+    publish_label = " (saveAndPublish=true)" if save_and_publish else ""
+    print(f"\nSending PUT to /agent-graphs/{agent_id}...{publish_label}")
+    result = put_graph(agent_id, payload, api_key, workspace_id, args.base_url,
+                       save_and_publish=save_and_publish)
     print("PUT successful.")
 
-    # Publish if requested
-    if args.publish:
+    if save_and_publish:
+        print("Graph saved and published.")
+    elif args.publish and has_new_nodes:
         graph_id = result.get('graph', {}).get('id') or result.get('id')
-        if not graph_id:
-            print("Warning: Could not extract graph ID from PUT response for publishing.",
-                  file=sys.stderr)
-        else:
-            print(f"\nPublishing graph {graph_id}...")
-            publish_graph(graph_id, api_key, workspace_id, args.base_url)
-            print("Graph published successfully.")
+        print(f"\nNew nodes were added. Before publishing, PATCH each new node:")
+        print(f"  1. PATCH /agent-graphs/{agent_id}/nodes/{{nodeId}}/prompt")
+        print(f"  2. PATCH /agent-graphs/update-node (set preferredModel in toolConfiguration)")
+        print(f"  3. PATCH /agent-graphs/{agent_id}/nodes/{{nodeId}}/input-output-params")
+        if graph_id:
+            print(f"  4. PATCH /agent-graphs/{graph_id}/publish")
+            print(f"\nGraph ID for publish: {graph_id}")
 
 
 if __name__ == '__main__':

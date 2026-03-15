@@ -27,9 +27,8 @@ Build valid PUT payloads for Beam agent graphs by transforming GET responses int
 
 - Building a PUT payload from a GET graph response
 - Restoring a graph from a backup JSON file
-- Making structural changes to an agent graph (add/remove nodes, edges, params)
+- Making structural changes to an agent graph (add/remove nodes, edges)
 - Debugging link translation issues between GET and PUT formats
-- Publishing a draft graph after changes
 
 ## Core Script
 
@@ -42,8 +41,11 @@ python3 scripts/build_put_payload.py --agent-id <UUID> --dry-run
 # From saved file
 python3 scripts/build_put_payload.py --from-file backup.json --output put_payload.json
 
-# Build, PUT, and publish
+# Build, send PUT, and publish (uses saveAndPublish query param)
 python3 scripts/build_put_payload.py --agent-id <UUID> --publish
+
+# From modified file with new nodes (detects new nodes, skips saveAndPublish, guides PATCH workflow)
+python3 scripts/build_put_payload.py --from-file modified.json --agent-id <UUID> --publish
 ```
 
 Requires `BEAM_API_KEY` and `BEAM_WORKSPACE_ID` in `.env`.
@@ -57,21 +59,29 @@ Requires `BEAM_API_KEY` and `BEAM_WORKSPACE_ID` in `.env`.
 5. Strips computed fields, includes all required Swagger DTO fields
 6. Outputs summary with link translation stats
 
-## Workflow: Structural Changes
+## Workflow
 
 1. **GET** current graph (or use backup file)
 2. **Build PUT payload**: `python3 build_put_payload.py --agent-id <UUID> --dry-run`
 3. **Verify**: check summary — all links should be translated (0 FAILED)
-4. **Send PUT**: remove `--dry-run` flag
-5. **PATCH prompts**: PUT may not persist prompt changes — use `PATCH /agent-graphs/{agentId}/nodes/{nodeId}/prompt`
-6. **PATCH models**: PUT ignores `preferredModel` changes — use `PATCH /agent-graphs/update-node`
-7. **Publish**: `PATCH /agent-graphs/{graphId}/publish` or Beam UI
+4. **Send PUT with `--publish`**: the script auto-detects the right publish strategy:
+
+### No new nodes (rebuild, restore, or node deletion)
+PUT with `?saveAndPublish=true` — publishes in the same request. No PATCH needed.
+
+### New nodes added
+PUT saves as draft. The script prints the PATCH steps needed before publishing:
+1. `PATCH /agent-graphs/{agentId}/nodes/{nodeId}/prompt` — set prompt for each new node
+2. `PATCH /agent-graphs/update-node` — set `preferredModel` in `toolConfiguration` for each new node
+3. `PATCH /agent-graphs/{agentId}/nodes/{nodeId}/input-output-params` — set params for each new node
+4. `PATCH /agent-graphs/{graphId}/publish` — publish after all PATCHes
 
 ## Critical Rules
 
 - **Never build PUT from GET blindly** — field locations differ. Always use `build_put_payload.py`.
 - **Never send empty arrays** — `inputParams: []` deletes all inputs, empty edges destroy topology.
 - **Do NOT add fallbackModels** — not settable via API.
+- **PUT is for structure only** — do NOT use PUT to update prompts, input/output params, or preferred models on existing nodes. Use PATCH endpoints for those (see `beam-agent-manager`).
 
 ## References
 
