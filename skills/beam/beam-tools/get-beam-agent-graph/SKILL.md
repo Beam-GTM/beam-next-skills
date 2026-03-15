@@ -1,6 +1,6 @@
 ---
 name: get-beam-agent-graph
-version: '1.0'
+version: '1.1'
 description: Fetch and save Beam.ai agent graph JSON via API. Load when user says
   "get agent graph", "fetch beam graph", "download agent graph", "beam agent graph",
   "get graph for agent", or provides a workspace ID and agent ID to retrieve the graph
@@ -11,7 +11,7 @@ tags:
 - api
 - beam-ai
 platform: Beam AI
-updated: '2026-01-05'
+updated: '2026-03-15'
 visibility: team
 ---
 # Get Beam Agent Graph

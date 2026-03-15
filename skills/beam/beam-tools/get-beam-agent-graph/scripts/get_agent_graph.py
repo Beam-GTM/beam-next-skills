@@ -2,12 +2,16 @@
 """
 Fetch Beam.ai agent graph via API
 
+Supports both Enterprise API (direct key auth) and Public API (token auth).
+Tries Enterprise API first, falls back to Public API.
+
 Usage:
-    python get_agent_graph.py <workspace_id> <agent_id> [--output <path>]
+    python get_agent_graph.py <workspace_id> <agent_id> [--output <path>] [--api enterprise|public|auto]
 
 Example:
     python get_agent_graph.py 505d2090-2b5d-4e45-b0f4-cc3a0b299aa8 162e7c30-0d95-49ab-af99-7eef872a2d0d
     python get_agent_graph.py 505d2090-2b5d-4e45-b0f4-cc3a0b299aa8 162e7c30-0d95-49ab-af99-7eef872a2d0d --output ./graphs
+    python get_agent_graph.py 505d2090-2b5d-4e45-b0f4-cc3a0b299aa8 162e7c30-0d95-49ab-af99-7eef872a2d0d --api public
 """
 
 import sys
@@ -23,6 +27,9 @@ except ImportError:
     print("[ERROR] Missing 'requests' library")
     print("Install with: pip install requests")
     sys.exit(1)
+
+ENTERPRISE_BASE = "https://api.enterprise.beamstudio.ai"
+PUBLIC_BASE = "https://api.beamstudio.ai"
 
 
 def load_env_file(env_path):
@@ -50,9 +57,41 @@ def find_nexus_root():
     return current
 
 
+def get_graph_enterprise(api_key, workspace_id, agent_id):
+    """
+    Fetch agent graph via Enterprise API (direct key auth, no token needed).
+
+    Args:
+        api_key: Beam API key
+        workspace_id: Beam workspace ID
+        agent_id: Agent ID to fetch
+
+    Returns:
+        Agent graph JSON dict or None on error
+    """
+    url = f"{ENTERPRISE_BASE}/agent-graphs/{agent_id}"
+    headers = {
+        "x-api-key": api_key,
+        "current-workspace-id": workspace_id,
+        "Content-Type": "application/json"
+    }
+
+    try:
+        response = requests.get(url, headers=headers, timeout=30)
+        if response.status_code == 200:
+            return response.json()
+        else:
+            print(f"[WARN] Enterprise API failed: {response.status_code}", file=sys.stderr)
+            print(f"  {response.text[:200]}", file=sys.stderr)
+            return None
+    except requests.exceptions.RequestException as e:
+        print(f"[WARN] Enterprise API network error: {e}", file=sys.stderr)
+        return None
+
+
 def get_access_token(api_key):
     """
-    Step 1: Get access token from Beam API
+    Get access token from Public Beam API.
 
     Args:
         api_key: Beam API key
@@ -60,7 +99,7 @@ def get_access_token(api_key):
     Returns:
         Access token string or None on error
     """
-    url = "https://api.beamstudio.ai/auth/access-token"
+    url = f"{PUBLIC_BASE}/auth/access-token"
     headers = {
         "x-api-key": api_key,
         "Content-Type": "application/json"
@@ -71,7 +110,7 @@ def get_access_token(api_key):
 
         if response.status_code == 200:
             data = response.json()
-            return data.get("access_token") or data.get("accessToken")
+            return data.get("idToken") or data.get("access_token") or data.get("accessToken")
         else:
             print(f"[ERROR] Failed to get access token: {response.status_code}", file=sys.stderr)
             print(f"Response: {response.text}", file=sys.stderr)
@@ -82,19 +121,19 @@ def get_access_token(api_key):
         return None
 
 
-def get_agent_graph(access_token, workspace_id, agent_id):
+def get_graph_public(access_token, workspace_id, agent_id):
     """
-    Step 2: Get agent graph from Beam API
+    Fetch agent graph via Public API (token auth).
 
     Args:
-        access_token: Access token from step 1
+        access_token: Access token from get_access_token()
         workspace_id: Beam workspace ID
         agent_id: Agent ID to fetch
 
     Returns:
         Agent graph JSON dict or None on error
     """
-    url = f"https://api.beamstudio.ai/agent-graphs/{agent_id}"
+    url = f"{PUBLIC_BASE}/agent-graphs/{agent_id}"
     headers = {
         "Authorization": f"Bearer {access_token}",
         "x-workspace-id": workspace_id,
@@ -135,7 +174,10 @@ def save_graph(graph_data, agent_id, output_dir):
     # Try to extract agent name from graph data
     agent_name = None
     if isinstance(graph_data, dict):
+        graph = graph_data.get("graph", graph_data)
+        agent = graph.get("agent", {})
         agent_name = (
+            agent.get("name") or
             graph_data.get("name") or
             graph_data.get("agentName") or
             graph_data.get("agent_name")
@@ -172,6 +214,8 @@ def main():
     parser.add_argument("agent_id", help="Agent ID to fetch")
     parser.add_argument("--output", default="04-workspace/beam-graphs",
                        help="Output directory (default: 04-workspace/beam-graphs)")
+    parser.add_argument("--api", choices=["enterprise", "public", "auto"], default="auto",
+                       help="API to use: enterprise (direct key), public (token auth), auto (try enterprise first)")
 
     args = parser.parse_args()
 
@@ -190,28 +234,34 @@ def main():
 
     print(f"[INFO] Fetching agent graph...", file=sys.stderr)
     print(f"  Workspace: {args.workspace_id}", file=sys.stderr)
-    print(f"  Agent ID: {args.agent_id}", file=sys.stderr)
+    print(f"  Agent ID:  {args.agent_id}", file=sys.stderr)
+    print(f"  API mode:  {args.api}", file=sys.stderr)
 
-    # Step 1: Get access token
-    print("[1/3] Getting access token...", file=sys.stderr)
-    access_token = get_access_token(api_key)
+    graph_data = None
 
-    if not access_token:
-        sys.exit(1)
+    # Try enterprise API
+    if args.api in ("enterprise", "auto"):
+        print("[STEP] Trying Enterprise API...", file=sys.stderr)
+        graph_data = get_graph_enterprise(api_key, args.workspace_id, args.agent_id)
+        if graph_data:
+            print("[OK] Graph fetched via Enterprise API", file=sys.stderr)
 
-    print("[OK] Access token obtained", file=sys.stderr)
-
-    # Step 2: Get agent graph
-    print("[2/3] Fetching agent graph...", file=sys.stderr)
-    graph_data = get_agent_graph(access_token, args.workspace_id, args.agent_id)
+    # Fall back to public API
+    if not graph_data and args.api in ("public", "auto"):
+        print("[STEP] Trying Public API...", file=sys.stderr)
+        access_token = get_access_token(api_key)
+        if access_token:
+            print("[OK] Access token obtained", file=sys.stderr)
+            graph_data = get_graph_public(access_token, args.workspace_id, args.agent_id)
+            if graph_data:
+                print("[OK] Graph fetched via Public API", file=sys.stderr)
 
     if not graph_data:
+        print("[ERROR] Failed to fetch agent graph from any API", file=sys.stderr)
         sys.exit(1)
 
-    print("[OK] Agent graph fetched", file=sys.stderr)
-
-    # Step 3: Save to file
-    print("[3/3] Saving to file...", file=sys.stderr)
+    # Save to file
+    print("[STEP] Saving to file...", file=sys.stderr)
     file_path = save_graph(graph_data, args.agent_id, args.output)
 
     if not file_path:
