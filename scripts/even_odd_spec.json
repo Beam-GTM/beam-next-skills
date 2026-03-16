@@ -1,0 +1,195 @@
+{
+  "agentName": "Even Odd Sum Checker",
+  "agentDescription": "Takes two numbers, calculates their sum, and reports whether it is even or odd.",
+  "personality": "You are a helpful math assistant.",
+  "restrictions": "",
+  "prompts": [
+    "Check if 3 and 5 give an even or odd sum",
+    "What happens when I add 10 and 7?"
+  ],
+  "nodes": [
+    {
+      "key": "entry",
+      "name": "Entry",
+      "objective": "Collect two numbers from the user",
+      "is_entry": true,
+      "x": 250,
+      "y": 0,
+      "edges": [
+        {"target": "sum_calculator", "name": "Calculate Sum"}
+      ]
+    },
+    {
+      "key": "sum_calculator",
+      "name": "Sum Calculator",
+      "objective": "Calculate the sum of the two input numbers",
+      "tool_name": "Sum Calculator",
+      "tool_description": "Calculates the sum of two numbers",
+      "prompt": "You are given two numbers. Calculate their sum. Return ONLY the numeric result as the sum.\n\nnumber1: {number1}\nnumber2: {number2}",
+      "model": "BEDROCK_CLAUDE_SONNET_4",
+      "x": 250,
+      "y": 150,
+      "input_params": [
+        {
+          "name": "number1",
+          "description": "The first number",
+          "type": "number",
+          "is_array": false,
+          "fill_type": "user_fill",
+          "required": true,
+          "position": 0
+        },
+        {
+          "name": "number2",
+          "description": "The second number",
+          "type": "number",
+          "is_array": false,
+          "fill_type": "user_fill",
+          "required": true,
+          "position": 1
+        }
+      ],
+      "output_params": [
+        {
+          "name": "sum",
+          "description": "The sum of the two numbers",
+          "type": "number",
+          "is_array": false,
+          "position": 0
+        }
+      ],
+      "edges": [
+        {"target": "check_even_odd", "name": "Check Parity"}
+      ]
+    },
+    {
+      "key": "check_even_odd",
+      "name": "Even or Odd Check",
+      "objective": "Determine if the sum is even or odd",
+      "node_type": "conditionNode",
+      "node_configurations": {
+        "conditionType": "llm_based",
+        "llmModel": "GPT40",
+        "fallbackModels": null
+      },
+      "x": 250,
+      "y": 300,
+      "edges": [
+        {
+          "target": "report_even",
+          "name": "Even",
+          "condition": "The sum is an even number"
+        },
+        {
+          "target": "report_odd",
+          "name": "Odd",
+          "condition": "The sum is an odd number"
+        }
+      ]
+    },
+    {
+      "key": "report_even",
+      "name": "Report Even",
+      "objective": "Report that the sum is even",
+      "tool_name": "Report Even",
+      "tool_description": "Reports that the calculated sum is an even number",
+      "prompt": "The sum of the two numbers is {sum}. Report to the user that the sum is EVEN. Provide a clear, friendly message.",
+      "model": "BEDROCK_CLAUDE_SONNET_4",
+      "x": 100,
+      "y": 450,
+      "input_params": [
+        {
+          "name": "sum",
+          "description": "The sum to report on",
+          "type": "number",
+          "is_array": false,
+          "fill_type": "linked",
+          "linked_node": "sum_calculator",
+          "linked_param": "sum",
+          "required": true,
+          "position": 0
+        }
+      ],
+      "output_params": [
+        {
+          "name": "report",
+          "description": "The even sum report message",
+          "type": "string",
+          "is_array": false,
+          "position": 0
+        }
+      ],
+      "edges": [
+        {"target": "even_celebration", "name": "Celebrate"}
+      ]
+    },
+    {
+      "key": "even_celebration",
+      "name": "Even Celebration",
+      "objective": "Generate a fun celebration message for even sums",
+      "tool_name": "Even Celebration",
+      "tool_description": "Generates a celebration message when the sum is even",
+      "prompt": "The even report was: {report}. Generate a short, fun celebration message congratulating the user on getting an even sum. Be creative and enthusiastic.",
+      "model": "BEDROCK_CLAUDE_SONNET_4",
+      "x": 100,
+      "y": 600,
+      "input_params": [
+        {
+          "name": "report",
+          "description": "The even report message from the previous node",
+          "type": "string",
+          "is_array": false,
+          "fill_type": "linked",
+          "linked_node": "report_even",
+          "linked_param": "report",
+          "required": true,
+          "position": 0
+        }
+      ],
+      "output_params": [
+        {
+          "name": "celebration",
+          "description": "A fun celebration message",
+          "type": "string",
+          "is_array": false,
+          "position": 0
+        }
+      ],
+      "edges": []
+    },
+    {
+      "key": "report_odd",
+      "name": "Report Odd",
+      "objective": "Report that the sum is odd",
+      "tool_name": "Report Odd",
+      "tool_description": "Reports that the calculated sum is an odd number",
+      "prompt": "The sum of the two numbers is {sum}. Report to the user that the sum is ODD. Provide a clear, friendly message.",
+      "model": "BEDROCK_CLAUDE_SONNET_4",
+      "x": 400,
+      "y": 450,
+      "input_params": [
+        {
+          "name": "sum",
+          "description": "The sum to report on",
+          "type": "number",
+          "is_array": false,
+          "fill_type": "linked",
+          "linked_node": "sum_calculator",
+          "linked_param": "sum",
+          "required": true,
+          "position": 0
+        }
+      ],
+      "output_params": [
+        {
+          "name": "report",
+          "description": "The odd sum report message",
+          "type": "string",
+          "is_array": false,
+          "position": 0
+        }
+      ],
+      "edges": []
+    }
+  ]
+}

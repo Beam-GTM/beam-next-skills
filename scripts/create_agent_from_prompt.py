@@ -81,6 +81,7 @@ import os
 import re
 import sys
 import json
+import copy
 import uuid
 import argparse
 import requests
@@ -137,13 +138,17 @@ def build_payload(spec: dict) -> dict:
     for ns in nodes_spec:
         for e in ns.get("edges", []):
             k = f"{ns['key']}→{e['target']}"
-            EDGES[k] = {
+            edge = {
                 "sourceAgentGraphNodeId": NODE[ns["key"]],
                 "targetAgentGraphNodeId": NODE[e["target"]],
                 "condition": e.get("condition", ""),
                 "name": e.get("name", ""),
                 "isAttachmentDataPulledIn": True,
             }
+            # Support conditionGroups for rule-based conditions
+            if "condition_groups" in e:
+                edge["conditionGroups"] = e["condition_groups"]
+            EDGES[k] = edge
 
     def child_edges(src):
         return [v for k, v in EDGES.items() if k.startswith(f"{src}→")]
@@ -285,13 +290,26 @@ def build_payload(spec: dict) -> dict:
 
     def build_node(ns):
         is_entry = ns.get("is_entry", False)
+        is_exit  = ns.get("is_exit", False)
+        node_type = ns.get("node_type", None)
         criteria = ns.get("evaluation_criteria", [])
+
+        # Auto-detect nodeType if not explicitly set
+        if not node_type:
+            if is_entry:
+                node_type = "entryNode"
+            elif is_exit:
+                node_type = "exitNode"
+            else:
+                node_type = "executionNode"
+
         node = {
             "id":               NODE[ns["key"]],
             "objective":        ns["objective"],
             "evaluationCriteria": criteria,
             "isEntryNode":      is_entry,
-            "isExitNode":       ns.get("is_exit", False),
+            "isExitNode":       is_exit,
+            "nodeType":         node_type,
             "xCoordinate":      ns.get("x", 250),
             "yCoordinate":      ns.get("y", 150),
             "isEvaluationEnabled":      bool(criteria),
@@ -309,9 +327,19 @@ def build_payload(spec: dict) -> dict:
             "childEdges":  child_edges(ns["key"]),
             "parentEdges": parent_edges(ns["key"]),
         }
-        # Entry nodes are always bare — no toolConfiguration
-        if not is_entry:
+
+        # nodeConfigurations — required for conditionNode
+        if node_type == "conditionNode":
+            node["nodeConfigurations"] = ns.get("node_configurations", {
+                "conditionType": "llm_based",
+                "llmModel": "GPT40",
+                "fallbackModels": None,
+            })
+
+        # toolConfiguration: only for executionNode (not entry/exit/condition)
+        if node_type == "executionNode":
             node["toolConfiguration"] = build_tool_config(ns)
+
         return node
 
     return {
@@ -353,36 +381,57 @@ def build_payload_update(spec: dict, existing_graph_resp: dict) -> dict:
         tc = node.get("toolConfiguration") or {}
         return tc.get("toolFunctionName", "")
 
-    existing_by_fn = {get_fn(n): n for n in existing_nodes if not n.get("isEntryNode")}
+    existing_by_fn = {get_fn(n): n for n in existing_nodes
+                      if not n.get("isEntryNode") and n.get("nodeType") != "conditionNode"}
     existing_entry = next((n for n in existing_nodes if n.get("isEntryNode")), None)
+    existing_conditions = [n for n in existing_nodes if n.get("nodeType") == "conditionNode"]
 
-    # Compute toolFunctionName for every non-entry spec node
+    def _find_existing(spec_fn_name):
+        """Find existing node by toolFunctionName, handling API-appended suffixes."""
+        if spec_fn_name in existing_by_fn:
+            return existing_by_fn[spec_fn_name]
+        for fn_key, node in existing_by_fn.items():
+            if fn_key.startswith(spec_fn_name + '_'):
+                return node
+        return None
+
+    # Compute toolFunctionName for every non-entry, non-condition spec node
     spec_fn = {
         ns["key"]: tool_function_name(ns.get("tool_name", ns.get("name", "")))
-        for ns in nodes_spec if not ns.get("is_entry")
+        for ns in nodes_spec
+        if not ns.get("is_entry") and ns.get("node_type") != "conditionNode"
     }
 
     # ── Assign node UUIDs: reuse existing where matched ────────────────────────
     NODE = {}
+    _remaining_conditions = list(existing_conditions)  # mutable copy for pop
     for ns in nodes_spec:
         k = ns["key"]
         if ns.get("is_entry"):
             NODE[k] = existing_entry["id"] if existing_entry else g()
+        elif ns.get("node_type") == "conditionNode":
+            # Reuse first unmatched existing condition node, else new UUID
+            if _remaining_conditions:
+                NODE[k] = _remaining_conditions.pop(0)["id"]
+            else:
+                NODE[k] = g()
         else:
             fn = spec_fn[k]
-            NODE[k] = existing_by_fn[fn]["id"] if fn in existing_by_fn else g()
+            ex = _find_existing(fn)
+            NODE[k] = ex["id"] if ex else g()
 
     # ── For NEW nodes only: generate TC + OP UUIDs ─────────────────────────────
     TC = {}
     OP = {}
     for ns in nodes_spec:
-        if ns.get("is_entry"):
+        if ns.get("is_entry") or ns.get("node_type") == "conditionNode":
             continue
         k  = ns["key"]
         fn = spec_fn[k]
-        if fn in existing_by_fn:
+        ex = _find_existing(fn)
+        if ex:
             # Reuse existing IDs so linked params remain valid
-            ex_tc = existing_by_fn[fn].get("toolConfiguration") or {}
+            ex_tc = ex.get("toolConfiguration") or {}
             TC[k] = ex_tc.get("id", g())
             for op in ex_tc.get("outputParams", []):
                 OP[f"{k}.{op['paramName']}"] = op["id"]
@@ -429,14 +478,20 @@ def build_payload_update(spec: dict, existing_graph_resp: dict) -> dict:
             "paramTip":          None,
             "staticValue":       None,
             "linkParamOutputId": None,
+            "linkedOutputParamNodeId": None,
+            "linkedOutputParamName":   None,
         }
         if ft == "static":
             base["staticValue"] = ip.get("static_value", "")
         elif ft == "linked":
-            op_key = f"{ip['linked_node']}.{ip['linked_param']}"
+            linked_node_key = ip['linked_node']
+            linked_param    = ip['linked_param']
+            op_key = f"{linked_node_key}.{linked_param}"
             if op_key not in OP:
                 raise ValueError(f"Linked param '{op_key}' not found.\nAvailable: {list(OP.keys())}")
-            base["linkParamOutputId"] = OP[op_key]
+            base["linkParamOutputId"]      = OP[op_key]
+            base["linkedOutputParamNodeId"] = NODE[linked_node_key]
+            base["linkedOutputParamName"]   = linked_param
         return base
 
     def build_op(op, nk):
@@ -496,6 +551,14 @@ def build_payload_update(spec: dict, existing_graph_resp: dict) -> dict:
                         OP.get(f"{ip['linked_node']}.{ip['linked_param']}")
                         if ip.get("fill_type") == "linked" else None
                     ),
+                    "linkedOutputParamNodeId": (
+                        NODE.get(ip['linked_node'])
+                        if ip.get("fill_type") == "linked" else None
+                    ),
+                    "linkedOutputParamName": (
+                        ip['linked_param']
+                        if ip.get("fill_type") == "linked" else None
+                    ),
                     "options":  None,
                     "paramTip": None,
                 }
@@ -514,6 +577,36 @@ def build_payload_update(spec: dict, existing_graph_resp: dict) -> dict:
                 }
                 for op in ops
             ],
+        }
+
+    def build_new_condition_node(ns):
+        """Build a new conditionNode (no toolConfiguration)."""
+        return {
+            "id":               NODE[ns["key"]],
+            "objective":        ns.get("objective", ""),
+            "evaluationCriteria": [],
+            "isEntryNode":      False,
+            "isExitNode":       False,
+            "nodeType":         "conditionNode",
+            "nodeConfigurations": ns.get("node_configurations", {
+                "conditionType": "llm_based",
+                "llmModel": "GPT40",
+                "fallbackModels": None,
+            }),
+            "xCoordinate":      ns.get("x", 0),
+            "yCoordinate":      ns.get("y", 300),
+            "isEvaluationEnabled": False,
+            "isAttachmentDataPulledIn": True,
+            "onError":          "STOP",
+            "autoRetryWhenAccuracyLessThan":    80,
+            "autoRetryLimitWhenAccuracyIsLow":  1,
+            "autoRetryCountWhenFailure":        1,
+            "autoRetryWaitTimeWhenFailureInMs":  1000,
+            "enableAutoRetryWhenAccuracyIsLow": False,
+            "enableAutoRetryWhenFailure":       False,
+            "isEdited":         False,
+            "childEdges":  child_edges(ns["key"]),
+            "parentEdges": parent_edges(ns["key"]),
         }
 
     def build_new_node(ns):
@@ -548,6 +641,7 @@ def build_payload_update(spec: dict, existing_graph_resp: dict) -> dict:
             "evaluationCriteria": criteria,
             "isEntryNode":      False,
             "isExitNode":       ns.get("is_exit", False),
+            "nodeType":         "executionNode",
             "xCoordinate":      ns.get("x", 250),
             "yCoordinate":      ns.get("y", 150),
             "isEvaluationEnabled":      bool(criteria),
@@ -567,8 +661,46 @@ def build_payload_update(spec: dict, existing_graph_resp: dict) -> dict:
             "parentEdges": parent_edges(ns["key"]),
         }
 
+    # ── Rebuild linkParamOutputId on reused nodes ────────────────────────────────
+    def _rebuild_linked_params(node, spec_node):
+        """Rebuild linked param references on an existing node using spec's linked info.
+
+        Sets linkedOutputParamNodeId (node ID from this payload) +
+        linkedOutputParamName (output param name) which the API uses to
+        resolve linkParamOutputId on PUT.
+        """
+        tc = node.get("toolConfiguration")
+        if not tc:
+            return
+        spec_ips = {ip["name"]: ip for ip in spec_node.get("input_params", [])}
+        # Patch toolConfiguration.inputParams
+        for ip in tc.get("inputParams", []):
+            spec_ip = spec_ips.get(ip.get("paramName"))
+            if spec_ip and spec_ip.get("fill_type") == "linked":
+                linked_node_key = spec_ip['linked_node']
+                linked_param    = spec_ip['linked_param']
+                op_key = f"{linked_node_key}.{linked_param}"
+                ip["linkParamOutputId"]      = OP.get(op_key)
+                ip["linkedOutputParamNodeId"] = NODE.get(linked_node_key)
+                ip["linkedOutputParamName"]   = linked_param
+                ip["fillType"] = "linked"
+        # Patch originalTool.inputParams
+        ot = tc.get("originalTool")
+        if ot:
+            for ip in ot.get("inputParams", []):
+                spec_ip = spec_ips.get(ip.get("paramName"))
+                if spec_ip and spec_ip.get("fill_type") == "linked":
+                    linked_node_key = spec_ip['linked_node']
+                    linked_param    = spec_ip['linked_param']
+                    op_key = f"{linked_node_key}.{linked_param}"
+                    ip["linkParamOutputId"]      = OP.get(op_key)
+                    ip["linkedOutputParamNodeId"] = NODE.get(linked_node_key)
+                    ip["linkedOutputParamName"]   = linked_param
+                    ip["fillType"] = "linked"
+
     # ── Assemble final nodes ────────────────────────────────────────────────────
     final_nodes = []
+    _reused_condition_ids = set()
     for ns in nodes_spec:
         k  = ns["key"]
         ce = child_edges(k)
@@ -578,6 +710,7 @@ def build_payload_update(spec: dict, existing_graph_resp: dict) -> dict:
             node = dict(existing_entry) if existing_entry else {
                 "id": NODE[k], "objective": "Entry Node",
                 "evaluationCriteria": [], "isEntryNode": True, "isExitNode": False,
+                "nodeType": "entryNode",
                 "xCoordinate": ns.get("x", 250), "yCoordinate": ns.get("y", 0),
                 "isEvaluationEnabled": False, "isAttachmentDataPulledIn": True,
                 "onError": "STOP", "enableAutoRetryWhenFailure": False,
@@ -590,13 +723,31 @@ def build_payload_update(spec: dict, existing_graph_resp: dict) -> dict:
             node["childEdges"]  = ce
             node["parentEdges"] = pe
             final_nodes.append(node)
-        else:
-            fn = spec_fn[k]
-            if fn in existing_by_fn:
-                # ← Keep existing node verbatim; only rewire edges
-                node = dict(existing_by_fn[fn])
+        elif ns.get("node_type") == "conditionNode":
+            # Check if we reused an existing condition node UUID
+            node_id = NODE[k]
+            existing_cond = next(
+                (n for n in existing_conditions if n["id"] == node_id),
+                None,
+            )
+            if existing_cond and node_id not in _reused_condition_ids:
+                # Keep existing condition node verbatim; only rewire edges
+                node = dict(existing_cond)
                 node["childEdges"]  = ce
                 node["parentEdges"] = pe
+                _reused_condition_ids.add(node_id)
+                final_nodes.append(node)
+            else:
+                final_nodes.append(build_new_condition_node(ns))
+        else:
+            fn = spec_fn[k]
+            ex = _find_existing(fn)
+            if ex:
+                # ← Keep existing node; rewire edges + rebuild linked params
+                node = copy.deepcopy(ex)
+                node["childEdges"]  = ce
+                node["parentEdges"] = pe
+                _rebuild_linked_params(node, ns)
                 final_nodes.append(node)
             else:
                 final_nodes.append(build_new_node(ns))
@@ -702,7 +853,13 @@ def main():
     print(f"{action}: {payload['agentName']}  ({len(payload['nodes'])} nodes)")
     for n in payload["nodes"]:
         tc     = n.get("toolConfiguration") or {}
-        role   = "ENTRY" if n["isEntryNode"] else tc.get("toolName", "?")
+        nt     = n.get("nodeType", "")
+        if n.get("isEntryNode"):
+            role = "ENTRY"
+        elif nt == "conditionNode":
+            role = "CONDITION"
+        else:
+            role = tc.get("toolName", "?")
         ins    = len(tc.get("inputParams", []))
         outs   = len(tc.get("outputParams", []))
         linked = [p["paramName"] for p in tc.get("inputParams", []) if p.get("fillType") == "linked"]
