@@ -129,10 +129,11 @@ See [authentication.md](references/authentication.md) for setup details and code
 |--------|----------|-------------|
 | GET | `/context/agent/{agentId}/file/{fileId}/download` | Download a context file |
 
-### Tool Optimization & Models
+### Tools, Optimization & Models
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
+| GET | `/tool/active-tools` | Search/list active tools (filter by type, keyword) |
 | GET | `/custom-tool/preferred-models` | Get list of available/preferred LLM models |
 | POST | `/tool/optimize/{toolFunctionName}` | Optimize tool performance |
 | POST | `/tool/optimization-status/thread/{threadId}` | Check optimization status |
@@ -149,7 +150,7 @@ See [authentication.md](references/authentication.md) for setup details and code
 | [task-endpoints.md](references/task-endpoints.md) | Task CRUD, SSE, HITL, rating, analytics |
 | [agent-setup-endpoints.md](references/agent-setup-endpoints.md) | Agent setup flow and configuration |
 | [agent-views-endpoints.md](references/agent-views-endpoints.md) | Structured data views and records |
-| [tool-endpoints.md](references/tool-endpoints.md) | Tool optimization endpoints |
+| [tool-endpoints.md](references/tool-endpoints.md) | Tool search, attach to node, optimization |
 | [context-files-endpoints.md](references/context-files-endpoints.md) | Context file download |
 | [mcp-connection.md](references/mcp-connection.md) | MCP server connection and available tools |
 | [response-schemas.md](references/response-schemas.md) | Common response objects and status codes |
