@@ -7,4 +7,5 @@
 - **markdown-to-pdf** (v1.0) — Convert markdown files to professionally styled PDFs. Triggers: 'render pdf',...
 
 ### Changed
+- **create-meeting-presentation-html** (v1.1) — Generate a self-contained HTML slide presentation for meetings. Load when use... _(by Hassaan Ahmed)_
 

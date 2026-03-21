@@ -1,6 +1,6 @@
 # Beam Next Skills Library
 
-Installable skills for [Beam Next](https://github.com/Beam-GTM/beam-next-raw). 240 skills across integrations, general workflows, learning, and more.
+Installable skills for [Beam Next](https://github.com/Beam-GTM/beam-next-raw). 249 skills across integrations, general workflows, learning, and more.
 
 ## Install a Skill
 
@@ -35,6 +35,7 @@ Extended index with owner and version. See `registry.yaml` for the full machine-
 | expert-review | — | 1.0 | experts |
 | abstract | — | 1.0 | general |
 | analyze-competitors | Mahnoor Jawed | 1.0 | general |
+| beam-credit-analysis | Hassaan Ahmed | 1.1 | general |
 | better-doc | Jack Li | 1.0 | general |
 | blackbird | Jack Li | 1.0 | general |
 | calculate-beam-agent-pricing | Safi Haider | 1.0 | general |
@@ -43,13 +44,12 @@ Extended index with owner and version. See `registry.yaml` for the full machine-
 | create-client-project | Hassaan Ahmed | 1.0 | general |
 | create-data | Aqib Ansari | 1.0 | general |
 | create-meeting-minutes | Hassaan Ahmed | 1.0 | general |
-| create-meeting-presentation-html | Hassaan Ahmed | 1.0 | general |
+| create-meeting-presentation-html | Hassaan Ahmed | 1.1 | general |
 | create-ruleset | Aqib Ansari | 1.0 | general |
 | create-weekly-update | — | 1.0 | general |
 | data-baker | Safi Haider | 1.0 | general |
 | dealroom-creation | Quentin | 1.0 | general |
 | demo-documentation-generation-agent | Safi Haider | 1.2 | general |
-| design-beam-agent | — | 1.0 | general |
 | document-nodes | — | 1.0 | general |
 | evaluate-solutions-case-study | Sven Djokic | 1.0 | general |
 | extract-requirements | Sven Djokic | 1.0 | general |
@@ -60,7 +60,7 @@ Extended index with owner and version. See `registry.yaml` for the full machine-
 | follow-up-automation | Quentin | 1.0 | general |
 | generate-demo-agent-sample-input-data | Hassaan Ahmed, Safi Haider | 1.0 | general |
 | generate-linear-project-update | Jack Li | 1.0 | general |
-| get-beam-agent-graph | Safi Haider | 1.0 | general |
+| get-beam-agent-graph | Safi Haider | 1.1 | general |
 | git | Abdul Rafay | 1.0 | general |
 | graph-slicer | Sven Djokic | 1.2 | general |
 | interview-coach | Jonas Diezun | 2.0 | general |
@@ -68,6 +68,8 @@ Extended index with owner and version. See `registry.yaml` for the full machine-
 | linear-create-tickets | Hassaan Ahmed | 1.0 | general |
 | linear-update-tickets | Hassaan Ahmed | 1.0 | general |
 | linkedin-outbounding-automation | — | 1.0 | general |
+| manager-review | — | 1.0 | general |
+| okr-self-review | — | 1.0 | general |
 | process-client-meeting | Hassaan Ahmed | 1.0 | general |
 | prompt-versioning | Anas Duksi | 1.0 | general |
 | qa-checklist | Jack Li | 1.0 | general |
@@ -87,14 +89,18 @@ Extended index with owner and version. See `registry.yaml` for the full machine-
 | amie-connect | — | 1.0 | integrations |
 | amie-master | — | 1.0 | integrations |
 | attio-connect | — | 1.0 | integrations |
-| beam-connect | — | 1.0 | integrations |
+| beam-agent-manager | Abdul Rafay | 1.0 | integrations |
+| beam-ape-optimizer | Abdul Rafay | 1.0 | integrations |
+| beam-connect | — | 1.1 | integrations |
 | beam-debug-issue-tasks | Jack Li | 1.0 | integrations |
 | beam-design-system | Mo Bekdache | 1.0 | integrations |
 | beam-feedback-automation | — | 1.0 | integrations |
 | beam-get-agent-analytics | Hassaan Ahmed | 1.0 | integrations |
 | beam-get-task-details | Hassaan Ahmed | 1.0 | integrations |
+| beam-graph-creator | Abdul Rafay | 1.0 | integrations |
 | beam-graph-edit | Anas Duksi | 1.0 | integrations |
 | beam-master | — | 1.0 | integrations |
+| beam-put-payload-builder | Abdul Rafay | 1.0 | integrations |
 | beam-retry-tasks | Jack Li | 1.0 | integrations |
 | create-deal | — | 1.0 | integrations |
 | gemini-edit-image | — | 1.0 | integrations |
@@ -211,6 +217,8 @@ Extended index with owner and version. See `registry.yaml` for the full machine-
 | langfuse-update-prompt-version | — | 1.0 | integrations |
 | langfuse-update-queue-item | — | 1.0 | integrations |
 | langfuse-update-score-config | — | 1.0 | integrations |
+| miro-connect | Mujtaba | 1.0 | integrations |
+| miro-master | Mujtaba | 1.0 | integrations |
 | notebooklm | — | 1.0 | integrations |
 | notebooklm-connect | — | 1.0 | integrations |
 | notebooklm-master | — | 1.0 | integrations |
@@ -249,6 +257,7 @@ Extended index with owner and version. See `registry.yaml` for the full machine-
 | add-integration | — | 1.0 | system |
 | allhands-prep | — | 1.0 | system |
 | list-skills | — | 1.0 | system |
+| deep-thinking | — | 1.0 | tools |
 | format-and-lint-code | — | 1.0 | tools |
 | generate-philosophy-doc | — | 1.0 | tools |
 | markdown-to-pdf | — | 1.0 | tools |
