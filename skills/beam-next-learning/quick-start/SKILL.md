@@ -1,10 +1,11 @@
 ---
 name: quick-start
-version: '2.0'
+type: skill
+version: '2.1'
 description: 'Complete onboarding: welcome, language, goals, integrations, workspace,
   first PROJECT, permissions.'
 category: learning
-updated: '2026-02-26'
+updated: '2026-03-23'
 visibility: public
 onboarding: true
 priority: critical
@@ -665,6 +666,8 @@ Let's go!
 ```bash
 uv run beam-next-load --skill plan-project
 ```
+
+If `beam-next-load` is not available in your environment, load **plan-project** from your skills list / IDE skill picker — the important part is running that skill, not the exact shell wrapper.
 
 **Pass context to plan-project**:
 ```python

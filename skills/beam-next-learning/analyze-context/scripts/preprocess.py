@@ -6,7 +6,8 @@ Converts PDFs and DOCX to text, chunks large files.
 Run from Beam Next root directory.
 
 Usage:
-    uv run 00-system/skills/learning/analyze-context/scripts/preprocess.py
+    uv run 00-system/skills/beam-next-learning/analyze-context/scripts/preprocess.py
+    # Older workspaces may still use: 00-system/skills/learning/analyze-context/...
 
 Output:
     - Extracted text files in 02-memory/input/_analysis/extracted/

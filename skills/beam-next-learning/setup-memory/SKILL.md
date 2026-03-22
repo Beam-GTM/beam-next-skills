@@ -1,12 +1,13 @@
 ---
 name: setup-memory
-version: '1.0'
+type: skill
+version: '1.1'
 description: 'Configure Beam Next memory with your role, goals, and preferences. Load
   when user wants to personalize the system or teach Beam Next about themselves. Keywords:
   setup memory, personalize, configure, my goals, my role, about me, preferences.
   8 min.'
 category: learning
-updated: '2026-02-24'
+updated: '2026-03-23'
 visibility: public
 onboarding: true
 priority: critical

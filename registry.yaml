@@ -150,8 +150,8 @@ skills:
   category: learning
   tags:
   - learning
-  version: '1.0'
-  updated: '2026-02-26'
+  version: '1.1'
+  updated: '2026-03-23'
   visibility: public
   path: skills/beam-next-learning/analyze-context
   has_scripts: true
@@ -1169,8 +1169,8 @@ skills:
   category: learning
   tags:
   - learning
-  version: '1.0'
-  updated: '2026-02-26'
+  version: '1.1'
+  updated: '2026-03-23'
   visibility: public
   path: skills/beam-next-learning/how-beam-next-works
 - name: hubspot-connect
@@ -1413,8 +1413,8 @@ skills:
   category: learning
   tags:
   - learning
-  version: '1.0'
-  updated: '2026-02-26'
+  version: '1.1'
+  updated: '2026-03-23'
   visibility: public
   path: skills/beam-next-learning/learn-beam-next
   has_references: true
@@ -1425,8 +1425,8 @@ skills:
   category: learning
   tags:
   - api
-  version: '1.0'
-  updated: '2026-02-25'
+  version: '1.1'
+  updated: '2026-03-23'
   visibility: public
   path: skills/beam-next-learning/learn-integrations
 - name: learn-projects
@@ -1436,8 +1436,8 @@ skills:
   category: learning
   tags:
   - learning
-  version: '1.0'
-  updated: '2026-02-26'
+  version: '1.1'
+  updated: '2026-03-23'
   visibility: public
   path: skills/beam-next-learning/learn-projects
 - name: learn-skills
@@ -1447,8 +1447,8 @@ skills:
   category: learning
   tags:
   - learning
-  version: '1.0'
-  updated: '2026-02-26'
+  version: '1.1'
+  updated: '2026-03-23'
   visibility: public
   path: skills/beam-next-learning/learn-skills
   has_references: true
@@ -1709,8 +1709,8 @@ skills:
   category: learning
   tags:
   - learning
-  version: '2.0'
-  updated: '2026-02-26'
+  version: '2.1'
+  updated: '2026-03-23'
   visibility: public
   path: skills/beam-next-learning/quick-start
 - name: scope-of-work-creation
@@ -1757,8 +1757,8 @@ skills:
   category: learning
   tags:
   - learning
-  version: '1.0'
-  updated: '2026-02-26'
+  version: '1.1'
+  updated: '2026-03-23'
   visibility: public
   path: skills/beam-next-learning/setup-goals
   has_references: true
@@ -1787,8 +1787,8 @@ skills:
   category: learning
   tags:
   - learning
-  version: '1.0'
-  updated: '2026-02-24'
+  version: '1.1'
+  updated: '2026-03-23'
   visibility: public
   path: skills/beam-next-learning/setup-memory
   has_references: true
@@ -1815,8 +1815,8 @@ skills:
   category: learning
   tags:
   - learning
-  version: '1.0'
-  updated: '2026-02-24'
+  version: '1.1'
+  updated: '2026-03-23'
   visibility: public
   path: skills/beam-next-learning/setup-workspace
   has_references: true

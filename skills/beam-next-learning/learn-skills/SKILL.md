@@ -1,11 +1,12 @@
 ---
 name: learn-skills
-version: '1.0'
+type: skill
+version: '1.1'
 description: 'Learn how Beam Next skills work. Load when user mentions: learn skills,
   how do skills work, what is a skill, skill tutorial, skill structure, understand
   skills, explain skills, when to create skill, skill vs build. 10-12 min.'
 category: learning
-updated: '2026-02-26'
+updated: '2026-03-23'
 visibility: public
 onboarding: true
 priority: high
@@ -161,7 +162,7 @@ To create a skill, say:
 • "new skill: [name]"
 
 YOUR skills go in 01-skills/ (prioritized!)
-SYSTEM skills in 00-system/skills/
+SYSTEM skills in 00-system/skills/ (in the public catalog these map under skills/… in beam-next-skills)
 ```
 
 ---

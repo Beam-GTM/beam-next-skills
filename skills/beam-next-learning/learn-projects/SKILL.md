@@ -1,11 +1,12 @@
 ---
 name: learn-projects
-version: '1.0'
+type: skill
+version: '1.1'
 description: 'Learn how Beam Next builds work. Load when user mentions: learn projects,
   how do builds work, builds vs skills, build tutorial, what is a project, build structure,
   build lifecycle, understand builds, explain builds. 8-10 min.'
 category: learning
-updated: '2026-02-26'
+updated: '2026-03-23'
 visibility: public
 onboarding: true
 priority: high
