@@ -1,6 +1,6 @@
 version: 1
 generated_by: build_registry.py
-skill_count: 143
+skill_count: 144
 skills:
 - name: 1on1-followup
   description: 'Quick post-meeting follow-up for 1-on-1s. Triggers: ''1on1 followup'',
@@ -343,6 +343,19 @@ skills:
   path: skills/beam/beam/beam-master
   has_scripts: true
   has_references: true
+- name: beam-next-skills-audit
+  description: Audit registry.yaml against disk, validate SKILL.md frontmatter, find duplicates
+    and orphans. Load when user says audit skills registry, validate beam-next-skills, registry
+    drift, skills catalog audit.
+  category: skill-dev
+  tags:
+  - audit
+  - registry
+  - maintenance
+  version: '1.0'
+  updated: '2026-03-23'
+  visibility: public
+  path: skills/skill-dev/beam-next-skills-audit
 - name: beam-put-payload-builder
   description: Build valid PUT payloads for Beam agent graphs by transforming GET
     responses

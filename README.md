@@ -1,6 +1,6 @@
 # Beam Next Skills Library
 
-Installable skills for [Beam Next](https://github.com/Beam-GTM/beam-next-raw). **143 skills** across integrations, general workflows, learning, and more.
+Installable skills for [Beam Next](https://github.com/Beam-GTM/beam-next-raw). **144 skills** across integrations, general workflows, learning, and more.
 
 ## Install a Skill
 
@@ -36,7 +36,7 @@ scripts/                # Shared utilities (frontmatter validation)
 | learning | 11 |
 | productivity | 4 |
 | projects | 5 |
-| skill-dev | 6 |
+| skill-dev | 7 |
 | system | 3 |
 | tools | 5 |
 
