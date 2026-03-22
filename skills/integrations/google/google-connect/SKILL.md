@@ -1,5 +1,6 @@
 ---
 name: google-connect
+type: skill
 version: '1.0'
 description: connect google, setup google, google integration.
 author: Fredrik Falk

@@ -1,5 +1,6 @@
 ---
 name: google-drive
+type: skill
 version: 1.0
 description: Manage Google Drive files and folders. Load when user mentions 'google
   drive', 'drive', 'upload file', 'download file', 'share file', 'create folder',

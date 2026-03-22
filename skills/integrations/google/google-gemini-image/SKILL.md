@@ -1,7 +1,7 @@
 ---
 name: google-gemini-image
 type: skill
-version: '2.0'
+version: '2.1'
 description: Generate, edit, and refine images with Google Gemini. Load when user says
   'generate image', 'edit image', 'refine image', 'text to image', 'gemini image',
   'modify image'.
@@ -25,25 +25,28 @@ Replaces: `gemini-generate-image`, `gemini-edit-image`, `gemini-refine-image`.
 ```bash
 # Generate from text prompt
 uv run python scripts/gemini_image.py generate "a cat in space"
-uv run python scripts/gemini_image.py generate "sunset over mountains" --aspect 16:9
+uv run python scripts/gemini_image.py generate "sunset over mountains" --aspect 16:9 --size 2K
 uv run python scripts/gemini_image.py generate "abstract art" --output my_art.png
 
 # Edit an existing image
 uv run python scripts/gemini_image.py edit photo.png "make the sky blue"
-uv run python scripts/gemini_image.py edit scene.jpg "add clouds" --output result.png
+uv run python scripts/gemini_image.py edit scene.jpg "add clouds" --aspect 4:3 --size 1K --output result.png
 
 # Refine the last generated/edited image
 uv run python scripts/gemini_image.py refine "add more stars"
 uv run python scripts/gemini_image.py refine "make it brighter" --image specific.png
 ```
 
-## Models
+## Model
 
-| Action | Model | Input |
-|--------|-------|-------|
-| generate | `gemini-2.0-flash-exp-image-generation` | Text prompt only |
-| edit | `gemini-2.0-flash-exp` | Image + text instructions |
-| refine | `gemini-2.0-flash-exp` | Image (or last output) + text instructions |
+All actions use **`gemini-3.1-flash-image-preview`** (Nano Banana 2). Inputs are text-only, or image + text for edit/refine.
+
+Legacy `gemini-2.0-flash-exp*` models are deprecated; Google scheduled shutdown **June 1, 2026** — this skill targets 3.1 only.
+
+## Aspect ratio and size
+
+- **`--aspect`**: `1:1`, `1:4`, `1:8`, `2:3`, `3:2`, `3:4`, `4:1`, `4:3`, `4:5`, `5:4`, `8:1`, `9:16`, `16:9`, `21:9` (default `1:1`).
+- **`--size`**: `512`, `1K`, `2K`, `4K` (default `1K`). Passed to the API as `image_config.image_size`.
 
 ## Requirements
 
@@ -54,3 +57,5 @@ uv run python scripts/gemini_image.py refine "make it brighter" --image specific
 
 Images save as PNG to `04-workspace/generated-images/` (or `--output` path).
 Filenames auto-generated with timestamp: `generated_20260323_143000.png`, `edited_...`, `refined_...`.
+
+Shared path helpers live in `scripts/gemini_client.py`.

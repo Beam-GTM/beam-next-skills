@@ -1,5 +1,6 @@
 ---
 name: google-slides
+type: skill
 version: 1.0
 description: Create and manage Google Slides presentations. Load when user mentions
   'google slides', 'slides', 'presentation', 'create presentation', 'add slide', or

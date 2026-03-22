@@ -1,5 +1,6 @@
 ---
 name: google-sheets
+type: skill
 version: 1.2
 description: Read and write Google Sheets data. Load when user mentions 'google sheets',
   'spreadsheet', 'update sheet', 'read sheet', 'append to sheet', or references extracting

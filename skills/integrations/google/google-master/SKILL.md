@@ -1,5 +1,6 @@
 ---
 name: google-master
+type: skill
 version: '1.0'
 description: Shared resource library for Google integration skills. DO NOT load directly
   - provides common references (setup, API docs, error handling, authentication) and

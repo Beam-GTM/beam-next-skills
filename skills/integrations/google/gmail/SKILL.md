@@ -1,5 +1,6 @@
 ---
 name: gmail
+type: skill
 version: 1.3
 description: Read, send, and manage Gmail emails. Load when user mentions 'gmail',
   'email', 'send email', 'check email', 'inbox', 'draft', or references sending/reading

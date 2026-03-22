@@ -1006,14 +1006,14 @@ skills:
   - google-master
   has_scripts: true
 - name: google-gemini-image
-  description: Generate, edit, and refine images with Google Gemini.
+  description: Generate, edit, and refine images with Google Gemini (Gemini 3.1 Flash Image).
   category: integrations
   tags:
   - google
   - gemini
   - images
   platform: Google Gemini
-  version: '2.0'
+  version: '2.1'
   updated: '2026-03-23'
   visibility: public
   path: skills/integrations/google/google-gemini-image
@@ -1181,19 +1181,19 @@ skills:
   - crm
   - hubspot
   platform: HubSpot
-  version: '1.0'
-  updated: '2026-02-24'
+  version: '2.0'
+  updated: '2026-03-23'
   visibility: public
   path: skills/integrations/hubspot/hubspot-connect
 - name: hubspot-crm
   description: All HubSpot CRM operations — contacts, companies, deals, engagements,
-    search, and associations.
+    search, associations (read and create default), delete (archive).
   category: integrations
   tags:
   - hubspot
   - crm
   platform: HubSpot
-  version: '1.0'
+  version: '1.1'
   updated: '2026-03-23'
   visibility: public
   path: skills/integrations/hubspot/hubspot-crm

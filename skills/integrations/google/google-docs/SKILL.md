@@ -1,5 +1,6 @@
 ---
 name: google-docs
+type: skill
 version: '1.0'
 description: Read, write, and manage Google Docs. Load when user mentions 'google
   docs', 'google document', 'create doc', 'read doc', 'write doc', 'edit document',

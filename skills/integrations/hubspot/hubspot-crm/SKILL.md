@@ -1,11 +1,12 @@
 ---
 name: hubspot-crm
 type: skill
-version: '1.0'
+version: '1.1'
 description: All HubSpot CRM operations — contacts, companies, deals, engagements, search,
-  and associations. Load when user says 'list contacts', 'create deal', 'search companies',
-  'log call', 'log email', 'create note', 'create meeting', 'get associations',
-  'update contact', 'update deal', 'hubspot search'.
+  associations (read and create default), and delete (archive). Load when user says
+  'list contacts', 'create deal', 'search companies', 'log call', 'log email',
+  'create note', 'create meeting', 'get associations', 'link contact to company',
+  'delete contact', 'update contact', 'update deal', 'hubspot search'.
 category: integrations
 tags:
 - hubspot
@@ -82,7 +83,16 @@ Workflow (no dedicated script — compose from existing scripts):
 
 1. Search for contact/company from transcript participants
 2. Create deal with extracted details (name, value, stage)
-3. Associate deal with contact and company via `get_associations.py`
+3. Associate deal with contact and company via `create_association.py` (default label)
+
+## Delete (archive)
+
+Deletes use CRM v3 archive-by-default. **Always require explicit confirmation** before running.
+
+```bash
+uv run python hubspot-master/scripts/delete_crm_object.py --object-type contacts --id 12345 --yes
+uv run python hubspot-master/scripts/delete_crm_object.py --object-type deals --id 67890 --yes --json
+```
 
 ## Engagements
 
@@ -120,6 +130,10 @@ uv run python hubspot-master/scripts/create_meeting.py --title "Quarterly review
 # Get records associated with an object
 uv run python hubspot-master/scripts/get_associations.py --object-type contacts --object-id 12345 --to-type deals
 uv run python hubspot-master/scripts/get_associations.py --object-type deals --object-id 67890 --to-type companies
+
+# Create default association (v4 batch — primary/generic label for the object pair)
+uv run python hubspot-master/scripts/create_association.py --from-type contacts --from-id 12345 --to-type companies --to-id 67890
+uv run python hubspot-master/scripts/create_association.py --from-type deals --from-id 111 --to-type contacts --to-id 222 --json
 ```
 
 ## API Reference
@@ -148,6 +162,8 @@ All endpoints use `https://api.hubapi.com` with Bearer token auth.
 | Meetings | list | GET | `/crm/v3/objects/meetings` |
 | Meetings | create | POST | `/crm/v3/objects/meetings` |
 | Associations | get | GET | `/crm/v4/objects/{type}/{id}/associations/{toType}` |
+| Associations | create default | POST | `/crm/v4/associations/{fromType}/{toType}/batch/associate/default` |
+| Any object | delete (archive) | DELETE | `/crm/v3/objects/{objectType}/{objectId}` |
 
 ## Pagination
 

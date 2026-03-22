@@ -1,5 +1,6 @@
 ---
 name: hubspot-connect
+type: skill
 version: '2.0'
 description: hubspot, crm, contacts, companies, deals.
 category: integrations
@@ -322,6 +323,37 @@ uv run python 00-system/skills/hubspot/hubspot-master/scripts/get_associations.p
 
 ---
 
+### Workflow 12b: Create Default Association
+**Trigger**: "associate contact with company", "link deal to contact", "connect records"
+
+Creates the **default** association label for the object pair (v4 batch API).
+
+```bash
+uv run python 00-system/skills/hubspot/hubspot-master/scripts/create_association.py \
+  --from-type contacts \
+  --from-id 12345 \
+  --to-type companies \
+  --to-id 67890 \
+  --json
+```
+
+---
+
+### Workflow 12c: Delete (Archive) Record
+**Trigger**: "delete contact", "remove deal", "archive company"
+
+**Destructive** — only run after user confirms. The script requires `--yes`.
+
+```bash
+uv run python 00-system/skills/hubspot/hubspot-master/scripts/delete_crm_object.py \
+  --object-type contacts \
+  --id 12345 \
+  --yes \
+  --json
+```
+
+---
+
 ### Workflow 13: Engagement Operations
 **Trigger**: Various engagement operations
 
@@ -399,6 +431,8 @@ When user mentions:
 | "update deal", "change stage" | Workflow 10 |
 | "search deals", "find deal" | Workflow 11 |
 | "associations", "linked records" | Workflow 12 |
+| "link", "associate", "connect record" | Workflow 12b |
+| "delete", "remove", "archive" (CRM record) | Workflow 12c |
 | "emails", "calls", "notes", "meetings" | Workflow 13 |
 
 ---
@@ -487,6 +521,6 @@ Would you like to associate this deal with a contact or company?
 
 ## Version
 
-**Version**: 1.0
-**Created**: 2025-12-13
+**Version**: 2.0
+**Updated**: 2026-03-23
 **Status**: Production Ready
