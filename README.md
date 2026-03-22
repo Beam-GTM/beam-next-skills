@@ -15,6 +15,18 @@ python3 search_skills.py "crm"
 python3 install_skill.py https://github.com/someone/repo/tree/main/my-skill
 ```
 
+## SKILL.md frontmatter (distribution)
+
+Every skill should declare who it is for:
+
+| Field | Values | Meaning |
+|-------|--------|--------|
+| **`visibility`** | `public` \| `team` | **`public`** — OK for the public catalog, Vercel API, and external installs. **`team`** — **internal / Beam team only** (e.g. ROI, pricing, costs, ops); do not treat as a customer-facing catalog entry even if the file exists in the repo. |
+
+`registry.yaml` includes `visibility` for API consumers. Keep SKILL.md and the registry in sync: after editing `registry.yaml`, run `python3 scripts/sync_visibility_from_registry.py` to insert/update `visibility` lines in each `SKILL.md`, or set `visibility` manually when authoring new skills.
+
+Validated by `scripts/validate_skill_frontmatter.py` (invalid `visibility` values fail). Use `--require-visibility` in CI once all skills include the field.
+
 ## Structure
 
 ```

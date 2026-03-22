@@ -2,10 +2,13 @@
 """
 Validate SKILL.md frontmatter across skills/ (Phase 1 rules).
 
-  python3 scripts/validate_skill_frontmatter.py [--strict]
+  python3 scripts/validate_skill_frontmatter.py [--strict] [--require-visibility]
 
 Default: print warnings, exit 0.
 --strict: exit 1 if any skill fails (for CI once the repo is fully migrated).
+--require-visibility: treat missing `visibility:` as an error (public | team).
+
+`visibility`: `public` = catalog / external distribution; `team` = internal-only (ROI, pricing, ops).
 """
 
 from __future__ import annotations
@@ -32,6 +35,9 @@ ALLOWED_CATEGORIES = frozenset(
         "experts",
     }
 )
+
+# Distribution: public = catalog / external; team = internal (Beam team, ROI, pricing, etc.)
+ALLOWED_VISIBILITY = frozenset({"public", "team"})
 
 
 def extract_frontmatter(text: str) -> str | None:
@@ -81,6 +87,12 @@ def parse_frontmatter(block: str) -> dict[str, str | list[str]]:
             i += 1
             continue
 
+        m = re.match(r"^visibility:\s*(.+)$", stripped)
+        if m:
+            fm["visibility"] = m.group(1).strip().strip("'\"")
+            i += 1
+            continue
+
         if stripped.startswith("tags:") and "[" in stripped:
             m = re.search(r"\[(.*)\]", stripped)
             if m:
@@ -100,7 +112,7 @@ def parse_frontmatter(block: str) -> dict[str, str | list[str]]:
     return fm
 
 
-def validate_file(path: Path) -> list[str]:
+def validate_file(path: Path, require_visibility: bool) -> list[str]:
     issues: list[str] = []
     text = path.read_text(encoding="utf-8", errors="replace")
     block = extract_frontmatter(text)
@@ -123,6 +135,14 @@ def validate_file(path: Path) -> list[str]:
     if isinstance(cat, str) and cat and cat not in ALLOWED_CATEGORIES:
         issues.append(f"{path}: category {cat!r} not in allowed set")
 
+    vis = fm.get("visibility")
+    if isinstance(vis, str) and vis and vis not in ALLOWED_VISIBILITY:
+        issues.append(f"{path}: visibility must be public or team, got {vis!r}")
+    elif require_visibility and not vis:
+        issues.append(
+            f"{path}: missing `visibility` (use `public` for catalog-wide; `team` for internal-only)"
+        )
+
     return issues
 
 
@@ -132,6 +152,11 @@ def main() -> None:
         "--strict",
         action="store_true",
         help="Exit with code 1 if any validation issue is found",
+    )
+    parser.add_argument(
+        "--require-visibility",
+        action="store_true",
+        help="Fail if visibility: is missing (use after all SKILL.md files include it)",
     )
     args = parser.parse_args()
 
@@ -143,7 +168,7 @@ def main() -> None:
 
     all_issues: list[str] = []
     for skill_md in sorted(skills_dir.rglob("SKILL.md")):
-        all_issues.extend(validate_file(skill_md))
+        all_issues.extend(validate_file(skill_md, require_visibility=args.require_visibility))
 
     for line in all_issues:
         print(line, file=sys.stderr)

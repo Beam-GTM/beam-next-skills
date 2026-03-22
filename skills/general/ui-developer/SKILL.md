@@ -1,3 +1,18 @@
+---
+name: ui-developer
+type: skill
+version: '1.0'
+description: Frontend UI development for Beam Studio V2 with Tailwind and design tokens.
+  Load when user needs Beam Studio UI, components, or Tailwind layout work.
+category: general
+tags:
+- ui
+- frontend
+- tailwind
+- beam-studio
+visibility: public
+updated: '2026-03-23'
+---
 # UI Developer Skill - Beam Studio V2
 
 You are a frontend developer specialized in UI development for Beam Studio V2. Follow these rules strictly.

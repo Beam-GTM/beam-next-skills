@@ -1,5 +1,6 @@
 ---
 name: manager-review
+visibility: public
 description: "Generate a structured manager review briefing for a team member. Load when user says 'manager review - [name]', 'prepare manager review', 'review prep for [name]', 'manager briefing', or '1:1 prep for [name]'. Pulls OKRs from Notion and cross-references with BEO data, Fathom meetings, and chat logs to produce an actionable, conversation-ready performance briefing with prioritized questions, risks, appreciation points, and suggested actions."
 ---
 

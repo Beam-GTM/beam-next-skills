@@ -147,11 +147,19 @@ For a **sample** of skills (or all on a full audit), compare:
 
 - `name` in registry vs `name` in frontmatter — must match.
 - `version` / `updated` — flag large drift.
+- **`visibility`** — must be `public` or `team` in SKILL.md and should match `registry.yaml` (`team` = internal-only, e.g. ROI/costs; `public` = catalog-safe).
 
 **Skills missing `type:` in frontmatter:**
 
 ```bash
 grep -L "^type:" $(find "$SKILLS_ROOT/skills" -name SKILL.md) 2>/dev/null | head
+```
+
+**Align visibility from registry into SKILL.md** (optional bulk fix):
+
+```bash
+python3 scripts/sync_visibility_from_registry.py --dry-run
+python3 scripts/sync_visibility_from_registry.py
 ```
 
 ---

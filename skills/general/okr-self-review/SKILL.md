@@ -1,5 +1,6 @@
 ---
 name: okr-self-review
+visibility: public
 description: Generate a structured performance self-review. Load when user says "review my performance - [name]", "review my performance", "self-review", "performance review", or "quarter review". Pulls all data from Notion (OKRs, Key Projects, Skills, Core Behaviours) and cross-references with Nexus chat logs, BEO Slack data, and Fathom meetings.
 ---
 
