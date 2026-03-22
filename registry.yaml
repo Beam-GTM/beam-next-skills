@@ -1,6 +1,6 @@
 version: 1
 generated_by: build_registry.py
-skill_count: 165
+skill_count: 143
 skills:
 - name: 1on1-followup
   description: 'Quick post-meeting follow-up for 1-on-1s. Triggers: ''1on1 followup'',
@@ -850,46 +850,6 @@ skills:
   path: skills/general/format-and-lint-code
   has_scripts: true
   has_references: true
-- name: gemini-edit-image
-  description: edit image, modify image, change image, gemini edit.
-  category: integrations
-  tags:
-  - google-gemini
-  - update
-  platform: Google Gemini
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/integrations/google/gemini-edit-image
-  requires:
-  - google-gemini-image
-  has_scripts: true
-- name: gemini-generate-image
-  description: generate image, create image, text to image, gemini generate.
-  category: integrations
-  tags:
-  - google-gemini
-  platform: Google Gemini
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/google/gemini-generate-image
-  requires:
-  - google-gemini-image
-  has_scripts: true
-- name: gemini-refine-image
-  description: refine image, improve image, iterate image, tweak image.
-  category: integrations
-  tags:
-  - google-gemini
-  platform: Google Gemini
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/integrations/google/gemini-refine-image
-  requires:
-  - google-gemini-image
-  has_scripts: true
 - name: generate-demo-agent-sample-input-data
   description: Generate sample test inputs and expected results for Beam.ai agents.
     Load when user says "generate demo data", "create sample inputs for agent", "demo
@@ -1044,6 +1004,19 @@ skills:
   requires:
   - google-connect
   - google-master
+  has_scripts: true
+- name: google-gemini-image
+  description: Generate, edit, and refine images with Google Gemini.
+  category: integrations
+  tags:
+  - google
+  - gemini
+  - images
+  platform: Google Gemini
+  version: '2.0'
+  updated: '2026-03-23'
+  visibility: public
+  path: skills/integrations/google/google-gemini-image
   has_scripts: true
 - name: google-master
   description: Shared resource library for Google integration skills. DO NOT load
@@ -1212,233 +1185,19 @@ skills:
   updated: '2026-02-24'
   visibility: public
   path: skills/integrations/hubspot/hubspot-connect
-- name: hubspot-create-company
-  description: Create a new company in HubSpot CRM. Load when user says 'create company',
-    'add company', 'new company'. Requires name, optional domain, industry, city.
-  category: integrations
-  tags:
-  - create
-  - crm
-  - hubspot
-  platform: HubSpot
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/hubspot/hubspot-create-company
-- name: hubspot-create-contact
-  description: Create a new contact in HubSpot CRM. Load when user says 'create contact',
-    'add contact', 'new contact'. Requires email, optional firstname, lastname, phone,
-    company.
-  category: integrations
-  tags:
-  - create
-  - crm
-  - email
-  - hubspot
-  platform: HubSpot
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/hubspot/hubspot-create-contact
-- name: hubspot-create-deal
-  description: Create a new deal in HubSpot CRM. Load when user says 'create deal',
-    'add deal', 'new deal', 'new opportunity'. Requires name, optional amount, stage,
-    closedate.
-  category: integrations
-  tags:
-  - create
-  - crm
-  - hubspot
-  platform: HubSpot
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/hubspot/hubspot-create-deal
-- name: hubspot-create-deal-from-transcript
-  description: Create a new HubSpot deal from a user-provided call transcript or meeting
-    notes. Use this skill when the user says "create deal from transcript", "log deal
-    from my notes", "create deal from call notes", "turn these notes into a deal",
-    or pastes a transcript and asks to create a deal. Only trigger when there's a
-    clear signal that a demo or next commitment was secured — do NOT trigger for exploratory
-    calls with no outcome, post-demo follow-ups, or existing deals being updated.
-    Accepts any transcript format, extracts key fields, asks the user for any missing
-    info, and creates the deal in HubSpot with all required fields and associations.
+- name: hubspot-crm
+  description: All HubSpot CRM operations — contacts, companies, deals, engagements,
+    search, and associations.
   category: integrations
   tags:
   - hubspot
-  - deal
   - crm
-  - transcript
   platform: HubSpot
   version: '1.0'
-  updated: '2026-02-27'
+  updated: '2026-03-23'
   visibility: public
-  path: skills/integrations/hubspot/hubspot-create-deal-from-transcript
-- name: hubspot-create-meeting
-  description: Create a meeting engagement in HubSpot CRM. Load when user says 'create
-    meeting', 'add meeting', 'schedule meeting', 'new meeting'. Requires title, start
-    and end times.
-  category: integrations
-  tags:
-  - create
-  - crm
-  - hubspot
-  - meeting
-  platform: HubSpot
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/hubspot/hubspot-create-meeting
-- name: hubspot-create-note
-  description: Create a note engagement in HubSpot CRM. Load when user says 'create
-    note', 'add note', 'new note', 'record note'. Requires body content.
-  category: integrations
-  tags:
-  - create
-  - crm
-  - hubspot
-  platform: HubSpot
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/hubspot/hubspot-create-note
-- name: hubspot-get-associations
-  description: Get associated records in HubSpot CRM. Load when user says 'get associations',
-    'linked records', 'contacts on deal', 'company contacts', 'related records', 'who
-    is on this deal'.
-  category: integrations
-  tags:
-  - crm
-  - hubspot
-  platform: HubSpot
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/hubspot/hubspot-get-associations
-- name: hubspot-list-calls
-  description: List call engagements from HubSpot CRM. Load when user says 'list calls',
-    'show calls', 'call history', 'hubspot calls'. Returns logged call records.
-  category: integrations
-  tags:
-  - crm
-  - hubspot
-  - query
-  platform: HubSpot
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/hubspot/hubspot-list-calls
-- name: hubspot-list-companies
-  description: List companies from HubSpot CRM. Load when user says 'list companies',
-    'show companies', 'get companies', 'hubspot companies'. Returns paginated company
-    list.
-  category: integrations
-  tags:
-  - crm
-  - hubspot
-  - query
-  platform: HubSpot
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/hubspot/hubspot-list-companies
-- name: hubspot-list-contacts
-  description: List contacts from HubSpot CRM. Load when user says 'list contacts',
-    'show contacts', 'get contacts', 'hubspot contacts'. Returns paginated contact
-    list with email, name, phone, company.
-  category: integrations
-  tags:
-  - crm
-  - email
-  - hubspot
-  - query
-  platform: HubSpot
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/hubspot/hubspot-list-contacts
-- name: hubspot-list-deals
-  description: List deals from HubSpot CRM. Load when user says 'list deals', 'show
-    deals', 'show pipeline', 'get deals', 'hubspot deals'. Returns paginated deal
-    list.
-  category: integrations
-  tags:
-  - crm
-  - hubspot
-  - query
-  platform: HubSpot
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/hubspot/hubspot-list-deals
-- name: hubspot-list-emails
-  description: List email engagements from HubSpot CRM. Load when user says 'list
-    emails', 'show emails', 'email history', 'hubspot emails'. Returns logged email
-    records.
-  category: integrations
-  tags:
-  - crm
-  - email
-  - hubspot
-  - query
-  platform: HubSpot
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/hubspot/hubspot-list-emails
-- name: hubspot-list-meetings
-  description: List meeting engagements from HubSpot CRM. Load when user says 'list
-    meetings', 'show meetings', 'meeting history', 'hubspot meetings'. Returns scheduled
-    meeting records.
-  category: integrations
-  tags:
-  - crm
-  - hubspot
-  - meeting
-  - query
-  platform: HubSpot
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/hubspot/hubspot-list-meetings
-- name: hubspot-list-notes
-  description: List note engagements from HubSpot CRM. Load when user says 'list notes',
-    'show notes', 'note history', 'hubspot notes'. Returns logged note records.
-  category: integrations
-  tags:
-  - crm
-  - hubspot
-  - query
-  platform: HubSpot
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/hubspot/hubspot-list-notes
-- name: hubspot-log-call
-  description: Log a call engagement in HubSpot CRM. Load when user says 'log call',
-    'record call', 'add call', 'call made'. Requires title, optional body and duration.
-  category: integrations
-  tags:
-  - crm
-  - hubspot
-  platform: HubSpot
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/hubspot/hubspot-log-call
-- name: hubspot-log-email
-  description: Log an email engagement in HubSpot CRM. Load when user says 'log email',
-    'record email', 'add email', 'email sent'. Requires subject and body.
-  category: integrations
-  tags:
-  - crm
-  - email
-  - hubspot
-  platform: HubSpot
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/hubspot/hubspot-log-email
+  path: skills/integrations/hubspot/hubspot-crm
+  has_scripts: false
 - name: hubspot-master
   description: Shared resource library for HubSpot integration skills. DO NOT load
     directly - provides common references (setup, API docs, error handling, authentication)
@@ -1455,74 +1214,6 @@ skills:
   path: skills/integrations/hubspot/hubspot-master
   has_scripts: true
   has_references: true
-- name: hubspot-search-companies
-  description: Search companies in HubSpot CRM by name or domain. Load when user says
-    'search companies', 'find company', 'lookup company', 'search for [company]'.
-  category: integrations
-  tags:
-  - crm
-  - hubspot
-  - query
-  platform: HubSpot
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/hubspot/hubspot-search-companies
-- name: hubspot-search-contacts
-  description: Search contacts in HubSpot CRM by email, name, or company. Load when
-    user says 'search contacts', 'find contact', 'lookup contact', 'search for [name]'.
-  category: integrations
-  tags:
-  - crm
-  - email
-  - hubspot
-  - query
-  platform: HubSpot
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/hubspot/hubspot-search-contacts
-- name: hubspot-search-deals
-  description: Search deals in HubSpot CRM by name or amount. Load when user says
-    'search deals', 'find deal', 'lookup deal', 'deals over $X', 'search for [deal]'.
-  category: integrations
-  tags:
-  - crm
-  - hubspot
-  - query
-  platform: HubSpot
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/hubspot/hubspot-search-deals
-- name: hubspot-update-contact
-  description: Update an existing contact in HubSpot CRM. Load when user says 'update
-    contact', 'edit contact', 'modify contact', 'change contact'. Requires contact
-    ID.
-  category: integrations
-  tags:
-  - crm
-  - hubspot
-  - update
-  platform: HubSpot
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/hubspot/hubspot-update-contact
-- name: hubspot-update-deal
-  description: Update an existing deal in HubSpot CRM. Load when user says 'update
-    deal', 'edit deal', 'change deal stage', 'move deal', 'close deal'. Requires deal
-    ID.
-  category: integrations
-  tags:
-  - crm
-  - hubspot
-  - update
-  platform: HubSpot
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/hubspot/hubspot-update-deal
 - name: import-skill
   description: import skill, download skill, install skill, get skill.
   category: skill-dev

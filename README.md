@@ -1,6 +1,6 @@
 # Beam Next Skills Library
 
-Installable skills for [Beam Next](https://github.com/Beam-GTM/beam-next-raw). **165 skills** across integrations, general workflows, learning, and more.
+Installable skills for [Beam Next](https://github.com/Beam-GTM/beam-next-raw). **143 skills** across integrations, general workflows, learning, and more.
 
 ## Install a Skill
 
@@ -26,29 +26,40 @@ skills/
 scripts/                # Shared utilities (frontmatter validation)
 ```
 
-### Integration platforms
-
-| Platform | Skills | Pattern |
-|----------|--------|---------|
-| HubSpot | 23 | 1 per endpoint (consolidation planned) |
-| Google | 13 | Workspace + Gemini image |
-| Beam | 12 | Build-time + runtime tools |
-| Langfuse | 11 | Consolidated resource-level skills |
-| Others | 19 | Airtable, Amie, Attio, Fathom, HeyReach, Linear, Miro, NotebookLM, Notion, Slack, Workable, … |
-
 ### Category breakdown
 
-| Category | Count | Description |
-|----------|-------|-------------|
-| integrations | 78 | API connectors and platform tools |
-| general | 51 | Workflows, utilities, cross-platform |
-| learning | 11 | Beam Next onboarding and tutorials |
-| skill-dev | 6 | Skill creation and validation |
-| projects | 5 | Project lifecycle management |
-| tools | 5 | Deep thinking, formatting, docs |
-| productivity | 4 | 1:1s, email automation |
-| system | 3 | System-level operations |
-| experts | 2 | Expert review patterns |
+| Category | Count |
+|----------|-------|
+| experts | 2 |
+| general | 51 |
+| integrations | 56 |
+| learning | 11 |
+| productivity | 4 |
+| projects | 5 |
+| skill-dev | 6 |
+| system | 3 |
+| tools | 5 |
+
+### Integration platforms
+
+| Platform | Skills |
+|----------|--------|
+| beam | 12 |
+| google | 11 |
+| langfuse | 11 |
+| hubspot | 3 |
+| airtable | 2 |
+| amie | 2 |
+| heyreach | 2 |
+| miro | 2 |
+| notebooklm | 2 |
+| notion | 2 |
+| slack | 2 |
+| attio | 1 |
+| figma | 1 |
+| granola | 1 |
+| happenstance | 1 |
+| workable | 1 |
 
 ## Skills index
 
@@ -128,14 +139,12 @@ Full machine-readable index: [`registry.yaml`](registry.yaml). Regenerate with `
 | beam-put-payload-builder | 1.0 | integrations |
 | beam-retry-tasks | 1.0 | integrations |
 | create-deal | 1.0 | integrations |
-| gemini-edit-image | 1.0 | integrations |
-| gemini-generate-image | 1.0 | integrations |
-| gemini-refine-image | 1.0 | integrations |
 | gmail | 1.3 | integrations |
 | google-calendar | 1.0 | integrations |
 | google-connect | 1.0 | integrations |
 | google-docs | 1.0 | integrations |
 | google-drive | 1.0 | integrations |
+| google-gemini-image | 2.0 | integrations |
 | google-master | 1.0 | integrations |
 | google-sheets | 1.2 | integrations |
 | google-slides | 1.0 | integrations |
@@ -145,30 +154,10 @@ Full machine-readable index: [`registry.yaml`](registry.yaml). Regenerate with `
 | heyreach-connect | 1.0 | integrations |
 | heyreach-master | 1.0 | integrations |
 | hubspot-connect | 1.0 | integrations |
-| hubspot-create-company | 1.0 | integrations |
-| hubspot-create-contact | 1.0 | integrations |
-| hubspot-create-deal | 1.0 | integrations |
-| hubspot-create-deal-from-transcript | 1.0 | integrations |
-| hubspot-create-meeting | 1.0 | integrations |
-| hubspot-create-note | 1.0 | integrations |
-| hubspot-get-associations | 1.0 | integrations |
-| hubspot-list-calls | 1.0 | integrations |
-| hubspot-list-companies | 1.0 | integrations |
-| hubspot-list-contacts | 1.0 | integrations |
-| hubspot-list-deals | 1.0 | integrations |
-| hubspot-list-emails | 1.0 | integrations |
-| hubspot-list-meetings | 1.0 | integrations |
-| hubspot-list-notes | 1.0 | integrations |
-| hubspot-log-call | 1.0 | integrations |
-| hubspot-log-email | 1.0 | integrations |
+| hubspot-crm | 1.0 | integrations |
 | hubspot-master | 1.0 | integrations |
-| hubspot-search-companies | 1.0 | integrations |
-| hubspot-search-contacts | 1.0 | integrations |
-| hubspot-search-deals | 1.0 | integrations |
-| hubspot-update-contact | 1.0 | integrations |
-| hubspot-update-deal | 1.0 | integrations |
 | langfuse-admin | 1.0 | integrations |
-| langfuse-connect | 2.0 | integrations |
+| langfuse-connect | 1.1 | integrations |
 | langfuse-datasets | 1.0 | integrations |
 | langfuse-ingestion | 1.0 | integrations |
 | langfuse-master | 1.0 | integrations |

@@ -1,6 +1,6 @@
 ---
 name: hubspot-connect
-version: '1.0'
+version: '2.0'
 description: hubspot, crm, contacts, companies, deals.
 category: integrations
 tags:
@@ -8,7 +8,7 @@ tags:
 - crm
 - hubspot
 platform: HubSpot
-updated: '2026-02-24'
+updated: '2026-03-23'
 visibility: public
 ---
 # HubSpot Connect
