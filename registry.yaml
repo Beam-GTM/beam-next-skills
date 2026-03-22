@@ -1,6 +1,6 @@
 version: 1
 generated_by: build_registry.py
-skill_count: 240
+skill_count: 238
 skills:
 - name: beam-connect
   description: Connect to Beam AI workspace for agent management. Load when user mentions
@@ -2053,8 +2053,8 @@ skills:
   - connector
   - langfuse
   platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
+  version: '1.1'
+  updated: '2026-03-23'
   visibility: public
   path: skills/integrations/langfuse/langfuse-connect
 - name: langfuse-create-annotation-queue
@@ -2356,29 +2356,16 @@ skills:
   visibility: public
   path: skills/integrations/langfuse/langfuse-delete-score
   has_scripts: true
-- name: langfuse-delete-trace
-  description: Delete a single trace. Load when user says 'delete trace', 'remove
-    trace'.
-  category: integrations
-  tags:
-  - delete
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-delete-trace
-  has_scripts: true
 - name: langfuse-delete-traces
-  description: Bulk delete traces. Load when user says 'bulk delete traces', 'delete
-    multiple traces', 'purge traces'.
+  description: Delete one trace or bulk-delete traces. Load when user says 'delete
+    trace', 'remove trace', 'bulk delete traces', 'purge traces'.
   category: integrations
   tags:
   - delete
   - langfuse
   platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
+  version: '1.1'
+  updated: '2026-03-23'
   visibility: public
   path: skills/integrations/langfuse/langfuse-delete-traces
   has_scripts: true
@@ -2584,17 +2571,6 @@ skills:
   visibility: public
   path: skills/integrations/langfuse/langfuse-health
   has_scripts: true
-- name: langfuse-help
-  description: langfuse help, langfuse reference, langfuse --help, show langfuse operations,
-    list langfuse skills.
-  category: integrations
-  tags:
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-help
 - name: langfuse-list-annotation-queues
   description: List annotation queues. Load when user says 'list queues', 'annotation
     queues', 'review queues'.

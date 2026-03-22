@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Langfuse Bulk Delete Traces.
+"""Langfuse delete traces — single ID or bulk/filter.
 
 WARNING: This is a DESTRUCTIVE operation. Deleted traces cannot be recovered.
 Deletion is QUEUED - traces may take several seconds to actually disappear.
@@ -14,11 +14,14 @@ sys.path.insert(0, str(Path(__file__).parent.parent.parent / "langfuse-master" /
 from langfuse_client import get_client, LangfuseAPIError
 
 
-def delete_traces(trace_ids: list = None, filter_obj: dict = None) -> dict:
-    """Delete multiple traces by IDs or filter.
+def delete_single_trace(trace_id: str) -> dict:
+    """Delete one trace by ID (DELETE /traces/{id})."""
+    client = get_client()
+    return client.delete(f"/traces/{trace_id}")
 
-    WARNING: Deletion is queued and may take ~5s to complete.
-    """
+
+def delete_traces_bulk(trace_ids: list = None, filter_obj: dict = None) -> dict:
+    """Delete multiple traces by IDs or filter (DELETE /traces with body)."""
     if not trace_ids and not filter_obj:
         raise ValueError("Must provide either trace_ids or filter_obj")
 
@@ -33,28 +36,53 @@ def delete_traces(trace_ids: list = None, filter_obj: dict = None) -> dict:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Bulk delete traces (DESTRUCTIVE - cannot be undone)"
+        description="Delete trace(s) (DESTRUCTIVE - cannot be undone). "
+        "Use --id for one trace, or --ids/--filter for bulk."
     )
-    parser.add_argument("--ids", type=str, help="Comma-separated trace IDs")
-    parser.add_argument("--filter", type=str, help="JSON filter object (e.g., '{\"sessionId\": \"abc\"}')")
-    parser.add_argument("--confirm", action="store_true",
-                        help="Skip confirmation prompt (for scripting)")
+    parser.add_argument(
+        "--id",
+        type=str,
+        help="Single trace ID (DELETE /traces/{id}). Mutually exclusive with --ids/--filter.",
+    )
+    parser.add_argument("--ids", type=str, help="Comma-separated trace IDs (bulk)")
+    parser.add_argument("--filter", type=str, help='JSON filter object (e.g., \'{"sessionId": "abc"}\')')
+    parser.add_argument(
+        "--confirm",
+        action="store_true",
+        help="Skip confirmation prompt (for scripting)",
+    )
     args = parser.parse_args()
 
-    # Require at least one of --ids or --filter
+    if args.id:
+        if args.ids or args.filter:
+            parser.error("Use either --id for a single trace, or --ids/--filter for bulk — not both.")
+        print(f"Will delete trace: {args.id}")
+        if not args.confirm:
+            response = input("Type 'DELETE' to confirm: ")
+            if response != "DELETE":
+                print("Aborted.")
+                sys.exit(0)
+        try:
+            result = delete_single_trace(args.id)
+            print(json.dumps(result, indent=2, default=str))
+            print("\nNote: Deletion is QUEUED. Trace may take ~5s to disappear.")
+            print("Warning: API returns success even for nonexistent IDs.")
+        except LangfuseAPIError as e:
+            print(f"API ERROR: {e}", file=sys.stderr)
+            sys.exit(1)
+        return
+
     if not args.ids and not args.filter:
-        parser.error("Must provide --ids or --filter (or both)")
+        parser.error("Must provide --id for a single trace, or --ids and/or --filter for bulk")
 
     trace_ids = args.ids.split(",") if args.ids else None
     filter_obj = json.loads(args.filter) if args.filter else None
 
-    # Show what will be deleted
     if trace_ids:
         print(f"Will delete {len(trace_ids)} trace(s): {trace_ids[:5]}{'...' if len(trace_ids) > 5 else ''}")
     if filter_obj:
         print(f"Will delete traces matching filter: {filter_obj}")
 
-    # Confirm unless --confirm flag is set
     if not args.confirm:
         response = input("Type 'DELETE' to confirm: ")
         if response != "DELETE":
@@ -62,7 +90,7 @@ def main():
             sys.exit(0)
 
     try:
-        result = delete_traces(trace_ids=trace_ids, filter_obj=filter_obj)
+        result = delete_traces_bulk(trace_ids=trace_ids, filter_obj=filter_obj)
         print(json.dumps(result, indent=2, default=str))
         print("\nNote: Deletion is QUEUED. Traces may take ~5s to disappear.")
     except LangfuseAPIError as e:

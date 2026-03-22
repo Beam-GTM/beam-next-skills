@@ -1,6 +1,6 @@
 # Beam Next Skills Library
 
-Installable skills for [Beam Next](https://github.com/Beam-GTM/beam-next-raw). 240 skills across integrations, general workflows, learning, and more.
+Installable skills for [Beam Next](https://github.com/Beam-GTM/beam-next-raw). 238 skills across integrations, general workflows, learning, and more.
 
 ## Install a Skill
 
@@ -140,7 +140,7 @@ Extended index with owner and version. See `registry.yaml` for the full machine-
 | hubspot-update-contact | — | 1.0 | integrations |
 | hubspot-update-deal | — | 1.0 | integrations |
 | langfuse-batch-ingest | — | 1.0 | integrations |
-| langfuse-connect | — | 1.0 | integrations |
+| langfuse-connect | — | 1.1 | integrations |
 | langfuse-create-annotation-queue | — | 1.0 | integrations |
 | langfuse-create-comment | — | 1.0 | integrations |
 | langfuse-create-dataset | — | 1.0 | integrations |
@@ -164,8 +164,7 @@ Extended index with owner and version. See `registry.yaml` for the full machine-
 | langfuse-delete-queue-assignment | — | 1.0 | integrations |
 | langfuse-delete-queue-item | — | 1.0 | integrations |
 | langfuse-delete-score | — | 1.0 | integrations |
-| langfuse-delete-trace | — | 1.0 | integrations |
-| langfuse-delete-traces | — | 1.0 | integrations |
+| langfuse-delete-traces | — | 1.1 | integrations |
 | langfuse-get-annotation-queue | — | 1.0 | integrations |
 | langfuse-get-comment | — | 1.0 | integrations |
 | langfuse-get-dataset | — | 1.0 | integrations |
@@ -183,7 +182,6 @@ Extended index with owner and version. See `registry.yaml` for the full machine-
 | langfuse-get-trace | — | 1.0 | integrations |
 | langfuse-get-upload-url | — | 1.0 | integrations |
 | langfuse-health | — | 1.0 | integrations |
-| langfuse-help | — | 1.0 | integrations |
 | langfuse-list-annotation-queues | — | 1.0 | integrations |
 | langfuse-list-comments | — | 1.0 | integrations |
 | langfuse-list-dataset-items | — | 1.0 | integrations |

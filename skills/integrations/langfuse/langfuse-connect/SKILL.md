@@ -1,25 +1,23 @@
 ---
 name: langfuse-connect
-version: '1.0'
+type: skill
+version: '1.1'
 description: langfuse, traces, observations, llm tracing.
 category: integrations
 tags:
 - connector
 - langfuse
 platform: Langfuse
-updated: '2026-02-24'
+updated: '2026-03-23'
 visibility: public
 ---
 # Langfuse Connect
 
 User-facing entry point for Langfuse integration. Routes to appropriate operation skills.
 
-## Context Reference
+## Context reference
 
-For score config IDs, trace structure, and API patterns, load:
-```bash
-uv run python 00-system/core/beam-next-loader.py --skill langfuse-help
-```
+For score config IDs and API patterns, see **Patterns & score config reference** below. For shared client, references, and error handling, load `langfuse-master/`.
 
 ---
 
@@ -150,8 +148,7 @@ uv run python 00-system/skills/langfuse/langfuse-master/scripts/check_langfuse_c
 
 | User Says | Skill to Load | Endpoint |
 |-----------|---------------|----------|
-| "delete trace" | langfuse-delete-trace | DELETE /traces/{id} |
-| "bulk delete traces", "purge" | langfuse-delete-traces | DELETE /traces |
+| "delete trace", "bulk delete traces", "purge" | langfuse-delete-traces | DELETE /traces/{id} or DELETE /traces |
 
 ### Models Write (Phase 3)
 
@@ -299,6 +296,86 @@ uv run python 00-system/skills/langfuse/langfuse-list-traces/scripts/list_traces
 
 # Get specific trace
 uv run python 00-system/skills/langfuse/langfuse-get-trace/scripts/get_trace.py --id abc123
+```
+
+---
+
+## Patterns & score config reference
+
+Consolidated from the former `langfuse-help` skill. The full operation map is in **Routing Table** above.
+
+### Critical patterns
+
+#### Observations require individual fetch
+
+```python
+# GET /sessions/{id} does NOT include observations
+# Must call GET /traces/{id} for each trace
+for trace in session["traces"]:
+    full = client.get(f"/traces/{trace['id']}")
+    obs = full.get("observations", [])
+```
+
+#### CATEGORICAL scores use string value
+
+```python
+# CORRECT
+{"value": "archive", "configId": "..."}
+
+# WRONG (400 error)
+{"value": 2, "stringValue": "archive"}
+```
+
+#### Use create_score.py for validation
+
+```bash
+# From repo: skills/integrations/langfuse/langfuse-create-score/scripts/
+uv run python create_score.py --trace {id} --name goal_achievement \
+  --string-value complete --config-id {uuid}
+
+uv run python create_score.py --list-configs
+
+uv run python create_score.py --trace {id} --name session_notes --value 1 \
+  --metadata '{"trace_ids": ["a","b"], "findings": [...]}'
+```
+
+### Score config IDs
+
+```python
+CONFIG_IDS = {
+    # Quality Dimensions (NUMERIC 0-1 unless noted)
+    "goal_achievement": "68cfd90c-8c9e-4907-808d-869ccd9a4c07",      # CATEGORICAL
+    "tool_efficiency": "84965473-0f54-4248-999e-7b8627fc9c29",
+    "process_adherence": "651fc213-4750-4d4e-8155-270235c7cad8",
+    "context_efficiency": "ae22abed-bd4a-4926-af74-8d71edb1925d",
+    "error_handling": "96c290b7-e3a6-4caa-bace-93cf55f70f1c",        # CATEGORICAL
+    "output_quality": "d33b1fbf-d3c6-458c-90ca-0b515fe09aed",
+    "overall_quality": "793f09d9-0053-4310-ad32-00dc06c69a71",
+    # Meta Scores
+    "root_cause_issues": "669bead7-1936-4fc4-bae8-e7814c9eab04",     # CATEGORICAL
+    "session_improvements": "2e87193b-c853-4955-b2f0-9fa572531681",  # CATEGORICAL
+    "session_notes": "67640329-0c03-4be6-bc9f-49765a0462b5",         # NUMERIC (value=1 + comment/metadata)
+}
+```
+
+#### CATEGORICAL labels
+
+| Score | Labels |
+|-------|--------|
+| goal_achievement | failed, partial, complete, exceeded |
+| error_handling | poor, struggled, recovered, prevented |
+| root_cause_issues | none, tool_misuse, process_violation, context_waste, error_cascade, output_quality, multiple |
+| session_improvements | none, minor, moderate, significant, critical |
+
+### Quick start (paths relative to beam-next-skills repo root)
+
+```bash
+uv run python skills/integrations/langfuse/langfuse-master/scripts/check_langfuse_config.py --test
+uv run python skills/integrations/langfuse/langfuse-list-traces/scripts/list_traces.py --limit 10
+uv run python skills/integrations/langfuse/langfuse-get-trace/scripts/get_trace.py --id {trace_id}
+uv run python skills/integrations/langfuse/langfuse-create-score/scripts/create_score.py \
+  --trace {id} --name tool_efficiency --value 0.85 \
+  --config-id 84965473-0f54-4248-999e-7b8627fc9c29
 ```
 
 ---
