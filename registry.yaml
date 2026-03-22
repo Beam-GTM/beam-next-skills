@@ -1,6 +1,6 @@
 version: 1
 generated_by: build_registry.py
-skill_count: 238
+skill_count: 227
 skills:
 - name: beam-connect
   description: Connect to Beam AI workspace for agent management. Load when user mentions
@@ -2083,44 +2083,20 @@ skills:
   visibility: public
   path: skills/integrations/langfuse/langfuse-create-comment
   has_scripts: true
-- name: langfuse-create-dataset
-  description: Create a new Langfuse dataset. Load when user says 'create dataset',
-    'new dataset', 'add dataset'.
+- name: langfuse-datasets
+  description: Manage Langfuse datasets, items, runs, and run-items. Load when user
+    says 'list datasets', 'create dataset', 'dataset items', 'dataset runs', 'add
+    test case', 'evaluation results', 'delete dataset item', 'delete dataset run'.
   category: integrations
   tags:
-  - create
+  - datasets
   - langfuse
+  - evaluation
   platform: Langfuse
   version: '1.0'
-  updated: '2026-02-24'
+  updated: '2026-03-23'
   visibility: public
-  path: skills/integrations/langfuse/langfuse-create-dataset
-  has_scripts: true
-- name: langfuse-create-dataset-item
-  description: Create a dataset item. Load when user says 'create dataset item', 'add
-    item', 'new test case'.
-  category: integrations
-  tags:
-  - create
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-create-dataset-item
-  has_scripts: true
-- name: langfuse-create-dataset-run-item
-  description: Create a dataset run item. Load when user says 'create run item', 'log
-    evaluation', 'add run result'.
-  category: integrations
-  tags:
-  - create
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-create-dataset-run-item
+  path: skills/integrations/langfuse/langfuse-datasets
   has_scripts: true
 - name: langfuse-create-model
   description: Create a model definition for cost tracking. Load when user says 'create
@@ -2226,32 +2202,6 @@ skills:
   updated: '2026-02-24'
   visibility: public
   path: skills/integrations/langfuse/langfuse-create-score-config
-  has_scripts: true
-- name: langfuse-delete-dataset-item
-  description: Delete a dataset item. Load when user says 'delete dataset item', 'remove
-    item'.
-  category: integrations
-  tags:
-  - delete
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-delete-dataset-item
-  has_scripts: true
-- name: langfuse-delete-dataset-run
-  description: Delete a dataset run. Load when user says 'delete dataset run', 'remove
-    run'.
-  category: integrations
-  tags:
-  - delete
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-delete-dataset-run
   has_scripts: true
 - name: langfuse-delete-model
   description: Delete a model definition. Load when user says 'delete model', 'remove
@@ -2391,42 +2341,6 @@ skills:
   updated: '2026-02-24'
   visibility: public
   path: skills/integrations/langfuse/langfuse-get-comment
-  has_scripts: true
-- name: langfuse-get-dataset
-  description: Get a Langfuse dataset by name. Load when user says 'get dataset',
-    'show dataset', 'dataset details'.
-  category: integrations
-  tags:
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-get-dataset
-  has_scripts: true
-- name: langfuse-get-dataset-item
-  description: Get a dataset item by ID. Load when user says 'get dataset item', 'show
-    item', 'item details'.
-  category: integrations
-  tags:
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-get-dataset-item
-  has_scripts: true
-- name: langfuse-get-dataset-run
-  description: Get a dataset run by name. Load when user says 'get dataset run', 'show
-    run', 'run details'.
-  category: integrations
-  tags:
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-get-dataset-run
   has_scripts: true
 - name: langfuse-get-media
   description: Get media content by ID. Load when user says 'get media', 'download
@@ -2596,58 +2510,6 @@ skills:
   updated: '2026-02-24'
   visibility: public
   path: skills/integrations/langfuse/langfuse-list-comments
-  has_scripts: true
-- name: langfuse-list-dataset-items
-  description: List dataset items. Load when user says 'list dataset items', 'show
-    items', 'dataset items'.
-  category: integrations
-  tags:
-  - langfuse
-  - query
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-list-dataset-items
-  has_scripts: true
-- name: langfuse-list-dataset-run-items
-  description: List dataset run items. Load when user says 'list run items', 'show
-    run results', 'evaluation results'.
-  category: integrations
-  tags:
-  - langfuse
-  - query
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-list-dataset-run-items
-  has_scripts: true
-- name: langfuse-list-dataset-runs
-  description: List dataset runs. Load when user says 'list dataset runs', 'show runs',
-    'dataset experiments'.
-  category: integrations
-  tags:
-  - langfuse
-  - query
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-list-dataset-runs
-  has_scripts: true
-- name: langfuse-list-datasets
-  description: List Langfuse datasets. Load when user says 'list datasets', 'show
-    datasets', 'get datasets'.
-  category: integrations
-  tags:
-  - langfuse
-  - query
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-list-datasets
   has_scripts: true
 - name: langfuse-list-models
   description: List Langfuse models. Load when user says 'list models', 'show models',

@@ -1,6 +1,6 @@
 # Beam Next Skills Library
 
-Installable skills for [Beam Next](https://github.com/Beam-GTM/beam-next-raw). 238 skills across integrations, general workflows, learning, and more.
+Installable skills for [Beam Next](https://github.com/Beam-GTM/beam-next-raw). 227 skills across integrations, general workflows, learning, and more.
 
 ## Install a Skill
 
@@ -143,9 +143,7 @@ Extended index with owner and version. See `registry.yaml` for the full machine-
 | langfuse-connect | — | 1.1 | integrations |
 | langfuse-create-annotation-queue | — | 1.0 | integrations |
 | langfuse-create-comment | — | 1.0 | integrations |
-| langfuse-create-dataset | — | 1.0 | integrations |
-| langfuse-create-dataset-item | — | 1.0 | integrations |
-| langfuse-create-dataset-run-item | — | 1.0 | integrations |
+| langfuse-datasets | — | 1.0 | integrations |
 | langfuse-create-model | — | 1.0 | integrations |
 | langfuse-create-project | — | 1.0 | integrations |
 | langfuse-create-project-api-key | — | 1.0 | integrations |
@@ -154,8 +152,6 @@ Extended index with owner and version. See `registry.yaml` for the full machine-
 | langfuse-create-queue-item | — | 1.0 | integrations |
 | langfuse-create-score | — | 1.0 | integrations |
 | langfuse-create-score-config | — | 1.0 | integrations |
-| langfuse-delete-dataset-item | — | 1.0 | integrations |
-| langfuse-delete-dataset-run | — | 1.0 | integrations |
 | langfuse-delete-model | — | 1.0 | integrations |
 | langfuse-delete-org-membership | — | 1.0 | integrations |
 | langfuse-delete-project | — | 1.0 | integrations |
@@ -167,9 +163,6 @@ Extended index with owner and version. See `registry.yaml` for the full machine-
 | langfuse-delete-traces | — | 1.1 | integrations |
 | langfuse-get-annotation-queue | — | 1.0 | integrations |
 | langfuse-get-comment | — | 1.0 | integrations |
-| langfuse-get-dataset | — | 1.0 | integrations |
-| langfuse-get-dataset-item | — | 1.0 | integrations |
-| langfuse-get-dataset-run | — | 1.0 | integrations |
 | langfuse-get-media | — | 1.0 | integrations |
 | langfuse-get-model | — | 1.0 | integrations |
 | langfuse-get-observation | — | 1.0 | integrations |
@@ -184,10 +177,6 @@ Extended index with owner and version. See `registry.yaml` for the full machine-
 | langfuse-health | — | 1.0 | integrations |
 | langfuse-list-annotation-queues | — | 1.0 | integrations |
 | langfuse-list-comments | — | 1.0 | integrations |
-| langfuse-list-dataset-items | — | 1.0 | integrations |
-| langfuse-list-dataset-run-items | — | 1.0 | integrations |
-| langfuse-list-dataset-runs | — | 1.0 | integrations |
-| langfuse-list-datasets | — | 1.0 | integrations |
 | langfuse-list-models | — | 1.0 | integrations |
 | langfuse-list-observations | — | 1.0 | integrations |
 | langfuse-list-org-api-keys | — | 1.0 | integrations |

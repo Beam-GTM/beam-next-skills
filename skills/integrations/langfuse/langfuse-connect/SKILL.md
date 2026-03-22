@@ -63,32 +63,24 @@ uv run python 00-system/skills/langfuse/langfuse-master/scripts/check_langfuse_c
 | "delete prompt", "remove prompt" | langfuse-delete-prompt | DELETE /v2/prompts/{name} |
 | "update prompt", "set prompt label" | langfuse-update-prompt-version | PATCH /v2/prompts/{name}/versions/{v} |
 
-### Datasets (Phase 1)
+### Datasets, Items, Runs, Run-Items (consolidated)
 
-| User Says | Skill to Load | Endpoint |
-|-----------|---------------|----------|
-| "list datasets", "show datasets" | langfuse-list-datasets | GET /v2/datasets |
-| "create dataset", "new dataset" | langfuse-create-dataset | POST /v2/datasets |
-| "get dataset {name}" | langfuse-get-dataset | GET /v2/datasets/{name} |
-| "list dataset runs", "show runs" | langfuse-list-dataset-runs | GET /datasets/{name}/runs |
-| "get dataset run" | langfuse-get-dataset-run | GET /datasets/{name}/runs/{run} |
-| "delete dataset run" | langfuse-delete-dataset-run | DELETE /datasets/{name}/runs/{run} |
+All dataset operations route to **`langfuse-datasets`** with `--resource` and `--action`:
 
-### Dataset Items (Phase 1)
-
-| User Says | Skill to Load | Endpoint |
-|-----------|---------------|----------|
-| "list dataset items", "show items" | langfuse-list-dataset-items | GET /dataset-items |
-| "create dataset item", "add item" | langfuse-create-dataset-item | POST /dataset-items |
-| "get dataset item {id}" | langfuse-get-dataset-item | GET /dataset-items/{id} |
-| "delete dataset item" | langfuse-delete-dataset-item | DELETE /dataset-items/{id} |
-
-### Dataset Run Items (Phase 1)
-
-| User Says | Skill to Load | Endpoint |
-|-----------|---------------|----------|
-| "list run items", "show results" | langfuse-list-dataset-run-items | GET /dataset-run-items |
-| "create run item", "log evaluation" | langfuse-create-dataset-run-item | POST /dataset-run-items |
+| User Says | Resource | Action | Endpoint |
+|-----------|----------|--------|----------|
+| "list datasets", "show datasets" | datasets | list | GET /v2/datasets |
+| "create dataset", "new dataset" | datasets | create | POST /v2/datasets |
+| "get dataset {name}" | datasets | get | GET /v2/datasets/{name} |
+| "list dataset items", "show items" | items | list | GET /dataset-items |
+| "create dataset item", "add item" | items | create | POST /dataset-items |
+| "get dataset item {id}" | items | get | GET /dataset-items/{id} |
+| "delete dataset item" | items | delete | DELETE /dataset-items/{id} |
+| "list dataset runs", "show runs" | runs | list | GET /datasets/{name}/runs |
+| "get dataset run" | runs | get | GET /datasets/{name}/runs/{run} |
+| "delete dataset run" | runs | delete | DELETE /datasets/{name}/runs/{run} |
+| "list run items", "show results" | run-items | list | GET /dataset-run-items |
+| "create run item", "log evaluation" | run-items | create | POST /dataset-run-items |
 
 ### Score Configs (Phase 2)
 
