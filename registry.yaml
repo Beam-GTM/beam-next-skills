@@ -1,6 +1,6 @@
 version: 1
 generated_by: build_registry.py
-skill_count: 180
+skill_count: 165
 skills:
 - name: 1on1-followup
   description: 'Quick post-meeting follow-up for 1-on-1s. Triggers: ''1on1 followup'',
@@ -182,6 +182,25 @@ skills:
   visibility: public
   path: skills/integrations/attio/attio-connect
   has_references: true
+- name: beam-agent-manager
+  description: Orchestrate Beam agent graph operations — create, modify, and optimize
+  category: integrations
+  version: '1.0'
+  updated: '2026-03-15'
+  visibility: team
+  path: skills/beam/beam-tools/beam-agent-manager
+  has_scripts: false
+  platform: Beam AI
+- name: beam-ape-optimizer
+  description: Automated Prompt Engineering (APE) optimization loop for Beam agent
+    nodes.
+  category: integrations
+  version: '1.0'
+  updated: '2026-03-15'
+  visibility: team
+  path: skills/beam/beam-tools/beam-ape-optimizer
+  has_scripts: false
+  platform: Beam AI
 - name: beam-connect
   description: Connect to Beam AI workspace for agent management. Load when user mentions
     'beam', 'beam agent', 'beam task', 'beam analytics', 'list agents', 'create task',
@@ -197,6 +216,15 @@ skills:
   updated: '2025-12-18'
   visibility: public
   path: skills/beam/beam/beam-connect
+- name: beam-credit-analysis
+  description: Analyze Beam.ai agent credit consumption per execution path. Load when
+  category: general
+  version: '1.1'
+  updated: '2026-03-11'
+  visibility: team
+  path: skills/beam/beam-tools/beam-credit-analysis
+  has_scripts: true
+  platform: Beam AI
 - name: beam-debug-issue-tasks
   description: Debug failed/issue tasks from Beam.ai using Langfuse traces. Load when
     user says "debug issue tasks", "check failed tasks", "why did task fail", "task
@@ -272,6 +300,15 @@ skills:
   visibility: team
   path: skills/beam/beam-tools/beam-get-task-details
   has_scripts: true
+- name: beam-graph-creator
+  description: Build and deploy complete Beam agent graphs with conditional branching,
+  category: integrations
+  version: '1.0'
+  updated: '2026-03-15'
+  visibility: team
+  path: skills/beam/beam-tools/beam-graph-creator
+  has_scripts: false
+  platform: Beam AI
 - name: beam-graph-edit
   description: Edit Beam agent graph nodes — update prompts, input/output param descriptions,
     and push changes via PUT. Load when user says 'edit beam graph', 'update beam
@@ -306,6 +343,16 @@ skills:
   path: skills/beam/beam/beam-master
   has_scripts: true
   has_references: true
+- name: beam-put-payload-builder
+  description: Build valid PUT payloads for Beam agent graphs by transforming GET
+    responses
+  category: integrations
+  version: '1.0'
+  updated: '2026-03-15'
+  visibility: team
+  path: skills/beam/beam-tools/beam-put-payload-builder
+  has_scripts: true
+  platform: Beam AI
 - name: beam-retry-tasks
   description: Retry failed Beam.ai tasks. Load when user says "retry tasks", "rerun
     failed tasks", "retry beam tasks", "resubmit tasks", or needs to re-execute failed
@@ -600,7 +647,7 @@ skills:
   version: '1.0'
   updated: '2026-02-27'
   visibility: public
-  path: skills/deep-thinking
+  path: skills/general/deep-thinking
 - name: demo-documentation-generation-agent
   description: Generate comprehensive, fully-detailed documentation for Beam AI agents
     from graph.json files. Load when user says "document beam agent", "create agent
@@ -618,17 +665,6 @@ skills:
   visibility: team
   path: skills/beam/beam-tools/demo-documentation-generation-agent
   has_scripts: true
-  has_references: true
-- name: design-beam-agent
-  description: Design complete Beam.ai agent node architecture from a scoping document.
-    Load when user says "design beam agent", "create beam agent", "agent design for
-    [name]", or needs to plan a multi-node Beam.ai agent workflow. Requires a completed
-    agent-scoping document as input.
-  category: general
-  version: '1.0'
-  updated: '2025-12-10'
-  visibility: team
-  path: skills/beam/beam-tools/design-beam-agent
   has_references: true
 - name: document-nodes
   description: Generate human-readable documentation and checklists from Node JSON
@@ -828,20 +864,6 @@ skills:
   requires:
   - google-gemini-image
   has_scripts: true
-- name: gemini-edit-image
-  description: edit image, modify image, change image, gemini edit.
-  category: integrations
-  tags:
-  - google-gemini
-  - update
-  platform: Google Gemini
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/integrations/google/google-gemini-image/gemini-edit-image
-  requires:
-  - google-gemini-image
-  has_scripts: true
 - name: gemini-generate-image
   description: generate image, create image, text to image, gemini generate.
   category: integrations
@@ -855,19 +877,6 @@ skills:
   requires:
   - google-gemini-image
   has_scripts: true
-- name: gemini-generate-image
-  description: generate image, create image, text to image, gemini generate.
-  category: integrations
-  tags:
-  - google-gemini
-  platform: Google Gemini
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/google/google-gemini-image/gemini-generate-image
-  requires:
-  - google-gemini-image
-  has_scripts: true
 - name: gemini-refine-image
   description: refine image, improve image, iterate image, tweak image.
   category: integrations
@@ -878,19 +887,6 @@ skills:
   updated: '2026-02-26'
   visibility: public
   path: skills/integrations/google/gemini-refine-image
-  requires:
-  - google-gemini-image
-  has_scripts: true
-- name: gemini-refine-image
-  description: refine image, improve image, iterate image, tweak image.
-  category: integrations
-  tags:
-  - google-gemini
-  platform: Google Gemini
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/integrations/google/google-gemini-image/gemini-refine-image
   requires:
   - google-gemini-image
   has_scripts: true
@@ -983,24 +979,6 @@ skills:
   - google-connect
   - google-master
   has_scripts: true
-- name: gmail
-  description: Read, send, and manage Gmail emails. Load when user mentions 'gmail',
-    'email', 'send email', 'check email', 'inbox', 'draft', or references sending/reading
-    emails.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - email
-  - google-workspace
-  platform: Google Workspace
-  version: '1.3'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/google/google-integration/gmail
-  requires:
-  - google-connect
-  - google-master
-  has_scripts: true
 - name: google-calendar
   description: Read, create, and manage Google Calendar events. Load when user mentions
     'google calendar', 'calendar', 'schedule', 'meeting', 'event', 'appointment',
@@ -1021,26 +999,6 @@ skills:
   - google-connect
   - google-master
   has_scripts: true
-- name: google-calendar
-  description: Read, create, and manage Google Calendar events. Load when user mentions
-    'google calendar', 'calendar', 'schedule', 'meeting', 'event', 'appointment',
-    'book time', 'check availability', 'find slots', 'free time', or references scheduling/calendar
-    operations.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - calendar
-  - google-workspace
-  - meeting
-  platform: Google Workspace
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/integrations/google/google-integration/google-calendar
-  requires:
-  - google-connect
-  - google-master
-  has_scripts: true
 - name: google-connect
   description: connect google, setup google, google integration.
   author: Fredrik Falk
@@ -1053,18 +1011,6 @@ skills:
   updated: '2026-02-26'
   visibility: public
   path: skills/integrations/google/google-connect
-- name: google-connect
-  description: connect google, setup google, google integration.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - connector
-  - google-workspace
-  platform: Google Workspace
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/integrations/google/google-integration/google-connect
 - name: google-docs
   description: Read, write, and manage Google Docs. Load when user mentions 'google
     docs', 'google document', 'create doc', 'read doc', 'write doc', 'edit document',
@@ -1078,23 +1024,6 @@ skills:
   updated: '2026-02-24'
   visibility: public
   path: skills/integrations/google/google-docs
-  requires:
-  - google-connect
-  - google-master
-  has_scripts: true
-- name: google-docs
-  description: Read, write, and manage Google Docs. Load when user mentions 'google
-    docs', 'google document', 'create doc', 'read doc', 'write doc', 'edit document',
-    or references creating/editing text documents in Google Drive.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - google-workspace
-  platform: Google Workspace
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/google/google-integration/google-docs
   requires:
   - google-connect
   - google-master
@@ -1116,70 +1045,6 @@ skills:
   - google-connect
   - google-master
   has_scripts: true
-- name: google-drive
-  description: Manage Google Drive files and folders. Load when user mentions 'google
-    drive', 'drive', 'upload file', 'download file', 'share file', 'create folder',
-    or references cloud file storage operations.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - google-workspace
-  platform: Google Workspace
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/google/google-integration/google-drive
-  requires:
-  - google-connect
-  - google-master
-  has_scripts: true
-- name: google-gemini-image
-  description: gemini image, generate image, create image, text to image, brand assets,
-    logo generation, hero image.
-  category: integrations
-  tags:
-  - google-workspace
-  platform: Google Workspace
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/integrations/google/google-gemini-image
-  requires:
-  - google-connect
-  has_scripts: true
-  has_references: true
-- name: google-integration
-  description: google, gmail, email, google docs, sheets, calendar, drive.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - calendar
-  - email
-  - google-workspace
-  platform: Google Workspace
-  version: '1.1'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/integrations/google/google-integration
-- name: google-master
-  description: Shared resource library for Google integration skills. DO NOT load
-    directly - provides common references (setup, API docs, error handling, authentication)
-    and scripts used by gmail, google-docs, google-sheets, google-calendar, and future
-    Google skills.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - api
-  - calendar
-  - google-workspace
-  - master
-  platform: Google Workspace
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/integrations/google/google-integration/google-master
-  has_scripts: true
-  has_references: true
 - name: google-master
   description: Shared resource library for Google integration skills. DO NOT load
     directly - provides common references (setup, API docs, error handling, authentication)
@@ -1211,41 +1076,7 @@ skills:
   version: '1.2'
   updated: '2026-02-24'
   visibility: public
-  path: skills/integrations/google/google-integration/google-sheets
-  requires:
-  - google-connect
-  - google-master
-  has_scripts: true
-- name: google-sheets
-  description: Read and write Google Sheets data. Load when user mentions 'google
-    sheets', 'spreadsheet', 'update sheet', 'read sheet', 'append to sheet', or references
-    extracting data to update a tracking sheet.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - google-workspace
-  platform: Google Workspace
-  version: '1.2'
-  updated: '2026-02-24'
-  visibility: public
   path: skills/integrations/google/google-sheets
-  requires:
-  - google-connect
-  - google-master
-  has_scripts: true
-- name: google-slides
-  description: Create and manage Google Slides presentations. Load when user mentions
-    'google slides', 'slides', 'presentation', 'create presentation', 'add slide',
-    or references creating/editing slide decks.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - google-workspace
-  platform: Google Workspace
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/google/google-integration/google-slides
   requires:
   - google-connect
   - google-master
@@ -1298,23 +1129,6 @@ skills:
   version: '1.0'
   updated: '2026-02-24'
   visibility: public
-  path: skills/integrations/google/google-integration/google-tasks
-  requires:
-  - google-connect
-  - google-master
-  has_scripts: true
-- name: google-tasks
-  description: Manage Google Tasks and task lists. Load when user mentions 'google
-    tasks', 'tasks', 'todo list', 'create task', 'complete task', or references task/todo
-    management.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - google-workspace
-  platform: Google Workspace
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
   path: skills/integrations/google/google-tasks
   requires:
   - google-connect
@@ -1351,27 +1165,6 @@ skills:
   updated: '2026-02-16'
   visibility: public
   path: skills/integrations/happenstance/happenstance-connect
-- name: heyreach
-  description: heyreach, linkedin outreach, linkedin campaigns, add leads.
-  category: integrations
-  tags:
-  - heyreach
-  platform: HeyReach
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/heyreach/heyreach
-- name: heyreach-connect
-  description: heyreach, linkedin outreach, linkedin campaigns.
-  category: integrations
-  tags:
-  - connector
-  - heyreach
-  platform: HeyReach
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/heyreach/heyreach/heyreach-connect
 - name: heyreach-connect
   description: heyreach, linkedin outreach, linkedin campaigns.
   category: integrations
@@ -1383,21 +1176,6 @@ skills:
   updated: '2026-02-24'
   visibility: public
   path: skills/integrations/heyreach/heyreach-connect
-- name: heyreach-master
-  description: Internal resource library for HeyReach integration. Contains shared
-    API client, operation scripts, and reference documentation.
-  category: integrations
-  tags:
-  - api
-  - heyreach
-  - master
-  platform: HeyReach
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/heyreach/heyreach/heyreach-master
-  has_scripts: true
-  has_references: true
 - name: heyreach-master
   description: Internal resource library for HeyReach integration. Contains shared
     API client, operation scripts, and reference documentation.
@@ -2034,6 +1812,19 @@ skills:
   updated: '2026-02-26'
   visibility: public
   path: skills/general/list-skills
+- name: manager-review
+  description: Generate a structured manager review briefing for a team member. Load
+    when user says 'manager review - [name]', 'prepare manager review', 'review prep
+    for [name]', 'manager briefing', or '1:1 prep for [name]'. Pulls OKRs from Notion
+    and cross-references with BEO data, Fathom meetings, and chat logs to produce
+    an actionable, conversation-ready performance briefing with prioritized questions,
+    risks, appreciation points, and suggested actions.
+  category: general
+  version: '1.0'
+  updated: '2026-03-23'
+  visibility: public
+  path: skills/general/manager-review
+  has_scripts: false
 - name: markdown-to-pdf
   description: 'Convert markdown files to professionally styled PDFs. Triggers: ''render
     pdf'', ''markdown to pdf'', ''create pdf'', ''export pdf'', ''generate pdf'',
@@ -2047,7 +1838,7 @@ skills:
   version: '1.0'
   updated: '2026-03-03'
   visibility: public
-  path: skills/markdown-to-pdf
+  path: skills/general/markdown-to-pdf
   requires:
   - markdown2pdf-mcp (npm, global)
   has_scripts: true
@@ -2061,27 +1852,25 @@ skills:
   updated: '2026-02-24'
   visibility: public
   path: skills/general/mental-models
-- name: notebooklm
-  description: notebooklm, create notebook, audio overview, podcast.
+- name: miro-connect
+  description: Connect to Miro for board management, sticky notes, cards, shapes,
+    frames,
   category: integrations
-  tags:
-  - notebooklm
-  platform: NotebookLM
   version: '1.0'
-  updated: '2026-02-24'
+  updated: '2026-03-12'
   visibility: public
-  path: skills/integrations/notebooklm/notebooklm
-- name: notebooklm-connect
-  description: notebooklm, create notebook, audio overview, podcast.
+  path: skills/integrations/miro/miro-connect
+  has_scripts: false
+  platform: Miro
+- name: miro-master
+  description: Shared resource library for Miro integration skills. DO NOT load directly
   category: integrations
-  tags:
-  - connector
-  - notebooklm
-  platform: NotebookLM
   version: '1.0'
-  updated: '2026-02-24'
+  updated: '2026-03-12'
   visibility: public
-  path: skills/integrations/notebooklm/notebooklm/notebooklm-connect
+  path: skills/integrations/miro/miro-master
+  has_scripts: true
+  platform: Miro
 - name: notebooklm-connect
   description: notebooklm, create notebook, audio overview, podcast.
   category: integrations
@@ -2093,23 +1882,6 @@ skills:
   updated: '2026-02-24'
   visibility: public
   path: skills/integrations/notebooklm/notebooklm-connect
-- name: notebooklm-master
-  description: Shared resource library for NotebookLM Enterprise integration skills.
-    DO NOT load directly - provides common references (setup, API docs, error handling,
-    authentication) and scripts used by notebooklm-connect and individual NotebookLM
-    skills.
-  category: integrations
-  tags:
-  - api
-  - master
-  - notebooklm
-  platform: NotebookLM
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/notebooklm/notebooklm/notebooklm-master
-  has_scripts: true
-  has_references: true
 - name: notebooklm-master
   description: Shared resource library for NotebookLM Enterprise integration skills.
     DO NOT load directly - provides common references (setup, API docs, error handling,
@@ -2158,6 +1930,18 @@ skills:
   path: skills/integrations/notion/notion-master
   has_scripts: true
   has_references: true
+- name: okr-self-review
+  description: Generate a structured performance self-review. Load when user says
+    "review my performance - [name]", "review my performance", "self-review", "performance
+    review", or "quarter review". Pulls all data from Notion (OKRs, Key Projects,
+    Skills, Core Behaviours) and cross-references with Nexus chat logs, BEO Slack
+    data, and Fathom meetings.
+  category: general
+  version: '1.0'
+  updated: '2026-03-23'
+  visibility: public
+  path: skills/general/okr-self-review
+  has_scripts: true
 - name: plan-project
   description: create build, new project, start build, plan build, build [X].
   category: projects
@@ -2354,34 +2138,6 @@ skills:
   updated: '2026-02-26'
   visibility: public
   path: skills/general/share-skill
-- name: slack
-  description: Complete Slack integration skill. Load when user wants to send messages,
-    search Slack, manage channels, list users, upload files, add reactions, set reminders,
-    or interact with Slack workspace.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - slack
-  platform: Slack
-  version: '1.1'
-  updated: '2025-12-24'
-  visibility: public
-  path: skills/integrations/slack/slack
-- name: slack-connect
-  description: Connect to Slack workspace for messaging and channel management. Load
-    when user mentions 'slack', 'connect slack', 'slack message', 'slack channel',
-    'send to slack', or any Slack operations. Meta-skill that validates config, discovers
-    workspace, and routes to appropriate operations.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - connector
-  - slack
-  platform: Slack
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/integrations/slack/slack/slack-connect
 - name: slack-connect
   description: Connect to Slack workspace for messaging and channel management. Load
     when user mentions 'slack', 'connect slack', 'slack message', 'slack channel',
@@ -2397,23 +2153,6 @@ skills:
   updated: '2026-02-26'
   visibility: public
   path: skills/integrations/slack/slack-connect
-- name: slack-master
-  description: Shared resource library for Slack integration skills. DO NOT load directly
-    - provides common references (setup, API docs, error handling, authentication)
-    and scripts used by slack-connect and individual Slack skills.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - api
-  - master
-  - slack
-  platform: Slack
-  version: '1.0'
-  updated: '2025-12-24'
-  visibility: public
-  path: skills/integrations/slack/slack/slack-master
-  has_scripts: true
-  has_references: true
 - name: slack-master
   description: Shared resource library for Slack integration skills. DO NOT load directly
     - provides common references (setup, API docs, error handling, authentication)
