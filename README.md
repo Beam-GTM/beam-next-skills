@@ -1,6 +1,6 @@
 # Beam Next Skills Library
 
-Installable skills for [Beam Next](https://github.com/Beam-GTM/beam-next-raw). 227 skills across integrations, general workflows, learning, and more.
+Installable skills for [Beam Next](https://github.com/Beam-GTM/beam-next-raw). 180 skills across integrations, general workflows, learning, and more.
 
 ## Install a Skill
 

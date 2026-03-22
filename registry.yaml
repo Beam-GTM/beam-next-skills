@@ -1,7 +1,187 @@
 version: 1
 generated_by: build_registry.py
-skill_count: 227
+skill_count: 180
 skills:
+- name: 1on1-followup
+  description: 'Quick post-meeting follow-up for 1-on-1s. Triggers: ''1on1 followup'',
+    ''follow up on my 1on1'', ''1on1 with [name]'', ''debrief my 1on1'', ''process
+    my 1on1 with [name]''.'
+  author: Jonas Diezun
+  category: productivity
+  tags:
+  - meeting
+  version: '1.0'
+  updated: '2026-02-10'
+  visibility: public
+  path: skills/general/1on1-followup
+- name: 1on1-prep
+  description: 'Prepare for an upcoming 1-on-1. Triggers: ''prep my 1on1 with [name]'',
+    ''1on1 prep'', ''prepare for my meeting with [name]'', ''what should I cover with
+    [name]'', ''get ready for 1on1''.'
+  author: Jonas Diezun
+  category: productivity
+  tags:
+  - meeting
+  version: '1.0'
+  updated: '2026-02-10'
+  visibility: public
+  path: skills/general/1on1-prep
+- name: 1on1-review
+  description: 'Deep expert coaching review of a 1-on-1 meeting. Triggers: ''1on1
+    review'', ''review my 1on1 with [name]'', ''coach me on my 1on1'', ''how did my
+    1on1 go'', ''deep review my 1on1'', ''expert feedback on my meeting with [name]''.'
+  author: Jonas Diezun
+  category: productivity
+  tags:
+  - meeting
+  version: '1.0'
+  updated: '2026-02-10'
+  visibility: public
+  path: skills/general/1on1-review
+- name: abstract
+  description: Zoom out and contextualize overwhelming concepts. Load when user says
+    'zoom out', 'abstract', 'I'm lost', 'I'm overwhelmed', 'bigger picture', or expresses
+    confusion about where a concept fits. Identifies paradigms, shows hierarchies,
+    teaches with analogies, and connects to user's goals.
+  category: general
+  version: '1.0'
+  updated: '2026-01-09'
+  visibility: public
+  path: skills/general/abstract
+  has_references: true
+- name: add-integration
+  description: add integration, new integration, integrate with, connect to [service].
+  category: system
+  tags:
+  - system
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/general/add-integration
+  has_scripts: true
+  has_references: true
+- name: airtable-connect
+  description: airtable, connect airtable, query [base], add to [table].
+  category: integrations
+  tags:
+  - airtable
+  - connector
+  platform: Airtable
+  version: '1.1'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/integrations/airtable/airtable-connect
+- name: airtable-master
+  description: Shared resource library for Airtable integration skills. DO NOT load
+    directly - provides common references (setup, API docs, error handling, field
+    types) and scripts used by airtable-connect, airtable-query, and airtable-sync.
+  category: integrations
+  tags:
+  - airtable
+  - api
+  - master
+  platform: Airtable
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/integrations/airtable/airtable-master
+  has_scripts: true
+  has_references: true
+- name: allhands-prep
+  description: Prepare all-hands meetings for Beam. Load when user says 'prepare all-hands',
+    'all-hands prep', 'plan all-hands meeting', 'create all-hands agenda', or mentions
+    preparing for company-wide meetings. Helps structure the meeting, draft talking
+    points, create prep checklists, and follow Beam's all-hands guidelines.
+  category: system
+  tags:
+  - meeting
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/general/allhands-prep
+  has_references: true
+- name: amie-connect
+  description: Work with Amie calendar and meeting notes. Load when user mentions
+    "amie", "meeting notes", "get transcript", "save transcript to file", "export
+    transcript", "action items from meeting", or wants to access Amie data.
+  category: integrations
+  tags:
+  - amie
+  - calendar
+  - connector
+  - meeting
+  - transcript
+  platform: Amie
+  version: '1.0'
+  updated: '2026-02-13'
+  visibility: public
+  path: skills/integrations/amie/amie-connect
+- name: amie-master
+  description: Shared resource library for Amie integration skills. DO NOT load directly
+    - provides common references and scripts used by amie-connect and individual Amie
+    skills.
+  category: integrations
+  tags:
+  - amie
+  - master
+  platform: Amie
+  version: '1.0'
+  updated: '2026-02-13'
+  visibility: public
+  path: skills/integrations/amie/amie-master
+  has_scripts: true
+- name: analyze-competitors
+  description: Conduct competitor analysis for product design. Load when user says
+    'analyze competitors', 'competitor research', 'competitive analysis', 'check how
+    [competitor] does this'. Guides exploration of Zapier, n8n, Lindy, Relevance.ai
+    and other automation platforms.
+  author: Mahnoor Jawed
+  category: general
+  tags:
+  - api
+  - automation
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: team
+  path: skills/general/analyze-competitors
+- name: analyze-context
+  description: Upload files for AI analysis. SubAgents extract insights and save structured
+    documents.
+  category: learning
+  tags:
+  - learning
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/beam-next-learning/analyze-context
+  has_scripts: true
+- name: archive-project
+  description: Load when user says "archive project", "archive [project-name]", "move
+    to archived". Moves completed projects to 05-archived/ folder for clean project
+    list.
+  category: projects
+  tags:
+  - projects
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/general/archive-project
+- name: attio-connect
+  description: 'Manage contacts, notes, and lists in Attio CRM. Use when user says:
+    ''add contact'', ''update CRM'', ''attio'', ''create note'', ''search contacts'',
+    ''add to list'', ''look up in CRM'', ''manage contacts'', or references the Personal
+    CRM project.'
+  category: integrations
+  tags:
+  - attio
+  - connector
+  - crm
+  platform: Attio
+  version: '1.0'
+  updated: '2026-02-16'
+  visibility: public
+  path: skills/integrations/attio/attio-connect
+  has_references: true
 - name: beam-connect
   description: Connect to Beam AI workspace for agent management. Load when user mentions
     'beam', 'beam agent', 'beam task', 'beam analytics', 'list agents', 'create task',
@@ -31,22 +211,19 @@ skills:
   visibility: public
   path: skills/beam/beam/beam-debug-issue-tasks
   has_scripts: true
-- name: beam-master
-  description: Shared resource library for Beam AI integration skills. DO NOT load
-    directly - provides common references (setup, API docs, error handling, authentication)
-    and scripts used by beam-connect and individual Beam skills.
+- name: beam-design-system
+  description: Access Beam's cached design system tokens and components. Load when
+    user mentions 'beam design system', 'beam colors', 'beam typography', 'design
+    tokens', 'brand colors', 'beam fonts', or asks about Beam's design standards.
+  author: Mo Bekdache
   category: integrations
   tags:
-  - api
-  - beam-ai
-  - master
-  platform: Beam AI
+  - figma
+  platform: Figma
   version: '1.0'
-  updated: '2025-12-18'
+  updated: '2025-12-24'
   visibility: public
-  path: skills/beam/beam/beam-master
-  has_scripts: true
-  has_references: true
+  path: skills/integrations/figma/beam-design-system
 - name: beam-feedback-automation
   description: Universal feedback collection automation for ANY Beam agent. Load when
     user mentions 'feedback automation', 'create feedback sheet', 'agent feedback',
@@ -113,6 +290,22 @@ skills:
   visibility: team
   path: skills/beam/beam-tools/beam-graph-edit
   has_scripts: true
+- name: beam-master
+  description: Shared resource library for Beam AI integration skills. DO NOT load
+    directly - provides common references (setup, API docs, error handling, authentication)
+    and scripts used by beam-connect and individual Beam skills.
+  category: integrations
+  tags:
+  - api
+  - beam-ai
+  - master
+  platform: Beam AI
+  version: '1.0'
+  updated: '2025-12-18'
+  visibility: public
+  path: skills/beam/beam/beam-master
+  has_scripts: true
+  has_references: true
 - name: beam-retry-tasks
   description: Retry failed Beam.ai tasks. Load when user says "retry tasks", "rerun
     failed tasks", "retry beam tasks", "resubmit tasks", or needs to re-execute failed
@@ -127,385 +320,6 @@ skills:
   visibility: public
   path: skills/beam/beam-tools/beam-retry-tasks
   has_scripts: true
-- name: calculate-beam-agent-pricing
-  description: Design node architecture and calculate comprehensive pricing for Beam
-    AI agents based on requirements. Load when user says 'calculate agent pricing',
-    'price this agent', 'design agent architecture', 'estimate agent cost', 'node
-    breakdown for agent', or needs detailed cost analysis for a Beam agent project.
-    Generates complete node-by-node breakdown with credit consumption, monthly economics,
-    optimization strategies, and client pricing models.
-  author: Safi Haider
-  category: general
-  tags:
-  - beam-ai
-  platform: Beam AI
-  version: '1.0'
-  updated: '2026-02-03'
-  visibility: team
-  path: skills/beam/beam-tools/calculate-beam-agent-pricing
-  has_references: true
-- name: create-beam-task-auto-trigger
-  description: Create an auto-trigger webhook script for a Beam.ai agent task. Supports
-    simple query-based, query with attachments/data (base64-encoded), and email-triggered
-    (Gmail/Workable) agents. Load when user says "create auto trigger", "create task
-    auto trigger", "convert task to webhook", "create beam webhook", "automate beam
-    task", or provides a Beam task URL to create a webhook trigger script.
-  author: Safi Haider
-  category: general
-  tags:
-  - create
-  - email
-  version: '1.4'
-  updated: '2026-01-06'
-  visibility: team
-  path: skills/beam/beam-tools/create-beam-task-auto-trigger
-  has_scripts: true
-- name: demo-documentation-generation-agent
-  description: Generate comprehensive, fully-detailed documentation for Beam AI agents
-    from graph.json files. Load when user says "document beam agent", "create agent
-    documentation", "generate agent docs", "document this agent", "demo documentation",
-    or provides a Beam agent graph file. Analyzes graph structure, extracts workflow,
-    tools, integrations, descriptions, and generates complete documentation with NO
-    placeholders.
-  author: Safi Haider
-  category: general
-  tags:
-  - beam-ai
-  platform: Beam AI
-  version: '1.2'
-  updated: '2026-01-06'
-  visibility: team
-  path: skills/beam/beam-tools/demo-documentation-generation-agent
-  has_scripts: true
-  has_references: true
-- name: design-beam-agent
-  description: Design complete Beam.ai agent node architecture from a scoping document.
-    Load when user says "design beam agent", "create beam agent", "agent design for
-    [name]", or needs to plan a multi-node Beam.ai agent workflow. Requires a completed
-    agent-scoping document as input.
-  category: general
-  version: '1.0'
-  updated: '2025-12-10'
-  visibility: team
-  path: skills/beam/beam-tools/design-beam-agent
-  has_references: true
-- name: document-nodes
-  description: Generate human-readable documentation and checklists from Node JSON
-    files. Use when asked to document nodes, create checklists for node processing,
-    or explain node extraction logic. Processes all nodes in the Nodes directory systematically.
-  category: general
-  version: '1.0'
-  updated: '2025-12-10'
-  visibility: team
-  path: skills/beam/beam-tools/document-nodes
-  has_references: true
-- name: evaluate-solutions-case-study
-  description: Load when user says 'evaluate case study', 'review candidate submission',
-    'analyze case study', 'candidate strengths and weaknesses', 'assess candidate
-    work', or 'evaluate solutions engineer candidate'. Systematically evaluate Solutions
-    AI Engineer candidate case study submissions by analyzing extraction prompt quality,
-    project plan depth, and presentation/communication.
-  author: Sven Djokic
-  category: general
-  tags:
-  - beam-ai
-  platform: Beam AI
-  version: '1.0'
-  updated: '2025-12-10'
-  visibility: team
-  path: skills/beam/beam-tools/evaluate-solutions-case-study
-- name: generate-demo-agent-sample-input-data
-  description: Generate sample test inputs and expected results for Beam.ai agents.
-    Load when user says "generate demo data", "create sample inputs for agent", "demo
-    data for beam agent", "test data for agent", "sample input data", or provides
-    a Beam agent URL asking for test cases.
-  author: Hassaan Ahmed, Safi Haider
-  category: general
-  tags:
-  - beam-ai
-  platform: Beam AI
-  version: '1.0'
-  updated: '2026-01-06'
-  visibility: team
-  path: skills/beam/beam-tools/generate-demo-agent-sample-input-data
-  has_scripts: true
-- name: get-beam-agent-graph
-  description: Fetch and save Beam.ai agent graph JSON via API. Load when user says
-    "get agent graph", "fetch beam graph", "download agent graph", "beam agent graph",
-    "get graph for agent", or provides a workspace ID and agent ID to retrieve the
-    graph structure.
-  author: Safi Haider
-  category: general
-  tags:
-  - api
-  - beam-ai
-  platform: Beam AI
-  version: '1.0'
-  updated: '2026-01-05'
-  visibility: team
-  path: skills/beam/beam-tools/get-beam-agent-graph
-  has_scripts: true
-  has_references: true
-- name: graph-slicer
-  description: Slice Beam.ai agent graphs into separate node files with topology-aware
-    naming and Mermaid flowchart generation. Supports both exported JSON files with
-    graphTools arrays AND direct Beam API responses with embedded toolConfiguration.
-    Handles all fill types (static, linked, ai_fill) with appropriate rendering. Use
-    when users want to split an agent graph into individual node files.
-  author: Sven Djokic
-  category: general
-  tags:
-  - api
-  - beam-ai
-  platform: Beam AI
-  version: '1.2'
-  updated: '2026-01-12'
-  visibility: public
-  path: skills/beam/beam-tools/graph-slicer
-  has_scripts: true
-- name: select-llm-model
-  description: Select optimal LLM model for Beam AI tools based on cost, context,
-    and performance. Load when user says "select llm model", "choose model", "optimize
-    llm", "which model for", "model recommendation", "best model for agent", "llm
-    cost optimization", or needs help selecting the right AI model for their Beam
-    tools.
-  category: general
-  tags:
-  - beam-ai
-  platform: Beam AI
-  version: '1.3'
-  updated: '2026-02-03'
-  visibility: team
-  path: skills/beam/beam-tools/select-llm-model
-  has_scripts: true
-  has_references: true
-- name: analyze-context
-  description: Upload files for AI analysis. SubAgents extract insights and save structured
-    documents.
-  category: learning
-  tags:
-  - learning
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/beam-next-learning/analyze-context
-  has_scripts: true
-- name: how-beam-next-works
-  description: Learn how Beam Next works - the system tour. ~7 min.
-  category: learning
-  tags:
-  - learning
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/beam-next-learning/how-beam-next-works
-- name: learn-beam-next
-  description: 'Master Beam Next philosophy and best practices. Load when user mentions:
-    learn beam next, beam next tutorial, system mastery, beam next best practices,
-    how beam next works, beam next philosophy, beam next design, understand beam next,
-    beam next deep dive. 15-18 min.'
-  category: learning
-  tags:
-  - learning
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/beam-next-learning/learn-beam-next
-  has_references: true
-- name: learn-integrations
-  description: 'Learn about Beam Next integrations and MCP. Load when user mentions:
-    learn integrations, what is MCP, connect tools, integration tutorial, add integration,
-    external tools, API connections, third party, how to integrate. 10-12 min.'
-  category: learning
-  tags:
-  - api
-  version: '1.0'
-  updated: '2026-02-25'
-  visibility: public
-  path: skills/beam-next-learning/learn-integrations
-- name: learn-projects
-  description: 'Learn how Beam Next builds work. Load when user mentions: learn projects,
-    how do builds work, builds vs skills, build tutorial, what is a project, build
-    structure, build lifecycle, understand builds, explain builds. 8-10 min.'
-  category: learning
-  tags:
-  - learning
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/beam-next-learning/learn-projects
-- name: learn-skills
-  description: 'Learn how Beam Next skills work. Load when user mentions: learn skills,
-    how do skills work, what is a skill, skill tutorial, skill structure, understand
-    skills, explain skills, when to create skill, skill vs build. 10-12 min.'
-  category: learning
-  tags:
-  - learning
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/beam-next-learning/learn-skills
-  has_references: true
-- name: quick-start
-  description: 'Complete onboarding: welcome, language, goals, integrations, workspace,
-    first PROJECT, permissions.'
-  category: learning
-  tags:
-  - learning
-  version: '2.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/beam-next-learning/quick-start
-- name: setup-goals
-  description: Load when user says 'setup goals', 'personalize beam next', 'set my
-    goals', 'define my role'. Captures role, goals, preferences. 8-10 min.
-  category: learning
-  tags:
-  - learning
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/beam-next-learning/setup-goals
-  has_references: true
-- name: setup-memory
-  description: 'Configure Beam Next memory with your role, goals, and preferences.
-    Load when user wants to personalize the system or teach Beam Next about themselves.
-    Keywords: setup memory, personalize, configure, my goals, my role, about me, preferences.
-    8 min.'
-  category: learning
-  tags:
-  - learning
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/beam-next-learning/setup-memory
-  has_references: true
-- name: setup-workspace
-  description: 'Organize your 04-workspace/ folder structure. Load when user mentions:
-    setup workspace, organize folders, folder structure, configure workspace, my files,
-    file organization, where to put files, workspace setup, directories, storage.
-    5-8 min.'
-  category: learning
-  tags:
-  - learning
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/beam-next-learning/setup-workspace
-  has_references: true
-- name: deep-thinking
-  description: Structured deep thinking for hard problems. Load when user says "deep
-    think", "think deeply", "frame this", "what's the real question", "eigenquestion",
-    "challenge this", "ultrathink", "stress test this", "apply a framework", "get
-    expert feedback on this". Frames the problem (one-sentence problem, binding constraint,
-    eigenquestion), then runs either stress-test (multi-perspective critique), mental
-    framework (pre-mortem, decision-matrix, etc.), or expert review (persona-based
-    feedback).
-  category: tools
-  tags:
-  - thinking
-  - strategy
-  - critique
-  version: '1.0'
-  updated: '2026-02-27'
-  visibility: public
-  path: skills/deep-thinking
-- name: 1on1-followup
-  description: 'Quick post-meeting follow-up for 1-on-1s. Triggers: ''1on1 followup'',
-    ''follow up on my 1on1'', ''1on1 with [name]'', ''debrief my 1on1'', ''process
-    my 1on1 with [name]''.'
-  author: Jonas Diezun
-  category: productivity
-  tags:
-  - meeting
-  version: '1.0'
-  updated: '2026-02-10'
-  visibility: public
-  path: skills/general/1on1-followup
-- name: 1on1-prep
-  description: 'Prepare for an upcoming 1-on-1. Triggers: ''prep my 1on1 with [name]'',
-    ''1on1 prep'', ''prepare for my meeting with [name]'', ''what should I cover with
-    [name]'', ''get ready for 1on1''.'
-  author: Jonas Diezun
-  category: productivity
-  tags:
-  - meeting
-  version: '1.0'
-  updated: '2026-02-10'
-  visibility: public
-  path: skills/general/1on1-prep
-- name: 1on1-review
-  description: 'Deep expert coaching review of a 1-on-1 meeting. Triggers: ''1on1
-    review'', ''review my 1on1 with [name]'', ''coach me on my 1on1'', ''how did my
-    1on1 go'', ''deep review my 1on1'', ''expert feedback on my meeting with [name]''.'
-  author: Jonas Diezun
-  category: productivity
-  tags:
-  - meeting
-  version: '1.0'
-  updated: '2026-02-10'
-  visibility: public
-  path: skills/general/1on1-review
-- name: abstract
-  description: Zoom out and contextualize overwhelming concepts. Load when user says
-    'zoom out', 'abstract', 'I'm lost', 'I'm overwhelmed', 'bigger picture', or expresses
-    confusion about where a concept fits. Identifies paradigms, shows hierarchies,
-    teaches with analogies, and connects to user's goals.
-  category: general
-  version: '1.0'
-  updated: '2026-01-09'
-  visibility: public
-  path: skills/general/abstract
-  has_references: true
-- name: add-integration
-  description: add integration, new integration, integrate with, connect to [service].
-  category: system
-  tags:
-  - system
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/general/add-integration
-  has_scripts: true
-  has_references: true
-- name: allhands-prep
-  description: Prepare all-hands meetings for Beam. Load when user says 'prepare all-hands',
-    'all-hands prep', 'plan all-hands meeting', 'create all-hands agenda', or mentions
-    preparing for company-wide meetings. Helps structure the meeting, draft talking
-    points, create prep checklists, and follow Beam's all-hands guidelines.
-  category: system
-  tags:
-  - meeting
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/general/allhands-prep
-  has_references: true
-- name: analyze-competitors
-  description: Conduct competitor analysis for product design. Load when user says
-    'analyze competitors', 'competitor research', 'competitive analysis', 'check how
-    [competitor] does this'. Guides exploration of Zapier, n8n, Lindy, Relevance.ai
-    and other automation platforms.
-  author: Mahnoor Jawed
-  category: general
-  tags:
-  - api
-  - automation
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: team
-  path: skills/general/analyze-competitors
-- name: archive-project
-  description: Load when user says "archive project", "archive [project-name]", "move
-    to archived". Moves completed projects to 05-archived/ folder for clean project
-    list.
-  category: projects
-  tags:
-  - projects
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/general/archive-project
 - name: better-doc
   description: Improve documents for clarity, precision, and impact. Load when user
     says "better doc", "improve writing", "make clearer", "smart brevity", or provides
@@ -540,6 +354,23 @@ skills:
   visibility: public
   path: skills/general/bulk-complete
   has_scripts: true
+- name: calculate-beam-agent-pricing
+  description: Design node architecture and calculate comprehensive pricing for Beam
+    AI agents based on requirements. Load when user says 'calculate agent pricing',
+    'price this agent', 'design agent architecture', 'estimate agent cost', 'node
+    breakdown for agent', or needs detailed cost analysis for a Beam agent project.
+    Generates complete node-by-node breakdown with credit consumption, monthly economics,
+    optimization strategies, and client pricing models.
+  author: Safi Haider
+  category: general
+  tags:
+  - beam-ai
+  platform: Beam AI
+  version: '1.0'
+  updated: '2026-02-03'
+  visibility: team
+  path: skills/beam/beam-tools/calculate-beam-agent-pricing
+  has_references: true
 - name: candidate-compare
   description: Compare multiple candidates for a role and recommend the best fit.
     Load when user says "compare candidates", "select best candidate", "who should
@@ -551,6 +382,22 @@ skills:
   updated: '2026-02-16'
   visibility: public
   path: skills/general/candidate-compare
+- name: create-beam-task-auto-trigger
+  description: Create an auto-trigger webhook script for a Beam.ai agent task. Supports
+    simple query-based, query with attachments/data (base64-encoded), and email-triggered
+    (Gmail/Workable) agents. Load when user says "create auto trigger", "create task
+    auto trigger", "convert task to webhook", "create beam webhook", "automate beam
+    task", or provides a Beam task URL to create a webhook trigger script.
+  author: Safi Haider
+  category: general
+  tags:
+  - create
+  - email
+  version: '1.4'
+  updated: '2026-01-06'
+  visibility: team
+  path: skills/beam/beam-tools/create-beam-task-auto-trigger
+  has_scripts: true
 - name: create-client-project
   description: Create a new client project folder with complete structure and templates.
     Load when user says "create client project", "new client", "add client [name]",
@@ -576,6 +423,26 @@ skills:
   visibility: team
   path: skills/general/create-data
   has_scripts: true
+- name: create-deal
+  description: Create a new HubSpot deal after a successful sales call where a demo
+    has been committed. Use this skill whenever the user says a call went well and
+    a demo was booked, or asks to "log a deal", "create a deal from this call", "add
+    to HubSpot", or "turn this into a deal". Only trigger when there's a clear signal
+    that a demo or next commitment was secured — do NOT trigger for exploratory calls
+    with no outcome, post-demo follow-ups, or existing deals being updated. Pulls
+    notes from Granola automatically, extracts key fields, asks the user for any missing
+    info, and creates the deal in HubSpot with all required fields and associations.
+  category: integrations
+  tags:
+  - granola
+  - hubspot
+  - deal
+  - crm
+  platform: Granola
+  version: '1.0'
+  updated: '2026-02-27'
+  visibility: public
+  path: skills/integrations/granola/create-deal
 - name: create-master-skill
   description: create master skill, integration master, shared skill library.
   category: skill-dev
@@ -664,6 +531,21 @@ skills:
   path: skills/general/create-skill
   has_scripts: true
   has_references: true
+- name: create-weekly-update
+  description: Generate weekly status update based on Linear ticket activity and project
+    progress. Load when user says "weekly update", "weekly status", "create weekly
+    report", "status update for [project]", "what got done this week". Fetches ticket
+    changes and generates formatted summary.
+  category: general
+  tags:
+  - create
+  - linear
+  - update
+  platform: Linear
+  version: '1.0'
+  updated: '2026-02-09'
+  visibility: team
+  path: skills/integrations/linear/create-weekly-update
 - name: data-baker
   description: 'Generate realistic synthetic datasets for AI agent training and testing
     across diverse domains. Use when user provides meeting transcripts, requirements
@@ -702,6 +584,62 @@ skills:
   updated: '2025-12-12'
   visibility: team
   path: skills/general/dealroom-creation
+- name: deep-thinking
+  description: Structured deep thinking for hard problems. Load when user says "deep
+    think", "think deeply", "frame this", "what's the real question", "eigenquestion",
+    "challenge this", "ultrathink", "stress test this", "apply a framework", "get
+    expert feedback on this". Frames the problem (one-sentence problem, binding constraint,
+    eigenquestion), then runs either stress-test (multi-perspective critique), mental
+    framework (pre-mortem, decision-matrix, etc.), or expert review (persona-based
+    feedback).
+  category: tools
+  tags:
+  - thinking
+  - strategy
+  - critique
+  version: '1.0'
+  updated: '2026-02-27'
+  visibility: public
+  path: skills/deep-thinking
+- name: demo-documentation-generation-agent
+  description: Generate comprehensive, fully-detailed documentation for Beam AI agents
+    from graph.json files. Load when user says "document beam agent", "create agent
+    documentation", "generate agent docs", "document this agent", "demo documentation",
+    or provides a Beam agent graph file. Analyzes graph structure, extracts workflow,
+    tools, integrations, descriptions, and generates complete documentation with NO
+    placeholders.
+  author: Safi Haider
+  category: general
+  tags:
+  - beam-ai
+  platform: Beam AI
+  version: '1.2'
+  updated: '2026-01-06'
+  visibility: team
+  path: skills/beam/beam-tools/demo-documentation-generation-agent
+  has_scripts: true
+  has_references: true
+- name: design-beam-agent
+  description: Design complete Beam.ai agent node architecture from a scoping document.
+    Load when user says "design beam agent", "create beam agent", "agent design for
+    [name]", or needs to plan a multi-node Beam.ai agent workflow. Requires a completed
+    agent-scoping document as input.
+  category: general
+  version: '1.0'
+  updated: '2025-12-10'
+  visibility: team
+  path: skills/beam/beam-tools/design-beam-agent
+  has_references: true
+- name: document-nodes
+  description: Generate human-readable documentation and checklists from Node JSON
+    files. Use when asked to document nodes, create checklists for node processing,
+    or explain node extraction logic. Processes all nodes in the Nodes directory systematically.
+  category: general
+  version: '1.0'
+  updated: '2025-12-10'
+  visibility: team
+  path: skills/beam/beam-tools/document-nodes
+  has_references: true
 - name: email-automation
   description: Load when user says "process emails", "triage inbox", "email automation",
     "check emails", or "inbox zero"
@@ -716,6 +654,21 @@ skills:
   path: skills/general/email-automation
   has_scripts: true
   has_references: true
+- name: evaluate-solutions-case-study
+  description: Load when user says 'evaluate case study', 'review candidate submission',
+    'analyze case study', 'candidate strengths and weaknesses', 'assess candidate
+    work', or 'evaluate solutions engineer candidate'. Systematically evaluate Solutions
+    AI Engineer candidate case study submissions by analyzing extraction prompt quality,
+    project plan depth, and presentation/communication.
+  author: Sven Djokic
+  category: general
+  tags:
+  - beam-ai
+  platform: Beam AI
+  version: '1.0'
+  updated: '2025-12-10'
+  visibility: team
+  path: skills/beam/beam-tools/evaluate-solutions-case-study
 - name: execute-project
   description: continue [build], resume, work on, check progress, execute build, build
     [ID/name].
@@ -765,327 +718,6 @@ skills:
   updated: '2026-01-07'
   visibility: team
   path: skills/general/extract-requirements
-- name: follow-up-automation
-  description: Streamlined follow-up system for sales calls based on call transcripts.
-    Load when user mentions "follow-up", "follow up email", "call follow-up", "send
-    follow-up", "post-call follow-up", "follow-up automation", "create follow-up",
-    "generate follow-up", or when user provides a call transcript and needs to send
-    follow-up communication and update CRM. Analyzes call transcripts to extract technical
-    requirements, decision makers, timeline, and pain points, then generates concise
-    technical follow-up emails (under 200 words) and updates CRM with lead status
-    and next steps.
-  author: Quentin
-  category: general
-  tags:
-  - automation
-  - crm
-  - email
-  - sales
-  - transcript
-  version: '1.0'
-  updated: '2025-12-12'
-  visibility: team
-  path: skills/general/follow-up-automation
-- name: format-and-lint-code
-  description: format code, lint code, pre-commit, before commit, code quality, auto-format
-  category: tools
-  tags:
-  - tools
-  version: '1.0'
-  updated: '2026-02-25'
-  visibility: public
-  path: skills/general/format-and-lint-code
-  has_scripts: true
-  has_references: true
-- name: generate-philosophy-doc
-  description: create philosophy doc, generate standards, build best practices guide.
-  category: tools
-  tags:
-  - tools
-  version: '1.0'
-  updated: '2026-02-25'
-  visibility: public
-  path: skills/general/generate-philosophy-doc
-  has_scripts: true
-  has_references: true
-- name: git
-  description: 'Git operations for Nexus. Load when user mentions: git, sync upstream,
-    fetch upstream, fetch origin, push origin, pull, commit, git status, git add,
-    git log, git branch, git stash, git reset, git revert, undo commit, update from
-    template, setup git, ssh key, clone repo, git config.'
-  author: Abdul Rafay
-  category: general
-  version: '1.0'
-  updated: '2026-02-25'
-  visibility: public
-  path: skills/general/git
-  has_scripts: true
-  has_references: true
-- name: import-skill
-  description: import skill, download skill, install skill, get skill.
-  category: skill-dev
-  tags:
-  - skill-dev
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/general/import-skill
-- name: interview-coach
-  description: Analyze interview transcripts to help managers improve their interviewing
-    skills. Load when user says "review my interview with [name]", "assess my interview",
-    "how's the candidate", "interview feedback", "interview coach", "hr round review
-    with [name]", "technical round review with [name]", "final round review with [name]",
-    or provides an interview transcript. Supports 3 interview types - HR (cultural
-    fit), Technical (skill assessment), Final (career aspirations).
-  author: Jonas Diezun
-  category: general
-  tags:
-  - transcript
-  platform: workable
-  version: '2.0'
-  updated: '2026-02-16'
-  visibility: public
-  path: skills/general/interview-coach
-- name: lead-research
-  description: 'Research sales leads and assess fit for Beam. Use when preparing for
-    prospect calls, evaluating inbound leads, or qualifying opportunities. Keywords:
-    lead research, call prep, prospect research, fit assessment, sales call preparation,
-    qualify lead, discovery call prep.'
-  author: Jonas Diezun
-  category: general
-  tags:
-  - sales
-  platform: Beam AI
-  version: '1.0'
-  updated: '2026-01-28'
-  visibility: public
-  path: skills/general/lead-research
-  has_references: true
-- name: list-skills
-  description: list skills, show skills, what skills, available skills.
-  category: system
-  tags:
-  - query
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/general/list-skills
-- name: mental-models
-  description: mental model, think through this, help me decide, first principles,
-    pre-mortem.
-  category: tools
-  tags:
-  - tools
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/general/mental-models
-- name: plan-project
-  description: create build, new project, start build, plan build, build [X].
-  category: projects
-  tags:
-  - projects
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/general/plan-project
-  has_scripts: true
-  has_references: true
-- name: prompt-versioning
-  description: Manage AI prompts with version control, rollback, and Linear integration.
-    Load when user mentions 'prompt versioning', 'version prompt', 'rollback prompt',
-    'prompt history', 'create prompt version', or needs to manage prompts across client
-    projects.
-  author: Anas Duksi
-  category: general
-  version: '1.0'
-  updated: '2026-01-12'
-  visibility: team
-  path: skills/general/prompt-versioning
-  has_scripts: true
-- name: qa-checklist
-  description: Transform technical agent/node documentation into business-owner cheatsheets.
-    Use when asked to create "cheatsheet", "review guide", "QA checklist", "validation
-    guide", or when business owners need to verify AI decisions. Applies better-doc
-    principles. Outputs outcome-focused documents without technical/node details.
-  author: Jack Li
-  category: general
-  version: '1.0'
-  updated: '2025-12-17'
-  visibility: public
-  path: skills/general/qa-checklist
-- name: qa-test-case-writer
-  description: Comprehensive UI test case generation for QA teams. Use when the user
-    wants to write test cases for a feature, project, or webpage. Generates happy
-    flow, edge cases, and security test cases for client-facing UI (not API tests).
-    Creates test cases in Notion databases following standardized format with Test
-    Case ID, Title, Pre-condition, Test Steps, Expected Result, Test Data, Post-condition,
-    Priority (P0-P3), and status tracking. Triggers on requests like "write test cases
-    for [feature]", "create QA tests", "generate test scenarios", or when user provides
-    feature documentation to test.
-  author: Ahsun Iqbal
-  category: general
-  tags:
-  - api
-  - notion
-  platform: Notion
-  version: '1.0'
-  updated: '2026-01-20'
-  visibility: team
-  path: skills/general/qa-test-case-writer
-- name: scope-of-work-creation
-  description: Create professional proposals and scopes of work (SOW) for client projects
-    using phased approach with success gates. Load when user mentions "SOW", "scope
-    of work", "proposal", "create proposal", "generate SOW", "write scope", "project
-    proposal", "statement of work", or when preparing client proposals with phased
-    deliverables, pricing, and success criteria. Structures proposals with clear phases,
-    cost breakdowns, deliverables, success gates, out-of-scope items, and legal terms.
-  author: Quentin
-  category: general
-  version: '1.0'
-  updated: '2025-12-12'
-  visibility: team
-  path: skills/general/scope-of-work-creation
-- name: search-skill-database
-  description: search skills, find skill, browse skills, skill marketplace.
-  category: skill-dev
-  tags:
-  - query
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/general/search-skill-database
-- name: share-skill
-  description: share skill, upload skill, publish skill.
-  category: skill-dev
-  tags:
-  - skill-dev
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/general/share-skill
-- name: transcript-to-hubspot-sections
-  category: general
-  version: '1.0'
-  visibility: public
-  path: skills/general/transcript-to-hubspot-sections
-- name: ui-developer
-  category: general
-  version: '1.0'
-  visibility: public
-  path: skills/general/ui-developer
-- name: ultrathink
-  description: Critical analysis that stress-tests content from multiple perspectives
-    before shipping. Load when user says "ultrathink", "ultrathink this", "stress
-    test this", "challenge this content", "validate this", "critique this from different
-    angles", or provides content (email, document, strategy, proposal, paper) asking
-    for critical review. Examines content through recipient POV, critic lens, devil's
-    advocate, first principles, and risk analysis, then synthesizes findings into
-    actionable report.
-  author: Quentin
-  category: general
-  tags:
-  - email
-  version: '1.0'
-  updated: '2025-12-12'
-  visibility: public
-  path: skills/general/ultrathink
-- name: validate-skill-functionality
-  description: validate skill, check skill, review skill execution.
-  category: skill-dev
-  tags:
-  - skill-dev
-  version: '1.0'
-  updated: '2026-02-25'
-  visibility: public
-  path: skills/general/validate-skill-functionality
-- name: write-integration-ticket
-  description: Write API integration tickets in structured specification format. Load
-    when user mentions 'write integration ticket', 'create integration spec', 'integration
-    specification', 'API action ticket', or wants to document an API integration with
-    endpoints, parameters, acceptance criteria, and error handling. Creates Linear
-    tickets with Integration label assigned to Adeel Akram.
-  author: Saqib
-  category: general
-  tags:
-  - api
-  version: '1.0'
-  updated: '2026-01-19'
-  visibility: public
-  path: skills/general/write-integration-ticket
-- name: airtable-connect
-  description: airtable, connect airtable, query [base], add to [table].
-  category: integrations
-  tags:
-  - airtable
-  - connector
-  platform: Airtable
-  version: '1.1'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/integrations/airtable/airtable-connect
-- name: airtable-master
-  description: Shared resource library for Airtable integration skills. DO NOT load
-    directly - provides common references (setup, API docs, error handling, field
-    types) and scripts used by airtable-connect, airtable-query, and airtable-sync.
-  category: integrations
-  tags:
-  - airtable
-  - api
-  - master
-  platform: Airtable
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/integrations/airtable/airtable-master
-  has_scripts: true
-  has_references: true
-- name: amie-connect
-  description: Work with Amie calendar and meeting notes. Load when user mentions
-    "amie", "meeting notes", "get transcript", "save transcript to file", "export
-    transcript", "action items from meeting", or wants to access Amie data.
-  category: integrations
-  tags:
-  - amie
-  - calendar
-  - connector
-  - meeting
-  - transcript
-  platform: Amie
-  version: '1.0'
-  updated: '2026-02-13'
-  visibility: public
-  path: skills/integrations/amie/amie-connect
-- name: amie-master
-  description: Shared resource library for Amie integration skills. DO NOT load directly
-    - provides common references and scripts used by amie-connect and individual Amie
-    skills.
-  category: integrations
-  tags:
-  - amie
-  - master
-  platform: Amie
-  version: '1.0'
-  updated: '2026-02-13'
-  visibility: public
-  path: skills/integrations/amie/amie-master
-  has_scripts: true
-- name: attio-connect
-  description: 'Manage contacts, notes, and lists in Attio CRM. Use when user says:
-    ''add contact'', ''update CRM'', ''attio'', ''create note'', ''search contacts'',
-    ''add to list'', ''look up in CRM'', ''manage contacts'', or references the Personal
-    CRM project.'
-  category: integrations
-  tags:
-  - attio
-  - connector
-  - crm
-  platform: Attio
-  version: '1.0'
-  updated: '2026-02-16'
-  visibility: public
-  path: skills/integrations/attio/attio-connect
-  has_references: true
 - name: fathom
   description: Complete Fathom integration skill. Load when user wants to fetch meetings,
     get transcripts, list recordings, or interact with Fathom meeting data. Supports
@@ -1136,36 +768,6 @@ skills:
   visibility: team
   path: skills/integrations/fathom/fathom-get-transcript
   has_scripts: true
-- name: process-client-meeting
-  description: Complete end-to-end workflow to process a client meeting. Load when
-    user says "process meeting", "meeting workflow", "process client meeting", "full
-    meeting processing", "handle meeting for [client]", or "post-meeting workflow".
-    Handles transcript fetching, minutes creation, Linear tickets, client updates,
-    internal updates, and project context sync.
-  author: Hassaan Ahmed
-  category: general
-  tags:
-  - fathom
-  - meeting
-  - transcript
-  platform: Fathom
-  version: '1.0'
-  updated: '2025-12-23'
-  visibility: team
-  path: skills/integrations/fathom/process-client-meeting
-- name: beam-design-system
-  description: Access Beam's cached design system tokens and components. Load when
-    user mentions 'beam design system', 'beam colors', 'beam typography', 'design
-    tokens', 'brand colors', 'beam fonts', or asks about Beam's design standards.
-  author: Mo Bekdache
-  category: integrations
-  tags:
-  - figma
-  platform: Figma
-  version: '1.0'
-  updated: '2025-12-24'
-  visibility: public
-  path: skills/integrations/figma/beam-design-system
 - name: figma-connect
   description: Connect to any Figma file for data extraction and asset export. Load
     when user mentions 'connect figma', 'get figma file', 'figma URL', 'export from
@@ -1180,6 +782,38 @@ skills:
   updated: '2025-12-24'
   visibility: public
   path: skills/integrations/figma/figma-connect
+- name: follow-up-automation
+  description: Streamlined follow-up system for sales calls based on call transcripts.
+    Load when user mentions "follow-up", "follow up email", "call follow-up", "send
+    follow-up", "post-call follow-up", "follow-up automation", "create follow-up",
+    "generate follow-up", or when user provides a call transcript and needs to send
+    follow-up communication and update CRM. Analyzes call transcripts to extract technical
+    requirements, decision makers, timeline, and pain points, then generates concise
+    technical follow-up emails (under 200 words) and updates CRM with lead status
+    and next steps.
+  author: Quentin
+  category: general
+  tags:
+  - automation
+  - crm
+  - email
+  - sales
+  - transcript
+  version: '1.0'
+  updated: '2025-12-12'
+  visibility: team
+  path: skills/general/follow-up-automation
+- name: format-and-lint-code
+  description: format code, lint code, pre-commit, before commit, code quality, auto-format
+  category: tools
+  tags:
+  - tools
+  version: '1.0'
+  updated: '2026-02-25'
+  visibility: public
+  path: skills/general/format-and-lint-code
+  has_scripts: true
+  has_references: true
 - name: gemini-edit-image
   description: edit image, modify image, change image, gemini edit.
   category: integrations
@@ -1194,131 +828,6 @@ skills:
   requires:
   - google-gemini-image
   has_scripts: true
-- name: gemini-generate-image
-  description: generate image, create image, text to image, gemini generate.
-  category: integrations
-  tags:
-  - google-gemini
-  platform: Google Gemini
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/google/gemini-generate-image
-  requires:
-  - google-gemini-image
-  has_scripts: true
-- name: gemini-refine-image
-  description: refine image, improve image, iterate image, tweak image.
-  category: integrations
-  tags:
-  - google-gemini
-  platform: Google Gemini
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/integrations/google/gemini-refine-image
-  requires:
-  - google-gemini-image
-  has_scripts: true
-- name: gmail
-  description: Read, send, and manage Gmail emails. Load when user mentions 'gmail',
-    'email', 'send email', 'check email', 'inbox', 'draft', or references sending/reading
-    emails.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - email
-  - google-workspace
-  platform: Google Workspace
-  version: '1.3'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/google/gmail
-  requires:
-  - google-connect
-  - google-master
-  has_scripts: true
-- name: google-calendar
-  description: Read, create, and manage Google Calendar events. Load when user mentions
-    'google calendar', 'calendar', 'schedule', 'meeting', 'event', 'appointment',
-    'book time', 'check availability', 'find slots', 'free time', or references scheduling/calendar
-    operations.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - calendar
-  - google-workspace
-  - meeting
-  platform: Google Workspace
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/integrations/google/google-calendar
-  requires:
-  - google-connect
-  - google-master
-  has_scripts: true
-- name: google-connect
-  description: connect google, setup google, google integration.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - connector
-  - google-workspace
-  platform: Google Workspace
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/integrations/google/google-connect
-- name: google-docs
-  description: Read, write, and manage Google Docs. Load when user mentions 'google
-    docs', 'google document', 'create doc', 'read doc', 'write doc', 'edit document',
-    or references creating/editing text documents in Google Drive.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - google-workspace
-  platform: Google Workspace
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/google/google-docs
-  requires:
-  - google-connect
-  - google-master
-  has_scripts: true
-- name: google-drive
-  description: Manage Google Drive files and folders. Load when user mentions 'google
-    drive', 'drive', 'upload file', 'download file', 'share file', 'create folder',
-    or references cloud file storage operations.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - google-workspace
-  platform: Google Workspace
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/google/google-drive
-  requires:
-  - google-connect
-  - google-master
-  has_scripts: true
-- name: google-gemini-image
-  description: gemini image, generate image, create image, text to image, brand assets,
-    logo generation, hero image.
-  category: integrations
-  tags:
-  - google-workspace
-  platform: Google Workspace
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/integrations/google/google-gemini-image
-  requires:
-  - google-connect
-  has_scripts: true
-  has_references: true
 - name: gemini-edit-image
   description: edit image, modify image, change image, gemini edit.
   category: integrations
@@ -1330,6 +839,19 @@ skills:
   updated: '2026-02-26'
   visibility: public
   path: skills/integrations/google/google-gemini-image/gemini-edit-image
+  requires:
+  - google-gemini-image
+  has_scripts: true
+- name: gemini-generate-image
+  description: generate image, create image, text to image, gemini generate.
+  category: integrations
+  tags:
+  - google-gemini
+  platform: Google Gemini
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/google/gemini-generate-image
   requires:
   - google-gemini-image
   has_scripts: true
@@ -1355,23 +877,112 @@ skills:
   version: '1.0'
   updated: '2026-02-26'
   visibility: public
+  path: skills/integrations/google/gemini-refine-image
+  requires:
+  - google-gemini-image
+  has_scripts: true
+- name: gemini-refine-image
+  description: refine image, improve image, iterate image, tweak image.
+  category: integrations
+  tags:
+  - google-gemini
+  platform: Google Gemini
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
   path: skills/integrations/google/google-gemini-image/gemini-refine-image
   requires:
   - google-gemini-image
   has_scripts: true
-- name: google-integration
-  description: google, gmail, email, google docs, sheets, calendar, drive.
+- name: generate-demo-agent-sample-input-data
+  description: Generate sample test inputs and expected results for Beam.ai agents.
+    Load when user says "generate demo data", "create sample inputs for agent", "demo
+    data for beam agent", "test data for agent", "sample input data", or provides
+    a Beam agent URL asking for test cases.
+  author: Hassaan Ahmed, Safi Haider
+  category: general
+  tags:
+  - beam-ai
+  platform: Beam AI
+  version: '1.0'
+  updated: '2026-01-06'
+  visibility: team
+  path: skills/beam/beam-tools/generate-demo-agent-sample-input-data
+  has_scripts: true
+- name: generate-linear-project-update
+  description: Generate concise Linear project status updates with issues grouped
+    by status, sub-issue links, and metrics. Load when user mentions "generate project
+    update", "weekly update for [project]", "Linear project summary", "status update",
+    or provides a Linear project URL.
+  author: Jack Li
+  category: general
+  tags:
+  - linear
+  - update
+  platform: Linear
+  version: '1.0'
+  updated: '2025-12-10'
+  visibility: team
+  path: skills/integrations/linear/generate-linear-project-update
+- name: generate-philosophy-doc
+  description: create philosophy doc, generate standards, build best practices guide.
+  category: tools
+  tags:
+  - tools
+  version: '1.0'
+  updated: '2026-02-25'
+  visibility: public
+  path: skills/general/generate-philosophy-doc
+  has_scripts: true
+  has_references: true
+- name: get-beam-agent-graph
+  description: Fetch and save Beam.ai agent graph JSON via API. Load when user says
+    "get agent graph", "fetch beam graph", "download agent graph", "beam agent graph",
+    "get graph for agent", or provides a workspace ID and agent ID to retrieve the
+    graph structure.
+  author: Safi Haider
+  category: general
+  tags:
+  - api
+  - beam-ai
+  platform: Beam AI
+  version: '1.0'
+  updated: '2026-01-05'
+  visibility: team
+  path: skills/beam/beam-tools/get-beam-agent-graph
+  has_scripts: true
+  has_references: true
+- name: git
+  description: 'Git operations for Nexus. Load when user mentions: git, sync upstream,
+    fetch upstream, fetch origin, push origin, pull, commit, git status, git add,
+    git log, git branch, git stash, git reset, git revert, undo commit, update from
+    template, setup git, ssh key, clone repo, git config.'
+  author: Abdul Rafay
+  category: general
+  version: '1.0'
+  updated: '2026-02-25'
+  visibility: public
+  path: skills/general/git
+  has_scripts: true
+  has_references: true
+- name: gmail
+  description: Read, send, and manage Gmail emails. Load when user mentions 'gmail',
+    'email', 'send email', 'check email', 'inbox', 'draft', or references sending/reading
+    emails.
   author: Fredrik Falk
   category: integrations
   tags:
-  - calendar
   - email
   - google-workspace
   platform: Google Workspace
-  version: '1.1'
-  updated: '2026-02-26'
+  version: '1.3'
+  updated: '2026-02-24'
   visibility: public
-  path: skills/integrations/google/google-integration
+  path: skills/integrations/google/gmail
+  requires:
+  - google-connect
+  - google-master
+  has_scripts: true
 - name: gmail
   description: Read, send, and manage Gmail emails. Load when user mentions 'gmail',
     'email', 'send email', 'check email', 'inbox', 'draft', or references sending/reading
@@ -1386,6 +997,26 @@ skills:
   updated: '2026-02-24'
   visibility: public
   path: skills/integrations/google/google-integration/gmail
+  requires:
+  - google-connect
+  - google-master
+  has_scripts: true
+- name: google-calendar
+  description: Read, create, and manage Google Calendar events. Load when user mentions
+    'google calendar', 'calendar', 'schedule', 'meeting', 'event', 'appointment',
+    'book time', 'check availability', 'find slots', 'free time', or references scheduling/calendar
+    operations.
+  author: Fredrik Falk
+  category: integrations
+  tags:
+  - calendar
+  - google-workspace
+  - meeting
+  platform: Google Workspace
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/integrations/google/google-calendar
   requires:
   - google-connect
   - google-master
@@ -1421,7 +1052,36 @@ skills:
   version: '1.0'
   updated: '2026-02-26'
   visibility: public
+  path: skills/integrations/google/google-connect
+- name: google-connect
+  description: connect google, setup google, google integration.
+  author: Fredrik Falk
+  category: integrations
+  tags:
+  - connector
+  - google-workspace
+  platform: Google Workspace
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
   path: skills/integrations/google/google-integration/google-connect
+- name: google-docs
+  description: Read, write, and manage Google Docs. Load when user mentions 'google
+    docs', 'google document', 'create doc', 'read doc', 'write doc', 'edit document',
+    or references creating/editing text documents in Google Drive.
+  author: Fredrik Falk
+  category: integrations
+  tags:
+  - google-workspace
+  platform: Google Workspace
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/google/google-docs
+  requires:
+  - google-connect
+  - google-master
+  has_scripts: true
 - name: google-docs
   description: Read, write, and manage Google Docs. Load when user mentions 'google
     docs', 'google document', 'create doc', 'read doc', 'write doc', 'edit document',
@@ -1451,11 +1111,56 @@ skills:
   version: '1.0'
   updated: '2026-02-24'
   visibility: public
+  path: skills/integrations/google/google-drive
+  requires:
+  - google-connect
+  - google-master
+  has_scripts: true
+- name: google-drive
+  description: Manage Google Drive files and folders. Load when user mentions 'google
+    drive', 'drive', 'upload file', 'download file', 'share file', 'create folder',
+    or references cloud file storage operations.
+  author: Fredrik Falk
+  category: integrations
+  tags:
+  - google-workspace
+  platform: Google Workspace
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
   path: skills/integrations/google/google-integration/google-drive
   requires:
   - google-connect
   - google-master
   has_scripts: true
+- name: google-gemini-image
+  description: gemini image, generate image, create image, text to image, brand assets,
+    logo generation, hero image.
+  category: integrations
+  tags:
+  - google-workspace
+  platform: Google Workspace
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/integrations/google/google-gemini-image
+  requires:
+  - google-connect
+  has_scripts: true
+  has_references: true
+- name: google-integration
+  description: google, gmail, email, google docs, sheets, calendar, drive.
+  author: Fredrik Falk
+  category: integrations
+  tags:
+  - calendar
+  - email
+  - google-workspace
+  platform: Google Workspace
+  version: '1.1'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/integrations/google/google-integration
 - name: google-master
   description: Shared resource library for Google integration skills. DO NOT load
     directly - provides common references (setup, API docs, error handling, authentication)
@@ -1475,57 +1180,6 @@ skills:
   path: skills/integrations/google/google-integration/google-master
   has_scripts: true
   has_references: true
-- name: google-sheets
-  description: Read and write Google Sheets data. Load when user mentions 'google
-    sheets', 'spreadsheet', 'update sheet', 'read sheet', 'append to sheet', or references
-    extracting data to update a tracking sheet.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - google-workspace
-  platform: Google Workspace
-  version: '1.2'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/google/google-integration/google-sheets
-  requires:
-  - google-connect
-  - google-master
-  has_scripts: true
-- name: google-slides
-  description: Create and manage Google Slides presentations. Load when user mentions
-    'google slides', 'slides', 'presentation', 'create presentation', 'add slide',
-    or references creating/editing slide decks.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - google-workspace
-  platform: Google Workspace
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/google/google-integration/google-slides
-  requires:
-  - google-connect
-  - google-master
-  has_scripts: true
-- name: google-tasks
-  description: Manage Google Tasks and task lists. Load when user mentions 'google
-    tasks', 'tasks', 'todo list', 'create task', 'complete task', or references task/todo
-    management.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - google-workspace
-  platform: Google Workspace
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/google/google-integration/google-tasks
-  requires:
-  - google-connect
-  - google-master
-  has_scripts: true
 - name: google-master
   description: Shared resource library for Google integration skills. DO NOT load
     directly - provides common references (setup, API docs, error handling, authentication)
@@ -1557,7 +1211,41 @@ skills:
   version: '1.2'
   updated: '2026-02-24'
   visibility: public
+  path: skills/integrations/google/google-integration/google-sheets
+  requires:
+  - google-connect
+  - google-master
+  has_scripts: true
+- name: google-sheets
+  description: Read and write Google Sheets data. Load when user mentions 'google
+    sheets', 'spreadsheet', 'update sheet', 'read sheet', 'append to sheet', or references
+    extracting data to update a tracking sheet.
+  author: Fredrik Falk
+  category: integrations
+  tags:
+  - google-workspace
+  platform: Google Workspace
+  version: '1.2'
+  updated: '2026-02-24'
+  visibility: public
   path: skills/integrations/google/google-sheets
+  requires:
+  - google-connect
+  - google-master
+  has_scripts: true
+- name: google-slides
+  description: Create and manage Google Slides presentations. Load when user mentions
+    'google slides', 'slides', 'presentation', 'create presentation', 'add slide',
+    or references creating/editing slide decks.
+  author: Fredrik Falk
+  category: integrations
+  tags:
+  - google-workspace
+  platform: Google Workspace
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/google/google-integration/google-slides
   requires:
   - google-connect
   - google-master
@@ -1610,31 +1298,45 @@ skills:
   version: '1.0'
   updated: '2026-02-24'
   visibility: public
+  path: skills/integrations/google/google-integration/google-tasks
+  requires:
+  - google-connect
+  - google-master
+  has_scripts: true
+- name: google-tasks
+  description: Manage Google Tasks and task lists. Load when user mentions 'google
+    tasks', 'tasks', 'todo list', 'create task', 'complete task', or references task/todo
+    management.
+  author: Fredrik Falk
+  category: integrations
+  tags:
+  - google-workspace
+  platform: Google Workspace
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
   path: skills/integrations/google/google-tasks
   requires:
   - google-connect
   - google-master
   has_scripts: true
-- name: create-deal
-  description: Create a new HubSpot deal after a successful sales call where a demo
-    has been committed. Use this skill whenever the user says a call went well and
-    a demo was booked, or asks to "log a deal", "create a deal from this call", "add
-    to HubSpot", or "turn this into a deal". Only trigger when there's a clear signal
-    that a demo or next commitment was secured — do NOT trigger for exploratory calls
-    with no outcome, post-demo follow-ups, or existing deals being updated. Pulls
-    notes from Granola automatically, extracts key fields, asks the user for any missing
-    info, and creates the deal in HubSpot with all required fields and associations.
-  category: integrations
+- name: graph-slicer
+  description: Slice Beam.ai agent graphs into separate node files with topology-aware
+    naming and Mermaid flowchart generation. Supports both exported JSON files with
+    graphTools arrays AND direct Beam API responses with embedded toolConfiguration.
+    Handles all fill types (static, linked, ai_fill) with appropriate rendering. Use
+    when users want to split an agent graph into individual node files.
+  author: Sven Djokic
+  category: general
   tags:
-  - granola
-  - hubspot
-  - deal
-  - crm
-  platform: Granola
-  version: '1.0'
-  updated: '2026-02-27'
+  - api
+  - beam-ai
+  platform: Beam AI
+  version: '1.2'
+  updated: '2026-01-12'
   visibility: public
-  path: skills/integrations/granola/create-deal
+  path: skills/beam/beam-tools/graph-slicer
+  has_scripts: true
 - name: happenstance-connect
   description: 'Search and research LinkedIn connections via Happenstance API. Use
     when user says: ''search my network'', ''find someone on LinkedIn'', ''research
@@ -1670,21 +1372,6 @@ skills:
   updated: '2026-02-24'
   visibility: public
   path: skills/integrations/heyreach/heyreach/heyreach-connect
-- name: heyreach-master
-  description: Internal resource library for HeyReach integration. Contains shared
-    API client, operation scripts, and reference documentation.
-  category: integrations
-  tags:
-  - api
-  - heyreach
-  - master
-  platform: HeyReach
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/heyreach/heyreach/heyreach-master
-  has_scripts: true
-  has_references: true
 - name: heyreach-connect
   description: heyreach, linkedin outreach, linkedin campaigns.
   category: integrations
@@ -1708,9 +1395,33 @@ skills:
   version: '1.0'
   updated: '2026-02-24'
   visibility: public
+  path: skills/integrations/heyreach/heyreach/heyreach-master
+  has_scripts: true
+  has_references: true
+- name: heyreach-master
+  description: Internal resource library for HeyReach integration. Contains shared
+    API client, operation scripts, and reference documentation.
+  category: integrations
+  tags:
+  - api
+  - heyreach
+  - master
+  platform: HeyReach
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
   path: skills/integrations/heyreach/heyreach-master
   has_scripts: true
   has_references: true
+- name: how-beam-next-works
+  description: Learn how Beam Next works - the system tour. ~7 min.
+  category: learning
+  tags:
+  - learning
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/beam-next-learning/how-beam-next-works
 - name: hubspot-connect
   description: hubspot, crm, contacts, companies, deals.
   category: integrations
@@ -2034,17 +1745,44 @@ skills:
   updated: '2026-02-24'
   visibility: public
   path: skills/integrations/hubspot/hubspot-update-deal
-- name: langfuse-batch-ingest
-  description: Batch ingest traces/spans/events. Load when user says 'batch ingest',
-    'bulk import', 'ingest data'.
+- name: import-skill
+  description: import skill, download skill, install skill, get skill.
+  category: skill-dev
+  tags:
+  - skill-dev
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/general/import-skill
+- name: interview-coach
+  description: Analyze interview transcripts to help managers improve their interviewing
+    skills. Load when user says "review my interview with [name]", "assess my interview",
+    "how's the candidate", "interview feedback", "interview coach", "hr round review
+    with [name]", "technical round review with [name]", "final round review with [name]",
+    or provides an interview transcript. Supports 3 interview types - HR (cultural
+    fit), Technical (skill assessment), Final (career aspirations).
+  author: Jonas Diezun
+  category: general
+  tags:
+  - transcript
+  platform: workable
+  version: '2.0'
+  updated: '2026-02-16'
+  visibility: public
+  path: skills/general/interview-coach
+- name: langfuse-admin
+  description: Langfuse project and organization administration. Load when user says
+    create project, delete project, api keys, org members, manage members.
   category: integrations
   tags:
   - langfuse
+  - admin
+  - projects
   platform: Langfuse
   version: '1.0'
-  updated: '2026-02-24'
+  updated: '2026-03-23'
   visibility: public
-  path: skills/integrations/langfuse/langfuse-batch-ingest
+  path: skills/integrations/langfuse/langfuse-admin
   has_scripts: true
 - name: langfuse-connect
   description: langfuse, traces, observations, llm tracing.
@@ -2057,32 +1795,6 @@ skills:
   updated: '2026-03-23'
   visibility: public
   path: skills/integrations/langfuse/langfuse-connect
-- name: langfuse-create-annotation-queue
-  description: Create an annotation queue. Load when user says 'create queue', 'new
-    annotation queue'.
-  category: integrations
-  tags:
-  - create
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-create-annotation-queue
-  has_scripts: true
-- name: langfuse-create-comment
-  description: Add comment to trace/observation. Load when user says 'create comment',
-    'add comment', 'comment on trace'.
-  category: integrations
-  tags:
-  - create
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-create-comment
-  has_scripts: true
 - name: langfuse-datasets
   description: Manage Langfuse datasets, items, runs, and run-items. Load when user
     says 'list datasets', 'create dataset', 'dataset items', 'dataset runs', 'add
@@ -2098,576 +1810,18 @@ skills:
   visibility: public
   path: skills/integrations/langfuse/langfuse-datasets
   has_scripts: true
-- name: langfuse-create-model
-  description: Create a model definition for cost tracking. Load when user says 'create
-    model', 'add model', 'new model'.
+- name: langfuse-ingestion
+  description: Langfuse data ingestion, comments, and media. Load when user says batch
+    ingest, otel ingest, list comments, create comment, get media, upload media.
   category: integrations
   tags:
-  - create
   - langfuse
+  - ingestion
   platform: Langfuse
   version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-create-model
-  has_scripts: true
-- name: langfuse-create-project
-  description: Create a new project. Load when user says 'create langfuse project',
-    'new project'.
-  category: integrations
-  tags:
-  - create
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-create-project
-  has_scripts: true
-- name: langfuse-create-project-api-key
-  description: Create new API key for project. Load when user says 'create api key',
-    'new key', 'generate key'.
-  category: integrations
-  tags:
-  - api
-  - create
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-create-project-api-key
-  has_scripts: true
-- name: langfuse-create-prompt
-  description: Create a new Langfuse prompt. Load when user says 'create prompt',
-    'new prompt', 'add prompt'.
-  category: integrations
-  tags:
-  - create
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-create-prompt
-  has_scripts: true
-- name: langfuse-create-queue-assignment
-  description: Assign reviewer to queue. Load when user says 'assign reviewer', 'add
-    to queue assignment'.
-  category: integrations
-  tags:
-  - create
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-create-queue-assignment
-  has_scripts: true
-- name: langfuse-create-queue-item
-  description: Add item to queue. Load when user says 'add to queue', 'queue trace
-    for review'.
-  category: integrations
-  tags:
-  - create
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-create-queue-item
-  has_scripts: true
-- name: langfuse-create-score
-  description: Create a score. Load when user says 'create score', 'add evaluation',
-    'score trace'.
-  category: integrations
-  tags:
-  - create
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-create-score
-  has_scripts: true
-- name: langfuse-create-score-config
-  description: Create a score configuration. Load when user says 'create score config',
-    'new metric', 'add scoring'.
-  category: integrations
-  tags:
-  - create
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-create-score-config
-  has_scripts: true
-- name: langfuse-delete-model
-  description: Delete a model definition. Load when user says 'delete model', 'remove
-    model'.
-  category: integrations
-  tags:
-  - delete
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-delete-model
-  has_scripts: true
-- name: langfuse-delete-org-membership
-  description: Remove member from org. Load when user says 'remove member', 'delete
-    membership', 'revoke access'.
-  category: integrations
-  tags:
-  - delete
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-delete-org-membership
-  has_scripts: true
-- name: langfuse-delete-project
-  description: Delete a project. Load when user says 'delete project', 'remove project'.
-  category: integrations
-  tags:
-  - delete
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-delete-project
-  has_scripts: true
-- name: langfuse-delete-project-api-key
-  description: Delete an API key. Load when user says 'delete api key', 'revoke key',
-    'remove key'.
-  category: integrations
-  tags:
-  - api
-  - delete
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-delete-project-api-key
-  has_scripts: true
-- name: langfuse-delete-prompt
-  description: Delete a Langfuse prompt. Load when user says 'delete prompt', 'remove
-    prompt'.
-  category: integrations
-  tags:
-  - delete
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-delete-prompt
-  has_scripts: true
-- name: langfuse-delete-queue-assignment
-  description: Remove reviewer from queue. Load when user says 'remove assignment',
-    'unassign reviewer'.
-  category: integrations
-  tags:
-  - delete
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-delete-queue-assignment
-  has_scripts: true
-- name: langfuse-delete-queue-item
-  description: Delete a queue item. Load when user says 'delete queue item', 'remove
-    from queue'.
-  category: integrations
-  tags:
-  - delete
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-delete-queue-item
-  has_scripts: true
-- name: langfuse-delete-score
-  description: Delete a score. Load when user says 'delete score', 'remove evaluation'.
-  category: integrations
-  tags:
-  - delete
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-delete-score
-  has_scripts: true
-- name: langfuse-delete-traces
-  description: Delete one trace or bulk-delete traces. Load when user says 'delete
-    trace', 'remove trace', 'bulk delete traces', 'purge traces'.
-  category: integrations
-  tags:
-  - delete
-  - langfuse
-  platform: Langfuse
-  version: '1.1'
   updated: '2026-03-23'
   visibility: public
-  path: skills/integrations/langfuse/langfuse-delete-traces
-  has_scripts: true
-- name: langfuse-get-annotation-queue
-  description: Get an annotation queue. Load when user says 'get queue', 'queue details'.
-  category: integrations
-  tags:
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-get-annotation-queue
-  has_scripts: true
-- name: langfuse-get-comment
-  description: Get comment by ID. Load when user says 'get comment', 'show comment',
-    'comment details'.
-  category: integrations
-  tags:
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-get-comment
-  has_scripts: true
-- name: langfuse-get-media
-  description: Get media content by ID. Load when user says 'get media', 'download
-    media', 'media content'.
-  category: integrations
-  tags:
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-get-media
-  has_scripts: true
-- name: langfuse-get-model
-  description: Get specific Langfuse model. Load when user says 'get model', 'model
-    details', 'show model {id}'.
-  category: integrations
-  tags:
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-get-model
-  has_scripts: true
-- name: langfuse-get-observation
-  description: Get specific Langfuse observation. Load when user says 'get observation',
-    'observation details', 'show span {id}'.
-  category: integrations
-  tags:
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-get-observation
-  has_scripts: true
-- name: langfuse-get-project
-  description: Get Langfuse project info. Load when user says 'get project', 'current
-    project', 'project info', 'langfuse project'.
-  category: integrations
-  tags:
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-get-project
-  has_scripts: true
-- name: langfuse-get-prompt
-  description: Get a Langfuse prompt by name. Load when user says 'get prompt', 'show
-    prompt', 'prompt details'.
-  category: integrations
-  tags:
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-get-prompt
-  has_scripts: true
-- name: langfuse-get-queue-item
-  description: Get a queue item. Load when user says 'get queue item', 'item details'.
-  category: integrations
-  tags:
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-get-queue-item
-  has_scripts: true
-- name: langfuse-get-score
-  description: Get specific Langfuse score. Load when user says 'get score', 'score
-    details', 'show score {id}'.
-  category: integrations
-  tags:
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-get-score
-  has_scripts: true
-- name: langfuse-get-score-config
-  description: Get a score config by ID. Load when user says 'get score config', 'show
-    metric'.
-  category: integrations
-  tags:
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-get-score-config
-  has_scripts: true
-- name: langfuse-get-session
-  description: Get specific Langfuse session. Load when user says 'get session', 'session
-    details', 'show session {id}'.
-  category: integrations
-  tags:
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-get-session
-  has_scripts: true
-- name: langfuse-get-trace
-  description: Get specific Langfuse trace. Load when user says 'get trace', 'trace
-    details', 'show trace {id}'.
-  category: integrations
-  tags:
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-get-trace
-  has_scripts: true
-- name: langfuse-get-upload-url
-  description: Get presigned upload URL for media. Load when user says 'upload url',
-    'media upload', 'presigned url'.
-  category: integrations
-  tags:
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-get-upload-url
-  has_scripts: true
-- name: langfuse-health
-  description: Check Langfuse health status. Load when user says 'health check', 'is
-    langfuse up', 'check status'.
-  category: integrations
-  tags:
-  - langfuse
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-health
-  has_scripts: true
-- name: langfuse-list-annotation-queues
-  description: List annotation queues. Load when user says 'list queues', 'annotation
-    queues', 'review queues'.
-  category: integrations
-  tags:
-  - langfuse
-  - query
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-list-annotation-queues
-  has_scripts: true
-- name: langfuse-list-comments
-  description: List comments on traces/observations. Load when user says 'list comments',
-    'get comments', 'show comments'.
-  category: integrations
-  tags:
-  - langfuse
-  - query
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-list-comments
-  has_scripts: true
-- name: langfuse-list-models
-  description: List Langfuse models. Load when user says 'list models', 'show models',
-    'model costs'.
-  category: integrations
-  tags:
-  - langfuse
-  - query
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-list-models
-  has_scripts: true
-- name: langfuse-list-observations
-  description: List Langfuse observations (spans, generations, events). Load when
-    user says 'list observations', 'show spans', 'get generations'.
-  category: integrations
-  tags:
-  - langfuse
-  - query
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-list-observations
-  has_scripts: true
-- name: langfuse-list-org-api-keys
-  description: List org-level API keys. Load when user says 'org api keys', 'organization
-    keys'.
-  category: integrations
-  tags:
-  - api
-  - langfuse
-  - query
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-list-org-api-keys
-  has_scripts: true
-- name: langfuse-list-org-memberships
-  description: List organization members. Load when user says 'list members', 'org
-    members', 'who has access'.
-  category: integrations
-  tags:
-  - langfuse
-  - query
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-list-org-memberships
-  has_scripts: true
-- name: langfuse-list-org-projects
-  description: List projects in org. Load when user says 'list org projects', 'org
-    projects', 'all projects'.
-  category: integrations
-  tags:
-  - langfuse
-  - query
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-list-org-projects
-  has_scripts: true
-- name: langfuse-list-project-api-keys
-  description: List API keys for project. Load when user says 'list api keys', 'show
-    keys', 'project keys'.
-  category: integrations
-  tags:
-  - api
-  - langfuse
-  - query
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-list-project-api-keys
-  has_scripts: true
-- name: langfuse-list-prompts
-  description: List Langfuse prompts. Load when user says 'list prompts', 'show prompts',
-    'get prompts', 'langfuse prompts'.
-  category: integrations
-  tags:
-  - langfuse
-  - query
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-list-prompts
-  has_scripts: true
-- name: langfuse-list-queue-items
-  description: List queue items. Load when user says 'list queue items', 'show review
-    items'.
-  category: integrations
-  tags:
-  - langfuse
-  - query
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-list-queue-items
-  has_scripts: true
-- name: langfuse-list-score-configs
-  description: List score configurations. Load when user says 'list score configs',
-    'show scoring', 'evaluation configs'.
-  category: integrations
-  tags:
-  - langfuse
-  - query
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-list-score-configs
-  has_scripts: true
-- name: langfuse-list-scores
-  description: List Langfuse scores. Load when user says 'list scores', 'show scores',
-    'get evaluations'.
-  category: integrations
-  tags:
-  - langfuse
-  - query
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-list-scores
-  has_scripts: true
-- name: langfuse-list-sessions
-  description: List Langfuse sessions. Load when user says 'list sessions', 'show
-    sessions', 'get sessions'.
-  category: integrations
-  tags:
-  - langfuse
-  - query
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-list-sessions
-  has_scripts: true
-- name: langfuse-list-traces
-  description: List Langfuse traces. Load when user says 'list traces', 'show traces',
-    'get traces', 'recent traces'.
-  category: integrations
-  tags:
-  - langfuse
-  - query
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-list-traces
+  path: skills/integrations/langfuse/langfuse-ingestion
   has_scripts: true
 - name: langfuse-master
   description: SHARED RESOURCES - DO NOT LOAD DIRECTLY. Contains Langfuse API client,
@@ -2685,137 +1839,150 @@ skills:
   path: skills/integrations/langfuse/langfuse-master
   has_scripts: true
   has_references: true
-- name: langfuse-metrics
-  description: Get Langfuse metrics. Load when user says 'metrics', 'usage stats',
-    'langfuse usage'.
+- name: langfuse-models
+  description: Manage Langfuse model definitions for cost tracking. Load when user
+    says list models, create model, get model, delete model, model costs.
   category: integrations
   tags:
   - langfuse
+  - models
   platform: Langfuse
   version: '1.0'
-  updated: '2026-02-24'
+  updated: '2026-03-23'
   visibility: public
-  path: skills/integrations/langfuse/langfuse-metrics
+  path: skills/integrations/langfuse/langfuse-models
   has_scripts: true
-- name: langfuse-otel-ingest
-  description: Ingest OpenTelemetry data. Load when user says 'otel ingest', 'opentelemetry',
-    'otlp'.
+- name: langfuse-prompts
+  description: Manage Langfuse prompts and prompt versions. Load when user says list
+    prompts, create prompt, get prompt, delete prompt, update prompt version.
   category: integrations
   tags:
   - langfuse
+  - prompts
   platform: Langfuse
   version: '1.0'
-  updated: '2026-02-24'
+  updated: '2026-03-23'
   visibility: public
-  path: skills/integrations/langfuse/langfuse-otel-ingest
+  path: skills/integrations/langfuse/langfuse-prompts
   has_scripts: true
-- name: langfuse-update-media
-  description: Update media metadata. Load when user says 'update media', 'patch media'.
+- name: langfuse-queues
+  description: Manage Langfuse annotation queues, items, and assignments. Load when
+    user says list queues, create queue, annotation queues, queue items, assign reviewer.
   category: integrations
   tags:
   - langfuse
-  - update
+  - annotation
+  - queues
   platform: Langfuse
   version: '1.0'
-  updated: '2026-02-24'
+  updated: '2026-03-23'
   visibility: public
-  path: skills/integrations/langfuse/langfuse-update-media
+  path: skills/integrations/langfuse/langfuse-queues
   has_scripts: true
-- name: langfuse-update-org-membership
-  description: Update member role. Load when user says 'update member', 'change role',
-    'update membership'.
+- name: langfuse-scores
+  description: Manage Langfuse scores and score configs. Load when user says list
+    scores, create score, delete score, score configs, evaluation scores.
   category: integrations
   tags:
   - langfuse
-  - update
+  - scores
+  - evaluation
   platform: Langfuse
   version: '1.0'
-  updated: '2026-02-24'
+  updated: '2026-03-23'
   visibility: public
-  path: skills/integrations/langfuse/langfuse-update-org-membership
+  path: skills/integrations/langfuse/langfuse-scores
   has_scripts: true
-- name: langfuse-update-project
-  description: Update project settings. Load when user says 'update project', 'rename
-    project'.
+- name: langfuse-status
+  description: Check Langfuse health and usage metrics. Load when user says health
+    check, is langfuse up, metrics, usage stats.
   category: integrations
   tags:
   - langfuse
-  - update
+  - monitoring
   platform: Langfuse
   version: '1.0'
-  updated: '2026-02-24'
+  updated: '2026-03-23'
   visibility: public
-  path: skills/integrations/langfuse/langfuse-update-project
+  path: skills/integrations/langfuse/langfuse-status
   has_scripts: true
-- name: langfuse-update-prompt-version
-  description: Update a Langfuse prompt version labels. Load when user says 'update
-    prompt', 'set prompt label', 'promote prompt'.
+- name: langfuse-traces
+  description: Query and manage Langfuse traces, observations, and sessions. Load
+    when user says list traces, get trace, delete traces, list observations, list
+    sessions, show spans.
   category: integrations
   tags:
   - langfuse
-  - update
+  - traces
+  - observability
   platform: Langfuse
   version: '1.0'
-  updated: '2026-02-24'
+  updated: '2026-03-23'
   visibility: public
-  path: skills/integrations/langfuse/langfuse-update-prompt-version
+  path: skills/integrations/langfuse/langfuse-traces
   has_scripts: true
-- name: langfuse-update-queue-item
-  description: Update a queue item. Load when user says 'update queue item', 'complete
-    review'.
-  category: integrations
-  tags:
-  - langfuse
-  - update
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-update-queue-item
-  has_scripts: true
-- name: langfuse-update-score-config
-  description: Update a score config. Load when user says 'update score config', 'modify
-    metric'.
-  category: integrations
-  tags:
-  - langfuse
-  - update
-  platform: Langfuse
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/langfuse/langfuse-update-score-config
-  has_scripts: true
-- name: create-weekly-update
-  description: Generate weekly status update based on Linear ticket activity and project
-    progress. Load when user says "weekly update", "weekly status", "create weekly
-    report", "status update for [project]", "what got done this week". Fetches ticket
-    changes and generates formatted summary.
+- name: lead-research
+  description: 'Research sales leads and assess fit for Beam. Use when preparing for
+    prospect calls, evaluating inbound leads, or qualifying opportunities. Keywords:
+    lead research, call prep, prospect research, fit assessment, sales call preparation,
+    qualify lead, discovery call prep.'
+  author: Jonas Diezun
   category: general
   tags:
-  - create
-  - linear
-  - update
-  platform: Linear
+  - sales
+  platform: Beam AI
   version: '1.0'
-  updated: '2026-02-09'
-  visibility: team
-  path: skills/integrations/linear/create-weekly-update
-- name: generate-linear-project-update
-  description: Generate concise Linear project status updates with issues grouped
-    by status, sub-issue links, and metrics. Load when user mentions "generate project
-    update", "weekly update for [project]", "Linear project summary", "status update",
-    or provides a Linear project URL.
-  author: Jack Li
-  category: general
+  updated: '2026-01-28'
+  visibility: public
+  path: skills/general/lead-research
+  has_references: true
+- name: learn-beam-next
+  description: 'Master Beam Next philosophy and best practices. Load when user mentions:
+    learn beam next, beam next tutorial, system mastery, beam next best practices,
+    how beam next works, beam next philosophy, beam next design, understand beam next,
+    beam next deep dive. 15-18 min.'
+  category: learning
   tags:
-  - linear
-  - update
-  platform: Linear
+  - learning
   version: '1.0'
-  updated: '2025-12-10'
-  visibility: team
-  path: skills/integrations/linear/generate-linear-project-update
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/beam-next-learning/learn-beam-next
+  has_references: true
+- name: learn-integrations
+  description: 'Learn about Beam Next integrations and MCP. Load when user mentions:
+    learn integrations, what is MCP, connect tools, integration tutorial, add integration,
+    external tools, API connections, third party, how to integrate. 10-12 min.'
+  category: learning
+  tags:
+  - api
+  version: '1.0'
+  updated: '2026-02-25'
+  visibility: public
+  path: skills/beam-next-learning/learn-integrations
+- name: learn-projects
+  description: 'Learn how Beam Next builds work. Load when user mentions: learn projects,
+    how do builds work, builds vs skills, build tutorial, what is a project, build
+    structure, build lifecycle, understand builds, explain builds. 8-10 min.'
+  category: learning
+  tags:
+  - learning
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/beam-next-learning/learn-projects
+- name: learn-skills
+  description: 'Learn how Beam Next skills work. Load when user mentions: learn skills,
+    how do skills work, what is a skill, skill tutorial, skill structure, understand
+    skills, explain skills, when to create skill, skill vs build. 10-12 min.'
+  category: learning
+  tags:
+  - learning
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/beam-next-learning/learn-skills
+  has_references: true
 - name: linear-create-tickets
   description: Create Linear tickets from action items or task lists. Load when user
     says "create linear tickets", "add tickets to linear", "create tickets from meeting",
@@ -2845,23 +2012,6 @@ skills:
   updated: '2025-12-23'
   visibility: team
   path: skills/integrations/linear/linear-update-tickets
-- name: setup-linear-onboarding-template
-  description: Interactive assistant to fill Linear onboarding template projects with
-    content from user's workspace. Load when user mentions "setup linear template",
-    "fill linear project", "onboard client in linear", or provides a Linear project
-    URL. Guides user through each task, suggests content from workspace folders, and
-    updates Linear issues with approved content.
-  author: Jack Li
-  category: general
-  tags:
-  - linear
-  platform: Linear
-  version: '1.0'
-  updated: '2025-12-10'
-  visibility: team
-  path: skills/integrations/linear/setup-linear-onboarding-template
-  has_scripts: true
-  has_references: true
 - name: linkedin-outbounding-automation
   description: Automate LinkedIn outbound from HubSpot company lists. Load when user
     says "linkedin outbounding automation", "linkedin outreach from hubspot", "hubspot
@@ -2875,6 +2025,42 @@ skills:
   visibility: public
   path: skills/integrations/linkedin-outbounding-automation
   has_references: true
+- name: list-skills
+  description: list skills, show skills, what skills, available skills.
+  category: system
+  tags:
+  - query
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/general/list-skills
+- name: markdown-to-pdf
+  description: 'Convert markdown files to professionally styled PDFs. Triggers: ''render
+    pdf'', ''markdown to pdf'', ''create pdf'', ''export pdf'', ''generate pdf'',
+    ''make pdf''.'
+  category: tools
+  tags:
+  - pdf
+  - markdown
+  - export
+  - documents
+  version: '1.0'
+  updated: '2026-03-03'
+  visibility: public
+  path: skills/markdown-to-pdf
+  requires:
+  - markdown2pdf-mcp (npm, global)
+  has_scripts: true
+- name: mental-models
+  description: mental model, think through this, help me decide, first principles,
+    pre-mortem.
+  category: tools
+  tags:
+  - tools
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/general/mental-models
 - name: notebooklm
   description: notebooklm, create notebook, audio overview, podcast.
   category: integrations
@@ -2896,6 +2082,17 @@ skills:
   updated: '2026-02-24'
   visibility: public
   path: skills/integrations/notebooklm/notebooklm/notebooklm-connect
+- name: notebooklm-connect
+  description: notebooklm, create notebook, audio overview, podcast.
+  category: integrations
+  tags:
+  - connector
+  - notebooklm
+  platform: NotebookLM
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/integrations/notebooklm/notebooklm-connect
 - name: notebooklm-master
   description: Shared resource library for NotebookLM Enterprise integration skills.
     DO NOT load directly - provides common references (setup, API docs, error handling,
@@ -2913,17 +2110,6 @@ skills:
   path: skills/integrations/notebooklm/notebooklm/notebooklm-master
   has_scripts: true
   has_references: true
-- name: notebooklm-connect
-  description: notebooklm, create notebook, audio overview, podcast.
-  category: integrations
-  tags:
-  - connector
-  - notebooklm
-  platform: NotebookLM
-  version: '1.0'
-  updated: '2026-02-24'
-  visibility: public
-  path: skills/integrations/notebooklm/notebooklm-connect
 - name: notebooklm-master
   description: Shared resource library for NotebookLM Enterprise integration skills.
     DO NOT load directly - provides common references (setup, API docs, error handling,
@@ -2972,6 +2158,165 @@ skills:
   path: skills/integrations/notion/notion-master
   has_scripts: true
   has_references: true
+- name: plan-project
+  description: create build, new project, start build, plan build, build [X].
+  category: projects
+  tags:
+  - projects
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/general/plan-project
+  has_scripts: true
+  has_references: true
+- name: process-client-meeting
+  description: Complete end-to-end workflow to process a client meeting. Load when
+    user says "process meeting", "meeting workflow", "process client meeting", "full
+    meeting processing", "handle meeting for [client]", or "post-meeting workflow".
+    Handles transcript fetching, minutes creation, Linear tickets, client updates,
+    internal updates, and project context sync.
+  author: Hassaan Ahmed
+  category: general
+  tags:
+  - fathom
+  - meeting
+  - transcript
+  platform: Fathom
+  version: '1.0'
+  updated: '2025-12-23'
+  visibility: team
+  path: skills/integrations/fathom/process-client-meeting
+- name: prompt-versioning
+  description: Manage AI prompts with version control, rollback, and Linear integration.
+    Load when user mentions 'prompt versioning', 'version prompt', 'rollback prompt',
+    'prompt history', 'create prompt version', or needs to manage prompts across client
+    projects.
+  author: Anas Duksi
+  category: general
+  version: '1.0'
+  updated: '2026-01-12'
+  visibility: team
+  path: skills/general/prompt-versioning
+  has_scripts: true
+- name: qa-checklist
+  description: Transform technical agent/node documentation into business-owner cheatsheets.
+    Use when asked to create "cheatsheet", "review guide", "QA checklist", "validation
+    guide", or when business owners need to verify AI decisions. Applies better-doc
+    principles. Outputs outcome-focused documents without technical/node details.
+  author: Jack Li
+  category: general
+  version: '1.0'
+  updated: '2025-12-17'
+  visibility: public
+  path: skills/general/qa-checklist
+- name: qa-test-case-writer
+  description: Comprehensive UI test case generation for QA teams. Use when the user
+    wants to write test cases for a feature, project, or webpage. Generates happy
+    flow, edge cases, and security test cases for client-facing UI (not API tests).
+    Creates test cases in Notion databases following standardized format with Test
+    Case ID, Title, Pre-condition, Test Steps, Expected Result, Test Data, Post-condition,
+    Priority (P0-P3), and status tracking. Triggers on requests like "write test cases
+    for [feature]", "create QA tests", "generate test scenarios", or when user provides
+    feature documentation to test.
+  author: Ahsun Iqbal
+  category: general
+  tags:
+  - api
+  - notion
+  platform: Notion
+  version: '1.0'
+  updated: '2026-01-20'
+  visibility: team
+  path: skills/general/qa-test-case-writer
+- name: quick-start
+  description: 'Complete onboarding: welcome, language, goals, integrations, workspace,
+    first PROJECT, permissions.'
+  category: learning
+  tags:
+  - learning
+  version: '2.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/beam-next-learning/quick-start
+- name: scope-of-work-creation
+  description: Create professional proposals and scopes of work (SOW) for client projects
+    using phased approach with success gates. Load when user mentions "SOW", "scope
+    of work", "proposal", "create proposal", "generate SOW", "write scope", "project
+    proposal", "statement of work", or when preparing client proposals with phased
+    deliverables, pricing, and success criteria. Structures proposals with clear phases,
+    cost breakdowns, deliverables, success gates, out-of-scope items, and legal terms.
+  author: Quentin
+  category: general
+  version: '1.0'
+  updated: '2025-12-12'
+  visibility: team
+  path: skills/general/scope-of-work-creation
+- name: search-skill-database
+  description: search skills, find skill, browse skills, skill marketplace.
+  category: skill-dev
+  tags:
+  - query
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/general/search-skill-database
+- name: select-llm-model
+  description: Select optimal LLM model for Beam AI tools based on cost, context,
+    and performance. Load when user says "select llm model", "choose model", "optimize
+    llm", "which model for", "model recommendation", "best model for agent", "llm
+    cost optimization", or needs help selecting the right AI model for their Beam
+    tools.
+  category: general
+  tags:
+  - beam-ai
+  platform: Beam AI
+  version: '1.3'
+  updated: '2026-02-03'
+  visibility: team
+  path: skills/beam/beam-tools/select-llm-model
+  has_scripts: true
+  has_references: true
+- name: setup-goals
+  description: Load when user says 'setup goals', 'personalize beam next', 'set my
+    goals', 'define my role'. Captures role, goals, preferences. 8-10 min.
+  category: learning
+  tags:
+  - learning
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/beam-next-learning/setup-goals
+  has_references: true
+- name: setup-linear-onboarding-template
+  description: Interactive assistant to fill Linear onboarding template projects with
+    content from user's workspace. Load when user mentions "setup linear template",
+    "fill linear project", "onboard client in linear", or provides a Linear project
+    URL. Guides user through each task, suggests content from workspace folders, and
+    updates Linear issues with approved content.
+  author: Jack Li
+  category: general
+  tags:
+  - linear
+  platform: Linear
+  version: '1.0'
+  updated: '2025-12-10'
+  visibility: team
+  path: skills/integrations/linear/setup-linear-onboarding-template
+  has_scripts: true
+  has_references: true
+- name: setup-memory
+  description: 'Configure Beam Next memory with your role, goals, and preferences.
+    Load when user wants to personalize the system or teach Beam Next about themselves.
+    Keywords: setup memory, personalize, configure, my goals, my role, about me, preferences.
+    8 min.'
+  category: learning
+  tags:
+  - learning
+  version: '1.0'
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/beam-next-learning/setup-memory
+  has_references: true
 - name: setup-notion-customer-onboarding
   description: Setup and fill Notion customer onboarding template pages by updating
     Overview sections, Quick Links, and database tasks. Load when user mentions "setup
@@ -2987,24 +2332,28 @@ skills:
   visibility: team
   path: skills/integrations/notion-tools/setup-notion-customer-onboarding
   has_references: true
-- name: update-variables-in-notion
-  description: Extract variables from Beam prompt chain files (.md) and sync to Notion
-    database. Load when user mentions "extract variables", "prompt variables to notion",
-    "update variables", "document variables", or provides a path to prompt files.
-    Handles single files or directories. Creates/updates Notion database with variable
-    metadata (name, description, data type, node).
-  author: Jack Li
-  category: general
+- name: setup-workspace
+  description: 'Organize your 04-workspace/ folder structure. Load when user mentions:
+    setup workspace, organize folders, folder structure, configure workspace, my files,
+    file organization, where to put files, workspace setup, directories, storage.
+    5-8 min.'
+  category: learning
   tags:
-  - notion
-  - update
-  platform: Notion
+  - learning
   version: '1.0'
-  updated: '2025-12-10'
-  visibility: team
-  path: skills/integrations/notion-tools/update-variables-in-notion
-  has_scripts: true
+  updated: '2026-02-24'
+  visibility: public
+  path: skills/beam-next-learning/setup-workspace
   has_references: true
+- name: share-skill
+  description: share skill, upload skill, publish skill.
+  category: skill-dev
+  tags:
+  - skill-dev
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/general/share-skill
 - name: slack
   description: Complete Slack integration skill. Load when user wants to send messages,
     search Slack, manage channels, list users, upload files, add reactions, set reminders,
@@ -3033,6 +2382,21 @@ skills:
   updated: '2026-02-26'
   visibility: public
   path: skills/integrations/slack/slack/slack-connect
+- name: slack-connect
+  description: Connect to Slack workspace for messaging and channel management. Load
+    when user mentions 'slack', 'connect slack', 'slack message', 'slack channel',
+    'send to slack', or any Slack operations. Meta-skill that validates config, discovers
+    workspace, and routes to appropriate operations.
+  author: Fredrik Falk
+  category: integrations
+  tags:
+  - connector
+  - slack
+  platform: Slack
+  version: '1.0'
+  updated: '2026-02-26'
+  visibility: public
+  path: skills/integrations/slack/slack-connect
 - name: slack-master
   description: Shared resource library for Slack integration skills. DO NOT load directly
     - provides common references (setup, API docs, error handling, authentication)
@@ -3050,21 +2414,6 @@ skills:
   path: skills/integrations/slack/slack/slack-master
   has_scripts: true
   has_references: true
-- name: slack-connect
-  description: Connect to Slack workspace for messaging and channel management. Load
-    when user mentions 'slack', 'connect slack', 'slack message', 'slack channel',
-    'send to slack', or any Slack operations. Meta-skill that validates config, discovers
-    workspace, and routes to appropriate operations.
-  author: Fredrik Falk
-  category: integrations
-  tags:
-  - connector
-  - slack
-  platform: Slack
-  version: '1.0'
-  updated: '2026-02-26'
-  visibility: public
-  path: skills/integrations/slack/slack-connect
 - name: slack-master
   description: Shared resource library for Slack integration skills. DO NOT load directly
     - provides common references (setup, API docs, error handling, authentication)
@@ -3096,6 +2445,59 @@ skills:
   visibility: public
   path: skills/integrations/tavily/tavily-gtm-research
   has_references: true
+- name: transcript-to-hubspot-sections
+  category: general
+  version: '1.0'
+  visibility: public
+  path: skills/general/transcript-to-hubspot-sections
+- name: ui-developer
+  category: general
+  version: '1.0'
+  visibility: public
+  path: skills/general/ui-developer
+- name: ultrathink
+  description: Critical analysis that stress-tests content from multiple perspectives
+    before shipping. Load when user says "ultrathink", "ultrathink this", "stress
+    test this", "challenge this content", "validate this", "critique this from different
+    angles", or provides content (email, document, strategy, proposal, paper) asking
+    for critical review. Examines content through recipient POV, critic lens, devil's
+    advocate, first principles, and risk analysis, then synthesizes findings into
+    actionable report.
+  author: Quentin
+  category: general
+  tags:
+  - email
+  version: '1.0'
+  updated: '2025-12-12'
+  visibility: public
+  path: skills/general/ultrathink
+- name: update-variables-in-notion
+  description: Extract variables from Beam prompt chain files (.md) and sync to Notion
+    database. Load when user mentions "extract variables", "prompt variables to notion",
+    "update variables", "document variables", or provides a path to prompt files.
+    Handles single files or directories. Creates/updates Notion database with variable
+    metadata (name, description, data type, node).
+  author: Jack Li
+  category: general
+  tags:
+  - notion
+  - update
+  platform: Notion
+  version: '1.0'
+  updated: '2025-12-10'
+  visibility: team
+  path: skills/integrations/notion-tools/update-variables-in-notion
+  has_scripts: true
+  has_references: true
+- name: validate-skill-functionality
+  description: validate skill, check skill, review skill execution.
+  category: skill-dev
+  tags:
+  - skill-dev
+  version: '1.0'
+  updated: '2026-02-25'
+  visibility: public
+  path: skills/general/validate-skill-functionality
 - name: workable-master
   description: All Workable ATS operations — fetch JDs, search candidates, post assessments/reviews.
     Load when user says "fetch JD", "search workable", "push to workable", "post review",
@@ -3112,20 +2514,17 @@ skills:
   visibility: public
   path: skills/integrations/workable/workable-master
   has_scripts: true
-- name: markdown-to-pdf
-  description: 'Convert markdown files to professionally styled PDFs. Triggers: ''render
-    pdf'', ''markdown to pdf'', ''create pdf'', ''export pdf'', ''generate pdf'',
-    ''make pdf''.'
-  category: tools
+- name: write-integration-ticket
+  description: Write API integration tickets in structured specification format. Load
+    when user mentions 'write integration ticket', 'create integration spec', 'integration
+    specification', 'API action ticket', or wants to document an API integration with
+    endpoints, parameters, acceptance criteria, and error handling. Creates Linear
+    tickets with Integration label assigned to Adeel Akram.
+  author: Saqib
+  category: general
   tags:
-  - pdf
-  - markdown
-  - export
-  - documents
+  - api
   version: '1.0'
-  updated: '2026-03-03'
+  updated: '2026-01-19'
   visibility: public
-  path: skills/markdown-to-pdf
-  requires:
-  - markdown2pdf-mcp (npm, global)
-  has_scripts: true
+  path: skills/general/write-integration-ticket
