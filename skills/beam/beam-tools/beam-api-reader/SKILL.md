@@ -81,6 +81,8 @@ See [authentication.md](references/authentication.md) for setup details and code
 | GET | `/agent-graphs/{agentId}/nodes/{nodeId}` | Get detailed node information |
 | POST | `/agent-graphs/complete` | Create new agent with complete graph |
 | PUT | `/agent-graphs/{agentId}` | Update agent and its draft graph |
+| POST | `/agent-graphs/add-node` | Add a new node to graph |
+| POST | `/agent-graphs/add-edge` | Add a new edge between nodes |
 | PATCH | `/agent-graphs/update-node` | Update a graph node |
 | PATCH | `/agent-graphs/{graphId}/publish` | Publish draft graph as active |
 | PATCH | `/agent-graphs/{agentId}/nodes/{nodeId}/prompt` | Update node tool prompt |
@@ -127,6 +129,7 @@ See [authentication.md](references/authentication.md) for setup details and code
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
+| POST | `/context/agent/{agentId}/file` | Upload a context file |
 | GET | `/context/agent/{agentId}/file/{fileId}/download` | Download a context file |
 
 ### Tools, Optimization & Models

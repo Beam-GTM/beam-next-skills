@@ -1,0 +1,192 @@
+{
+  "agentName": "Even Odd Sum Checker",
+  "agentDescription": "Takes two numbers, calculates their sum, and checks if the sum is even or odd.",
+  "personality": "You are a helpful math assistant that checks whether the sum of two numbers is even or odd.",
+  "restrictions": "",
+  "prompts": [
+    "Check if the sum of 3 and 5 is even or odd",
+    "What happens when I add 10 and 7?"
+  ],
+  "nodes": [
+    {
+      "key": "entry",
+      "name": "Entry",
+      "objective": "Collect two numbers from the user",
+      "is_entry": true,
+      "x": 250,
+      "y": 50,
+      "edges": [
+        {"target": "sum_calculator", "name": "Calculate Sum"}
+      ]
+    },
+    {
+      "key": "sum_calculator",
+      "name": "Sum Calculator",
+      "objective": "Calculate the sum of two numbers and return the result",
+      "is_entry": false,
+      "x": 250,
+      "y": 200,
+      "model": "BEDROCK_CLAUDE_SONNET_4",
+      "tool_name": "Sum Calculator",
+      "tool_description": "Calculates the sum of two numbers",
+      "prompt": "You are given two numbers. Calculate their sum and return it.\n\nNumber 1: {number_1}\nNumber 2: {number_2}\n\nReturn the sum as a number in the result field.",
+      "input_params": [
+        {
+          "name": "number_1",
+          "description": "The first number",
+          "type": "number",
+          "is_array": false,
+          "fill_type": "user_fill",
+          "required": true,
+          "position": 0
+        },
+        {
+          "name": "number_2",
+          "description": "The second number",
+          "type": "number",
+          "is_array": false,
+          "fill_type": "user_fill",
+          "required": true,
+          "position": 1
+        }
+      ],
+      "output_params": [
+        {
+          "name": "sum_result",
+          "description": "The sum of the two numbers",
+          "type": "number",
+          "is_array": false,
+          "position": 0
+        }
+      ],
+      "edges": [
+        {"target": "even_odd_condition", "name": "Check Even or Odd"}
+      ]
+    },
+    {
+      "key": "even_odd_condition",
+      "name": "Even or Odd Condition",
+      "objective": "Check if the sum is even or odd",
+      "is_entry": false,
+      "x": 250,
+      "y": 400,
+      "node_type": "conditionNode",
+      "node_configurations": {
+        "conditionType": "llm_based",
+        "llmModel": "GPT40",
+        "fallbackModels": null
+      },
+      "edges": [
+        {"target": "report_even", "name": "Sum is Even", "condition": "The sum is an even number"},
+        {"target": "report_odd", "name": "Sum is Odd", "condition": "The sum is an odd number"}
+      ]
+    },
+    {
+      "key": "report_even",
+      "name": "Report Even",
+      "objective": "Report that the sum is even",
+      "is_entry": false,
+      "x": 100,
+      "y": 600,
+      "model": "BEDROCK_CLAUDE_SONNET_4",
+      "tool_name": "Report Even Sum",
+      "tool_description": "Reports that the sum of two numbers is even",
+      "prompt": "The sum of the two numbers provided is: {sum_result}.\n\nThis sum is EVEN. Report this to the user in a friendly way, confirming the two original numbers and their even sum.",
+      "input_params": [
+        {
+          "name": "sum_result",
+          "description": "The sum result from the calculator",
+          "type": "number",
+          "is_array": false,
+          "fill_type": "linked",
+          "linked_node": "sum_calculator",
+          "linked_param": "sum_result",
+          "required": true,
+          "position": 0
+        }
+      ],
+      "output_params": [
+        {
+          "name": "report",
+          "description": "The even sum report message",
+          "type": "string",
+          "is_array": false,
+          "position": 0
+        }
+      ],
+      "edges": []
+    },
+    {
+      "key": "report_odd",
+      "name": "Report Odd",
+      "objective": "Report that the sum is odd",
+      "is_entry": false,
+      "x": 400,
+      "y": 600,
+      "model": "BEDROCK_CLAUDE_SONNET_4",
+      "tool_name": "Report Odd Sum",
+      "tool_description": "Reports that the sum of two numbers is odd",
+      "prompt": "The sum of the two numbers provided is: {sum_result}.\n\nThis sum is ODD. Report this to the user in a friendly way, confirming the two original numbers and their odd sum.",
+      "input_params": [
+        {
+          "name": "sum_result",
+          "description": "The sum result from the calculator",
+          "type": "number",
+          "is_array": false,
+          "fill_type": "linked",
+          "linked_node": "sum_calculator",
+          "linked_param": "sum_result",
+          "required": true,
+          "position": 0
+        }
+      ],
+      "output_params": [
+        {
+          "name": "report",
+          "description": "The odd sum report message",
+          "type": "string",
+          "is_array": false,
+          "position": 0
+        }
+      ],
+      "edges": [
+        {"target": "dummy_logger", "name": "Log Result"}
+      ]
+    },
+    {
+      "key": "dummy_logger",
+      "name": "Dummy Logger",
+      "objective": "Log the odd sum report for debugging purposes",
+      "is_entry": false,
+      "x": 400,
+      "y": 800,
+      "model": "BEDROCK_CLAUDE_SONNET_4",
+      "tool_name": "Dummy Logger",
+      "tool_description": "Logs the report message for debugging",
+      "prompt": "You received the following report:\n\n{report}\n\nAcknowledge receipt of this report and return a confirmation message.",
+      "input_params": [
+        {
+          "name": "report",
+          "description": "The odd sum report message",
+          "type": "string",
+          "is_array": false,
+          "fill_type": "linked",
+          "linked_node": "report_odd",
+          "linked_param": "report",
+          "required": true,
+          "position": 0
+        }
+      ],
+      "output_params": [
+        {
+          "name": "confirmation",
+          "description": "Confirmation that the report was logged",
+          "type": "string",
+          "is_array": false,
+          "position": 0
+        }
+      ],
+      "edges": []
+    }
+  ]
+}
