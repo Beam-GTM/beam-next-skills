@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruleset Review — {{RULESET_NAME}}</title>
+    <style>
+        :root {
+            --pass: #16a34a;
+            --fail: #dc2626;
+            --amber: #d97706;
+            --amber-bg: #fffbeb;
+            --amber-border: #fbbf24;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+            --text: #1e293b;
+            --text-muted: #64748b;
+            --accent: #3b82f6;
+            --accent-bg: #eff6ff;
+            --green-bg: #f0fdf4;
+            --green-border: #86efac;
+            --red-bg: #fef2f2;
+            --red-border: #fca5a5;
+            --purple: #7c3aed;
+            --purple-bg: #f5f3ff;
+            --purple-border: #c4b5fd;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .header h1 { font-size: 1.75rem; margin-bottom: 0.5rem; }
+        .header .meta { color: var(--text-muted); font-size: 0.9rem; }
+
+        .section {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            background: #f1f5f9;
+            border-bottom: 1px solid var(--border);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .section-header h2 { font-size: 1.1rem; }
+        .section-header .badge {
+            font-size: 0.75rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+
+        .section-body { padding: 1.5rem; }
+        .section-body.collapsed { display: none; }
+
+        /* Use case narrative */
+        .use-case-block {
+            background: var(--accent-bg);
+            border: 1px solid #bfdbfe;
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+        }
+        .use-case-block:last-child { margin-bottom: 0; }
+        .use-case-block p { margin-bottom: 0.5rem; font-size: 0.95rem; }
+        .use-case-block p:last-child { margin-bottom: 0; }
+        .use-case-block strong { color: var(--accent); }
+        .use-case-block h4 { color: var(--accent); font-size: 0.9rem; margin-bottom: 0.5rem; }
+
+        .litmus-test {
+            background: var(--green-bg);
+            border: 1px solid var(--green-border);
+            border-left: 4px solid var(--pass);
+            border-radius: 8px;
+            padding: 1rem 1.25rem;
+            font-style: italic;
+            font-size: 0.95rem;
+        }
+
+        .difficulty-layer {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .difficulty-layer:last-child { border-bottom: none; }
+        .difficulty-layer .layer-name {
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 0.25rem;
+        }
+        .difficulty-layer .layer-desc { font-size: 0.9rem; color: var(--text-muted); }
+
+        /* Tables */
+        .schema-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .schema-table th, .schema-table td {
+            padding: 0.6rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
+        }
+        .schema-table th {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-weight: 600;
+            background: #f8fafc;
+        }
+        .schema-table tr:hover { background: #f8fafc; }
+
+        /* Entity cards (input schema) */
+        .entity-card {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+        .entity-card:last-child { margin-bottom: 0; }
+        .entity-card .entity-name {
+            background: #f1f5f9;
+            padding: 0.75rem 1rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .entity-card .entity-body { padding: 1rem; }
+        .entity-card h4 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin: 1rem 0 0.5rem 0;
+        }
+        .entity-card h4:first-child { margin-top: 0; }
+
+        /* Content texture */
+        .content-texture {
+            background: #fefce8;
+            border: 1px solid #fde68a;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 0.75rem;
+            font-size: 0.9rem;
+        }
+        .content-texture h5 { font-size: 0.8rem; text-transform: uppercase; color: var(--amber); margin-bottom: 0.5rem; }
+
+        /* Chips for variation dimensions */
+        .dim-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.35rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .dim-row:last-child { border-bottom: none; }
+        .dim-label {
+            font-weight: 600;
+            font-size: 0.85rem;
+            min-width: 150px;
+            color: var(--text);
+        }
+        .chip {
+            display: inline-block;
+            padding: 0.2rem 0.55rem;
+            background: var(--accent-bg);
+            border: 1px solid #bfdbfe;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        /* Test Scenario cards */
+        .scenario-card {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+        .scenario-card:last-child { margin-bottom: 0; }
+        .scenario-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .scenario-header .sample-count {
+            font-size: 0.8rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+        .scenario-body { padding: 1rem; }
+        .scenario-body h5 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin: 1rem 0 0.4rem 0;
+        }
+        .scenario-body h5:first-child { margin-top: 0; }
+        .scenario-body p { font-size: 0.9rem; margin-bottom: 0; }
+
+        .scenario-happy .scenario-header { background: var(--green-bg); color: var(--pass); border-bottom-color: var(--green-border); }
+        .scenario-happy .sample-count { background: var(--green-bg); color: var(--pass); border: 1px solid var(--green-border); }
+        .scenario-edge .scenario-header { background: var(--amber-bg); color: var(--amber); border-bottom-color: var(--amber-border); }
+        .scenario-edge .sample-count { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-border); }
+        .scenario-error .scenario-header { background: var(--red-bg); color: var(--fail); border-bottom-color: var(--red-border); }
+        .scenario-error .sample-count { background: var(--red-bg); color: var(--fail); border: 1px solid var(--red-border); }
+        .scenario-adversarial .scenario-header { background: var(--purple-bg); color: var(--purple); border-bottom-color: var(--purple-border); }
+        .scenario-adversarial .sample-count { background: var(--purple-bg); color: var(--purple); border: 1px solid var(--purple-border); }
+
+        /* Derivation steps */
+        .derivation-step {
+            display: flex;
+            gap: 0.75rem;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .derivation-step:last-child { border-bottom: none; }
+        .step-num {
+            background: var(--accent);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 0.1rem;
+        }
+        .step-text { font-size: 0.9rem; }
+        .step-text strong { color: var(--text); }
+
+        /* Few-shot examples */
+        .example-card {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+        .example-card:last-child { margin-bottom: 0; }
+        .example-header {
+            background: #f1f5f9;
+            padding: 0.75rem 1rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .example-body { padding: 1rem; }
+        .example-body pre {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 0.75rem 1rem;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            margin: 0.5rem 0;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            white-space: pre-wrap;
+        }
+        .example-body .derivation-note {
+            background: var(--green-bg);
+            border: 1px solid var(--green-border);
+            border-radius: 6px;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Anti-patterns */
+        .anti-pattern {
+            padding: 0.6rem 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
+        }
+        .anti-pattern:last-child { border-bottom: none; }
+        .anti-pattern .ap-name { font-weight: 600; color: var(--fail); }
+        .anti-pattern .ap-desc { color: var(--text-muted); }
+
+        /* Open questions */
+        .question-card {
+            background: var(--amber-bg);
+            border: 1px solid var(--amber-border);
+            border-left: 4px solid var(--amber);
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .question-card:last-child { margin-bottom: 0; }
+        .question-card .q-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--amber);
+            margin-bottom: 0.25rem;
+        }
+        .question-card .q-context { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+        .question-card .q-question { font-size: 0.95rem; font-weight: 600; color: var(--text); }
+
+        code {
+            background: #f1f5f9;
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+        }
+    </style>
+    <script>
+        function toggleSection(id) {
+            const body = document.getElementById(id);
+            body.classList.toggle('collapsed');
+        }
+    </script>
+</head>
+<body>
+    <div class="header">
+        <h1>{{RULESET_NAME}}</h1>
+        <div class="meta">Schema v2.0 | Generated: {{TIMESTAMP}} | Domain: {{DOMAIN_SLUG}}</div>
+    </div>
+
+    <!--
+    =====================================================================
+    SECTION 1: USE CASE (Narrative — 4 parts)
+    =====================================================================
+    -->
+
+    <!--
+    <div class="section">
+        <div class="section-header" onclick="toggleSection('usecase')">
+            <h2>Use Case</h2>
+        </div>
+        <div class="section-body" id="usecase">
+            <div class="use-case-block">
+                <h4>The Context</h4>
+                <p>{{THE_CONTEXT}}</p>
+            </div>
+            <div class="use-case-block">
+                <h4>Real-World Inputs</h4>
+                <p>{{REAL_WORLD_INPUTS}}</p>
+            </div>
+            <div class="use-case-block">
+                <h4>Three Layers of Difficulty</h4>
+                <div class="difficulty-layer">
+                    <div class="layer-name" style="color: var(--pass);">Realistic (bread-and-butter)</div>
+                    <div class="layer-desc">{{REALISTIC_LAYER}}</div>
+                </div>
+                <div class="difficulty-layer">
+                    <div class="layer-name" style="color: var(--amber);">Challenging (messy but real)</div>
+                    <div class="layer-desc">{{CHALLENGING_LAYER}}</div>
+                </div>
+                <div class="difficulty-layer">
+                    <div class="layer-name" style="color: var(--fail);">Deceptive (intentionally misleading)</div>
+                    <div class="layer-desc">{{DECEPTIVE_LAYER}}</div>
+                </div>
+            </div>
+            <div class="litmus-test">
+                <strong>Litmus Test:</strong> "{{LITMUS_TEST_QUESTION}}"
+            </div>
+        </div>
+    </div>
+    -->
+
+    <!--
+    =====================================================================
+    SECTION 2: INPUT SCHEMA
+    =====================================================================
+    Content fields + Content Texture only.
+    NO presentation chips, NO variation chips — those live in Test Scenarios.
+    -->
+
+    <!--
+    <div class="section">
+        <div class="section-header" onclick="toggleSection('input')">
+            <h2>Input Schema</h2>
+            <span class="badge" style="background: var(--accent-bg); color: var(--accent);">{{ENTITY_COUNT}} entities</span>
+        </div>
+        <div class="section-body" id="input">
+
+            <div class="entity-card">
+                <div class="entity-name">Entity 1: {{ENTITY_NAME}}</div>
+                <div class="entity-body">
+                    <h4>Content</h4>
+                    <table class="schema-table">
+                        <thead>
+                            <tr><th>Field</th><th>Type</th><th>Description</th><th>Constraints</th><th>Required</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>{{FIELD}}</code></td>
+                                <td>{{TYPE}}</td>
+                                <td>{{DESC}}</td>
+                                <td>{{CONSTRAINTS}}</td>
+                                <td>{{YES/NO}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="content-texture">
+                        <h5>Content Texture</h5>
+                        <p><strong>{{STYLE_1}}:</strong> {{DESCRIPTION_OF_STYLE_1}}</p>
+                        <p><strong>{{STYLE_2}}:</strong> {{DESCRIPTION_OF_STYLE_2}}</p>
+                    </div>
+                </div>
+            </div>
+
+            (repeat entity-card for Entity 2, 3, etc.)
+
+        </div>
+    </div>
+    -->
+
+    <!--
+    =====================================================================
+    SECTION 3: OUTPUT SCHEMA & DERIVATION
+    =====================================================================
+    Fields table + quality constraints + numbered derivation steps.
+    -->
+
+    <!--
+    <div class="section">
+        <div class="section-header" onclick="toggleSection('output')">
+            <h2>Output Schema & Derivation</h2>
+        </div>
+        <div class="section-body" id="output">
+            <h4 style="margin-bottom: 0.75rem; font-size: 0.95rem;">Output Fields</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr><th>Field</th><th>Type</th><th>Description</th><th>Constraints</th><th>Required</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>{{FIELD}}</code></td>
+                        <td>{{TYPE}}</td>
+                        <td>{{DESC}}</td>
+                        <td>{{CONSTRAINTS}}</td>
+                        <td>{{YES/NO}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4 style="margin: 1.5rem 0 0.75rem; font-size: 0.95rem;">Quality Constraints</h4>
+            <table class="schema-table">
+                <thead><tr><th>Constraint</th><th>Rule</th></tr></thead>
+                <tbody>
+                    <tr><td>{{CONSTRAINT_NAME}}</td><td>{{SPECIFIC_RULE}}</td></tr>
+                </tbody>
+            </table>
+
+            <h4 style="margin: 1.5rem 0 0.75rem; font-size: 0.95rem;">Derivation Procedure</h4>
+            <div class="derivation-step">
+                <div class="step-num">1</div>
+                <div class="step-text"><strong>{{STEP_NAME}}</strong> — {{STEP_DESCRIPTION}}</div>
+            </div>
+            (repeat for each step)
+        </div>
+    </div>
+    -->
+
+    <!--
+    =====================================================================
+    SECTION 4: TEST SCENARIOS
+    =====================================================================
+    Merged view — replaces old Pairing Strategy + Per-Category Composition.
+    Each scenario card has: What / Why it's hard / Varies (parameter chips).
+    This is the SINGLE SOURCE OF TRUTH for all variation dimensions.
+    -->
+
+    <!--
+    <div class="section">
+        <div class="section-header" onclick="toggleSection('scenarios')">
+            <h2>Test Scenarios</h2>
+            <span class="badge" style="background: var(--accent-bg); color: var(--accent);">{{TOTAL}} samples</span>
+        </div>
+        <div class="section-body" id="scenarios">
+
+            <div class="scenario-card scenario-happy">
+                <div class="scenario-header">
+                    {{HAPPY_PATH_NAME}}
+                    <span class="sample-count">{{N}} samples</span>
+                </div>
+                <div class="scenario-body">
+                    <h5>What</h5>
+                    <p>{{WHAT_DESCRIPTION}}</p>
+                    <h5>Why it's hard</h5>
+                    <p>{{WHY_HARD_DESCRIPTION}}</p>
+                    <h5>Varies</h5>
+                    <div class="dim-row">
+                        <span class="dim-label">{{DIMENSION}}</span>
+                        <span class="chip">{{OPTION}} {{PCT}}%</span>
+                    </div>
+                    (repeat dim-row for each dimension)
+                </div>
+            </div>
+
+            <div class="scenario-card scenario-edge">
+                (same structure as happy path)
+            </div>
+
+            <div class="scenario-card scenario-error">
+                (same structure)
+            </div>
+
+            <div class="scenario-card scenario-adversarial">
+                (same structure)
+            </div>
+
+        </div>
+    </div>
+    -->
+
+    <!--
+    =====================================================================
+    SECTION 5: FEW-SHOT EXAMPLES
+    =====================================================================
+    -->
+
+    <!--
+    <div class="section">
+        <div class="section-header" onclick="toggleSection('examples')">
+            <h2>Few-Shot Examples</h2>
+            <span class="badge" style="background: var(--accent-bg); color: var(--accent);">{{COUNT}} examples</span>
+        </div>
+        <div class="section-body" id="examples">
+
+            <div class="example-card">
+                <div class="example-header">Example 1: {{SCENARIO}} — {{DESCRIPTION}}</div>
+                <div class="example-body">
+                    <h4 style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted);">Input</h4>
+                    <pre>{{INPUT_CONTENT}}</pre>
+
+                    <h4 style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); margin-top: 1rem;">Expected Output</h4>
+                    <pre>{{OUTPUT_CONTENT}}</pre>
+
+                    <div class="derivation-note">
+                        <strong>Derivation:</strong> {{DERIVATION_EXPLANATION}}
+                    </div>
+                </div>
+            </div>
+
+            (repeat example-card for each example)
+
+        </div>
+    </div>
+    -->
+
+    <!--
+    =====================================================================
+    SECTION 6: ANTI-PATTERNS
+    =====================================================================
+    Include BOTH domain-specific and generic LLM anti-patterns.
+    -->
+
+    <!--
+    <div class="section">
+        <div class="section-header" onclick="toggleSection('antipatterns')">
+            <h2>Anti-Patterns</h2>
+        </div>
+        <div class="section-body" id="antipatterns">
+            <div class="anti-pattern">
+                <span class="ap-name">{{PATTERN_NAME}}</span> —
+                <span class="ap-desc">{{WHAT_IT_LOOKS_LIKE}}. Why it's wrong: {{REASON}}</span>
+            </div>
+        </div>
+    </div>
+    -->
+
+    <!--
+    =====================================================================
+    SECTION 7: OPEN QUESTIONS (optional — omit if none)
+    =====================================================================
+    -->
+
+    <!--
+    <div class="section" style="border-color: var(--amber-border);">
+        <div class="section-header" onclick="toggleSection('questions')" style="background: var(--amber-bg);">
+            <h2 style="color: var(--amber);">Open Questions ({{COUNT}})</h2>
+        </div>
+        <div class="section-body" id="questions">
+            <div class="question-card">
+                <div class="q-label">Question {{N}}</div>
+                <div class="q-context">{{CONTEXT}}</div>
+                <div class="q-question">{{QUESTION}}</div>
+            </div>
+        </div>
+    </div>
+    -->
+
+    <!-- PLANNING YAML (machine-readable, used by create-data — NOT a visible section)
+    planning:
+      purpose: {{PURPOSE}}
+      agent_complexity: {{COMPLEXITY}}
+      input_surface_area: {{SURFACE}}
+      surface_multiplier: {{MULTIPLIER}}
+      base_size: {{BASE}}
+      final_size: {{FINAL}}
+      coverage_distribution:
+        happy_path: {{N}}
+        edge_case: {{N}}
+        error_case: {{N}}
+        adversarial: {{N}}
+      approved_by: user
+      approved_at: {{TIMESTAMP}}
+    -->
+
+    <!-- GENERATION INSTRUCTIONS (remove from final output):
+
+    Schema v2.0 — Sections and their purposes:
+
+    1. USE CASE → 4-part narrative (Context, Inputs, Difficulty, Litmus Test)
+    2. INPUT SCHEMA → Content fields + Content Texture only. NO variation/presentation chips.
+    3. OUTPUT SCHEMA & DERIVATION → Fields + Quality Constraints + Derivation Procedure
+    4. TEST SCENARIOS → Scenario cards with What / Why it's hard / Varies (chips with %).
+       This is the SINGLE SOURCE OF TRUTH for all variation dimensions.
+       Replaces old: Pairing Strategy + Per-Category Composition + Complexity & Sizing.
+    5. FEW-SHOT EXAMPLES → 3-5 examples covering different scenarios
+    6. ANTI-PATTERNS → Domain-specific + Generic LLM failures
+    7. OPEN QUESTIONS → Only if uncertainties exist
+
+    RULES:
+    - Self-contained: no external CSS, JS, or images
+    - Uncomment only the sections that have content
+    - Remove these instructions from the final output
+    - Planning data is a hidden YAML comment, not a visible section
+    - No duplication: each dimension appears exactly once (in Test Scenarios)
+    -->
+</body>
+</html>

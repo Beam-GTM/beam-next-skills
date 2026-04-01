@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gold Standard Review — {{RULESET_NAME}}</title>
+    <style>
+        :root {
+            --pass: #16a34a;
+            --fail: #dc2626;
+            --marginal: #d97706;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+            --text: #1e293b;
+            --text-muted: #64748b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .header h1 { font-size: 1.75rem; margin-bottom: 0.5rem; }
+        .header .meta { color: var(--text-muted); font-size: 0.9rem; }
+
+        .summary-bar {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .summary-stat {
+            text-align: center;
+            padding: 1rem 1.5rem;
+            background: var(--card-bg);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            min-width: 120px;
+        }
+
+        .summary-stat .value { font-size: 1.5rem; font-weight: 700; }
+        .summary-stat .label { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; }
+        .summary-stat.pass .value { color: var(--pass); }
+        .summary-stat.fail .value { color: var(--fail); }
+
+        .sample-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .sample-card.pass { border-left: 4px solid var(--pass); }
+        .sample-card.fail { border-left: 4px solid var(--fail); }
+
+        .sample-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            background: #f1f5f9;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .sample-header h2 { font-size: 1.1rem; }
+
+        .verdict {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .verdict.pass { background: #dcfce7; color: var(--pass); }
+        .verdict.fail { background: #fef2f2; color: var(--fail); }
+
+        .sample-body { padding: 1.5rem; }
+
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .comparison-panel {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .comparison-panel h3 {
+            padding: 0.5rem 1rem;
+            background: #f1f5f9;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .comparison-panel .content {
+            padding: 1rem;
+            font-size: 0.9rem;
+            white-space: pre-wrap;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .scores-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5rem;
+        }
+
+        .scores-table th, .scores-table td {
+            padding: 0.5rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .scores-table th {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .score-bar {
+            display: inline-block;
+            width: 60px;
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+            vertical-align: middle;
+            margin-right: 0.5rem;
+        }
+
+        .score-bar .fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .score-bar .fill.high { background: var(--pass); }
+        .score-bar .fill.mid { background: var(--marginal); }
+        .score-bar .fill.low { background: var(--fail); }
+
+        .issues-list {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+        }
+
+        .issues-list h4 { color: var(--fail); margin-bottom: 0.5rem; }
+        .issues-list ul { padding-left: 1.5rem; }
+        .issues-list li { margin-bottom: 0.5rem; font-size: 0.9rem; }
+
+        .diff-highlight {
+            background: #fef9c3;
+            padding: 0 0.25rem;
+            border-radius: 2px;
+        }
+
+        @media (max-width: 768px) {
+            .comparison { grid-template-columns: 1fr; }
+            .summary-bar { flex-wrap: wrap; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Gold Standard Review</h1>
+        <div class="meta">
+            Ruleset: <strong>{{RULESET_NAME}}</strong> |
+            Generated: <strong>{{TIMESTAMP}}</strong> |
+            Samples: <strong>{{SAMPLE_COUNT}}</strong>
+        </div>
+    </div>
+
+    <div class="summary-bar">
+        <div class="summary-stat">
+            <div class="value">{{SAMPLE_COUNT}}</div>
+            <div class="label">Total Samples</div>
+        </div>
+        <div class="summary-stat pass">
+            <div class="value">{{PASS_COUNT}}</div>
+            <div class="label">Passed</div>
+        </div>
+        <div class="summary-stat fail">
+            <div class="value">{{FAIL_COUNT}}</div>
+            <div class="label">Failed</div>
+        </div>
+        <div class="summary-stat">
+            <div class="value">{{AVG_SCORE}}</div>
+            <div class="label">Avg Score</div>
+        </div>
+    </div>
+
+    <!-- Repeat this block for each gold standard sample -->
+    <!--
+    <div class="sample-card pass|fail">
+        <div class="sample-header">
+            <h2>Sample: {{SAMPLE_ID}}</h2>
+            <span class="verdict pass|fail">PASS|FAIL — {{AVG_SCORE}}/10</span>
+        </div>
+        <div class="sample-body">
+            <div class="comparison">
+                <div class="comparison-panel">
+                    <h3>Generated Sample</h3>
+                    <div class="content">{{GENERATED_CONTENT}}</div>
+                </div>
+                <div class="comparison-panel">
+                    <h3>Production Reference</h3>
+                    <div class="content">{{PRODUCTION_REFERENCE}}</div>
+                </div>
+            </div>
+
+            <table class="scores-table">
+                <thead>
+                    <tr>
+                        <th>Dimension</th>
+                        <th>Score</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Structural Accuracy</td>
+                        <td>
+                            <div class="score-bar">
+                                <div class="fill high|mid|low" style="width: {{SCORE_PCT}}%"></div>
+                            </div>
+                            {{SCORE}}/10
+                        </td>
+                        <td>{{NOTES}}</td>
+                    </tr>
+                    <!-- Repeat for each dimension -->
+                </tbody>
+            </table>
+
+            <!-- Only include if FAIL -->
+            <div class="issues-list">
+                <h4>Issues Found</h4>
+                <ul>
+                    <li><strong>{{FILE_PATH}}:</strong> {{ISSUE_DESCRIPTION}}<br>
+                        Expected: {{EXPECTED}} | Got: <span class="diff-highlight">{{ACTUAL}}</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    -->
+
+    <!-- INSTRUCTIONS FOR GENERATING THIS DOCUMENT:
+
+    When generating this HTML review document, replace the template above with
+    actual sample cards. For each gold standard sample:
+
+    1. Replace {{RULESET_NAME}} with the ruleset name
+    2. Replace {{TIMESTAMP}} with ISO timestamp of generation
+    3. Replace {{SAMPLE_COUNT}}, {{PASS_COUNT}}, {{FAIL_COUNT}} with actual counts
+    4. Replace {{AVG_SCORE}} with the batch average score
+    5. For each sample, create a <div class="sample-card pass|fail"> block:
+       - Set class to "pass" or "fail" based on verdict
+       - Fill in the comparison panels with generated content and production reference
+       - Fill in the scores table with actual dimension scores
+       - Use "high" class for scores 7-10, "mid" for 4-6, "low" for 0-3
+       - Set score bar width as: score * 10 (percentage)
+       - Only include the issues-list div for failing samples
+    6. Remove these instructions from the final output
+
+    The document must be SELF-CONTAINED — no external CSS, JS, or image dependencies.
+    All styling is inline in the <style> block above.
+    -->
+</body>
+</html>
