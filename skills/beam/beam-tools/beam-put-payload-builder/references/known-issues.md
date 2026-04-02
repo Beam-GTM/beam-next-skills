@@ -31,6 +31,42 @@ PUT accepts fields per the Swagger DTO (`CompleteAgentGraphNodeToolConfiguration
 
 ---
 
+## Output Param Fields Are `paramName` / `paramDescription`
+
+The `PATCH /agent-graphs/{agentId}/nodes/{nodeId}/input-output-params` endpoint uses `paramName` and `paramDescription` — NOT `name` and `description`. Using the wrong field names creates params with null names that appear blank in the UI.
+
+**Correct:**
+```json
+{
+  "outputParams": [
+    {
+      "paramName": "yardi_units",
+      "paramDescription": "Normalized unit records from Yardi-Salesforce Report",
+      "dataType": "object",
+      "position": 0
+    }
+  ]
+}
+```
+
+**Wrong** (creates blank params):
+```json
+{
+  "outputParams": [
+    {
+      "name": "yardi_units",
+      "description": "...",
+      "dataType": "object",
+      "position": 0
+    }
+  ]
+}
+```
+
+**Discovered:** 2026-04-02 (Novus — output names appeared blank in UI despite API returning 200).
+
+---
+
 ## Other PUT Limitations
 
 | Issue | Impact | Workaround |
