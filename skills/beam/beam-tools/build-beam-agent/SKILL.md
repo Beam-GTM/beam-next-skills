@@ -1,6 +1,13 @@
 ---
 name: build-beam-agent
 description: End-to-end agent builder for Beam AI. Takes a demo request or requirements doc, designs the workflow collaboratively with the user (via mermaid diagrams), then deploys the agent to Beam AI via API. Triggers on "build beam agent", "create beam agent", "deploy agent to beam", "build agent from request", "build demo agent". Handles the full lifecycle from requirements to live agent on the platform.
+category: integrations
+version: '1.0'
+visibility: team
+tags:
+  - beam-ai
+  - agents
+  - deployment
 ---
 
 # Build Beam Agent

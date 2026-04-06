@@ -201,6 +201,17 @@ skills:
   path: skills/beam/beam-tools/beam-ape-optimizer
   has_scripts: false
   platform: Beam AI
+- name: build-beam-agent
+  description: End-to-end agent builder for Beam AI. Takes a demo request or requirements
+    doc, designs the workflow collaboratively with the user via mermaid diagrams, then
+    deploys the agent to Beam AI via API.
+  category: integrations
+  version: '1.0'
+  updated: '2026-03-29'
+  visibility: team
+  path: skills/beam/beam-tools/build-beam-agent
+  has_scripts: false
+  platform: Beam AI
 - name: beam-connect
   description: Connect to Beam AI workspace for agent management. Load when user mentions
     'beam', 'beam agent', 'beam task', 'beam analytics', 'list agents', 'create task',
