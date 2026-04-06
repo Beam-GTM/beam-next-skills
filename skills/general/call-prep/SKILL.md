@@ -1,6 +1,12 @@
 ---
 name: call-prep
 description: "Sales call prep wizard. Researches a prospect, identifies buyer persona and vertical, generates a complete battle plan. Load when user mentions 'prep', 'call prep', 'prep for [company]', 'meeting prep', 'sales prep', 'prepare for [name]', 'demo prep', or any upcoming sales/demo call preparation."
+category: general
+version: '1.0'
+visibility: team
+tags:
+  - sales
+  - prep
 ---
 
 # Prep — Sales Call Wizard
