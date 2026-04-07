@@ -16,7 +16,7 @@ tags:
 - create
 - agent
 platform: Beam AI
-updated: '2026-03-13'
+updated: '2026-04-06'
 visibility: team
 ---
 # Beam API Reader
@@ -39,9 +39,12 @@ visibility: team
 
 | Environment | Base URL |
 |-------------|----------|
-| Production  | `https://api.beamlearning.io` |
+| Enterprise (Americana) | `https://api.enterprise.beamstudio.ai` |
+| Standard   | `https://api.beamstudio.ai` |
 | BID (Dev)   | `https://api.bid.beamstudio.ai` |
 | MCP Server  | `https://api.beamstudio.ai/mcp` |
+
+> **CRITICAL**: Always use `BEAM_API_URL` from `.env` as the base URL. Do NOT hardcode `api.beamlearning.io` — it no longer resolves. Americana Foods workspace is on the **enterprise** instance (`api.enterprise.beamstudio.ai`). Using the wrong base URL returns a different agent with the same ID.
 
 ---
 
@@ -81,12 +84,12 @@ See [authentication.md](references/authentication.md) for setup details and code
 | GET | `/agent-graphs/{agentId}/nodes/{nodeId}` | Get detailed node information |
 | POST | `/agent-graphs/complete` | Create new agent with complete graph |
 | PUT | `/agent-graphs/{agentId}` | Update agent and its draft graph |
-| POST | `/agent-graphs/add-node` | Add a new node to graph |
-| POST | `/agent-graphs/add-edge` | Add a new edge between nodes |
 | PATCH | `/agent-graphs/update-node` | Update a graph node |
 | PATCH | `/agent-graphs/{graphId}/publish` | Publish draft graph as active |
 | PATCH | `/agent-graphs/{agentId}/nodes/{nodeId}/prompt` | Update node tool prompt |
 | PATCH | `/agent-graphs/{agentId}/nodes/{nodeId}/input-output-params` | Update node I/O parameters |
+| POST | `/agent-graphs/add-node` | Add a new node to draft graph |
+| POST | `/agent-graphs/add-edge` | Add a new edge between nodes |
 | PUT | `/agent-graphs/update-edge/{edgeId}` | Update edge condition |
 | POST | `/agent-graphs/test-node` | Test a node in isolation |
 | GET | `/agent-graphs/agent-task-nodes/{toolFunctionName}` | Get task nodes by tool |
@@ -129,7 +132,6 @@ See [authentication.md](references/authentication.md) for setup details and code
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| POST | `/context/agent/{agentId}/file` | Upload a context file |
 | GET | `/context/agent/{agentId}/file/{fileId}/download` | Download a context file |
 
 ### Tools, Optimization & Models
@@ -167,7 +169,7 @@ import requests
 
 API_KEY = "your-api-key"
 WORKSPACE_ID = "your-workspace-id"
-BASE_URL = "https://api.beamlearning.io"
+BASE_URL = os.getenv("BEAM_API_URL", "https://api.enterprise.beamstudio.ai")
 
 headers = {
     "x-api-key": API_KEY,

@@ -207,9 +207,7 @@ Creates a new agent with its complete graph structure including nodes, edges, an
 
 ## Update Agent and Draft Graph
 
-Updates an existing agent (name, description, settings) and **replaces all nodes and edges** in its draft graph. Use this for full graph restructures — all nodes must be included in the payload or they will be removed. For small incremental edits, prefer `POST /agent-graphs/add-node` + `POST /agent-graphs/add-edge` instead.
-
-**Note:** Unlike `add-node`/`update-node`, this endpoint can create new custom GPT tools inline with `GPTAction_Custom_` prefix.
+Updates an existing agent (name, description, settings) and replaces all nodes and edges in its draft graph.
 
 **Endpoint:** `PUT /agent-graphs/{agentId}`
 
@@ -520,183 +518,6 @@ Update an existing edge's condition or properties.
 
 ---
 
-## When to Use Add-Node vs PUT (Full Graph Update)
-
-| | `POST /agent-graphs/add-node` + `add-edge` | `PUT /agent-graphs/{agentId}` |
-|---|---|---|
-| **Scope** | Single node/edge at a time | Entire draft graph replacement |
-| **Existing nodes** | Untouched | Must re-include all nodes or they are lost |
-| **New custom GPT tools** | Must use existing `toolFunctionName` — search via `GET /tool/active-tools` first | Can create new custom GPT tools inline with `GPTAction_Custom_` prefix |
-| **Integration tools** | Must use existing `toolFunctionName` | Must use existing `toolFunctionName` |
-| **Best for** | Small incremental edits (add/wire a single node) | Full graph creation or restructure |
-
----
-
-## Add Node to Graph
-
-Add a new node to an existing agent workflow graph. Use this for incremental edits — pair with `POST /agent-graphs/add-edge` to wire the node into the flow.
-
-**Important:** The `toolFunctionName` must reference an existing tool in the system (both integration and custom GPT tools). Use `GET /tool/active-tools` to find valid tool names. Only `POST /agent-graphs/complete` can create new custom tools inline.
-
-**Endpoint:** `POST /agent-graphs/add-node`
-
-### Request Body
-
-```json
-{
-  "agentId": "agent-uuid",
-  "graphId": "graph-uuid",
-  "node": {
-    "objective": "Validate customer data",
-    "isAttachmentDataPulledIn": true,
-    "evaluationCriteria": ["accuracy", "completeness"],
-    "nodeType": "executionNode",
-    "onError": "STOP",
-    "xCoordinate": 100,
-    "yCoordinate": 200
-  }
-}
-```
-
-### Node Fields
-
-| Field | Type | Required | Default | Description |
-|-------|------|----------|---------|-------------|
-| `objective` | string | Yes | — | Node's purpose/goal |
-| `isAttachmentDataPulledIn` | boolean | Yes | — | Whether to pull attachment data |
-| `evaluationCriteria` | string[] | Yes | — | Criteria for evaluating output |
-| `nodeType` | enum | No | `executionNode` | `executionNode`, `conditionNode`, `waitingNode`, `entryNode`, `exitNode` |
-| `onError` | enum | No | `STOP` | `CONTINUE` or `STOP` |
-| `isEvaluationEnabled` | boolean | No | `false` | Enable evaluation scoring |
-| `autoRetryWhenAccuracyLessThan` | number | No | `80` | Retry threshold (50-100) |
-| `autoRetryLimitWhenAccuracyIsLow` | number | No | `1` | Max retries for low accuracy |
-| `enableAutoRetryWhenAccuracyIsLow` | boolean | No | `false` | Enable accuracy-based retry |
-| `enableAutoRetryWhenFailure` | boolean | No | `false` | Enable failure-based retry |
-| `autoRetryCountWhenFailure` | number | No | `1` | Max retries on failure |
-| `autoRetryWaitTimeWhenFailureInMs` | number | No | `1000` | Wait time between retries (ms) |
-| `enableAutoRetryDescription` | boolean | No | `false` | Use custom retry instructions |
-| `autoRetryDescription` | string | No | `null` | Custom retry instructions |
-| `id` | string | No | — | Node identifier |
-| `customId` | string | No | — | Custom identifier |
-| `isExitNode` | boolean | No | `false` | Exit node flag |
-| `xCoordinate` | number | No | — | Canvas X position |
-| `yCoordinate` | number | No | — | Canvas Y position |
-| `nodeConfigurations` | object | No | `null` | Node-specific config |
-| `toolConfiguration` | object | No | — | Tool setup (see Tool Configuration Fields) |
-
-### Response (201 Created)
-
-Returns the created node as `MinimalAgentGraphNodeDto` with all configuration details including node metadata, evaluation/retry settings, coordinates, tool configuration, child/parent edges, and timestamps.
-
-### Example
-
-```bash
-curl -X POST "https://api.beamlearning.io/agent-graphs/add-node" \
-  -H "x-api-key: YOUR_API_KEY" \
-  -H "current-workspace-id: YOUR_WORKSPACE_ID" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "agentId": "YOUR_AGENT_ID",
-    "graphId": "YOUR_GRAPH_ID",
-    "node": {
-      "objective": "Validate customer data",
-      "isAttachmentDataPulledIn": true,
-      "evaluationCriteria": ["accuracy", "completeness"],
-      "nodeType": "executionNode",
-      "onError": "STOP",
-      "xCoordinate": 250,
-      "yCoordinate": 400
-    }
-  }'
-```
-
----
-
-## Add Edge to Graph
-
-Add a new edge (connection) between two nodes in the agent workflow graph. Edges define the flow of execution between nodes. Use this alongside `POST /agent-graphs/add-node` for incremental graph edits.
-
-**Endpoint:** `POST /agent-graphs/add-edge`
-
-### Request Body
-
-```json
-{
-  "sourceNodeId": "source-node-uuid",
-  "targetNodeId": "target-node-uuid",
-  "agentId": "agent-uuid",
-  "agentGraphId": "graph-uuid",
-  "isAttachmentDataPulledIn": true,
-  "condition": "",
-  "groups": []
-}
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| `sourceNodeId` | string | Yes | Source node identifier |
-| `targetNodeId` | string | Yes | Target node identifier |
-| `agentId` | string | Yes | Agent identifier |
-| `agentGraphId` | string | Yes | Graph identifier |
-| `isAttachmentDataPulledIn` | boolean | Yes | Whether attachment data is pulled into the edge |
-| `condition` | string | No | Edge condition (default: `""`) |
-| `groups` | array | No | Condition groups (default: `[]`, see below) |
-
-### Condition Groups Schema
-
-Each group in `groups[]` is a `CreateConditionGroupDto`:
-
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| `rules` | array | Yes | Array of condition rules |
-| `nextGroupOperator` | enum | No | `AND` or `OR` |
-
-Each rule in `rules[]` is a `CreateConditionRuleDto`:
-
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| `sourceAgentToolConfigurationOutputParamsId` | string | Yes | Source output parameter ID |
-| `operator` | enum | Yes | `equals`, `not_equals`, `greater_than`, `less_than`, `contains`, `does_not_contain`, `starts_with`, `ends_with`, `is_empty`, `is_not_empty` |
-| `comparisonValueType` | enum | Yes | `static` or `output_param` |
-| `comparisonValue` | string | No | Static comparison value |
-| `comparisonAgentToolConfigurationOutputParamsId` | string | No | Output parameter ID for comparison |
-| `nextRuleOperator` | enum | No | `AND` or `OR` |
-
-### Response (201 Created)
-
-```json
-{
-  "id": "edge-uuid",
-  "sourceAgentGraphNodeId": "source-node-uuid",
-  "targetAgentGraphNodeId": "target-node-uuid",
-  "condition": "",
-  "isAttachmentDataPulledIn": true,
-  "conditionGroups": [],
-  "createdAt": "2023-11-07T05:31:56Z",
-  "updatedAt": "2023-11-07T05:31:56Z"
-}
-```
-
-### Example
-
-```bash
-curl -X POST "https://api.beamlearning.io/agent-graphs/add-edge" \
-  -H "x-api-key: YOUR_API_KEY" \
-  -H "current-workspace-id: YOUR_WORKSPACE_ID" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "sourceNodeId": "SOURCE_NODE_ID",
-    "targetNodeId": "TARGET_NODE_ID",
-    "agentId": "YOUR_AGENT_ID",
-    "agentGraphId": "YOUR_GRAPH_ID",
-    "isAttachmentDataPulledIn": true
-  }'
-```
-
----
-
 ## Test Graph Node
 
 Test a specific node in isolation to validate its configuration and behavior.
@@ -763,6 +584,155 @@ Call this after any of the following to push changes live:
 - Creating a new agent via `POST /agent-graphs/complete`
 - Updating the draft graph via `PUT /agent-graphs/{agentId}`
 - Modifying nodes via `PATCH /agent-graphs/update-node`
+- Adding nodes via `POST /agent-graphs/add-node`
+
+---
+
+## Add Node to Graph
+
+Add a new node to an existing agent draft graph without replacing the entire graph. Use this with `POST /agent-graphs/add-edge` to incrementally extend graphs.
+
+**Endpoint:** `POST /agent-graphs/add-node`
+
+### Request Body
+
+```json
+{
+  "agentId": "agent-uuid",
+  "graphId": "draft-graph-uuid",
+  "node": {
+    "objective": "Validate the 15x11 payload array",
+    "evaluationCriteria": [],
+    "isAttachmentDataPulledIn": true,
+    "nodeType": "executionNode",
+    "onError": "STOP",
+    "isEvaluationEnabled": false,
+    "isExitNode": false,
+    "xCoordinate": 400,
+    "yCoordinate": 300,
+    "autoRetryWhenAccuracyLessThan": 80,
+    "autoRetryLimitWhenAccuracyIsLow": 1,
+    "enableAutoRetryWhenAccuracyIsLow": false,
+    "enableAutoRetryWhenFailure": false,
+    "autoRetryCountWhenFailure": 1,
+    "autoRetryWaitTimeWhenFailureInMs": 1000,
+    "autoRetryDescription": null,
+    "enableAutoRetryDescription": false,
+    "toolConfiguration": {
+      "toolFunctionName": "GPTAction_Custom_Tool",
+      "toolName": "Payload Validator",
+      "description": "Validates array dimensions",
+      "prompt": "Your prompt here",
+      "preferredModel": "BEDROCK_CLAUDE_SONNET_4",
+      "requiresConsent": false,
+      "isMemoryTool": false,
+      "memoryLookupInstruction": "",
+      "isBackgroundTool": false,
+      "isBatchExecutionEnabled": false,
+      "isCodeExecutionEnabled": false,
+      "inputParams": [],
+      "outputParams": []
+    }
+  }
+}
+```
+
+### Node Fields
+
+| Field | Type | Default | Description |
+|-------|------|---------|-------------|
+| `objective` | string | required | Node's purpose |
+| `evaluationCriteria` | string[] | required | Evaluation standards |
+| `isAttachmentDataPulledIn` | boolean | required | Data attachment flag |
+| `nodeType` | enum | `executionNode` | `executionNode`, `conditionNode`, `waitingNode`, `entryNode`, `exitNode` |
+| `onError` | enum | `STOP` | `CONTINUE` or `STOP` |
+| `isEvaluationEnabled` | boolean | `false` | Enable evaluation |
+| `isExitNode` | boolean | `false` | Mark as exit node |
+| `xCoordinate` | number | — | Canvas X position |
+| `yCoordinate` | number | — | Canvas Y position |
+| `toolConfiguration` | object | `null` | Tool settings (see Update Graph Node for full schema) |
+
+### Response (201 Created)
+
+Returns `MinimalAgentGraphNodeDto` with the new node's `id`, `toolConfiguration` (including generated `toolFunctionName` and output param IDs), `childEdges: []`, `parentEdges: []`, and all node fields.
+
+### When to Use
+
+| Task | Method | Why |
+|------|--------|-----|
+| Add a node to existing graph | `POST /agent-graphs/add-node` + `add-edge` | Incremental — doesn't touch existing nodes |
+| Full graph rewrite | `PUT /agent-graphs/{agentId}` | Nuclear option — regenerates all IDs |
+| Update existing node | `PATCH /agent-graphs/update-node` | Surgical fix to one node |
+
+---
+
+## Add Edge to Graph
+
+Add a new edge (connection) between two nodes in the agent draft graph.
+
+**Endpoint:** `POST /agent-graphs/add-edge`
+
+### Request Body
+
+```json
+{
+  "agentId": "agent-uuid",
+  "agentGraphId": "draft-graph-uuid",
+  "sourceNodeId": "source-node-uuid",
+  "targetNodeId": "target-node-uuid",
+  "condition": "",
+  "isAttachmentDataPulledIn": true
+}
+```
+
+### Request Fields
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `agentId` | string | Yes | Agent UUID |
+| `agentGraphId` | string | Yes | Draft graph UUID (same as `graphId` in add-node) |
+| `sourceNodeId` | string | Yes | Origin node UUID |
+| `targetNodeId` | string | Yes | Destination node UUID |
+| `condition` | string | No | Conditional logic (empty string = unconditional) |
+| `isAttachmentDataPulledIn` | boolean | Yes | Whether attachment data flows through edge |
+| `groups` | array | No | Structured condition groups (see below) |
+
+### Structured Condition Groups (Optional)
+
+For complex conditions, use `groups` instead of free-text `condition`:
+
+```json
+{
+  "groups": [
+    {
+      "nextGroupOperator": "AND",
+      "rules": [
+        {
+          "sourceAgentToolConfigurationOutputParamsId": "output-param-uuid",
+          "operator": "equals",
+          "comparisonValueType": "static",
+          "comparisonValue": "Complete",
+          "nextRuleOperator": null
+        }
+      ]
+    }
+  ]
+}
+```
+
+**Operators:** `equals`, `not_equals`, `greater_than`, `less_than`, `contains`, `does_not_contain`, `starts_with`, `ends_with`, `is_empty`, `is_not_empty`
+
+**Comparison types:** `static` (compare to a fixed value) or `output_param` (compare to another node's output)
+
+### Response (201 Created)
+
+Returns `AgentGraphEdge` with `id`, `sourceAgentGraphNodeId`, `targetAgentGraphNodeId`, `condition`, `isAttachmentDataPulledIn`, `conditionGroups[]`, and timestamps.
+
+### Notes
+
+- `agentGraphId` in add-edge = `graphId` in add-node (same field, different label)
+- After adding nodes and edges, call `PATCH /agent-graphs/{graphId}/publish` to push live
+- To insert a node between two existing nodes: delete the old edge (via PUT update-edge or UI), then add two new edges (source→new, new→target)
 
 ---
 
