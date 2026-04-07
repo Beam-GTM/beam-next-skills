@@ -40,7 +40,7 @@ BEAM_WORKSPACE_ID_PROD=your_prod_workspace_id
 ### cURL
 
 ```bash
-curl -X GET "https://api.beamlearning.io/v2/user/me" \
+curl -X GET "https://api.enterprise.beamstudio.ai/v2/user/me" \
   -H "x-api-key: YOUR_API_KEY" \
   -H "current-workspace-id: YOUR_WORKSPACE_ID"
 ```
@@ -56,14 +56,14 @@ headers = {
     "Content-Type": "application/json"
 }
 
-response = requests.get("https://api.beamlearning.io/v2/user/me", headers=headers)
+response = requests.get("https://api.enterprise.beamstudio.ai/v2/user/me", headers=headers)
 print(response.json())
 ```
 
 ### JavaScript
 
 ```javascript
-const response = await fetch("https://api.beamlearning.io/v2/user/me", {
+const response = await fetch("https://api.enterprise.beamstudio.ai/v2/user/me", {
   method: "GET",
   headers: {
     "x-api-key": "YOUR_API_KEY",
@@ -76,9 +76,12 @@ const data = await response.json();
 
 ## Base URLs
 
+> **CRITICAL**: Always read `BEAM_API_URL` from `.env` — do not hardcode. The old `api.beamlearning.io` domain no longer resolves.
+
 | Environment | Base URL | Use Case |
 |-------------|----------|----------|
-| Production  | `https://api.beamlearning.io` | Live production workspaces |
+| Enterprise (Americana) | `https://api.enterprise.beamstudio.ai` | Americana Foods enterprise workspace |
+| Standard   | `https://api.beamstudio.ai` | Standard workspaces |
 | BID (Dev)   | `https://api.bid.beamstudio.ai` | Development/testing |
 
 ## Security Notes
