@@ -175,6 +175,12 @@ def _validate_loops(nodes_spec: list) -> None:
                 f"Loop node '{ns['key']}' has parent_node='{parent}'. Nested loops are "
                 f"not supported — a loop cannot live inside another loop."
             )
+        # No waiting nodes inside a loop
+        if _resolve_node_type(ns) == "waitingNode" and parent:
+            raise ValueError(
+                f"Waiting node '{ns['key']}' has parent_node='{parent}'. Waiting nodes "
+                f"are not allowed inside a loop."
+            )
 
 
 def _compute_loop_metadata(nodes_spec: list) -> tuple:
