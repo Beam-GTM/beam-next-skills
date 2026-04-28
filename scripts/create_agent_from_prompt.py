@@ -33,17 +33,28 @@ Spec format:
       "name": "Human readable name",
       "objective": "What this node does",
       "is_entry": false,
+      "node_type": "executionNode|conditionNode|loopingNode",
+      "parent_node": null,
       "x": 250, "y": 150,
       "model": "BEDROCK_CLAUDE_SONNET_4",
       "tool_name": "Tool display name",
       "tool_description": "One-line description",
       "prompt": "Full LLM instruction prompt",
+      "code": null,
+      "code_language": null,
+      "integration_provider_id": null,
       "on_error": "STOP",
       "enable_retry": false,
       "retry_count": 1,
       "retry_wait_ms": 1000,
       "fallback_models": null,
       "evaluation_criteria": [],
+      "loop_config": {
+        "iteration_count": 3,
+        "linked_variable_node": null,
+        "linked_variable_param": null,
+        "alias": "item"
+      },
       "input_params": [
         {
           "name": "param_name",
@@ -75,6 +86,12 @@ Spec format:
     }
   ]
 }
+
+Loop nodes:
+  - Set "node_type": "loopingNode". No toolConfiguration.
+  - Must have at least one child (another spec node with "parent_node": "<loop-key>").
+  - "loop_config.iteration_count" for count-based loops.
+  - "loop_config.linked_variable_node" + "linked_variable_param" for variable-based loops.
 """
 
 import os
@@ -120,9 +137,74 @@ def g(): return str(uuid.uuid4())
 
 
 # ── Build Beam API payload from spec ──────────────────────────────────────────
+def _resolve_node_type(ns: dict) -> str:
+    nt = ns.get("node_type")
+    if nt:
+        return nt
+    if ns.get("is_entry"):
+        return "entryNode"
+    if ns.get("is_exit"):
+        return "exitNode"
+    return "executionNode"
+
+
+def _validate_loops(nodes_spec: list) -> None:
+    """Every loopingNode must have at least one child. No nested loops allowed."""
+    loop_keys = {ns["key"] for ns in nodes_spec if _resolve_node_type(ns) == "loopingNode"}
+    children_by_parent = {}
+    for ns in nodes_spec:
+        parent = ns.get("parent_node")
+        if parent:
+            children_by_parent.setdefault(parent, []).append(ns["key"])
+    for lk in loop_keys:
+        if not children_by_parent.get(lk):
+            raise ValueError(
+                f"Loop node '{lk}' has no children. A loopingNode must have at least one "
+                f"child node (set \"parent_node\": \"{lk}\" on the inner nodes)."
+            )
+    for ns in nodes_spec:
+        parent = ns.get("parent_node")
+        if parent and parent not in loop_keys:
+            raise ValueError(
+                f"Node '{ns['key']}' has parent_node='{parent}', but '{parent}' is not a "
+                f"loopingNode in the spec."
+            )
+        # No nested loops
+        if _resolve_node_type(ns) == "loopingNode" and parent:
+            raise ValueError(
+                f"Loop node '{ns['key']}' has parent_node='{parent}'. Nested loops are "
+                f"not supported — a loop cannot live inside another loop."
+            )
+
+
+def _compute_loop_metadata(nodes_spec: list) -> tuple:
+    """Derive auto-assigned loop objectives and child aliases from spec order.
+
+    Returns (loop_objectives, child_aliases):
+      - loop_objectives: {loop_key: "N: Loop"} — 1-based, by spec order of loops
+      - child_aliases:   {child_key: "N"}      — 1-based, per-loop, by spec order
+    """
+    loop_objectives = {}
+    child_aliases = {}
+    loop_idx = 0
+    children_counter = {}
+    for ns in nodes_spec:
+        if _resolve_node_type(ns) == "loopingNode":
+            loop_idx += 1
+            loop_objectives[ns["key"]] = f"{loop_idx}: Loop"
+        parent = ns.get("parent_node")
+        if parent:
+            children_counter[parent] = children_counter.get(parent, 0) + 1
+            child_aliases[ns["key"]] = str(children_counter[parent])
+    return loop_objectives, child_aliases
+
+
 def build_payload(spec: dict) -> dict:
     nodes_spec = spec["nodes"]
     node_keys  = [n["key"] for n in nodes_spec]
+
+    _validate_loops(nodes_spec)
+    loop_objectives, child_aliases = _compute_loop_metadata(nodes_spec)
 
     NODE = {k: g() for k in node_keys}
     TC   = {k: g() for k in node_keys}
@@ -271,6 +353,8 @@ def build_payload(spec: dict) -> dict:
             "iconSrc":          None,
             "description":      ns.get("tool_description", ""),
             "prompt":           ns.get("prompt", ""),
+            "code":             ns.get("code"),
+            "codeLanguage":     ns.get("code_language"),
             "preferredModel":   ns.get("model", "BEDROCK_CLAUDE_SONNET_4"),
             "fallbackModels":   ns.get("fallback_models", None),
             "accuracyScore":    None,
@@ -282,30 +366,69 @@ def build_payload(spec: dict) -> dict:
             "isCodeExecutionEnabled":  False,
             "isAvailableToWorkspace":  False,
             "dynamicPropsId":          None,
-            "integrationProviderId":   None,
+            "integrationProviderId":   ns.get("integration_provider_id"),
             "inputParams":  [build_input_param(ip) for ip in ns.get("input_params", [])],
             "outputParams": [build_output_param(op, ns["key"]) for op in ns.get("output_params", [])],
             "originalTool": build_original_tool(ns),
         }
 
+    def build_wait_config(ns):
+        """Build nodeConfigurations for a waitingNode from spec wait_config."""
+        wc = ns.get("wait_config", {}) or {}
+        cfg = {"waitType": wc.get("wait_type", "time_based")}
+        if cfg["waitType"] == "time_based":
+            cfg["timeToWaitValue"] = wc.get("time_to_wait_value", 5)
+            cfg["timeToWaitUnit"]  = wc.get("time_to_wait_unit", "minutes")
+        else:  # condition_based
+            if wc.get("linked_node"):
+                cfg["linkedAgentGraphNodeId"] = NODE[wc["linked_node"]]
+            if wc.get("rule") is not None:
+                cfg["rule"] = wc["rule"]
+            if wc.get("conditions"):
+                cfg["conditions"] = wc["conditions"]
+        cfg["timeoutType"] = wc.get("timeout_type", "no_timeout")
+        if cfg["timeoutType"] == "set_timeout":
+            cfg["timeoutValue"] = wc.get("timeout_value")
+            cfg["timeoutUnit"]  = wc.get("timeout_unit", "minutes")
+            cfg["onTimeout"]    = wc.get("on_timeout", "continue")
+        return cfg
+
+    def build_loop_config(ns):
+        """Build nodeConfigurations for a loopingNode from spec loop_config.
+
+        Loop itself does NOT carry an alias; aliases are assigned to child nodes.
+        """
+        lc = ns.get("loop_config", {}) or {}
+        cfg = {}
+        if lc.get("iteration_count") is not None:
+            cfg["iterationCount"] = lc["iteration_count"]
+        if lc.get("linked_variable_node") and lc.get("linked_variable_param"):
+            op_key = f"{lc['linked_variable_node']}.{lc['linked_variable_param']}"
+            if op_key not in OP:
+                raise ValueError(
+                    f"Loop '{ns['key']}' linked_variable '{op_key}' not found in output params.\n"
+                    f"Available: {list(OP.keys())}"
+                )
+            cfg["linkedVariableId"]       = OP[op_key]
+            cfg["linkedAgentGraphNodeId"] = NODE[lc["linked_variable_node"]]
+        return cfg
+
     def build_node(ns):
         is_entry = ns.get("is_entry", False)
         is_exit  = ns.get("is_exit", False)
-        node_type = ns.get("node_type", None)
+        node_type = _resolve_node_type(ns)
         criteria = ns.get("evaluation_criteria", [])
 
-        # Auto-detect nodeType if not explicitly set
-        if not node_type:
-            if is_entry:
-                node_type = "entryNode"
-            elif is_exit:
-                node_type = "exitNode"
-            else:
-                node_type = "executionNode"
+        # Loops have auto-assigned objective "N: Loop"
+        objective = (
+            loop_objectives[ns["key"]]
+            if node_type == "loopingNode"
+            else ns["objective"]
+        )
 
         node = {
             "id":               NODE[ns["key"]],
-            "objective":        ns["objective"],
+            "objective":        objective,
             "evaluationCriteria": criteria,
             "isEntryNode":      is_entry,
             "isExitNode":       is_exit,
@@ -328,6 +451,11 @@ def build_payload(spec: dict) -> dict:
             "parentEdges": parent_edges(ns["key"]),
         }
 
+        # parentNodeId — set when this node lives inside a loop
+        parent_key = ns.get("parent_node")
+        if parent_key:
+            node["parentNodeId"] = NODE[parent_key]
+
         # nodeConfigurations — required for conditionNode
         if node_type == "conditionNode":
             node["nodeConfigurations"] = ns.get("node_configurations", {
@@ -336,7 +464,23 @@ def build_payload(spec: dict) -> dict:
                 "fallbackModels": None,
             })
 
-        # toolConfiguration: only for executionNode (not entry/exit/condition)
+        # loopingNode config (iteration / linked variable — no alias on the loop itself)
+        if node_type == "loopingNode":
+            node["nodeConfigurations"] = build_loop_config(ns)
+
+        # waitingNode config
+        if node_type == "waitingNode":
+            node["nodeConfigurations"] = build_wait_config(ns)
+
+        # Auto-assigned numeric alias on child-of-loop nodes
+        if parent_key:
+            cfg = node.get("nodeConfigurations")
+            if cfg is None:
+                cfg = {}
+                node["nodeConfigurations"] = cfg
+            cfg["alias"] = child_aliases[ns["key"]]
+
+        # toolConfiguration: only for executionNode (not entry/exit/condition/loop)
         if node_type == "executionNode":
             node["toolConfiguration"] = build_tool_config(ns)
 
@@ -377,14 +521,23 @@ def build_payload_update(spec: dict, existing_graph_resp: dict) -> dict:
     nodes_spec     = spec["nodes"]
     existing_nodes = existing_graph_resp["graph"]["nodes"]
 
+    _validate_loops(nodes_spec)
+    loop_objectives, child_aliases = _compute_loop_metadata(nodes_spec)
+
+    # Types that don't carry a toolConfiguration / toolFunctionName
+    NON_EXEC_TYPES = {"conditionNode", "loopingNode", "entryNode", "exitNode", "waitingNode"}
+
     def get_fn(node):
         tc = node.get("toolConfiguration") or {}
         return tc.get("toolFunctionName", "")
 
-    existing_by_fn = {get_fn(n): n for n in existing_nodes
-                      if not n.get("isEntryNode") and n.get("nodeType") != "conditionNode"}
+    existing_by_fn = {
+        get_fn(n): n for n in existing_nodes
+        if not n.get("isEntryNode") and n.get("nodeType") not in NON_EXEC_TYPES
+    }
     existing_entry = next((n for n in existing_nodes if n.get("isEntryNode")), None)
     existing_conditions = [n for n in existing_nodes if n.get("nodeType") == "conditionNode"]
+    existing_loops      = [n for n in existing_nodes if n.get("nodeType") == "loopingNode"]
 
     def _find_existing(spec_fn_name):
         """Find existing node by toolFunctionName, handling API-appended suffixes."""
@@ -395,26 +548,26 @@ def build_payload_update(spec: dict, existing_graph_resp: dict) -> dict:
                 return node
         return None
 
-    # Compute toolFunctionName for every non-entry, non-condition spec node
+    # Compute toolFunctionName for every spec node that actually has a tool
     spec_fn = {
         ns["key"]: tool_function_name(ns.get("tool_name", ns.get("name", "")))
         for ns in nodes_spec
-        if not ns.get("is_entry") and ns.get("node_type") != "conditionNode"
+        if not ns.get("is_entry") and _resolve_node_type(ns) not in NON_EXEC_TYPES
     }
 
     # ── Assign node UUIDs: reuse existing where matched ────────────────────────
     NODE = {}
-    _remaining_conditions = list(existing_conditions)  # mutable copy for pop
+    _remaining_conditions = list(existing_conditions)
+    _remaining_loops      = list(existing_loops)
     for ns in nodes_spec:
-        k = ns["key"]
+        k  = ns["key"]
+        nt = _resolve_node_type(ns)
         if ns.get("is_entry"):
             NODE[k] = existing_entry["id"] if existing_entry else g()
-        elif ns.get("node_type") == "conditionNode":
-            # Reuse first unmatched existing condition node, else new UUID
-            if _remaining_conditions:
-                NODE[k] = _remaining_conditions.pop(0)["id"]
-            else:
-                NODE[k] = g()
+        elif nt == "conditionNode":
+            NODE[k] = _remaining_conditions.pop(0)["id"] if _remaining_conditions else g()
+        elif nt == "loopingNode":
+            NODE[k] = _remaining_loops.pop(0)["id"] if _remaining_loops else g()
         else:
             fn = spec_fn[k]
             ex = _find_existing(fn)
@@ -424,7 +577,8 @@ def build_payload_update(spec: dict, existing_graph_resp: dict) -> dict:
     TC = {}
     OP = {}
     for ns in nodes_spec:
-        if ns.get("is_entry") or ns.get("node_type") == "conditionNode":
+        nt = _resolve_node_type(ns)
+        if ns.get("is_entry") or nt in NON_EXEC_TYPES:
             continue
         k  = ns["key"]
         fn = spec_fn[k]
@@ -609,6 +763,49 @@ def build_payload_update(spec: dict, existing_graph_resp: dict) -> dict:
             "parentEdges": parent_edges(ns["key"]),
         }
 
+    def _build_loop_config_update(ns):
+        """Loop config only — alias is for children, never the loop itself."""
+        lc = ns.get("loop_config", {}) or {}
+        cfg = {}
+        if lc.get("iteration_count") is not None:
+            cfg["iterationCount"] = lc["iteration_count"]
+        if lc.get("linked_variable_node") and lc.get("linked_variable_param"):
+            op_key = f"{lc['linked_variable_node']}.{lc['linked_variable_param']}"
+            if op_key not in OP:
+                raise ValueError(
+                    f"Loop '{ns['key']}' linked_variable '{op_key}' not found.\n"
+                    f"Available: {list(OP.keys())}"
+                )
+            cfg["linkedVariableId"]       = OP[op_key]
+            cfg["linkedAgentGraphNodeId"] = NODE[lc["linked_variable_node"]]
+        return cfg
+
+    def build_new_loop_node(ns):
+        """Build a new loopingNode (no toolConfiguration)."""
+        return {
+            "id":               NODE[ns["key"]],
+            "objective":        ns.get("objective", ""),
+            "evaluationCriteria": [],
+            "isEntryNode":      False,
+            "isExitNode":       False,
+            "nodeType":         "loopingNode",
+            "nodeConfigurations": _build_loop_config_update(ns),
+            "xCoordinate":      ns.get("x", 0),
+            "yCoordinate":      ns.get("y", 300),
+            "isEvaluationEnabled": False,
+            "isAttachmentDataPulledIn": True,
+            "onError":          ns.get("on_error", "STOP"),
+            "autoRetryWhenAccuracyLessThan":    80,
+            "autoRetryLimitWhenAccuracyIsLow":  1,
+            "autoRetryCountWhenFailure":        ns.get("retry_count", 1),
+            "autoRetryWaitTimeWhenFailureInMs":  ns.get("retry_wait_ms", 1000),
+            "enableAutoRetryWhenAccuracyIsLow": False,
+            "enableAutoRetryWhenFailure":       ns.get("enable_retry", False),
+            "isEdited":         False,
+            "childEdges":  child_edges(ns["key"]),
+            "parentEdges": parent_edges(ns["key"]),
+        }
+
     def build_new_node(ns):
         fn       = spec_fn[ns["key"]]
         criteria = ns.get("evaluation_criteria", [])
@@ -619,6 +816,8 @@ def build_payload_update(spec: dict, existing_graph_resp: dict) -> dict:
             "iconSrc":          None,
             "description":      ns.get("tool_description", ""),
             "prompt":           ns.get("prompt", ""),
+            "code":             ns.get("code"),
+            "codeLanguage":     ns.get("code_language"),
             "preferredModel":   ns.get("model", "BEDROCK_CLAUDE_SONNET_4"),
             "fallbackModels":   ns.get("fallback_models", None),
             "accuracyScore":    None,
@@ -630,7 +829,7 @@ def build_payload_update(spec: dict, existing_graph_resp: dict) -> dict:
             "isCodeExecutionEnabled":  False,
             "isAvailableToWorkspace":  False,
             "dynamicPropsId":          None,
-            "integrationProviderId":   None,
+            "integrationProviderId":   ns.get("integration_provider_id"),
             "inputParams":  [build_ip(ip)       for ip in ns.get("input_params",  [])],
             "outputParams": [build_op(op, ns["key"]) for op in ns.get("output_params", [])],
             "originalTool": build_original_tool_new(ns),
@@ -701,8 +900,10 @@ def build_payload_update(spec: dict, existing_graph_resp: dict) -> dict:
     # ── Assemble final nodes ────────────────────────────────────────────────────
     final_nodes = []
     _reused_condition_ids = set()
+    _reused_loop_ids = set()
     for ns in nodes_spec:
         k  = ns["key"]
+        nt = _resolve_node_type(ns)
         ce = child_edges(k)
         pe = parent_edges(k)
 
@@ -723,15 +924,13 @@ def build_payload_update(spec: dict, existing_graph_resp: dict) -> dict:
             node["childEdges"]  = ce
             node["parentEdges"] = pe
             final_nodes.append(node)
-        elif ns.get("node_type") == "conditionNode":
-            # Check if we reused an existing condition node UUID
+        elif nt == "conditionNode":
             node_id = NODE[k]
             existing_cond = next(
                 (n for n in existing_conditions if n["id"] == node_id),
                 None,
             )
             if existing_cond and node_id not in _reused_condition_ids:
-                # Keep existing condition node verbatim; only rewire edges
                 node = dict(existing_cond)
                 node["childEdges"]  = ce
                 node["parentEdges"] = pe
@@ -739,11 +938,44 @@ def build_payload_update(spec: dict, existing_graph_resp: dict) -> dict:
                 final_nodes.append(node)
             else:
                 final_nodes.append(build_new_condition_node(ns))
+        elif nt == "loopingNode":
+            node_id = NODE[k]
+            existing_loop = next(
+                (n for n in existing_loops if n["id"] == node_id),
+                None,
+            )
+            if existing_loop and node_id not in _reused_loop_ids:
+                node = copy.deepcopy(existing_loop)
+                # Refresh loop config from spec
+                loop_cfg = _build_loop_config_update(ns)
+                if loop_cfg:
+                    node["nodeConfigurations"] = loop_cfg
+                # Server returns GPTAction_LoopingNodeTool with description/prompt = null,
+                # but PUT validator requires strings. Coerce here.
+                tc = node.get("toolConfiguration") or {}
+                if tc:
+                    if tc.get("description") is None:
+                        tc["description"] = ""
+                    if tc.get("prompt") is None:
+                        tc["prompt"] = ""
+                    ot = tc.get("originalTool") or {}
+                    if ot:
+                        if ot.get("description") is None:
+                            ot["description"] = ""
+                        if ot.get("prompt") is None:
+                            ot["prompt"] = ""
+                        if ot.get("toolName") is None:
+                            ot["toolName"] = ""
+                node["childEdges"]  = ce
+                node["parentEdges"] = pe
+                _reused_loop_ids.add(node_id)
+                final_nodes.append(node)
+            else:
+                final_nodes.append(build_new_loop_node(ns))
         else:
             fn = spec_fn[k]
             ex = _find_existing(fn)
             if ex:
-                # ← Keep existing node; rewire edges + rebuild linked params
                 node = copy.deepcopy(ex)
                 node["childEdges"]  = ce
                 node["parentEdges"] = pe
@@ -751,6 +983,26 @@ def build_payload_update(spec: dict, existing_graph_resp: dict) -> dict:
                 final_nodes.append(node)
             else:
                 final_nodes.append(build_new_node(ns))
+
+        # parentNodeId — set/refresh on every node that lives inside a loop
+        parent_key = ns.get("parent_node")
+        if parent_key:
+            final_nodes[-1]["parentNodeId"] = NODE[parent_key]
+        elif "parentNodeId" in final_nodes[-1]:
+            # Spec says this node is no longer inside a loop → clear stale value
+            final_nodes[-1]["parentNodeId"] = None
+
+        # Auto-override: loopingNode objective is always "N: Loop"
+        if nt == "loopingNode":
+            final_nodes[-1]["objective"] = loop_objectives[k]
+
+        # Auto-assign numeric alias to every loop child
+        if parent_key:
+            cfg = final_nodes[-1].get("nodeConfigurations")
+            if cfg is None:
+                cfg = {}
+                final_nodes[-1]["nodeConfigurations"] = cfg
+            cfg["alias"] = child_aliases[k]
 
     return {
         "agentName":        spec["agentName"],

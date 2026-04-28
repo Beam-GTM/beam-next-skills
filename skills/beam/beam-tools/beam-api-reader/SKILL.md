@@ -212,6 +212,7 @@ Deploy a new Beam agent from a YAML description using `scripts/create_agent_from
 3. **Linked params use `linked_node` + `linked_param`** in the spec. `linked_node` = the `key` of the source node (= YAML `id` value). YAML may call this field `linked_node_id` — remap it.
 4. **No UUIDs in the spec** — the script generates all UUIDs.
 5. **`on_error: "CONTINUE"`** only for non-critical nodes (e.g. Slack notifications). All others: `"STOP"`.
+6. **Loop nodes** (`node_type: "loopingNode"`) must have ≥1 child. Children set `parent_node: "<loop-key>"`; the script resolves it to `parentNodeId`.
 
 ### Spec Format
 
@@ -281,6 +282,46 @@ Deploy a new Beam agent from a YAML description using `scripts/create_agent_from
 **Positioning:** entry at `y=0`, processing nodes at `y=200`, x increments by 300 per step.
 **Models:** `BEDROCK_CLAUDE_SONNET_4` (default) or `BEDROCK_CLAUDE_OPUS_4_5` (complex generation).
 **Conditional edges:** `"condition": ""` = unconditional; `"condition": "sum is odd"` = conditional branch.
+
+### Loop Nodes
+
+A loop node (`node_type: "loopingNode"`) has no `toolConfiguration`. Its children live alongside it in the top-level `nodes[]` array, but each child carries `"parent_node": "<loop-key>"` so the script sets `parentNodeId` to the loop's UUID.
+
+**Auto-assigned by the script — do not set manually:**
+- Loop `objective` is always `"N: Loop"` (1-based across all loops in the agent; first loop → `"1: Loop"`, second → `"2: Loop"`, …). Any `objective` you put on a loop is overwritten.
+- Child nodes inside a loop get a numeric `alias` (`"1"`, `"2"`, `"3"`, …) in the order they appear in the spec, stored on the child's `nodeConfigurations.alias`. The loop itself has no alias.
+
+**Rules:**
+- A loop must have at least one child (validated).
+- Loops cannot be nested — a `loopingNode` cannot have `parent_node` set (validated).
+
+```json
+{
+  "key": "my-loop",
+  "node_type": "loopingNode",
+  "x": 250, "y": 200,
+  "loop_config": {
+    "iteration_count": 3,
+    "linked_variable_node": null,
+    "linked_variable_param": null
+  },
+  "edges": [{ "target": "after-loop", "name": "", "condition": "" }]
+},
+{
+  "key": "loop-body",
+  "name": "Process Item",
+  "objective": "Process a single iteration",
+  "parent_node": "my-loop",
+  "x": 550, "y": 200,
+  "tool_name": "Process Item",
+  "prompt": "…",
+  "input_params": [...],
+  "output_params": [...],
+  "edges": []
+}
+```
+
+Use `iteration_count` for count-based loops, or `linked_variable_node` + `linked_variable_param` for variable-based loops (the script resolves these to `linkedVariableId` + `linkedAgentGraphNodeId`).
 
 ### Workflow
 
