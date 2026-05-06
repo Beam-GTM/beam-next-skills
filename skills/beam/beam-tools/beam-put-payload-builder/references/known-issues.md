@@ -1,6 +1,6 @@
 # PUT & GET Reference
 
-Information specific to the GET→PUT transformation workflow. Last updated 2026-03-15.
+Information specific to the GET→PUT transformation workflow. Last updated 2026-04-02.
 
 For full API behavior reference (PATCH, publishing, entry nodes, etc.), see `04-workspace/clients/wunsche/agents/plan/beam-api-issues-and-suggestions.md`.
 
@@ -13,6 +13,59 @@ PUT accepts fields per the Swagger DTO (`CompleteAgentGraphNodeToolConfiguration
 | `prompt` (B1) | `toolConfiguration.prompt` | Yes (`toolConfiguration.prompt`) | No | `PATCH /agent-graphs/{agentId}/nodes/{nodeId}/prompt` |
 | `preferredModel` (B2) | `toolConfiguration.preferredModel` | Yes (`toolConfiguration.preferredModel`) | No | `PATCH /agent-graphs/update-node` with `preferredModel` in `toolConfiguration` |
 | `inputParams` / `outputParams` (B3) | `toolConfiguration.inputParams` / `.outputParams` | Yes (`toolConfiguration.inputParams/outputParams`) | No | `PATCH /agent-graphs/{agentId}/nodes/{nodeId}/input-output-params` |
+
+## PATCH `update-node` Wipes Output Params
+
+`PATCH /agent-graphs/update-node` replaces the entire `toolConfiguration` object — including `outputParams`. Even when passing through the existing tool config, output params are wiped because their `id` fields (which are read-only) cannot be included in the request.
+
+**Impact:** After any `update-node` PATCH (e.g. updating objectives, evaluation criteria, retry settings), all output params on the node are silently deleted.
+
+**Workaround:** Always follow `update-node` with a separate call to restore outputs:
+
+```
+1. PATCH /agent-graphs/update-node              → update node settings
+2. PATCH /agent-graphs/{agentId}/nodes/{nodeId}/input-output-params  → restore outputs
+```
+
+**Discovered:** 2026-04-02 (Novus Pricing Matrix agent — all 8 nodes affected twice before identifying the pattern).
+
+---
+
+## Output Param Fields Are `paramName` / `paramDescription`
+
+The `PATCH /agent-graphs/{agentId}/nodes/{nodeId}/input-output-params` endpoint uses `paramName` and `paramDescription` — NOT `name` and `description`. Using the wrong field names creates params with null names that appear blank in the UI.
+
+**Correct:**
+```json
+{
+  "outputParams": [
+    {
+      "paramName": "yardi_units",
+      "paramDescription": "Normalized unit records from Yardi-Salesforce Report",
+      "dataType": "object",
+      "position": 0
+    }
+  ]
+}
+```
+
+**Wrong** (creates blank params):
+```json
+{
+  "outputParams": [
+    {
+      "name": "yardi_units",
+      "description": "...",
+      "dataType": "object",
+      "position": 0
+    }
+  ]
+}
+```
+
+**Discovered:** 2026-04-02 (Novus — output names appeared blank in UI despite API returning 200).
+
+---
 
 ## Other PUT Limitations
 
