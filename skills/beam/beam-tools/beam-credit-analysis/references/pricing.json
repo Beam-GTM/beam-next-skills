@@ -1,0 +1,51 @@
+{
+  "_meta": {
+    "source": "https://www.notion.so/joinbeam/Beam-Credits-New-Agent-OS-3062cadfbbbc8198afeae750cb9e292f",
+    "last_updated": "2026-02-13",
+    "base_credit_value": 0.10,
+    "token_basis": "100k tokens average per execution"
+  },
+  "llm_models": {
+    "GPT_5_NANO": { "credits": 1, "cost_per_node": 0.10, "margin": "14x" },
+    "gpt-5-nano": { "credits": 1, "cost_per_node": 0.10, "margin": "14x" },
+    "GPT_4O_MINI": { "credits": 1, "cost_per_node": 0.10, "margin": "6x" },
+    "gpt-4o-mini": { "credits": 1, "cost_per_node": 0.10, "margin": "6x" },
+    "GEMINI_2_5_FLASH": { "credits": 1, "cost_per_node": 0.10, "margin": "6x" },
+    "gemini-2.5-flash": { "credits": 1, "cost_per_node": 0.10, "margin": "6x" },
+    "GPT_4_1_NANO": { "credits": 1, "cost_per_node": 0.10, "margin": "8x" },
+    "gpt-4.1-nano": { "credits": 1, "cost_per_node": 0.10, "margin": "8x" },
+    "GEMINI_3_FLASH": { "credits": 1, "cost_per_node": 0.10, "margin": "1.6x" },
+    "gemini-3-flash": { "credits": 1, "cost_per_node": 0.10, "margin": "1.6x" },
+    "GPT_4_1_MINI": { "credits": 1, "cost_per_node": 0.10, "margin": "2x" },
+    "gpt-4.1-mini": { "credits": 1, "cost_per_node": 0.10, "margin": "2x" },
+    "GPT_5": { "credits": 2, "cost_per_node": 0.20, "margin": "1.2x" },
+    "gpt-5": { "credits": 2, "cost_per_node": 0.20, "margin": "1.2x" },
+    "GPT_5_2": { "credits": 2, "cost_per_node": 0.20, "margin": "1.2x" },
+    "gpt-5.2": { "credits": 2, "cost_per_node": 0.20, "margin": "1.2x" },
+    "GEMINI_2_5_PRO": { "credits": 2, "cost_per_node": 0.20, "margin": "1.2x" },
+    "gemini-2.5-pro": { "credits": 2, "cost_per_node": 0.20, "margin": "1.2x" },
+    "GPT_4O": { "credits": 3, "cost_per_node": 0.30, "margin": "1.0x" },
+    "gpt-4o": { "credits": 3, "cost_per_node": 0.30, "margin": "1.0x" },
+    "GPT_4_1": { "credits": 3, "cost_per_node": 0.30, "margin": "1.3x" },
+    "gpt-4.1": { "credits": 3, "cost_per_node": 0.30, "margin": "1.3x" },
+    "GEMINI_3_PRO": { "credits": 3, "cost_per_node": 0.30, "margin": "1.2x" },
+    "gemini-3-pro": { "credits": 3, "cost_per_node": 0.30, "margin": "1.2x" },
+    "CLAUDE_SONNETS": { "credits": 4, "cost_per_node": 0.40, "margin": "1.1x" },
+    "claude-sonnets": { "credits": 4, "cost_per_node": 0.40, "margin": "1.1x" },
+    "CLAUDE_4_5_OPUS": { "credits": 7, "cost_per_node": 0.70, "margin": "1.2x" },
+    "claude-4.5-opus": { "credits": 7, "cost_per_node": 0.70, "margin": "1.2x" }
+  },
+  "non_llm": {
+    "trigger": { "credits": 0.25, "cost_per_node": 0.025 },
+    "integration": { "credits": 0.25, "cost_per_node": 0.025 },
+    "utility": { "credits": 0.25, "cost_per_node": 0.025 },
+    "attachment_processing": { "credits": 2, "cost_per_node": 0.20 },
+    "memory_parsing": { "credits": 2, "cost_per_node": 0.20 }
+  },
+  "system_features": {
+    "eval": { "credits": 1, "cost_per_node": 0.10 },
+    "self_healing_retry": { "credits_formula": "node_credits + 1" },
+    "context_shrinking": { "credits": 3, "cost_per_node": 0.30 },
+    "fallback_model": { "credits_formula": "based_on_fallback_model" }
+  }
+}

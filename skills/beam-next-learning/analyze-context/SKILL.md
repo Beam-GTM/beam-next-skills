@@ -1,10 +1,11 @@
 ---
 name: analyze-context
-version: '1.0'
+type: skill
+version: '1.1'
 description: Upload files for AI analysis. SubAgents extract insights and save structured
   documents.
 category: learning
-updated: '2026-02-26'
+updated: '2026-03-23'
 visibility: public
 priority: high
 duration: 3-5 min
@@ -304,8 +305,10 @@ Pre-processing {file_count} files...
 **Option A: Use the pre-processing script (preferred)**
 
 ```bash
-uv run 00-system/skills/learning/analyze-context/scripts/preprocess.py
+uv run 00-system/skills/beam-next-learning/analyze-context/scripts/preprocess.py
 ```
+
+*(Repository path: `skills/beam-next-learning/analyze-context/`. Some older workspaces used `00-system/skills/learning/…` — use the folder that exists on disk.)*
 
 The script automatically:
 1. Scans `02-memory/input/` for uploaded files

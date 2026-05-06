@@ -1,17 +1,19 @@
 ---
 name: beam-connect
-version: '1.0'
-description: Connect to Beam AI workspace for agent management. Load when user mentions
-  'beam', 'beam agent', 'beam task', 'beam analytics', 'list agents', 'create task',
-  or any Beam AI operations. Meta-skill that validates config, discovers agents, and
-  routes to appropriate operations.
+version: '1.1'
+description: Connect to Beam AI workspace for runtime agent operations. Load when
+  user mentions 'beam', 'beam agent', 'beam task', 'beam analytics', 'list agents',
+  'create task', 'debug task', 'feedback automation', 'agent pricing', or any Beam
+  AI runtime operations. Meta-skill that validates config, discovers agents, and routes
+  to appropriate operations. For build-time operations (create/modify/optimize agent
+  graphs), use beam-agent-manager instead.
 category: integrations
 tags:
 - analytics
 - beam-ai
 - connector
 platform: Beam AI
-updated: '2025-12-18'
+updated: '2026-03-15'
 visibility: public
 ---
 # Beam Connect
@@ -255,6 +257,44 @@ python 00-system/skills/beam/beam-master/scripts/get_optimization_status.py --th
 
 ---
 
+### Workflow 8: Debug Failed Tasks
+**Trigger**: "debug task", "why did task fail", "langfuse trace", "investigate failure"
+
+Hand off to `beam-debug-issue-tasks` skill for deep debugging via Langfuse traces.
+
+**What it does:**
+- Fetches task execution details and node-level outputs
+- Retrieves Langfuse traces for failed nodes
+- Identifies root cause (prompt issue, input data, API error, timeout)
+- Suggests fix (prompt change, input validation, retry)
+
+---
+
+### Workflow 9: Feedback Automation
+**Trigger**: "feedback automation", "create feedback sheet", "agent feedback", "evaluation sheet"
+
+Hand off to `beam-feedback-automation` skill for structured feedback collection.
+
+**What it does:**
+- Analyzes agent output schema via API
+- Generates smart feedback fields based on output types
+- Creates Google Sheets with Apps Script for feedback collection
+- Supports batch sheet creation, email distribution, and results aggregation
+
+---
+
+### Workflow 10: Agent Pricing
+**Trigger**: "agent pricing", "cost estimate", "how much does agent cost", "calculate pricing"
+
+Hand off to `calculate-beam-agent-pricing` skill for cost estimation.
+
+**What it does:**
+- Calculates per-task and monthly cost estimates
+- Factors in model costs, token usage, and task volume
+- Compares pricing across different model configurations
+
+---
+
 ## Smart Routing
 
 When user mentions:
@@ -268,6 +308,9 @@ When user mentions:
 | "task status", "retry", "approve" | Workflow 5 |
 | "test node", "update node" | Workflow 6 |
 | "optimize tool" | Workflow 7 |
+| "debug task", "why failed", "langfuse" | Workflow 8 |
+| "feedback", "evaluation sheet" | Workflow 9 |
+| "pricing", "cost estimate" | Workflow 10 |
 | Agent name (from cache) | Show agent details, offer actions |
 
 ---
@@ -315,7 +358,10 @@ This skill can hand off to specialized skills:
 | `beam-get-agent-graph` | Deep graph analysis |
 | `beam-get-agent-analytics` | Extended analytics |
 | `beam-create-agent-task` | Task creation with monitoring |
-| `beam-debug-issue-tasks` | Debug via Langfuse |
+| `beam-debug-issue-tasks` | Debug failed tasks via Langfuse traces |
+| `beam-feedback-automation` | Structured feedback collection via Google Sheets |
+| `calculate-beam-agent-pricing` | Per-task and monthly cost estimation |
+| `beam-agent-manager` | Build-time graph operations (create, modify, optimize agents) |
 
 ---
 

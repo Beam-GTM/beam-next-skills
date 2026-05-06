@@ -1,185 +1,61 @@
 ---
 name: google-gemini-image
-version: '1.0'
-description: gemini image, generate image, create image, text to image, brand assets,
-  logo generation, hero image.
+type: skill
+version: '2.1'
+description: Generate, edit, and refine images with Google Gemini. Load when user says
+  'generate image', 'edit image', 'refine image', 'text to image', 'gemini image',
+  'modify image'.
 category: integrations
 tags:
-- google-workspace
-platform: Google Workspace
-requires:
-- google-connect
-updated: '2026-02-26'
+- google
+- gemini
+- images
+platform: Google Gemini
+updated: '2026-03-23'
 visibility: public
-priority: MUST_LOAD_BEFORE_GENERATION
 ---
-# Google Gemini Image Generation
+# Google Gemini Image
 
-Generate brand-consistent images using AI with color theory and prompt engineering.
+Unified skill for text-to-image generation, image editing, and iterative refinement.
 
-## Quick Start
+Replaces: `gemini-generate-image`, `gemini-edit-image`, `gemini-refine-image`.
+
+## Usage
 
 ```bash
-cd 01-skills/google-gemini-image
-uv run python gemini-generate-image/scripts/generate_image.py "PROMPT" --output "path.png"
-uv run python gemini-generate-image/scripts/generate_image.py "PROMPT" --aspect 16:9 --output "path.png"
+# Generate from text prompt
+uv run python scripts/gemini_image.py generate "a cat in space"
+uv run python scripts/gemini_image.py generate "sunset over mountains" --aspect 16:9 --size 2K
+uv run python scripts/gemini_image.py generate "abstract art" --output my_art.png
+
+# Edit an existing image
+uv run python scripts/gemini_image.py edit photo.png "make the sky blue"
+uv run python scripts/gemini_image.py edit scene.jpg "add clouds" --aspect 4:3 --size 1K --output result.png
+
+# Refine the last generated/edited image
+uv run python scripts/gemini_image.py refine "add more stars"
+uv run python scripts/gemini_image.py refine "make it brighter" --image specific.png
 ```
 
----
+## Model
 
-## Reference Documentation
+All actions use **`gemini-3.1-flash-image-preview`** (Nano Banana 2). Inputs are text-only, or image + text for edit/refine.
 
-| Topic | File | Description |
-|-------|------|-------------|
-| Color Theory | [color-theory.md](references/color-theory.md) | Color psychology, specification rules, contrast |
-| Color Harmonies | [color-harmonies.md](references/color-harmonies.md) | Complementary, triadic, analogous, etc. |
-| Prompt Structure | [prompt-structure.md](references/prompt-structure.md) | The 7-part prompt structure, golden rules |
-| Style Presets | [style-presets.md](references/style-presets.md) | Linear, Vercel, Stripe, Raycast aesthetics |
-| Asset Templates | [asset-templates.md](references/asset-templates.md) | Logo, hero, social, pattern, merch templates |
-| Negative Prompts | [negative-prompts.md](references/negative-prompts.md) | What to avoid per asset type |
-| Mutagent Brand | [mutagent-brand.md](references/mutagent-brand.md) | Mutagent-specific colors and guidelines |
+Legacy `gemini-2.0-flash-exp*` models are deprecated; Google scheduled shutdown **June 1, 2026** — this skill targets 3.1 only.
 
----
+## Aspect ratio and size
 
-## Mutagent Colors (Quick Reference)
+- **`--aspect`**: `1:1`, `1:4`, `1:8`, `2:3`, `3:2`, `3:4`, `4:1`, `4:3`, `4:5`, `5:4`, `8:1`, `9:16`, `16:9`, `21:9` (default `1:1`).
+- **`--size`**: `512`, `1K`, `2K`, `4K` (default `1K`). Passed to the API as `image_config.image_size`.
 
-| Role | Color | Hex |
-|------|-------|-----|
-| Primary | Electric Purple | #7C3AED |
-| Secondary | Deep Navy | #1E293B |
-| Accent | Cyan | #06B6D4 |
-| BG Dark | Slate 900 | #0F172A |
-| BG Light | Slate 100 | #F1F5F9 |
-| Success | Emerald | #10B981 |
-| Warning | Amber | #F59E0B |
-| Error | Rose | #F43F5E |
+## Requirements
 
----
+- `GEMINI_API_KEY` in `.env` (get from https://aistudio.google.com/app/apikey)
+- `pip install google-genai Pillow`
 
-## Asset Types & Ratios
+## Output
 
-| Type | Ratio | Use Case |
-|------|-------|----------|
-| Logo | 1:1 | Brand mark, favicon |
-| Icon | 1:1 | App icons |
-| Hero | 16:9 | Website headers |
-| Social Profile | 1:1 | Avatar (circular crop) |
-| Social Cover | 3:1 | Banner/header |
-| Pattern | 1:1 | Tileable backgrounds |
-| T-Shirt | 1:1 | Screen print graphic |
+Images save as PNG to `04-workspace/generated-images/` (or `--output` path).
+Filenames auto-generated with timestamp: `generated_20260323_143000.png`, `edited_...`, `refined_...`.
 
----
-
-## Style Presets (Quick Reference)
-
-| Style | Aesthetic |
-|-------|-----------|
-| **LINEAR** | Minimal dark mode, clean lines, subtle gradients |
-| **VERCEL** | Modern geometric, high contrast, bold shapes |
-| **STRIPE** | Sophisticated premium, flowing gradients, depth |
-| **RAYCAST** | Dark sleek, productivity focused, command palette |
-
----
-
-## Negative Prompts (Essential)
-
-**Always include for logos/icons:**
-```
-text, letters, words, typography, watermark, gradients, 3D, complex details
-```
-
-**Always include for hero/marketing:**
-```
-text, words, UI elements, buttons, faces, stock photo style
-```
-
----
-
-## Pre-Generation Checklist
-
-- [ ] Identified asset type and aspect ratio
-- [ ] Have specific hex codes ready
-- [ ] Know target style (Linear, Vercel, etc.)
-- [ ] Prepared appropriate negative prompt
-- [ ] Read relevant reference file for template
-
----
-
-## Python Modules
-
-### Color Theory
-```python
-from scripts.color_theory import Color, MUTAGENT_PALETTE, complementary
-
-# Access Mutagent colors
-MUTAGENT_PALETTE.primary.css  # "#7C3AED"
-
-# Generate harmonies
-complement = complementary(MUTAGENT_PALETTE.primary)
-```
-
-### Prompt Builder
-```python
-from scripts.prompt_engineering import PromptBuilder, AssetType, StylePreset
-
-builder = PromptBuilder(
-    subject="abstract transformation symbol",
-    asset_type=AssetType.LOGO,
-    style_preset=StylePreset.LINEAR,
-    color_primary="electric purple #7C3AED",
-    background="pure black #000000"
-)
-result = builder.build()  # Returns dict with prompt, negative, aspect_ratio
-```
-
----
-
-## Convenience Functions
-
-```python
-from scripts.prompt_engineering import logo_prompt, hero_prompt
-
-# Quick logo generation
-prompt = logo_prompt(
-    concept="geometric transformation mark",
-    primary_color="electric purple #7C3AED",
-    background="#000000",
-    style=StylePreset.LINEAR
-)
-
-# Quick hero generation
-prompt = hero_prompt(
-    concept="abstract data streams transforming",
-    primary_color="#7C3AED",
-    secondary_color="#1E293B",
-    accent_color="#06B6D4",
-    style=StylePreset.LINEAR
-)
-```
-
----
-
-## Output Organization
-
-```
-04-workspace/09-brand/[brand]/assets/concepts/
-├── logos/     L1-concept-name.png
-├── hero/      H1-concept-name.png
-├── social/    S1-profile.png
-├── patterns/  Pattern1-name.png
-└── merch/     M1-tshirt.png
-```
-
----
-
-## Sub-Skills
-
-| Skill | Purpose |
-|-------|---------|
-| gemini-generate-image | Create new images from prompts |
-| gemini-edit-image | Modify existing images |
-| gemini-refine-image | Iteratively improve images |
-
----
-
-*For detailed documentation, see the [references/](references/) folder.*
+Shared path helpers live in `scripts/gemini_client.py`.

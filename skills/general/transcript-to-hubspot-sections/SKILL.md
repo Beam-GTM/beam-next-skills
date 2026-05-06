@@ -1,3 +1,18 @@
+---
+name: transcript-to-hubspot-sections
+type: skill
+version: '1.0'
+description: Extract Situation, Pain, Impact, and Integrations from sales transcripts.
+  Load when user wants transcript structured for HubSpot or business sections.
+category: general
+tags:
+- transcript
+- sales
+- analysis
+- hubspot
+visibility: public
+updated: '2026-03-23'
+---
 # Transcript to Business Sections Workflow
 **Workflow ID**: transcript-to-business-sections  
 **Category**: analysis  

@@ -1,9 +1,10 @@
 ---
 name: how-beam-next-works
-version: '1.0'
+type: skill
+version: '1.1'
 description: Learn how Beam Next works - the system tour. ~7 min.
 category: learning
-updated: '2026-02-26'
+updated: '2026-03-23'
 visibility: public
 onboarding: false
 priority: high
@@ -114,7 +115,7 @@ A SKILL is a repeatable workflow you can execute anytime.
 - Type the skill name: 'close session', 'mental models'
 - Or browse: 'list skills'
 
-Beam Next has 50+ built-in skills, and you can create your own.
+The public **beam-next-skills** registry lists on the order of **140+** skills (integrations, learning, productivity). Your workspace loads **system** skills from `00-system/skills/` and **your** skills from `01-skills/` — you can add more anytime.
 ```
 
 **Ask**: "Does the PROJECT vs SKILL distinction make sense?"

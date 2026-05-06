@@ -1,5 +1,6 @@
 ---
 name: google-speech-to-text
+type: skill
 version: '1.0'
 description: Transcribe audio files to text using Google Cloud Speech-to-Text API.
   Load when user mentions 'transcribe', 'speech to text', 'audio to text', 'transcribe

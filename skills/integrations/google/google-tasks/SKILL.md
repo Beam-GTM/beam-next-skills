@@ -1,5 +1,6 @@
 ---
 name: google-tasks
+type: skill
 version: 1.0
 description: Manage Google Tasks and task lists. Load when user mentions 'google tasks',
   'tasks', 'todo list', 'create task', 'complete task', or references task/todo management.

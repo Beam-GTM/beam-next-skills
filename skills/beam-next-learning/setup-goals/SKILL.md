@@ -1,10 +1,11 @@
 ---
 name: setup-goals
-version: '1.0'
+type: skill
+version: '1.1'
 description: Load when user says 'setup goals', 'personalize beam next', 'set my goals',
   'define my role'. Captures role, goals, preferences. 8-10 min.
 category: learning
-updated: '2026-02-26'
+updated: '2026-03-23'
 visibility: public
 onboarding: true
 priority: critical

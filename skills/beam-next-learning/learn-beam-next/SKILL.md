@@ -1,12 +1,13 @@
 ---
 name: learn-beam-next
-version: '1.0'
+type: skill
+version: '1.1'
 description: 'Master Beam Next philosophy and best practices. Load when user mentions:
   learn beam next, beam next tutorial, system mastery, beam next best practices, how
   beam next works, beam next philosophy, beam next design, understand beam next, beam
   next deep dive. 15-18 min.'
 category: learning
-updated: '2026-02-26'
+updated: '2026-03-23'
 visibility: public
 onboarding: true
 priority: medium

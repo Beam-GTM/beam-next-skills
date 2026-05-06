@@ -1,12 +1,13 @@
 ---
 name: setup-workspace
-version: '1.0'
+type: skill
+version: '1.1'
 description: 'Organize your 04-workspace/ folder structure. Load when user mentions:
   setup workspace, organize folders, folder structure, configure workspace, my files,
   file organization, where to put files, workspace setup, directories, storage. 5-8
   min.'
 category: learning
-updated: '2026-02-24'
+updated: '2026-03-23'
 visibility: public
 onboarding: true
 priority: high

@@ -1,13 +1,14 @@
 ---
 name: learn-integrations
-version: '1.0'
+type: skill
+version: '1.1'
 description: 'Learn about Beam Next integrations and MCP. Load when user mentions:
   learn integrations, what is MCP, connect tools, integration tutorial, add integration,
   external tools, API connections, third party, how to integrate. 10-12 min.'
 category: learning
 tags:
 - api
-updated: '2026-02-25'
+updated: '2026-03-23'
 visibility: public
 onboarding: true
 priority: high
@@ -217,11 +218,12 @@ OTHER USE CASES:
 **IF YES** (wants to integrate now):
 - "Which tool would you like to connect?"
 - Based on response:
-  - Notion → Load `notion-connect` skill
-  - Airtable → Load `airtable-connect` skill
-  - Slack → Load `slack` skill (from google folder)
-  - Google/Gmail/Docs/Sheets/Calendar/Drive/Tasks/Slides → Load `google` skill
-  - Other → Load `add-integration` skill
+  - Notion → Load `notion-connect`
+  - Airtable → Load `airtable-connect`
+  - Slack → Load `slack-connect` (Slack lives under integrations/slack, not Google)
+  - Google Workspace (Gmail/Docs/Sheets/Calendar/Drive/Tasks/Slides) → Load `google-connect`, then the specific product skill as needed
+  - HubSpot → Load `hubspot-connect`
+  - Other / custom MCP → Load `add-integration`
 - Skip Step 8, proceed to finalization after integration complete
 
 **IF NO** (save for later):
@@ -252,16 +254,17 @@ OTHER USE CASES:
 
    You now understand:
    • What MCP is (universal adapter for tools)
-   • Available integrations (Notion, Airtable, Slack, Google, etc.)
+   • Available integrations (Notion, Airtable, Slack, Google, HubSpot, etc.)
    • When to integrate (adds value) vs skip (overhead)
-   • How to add them (built-in skills or 'add integration')
+   • How to add them (connector skills or 'add integration')
 
    Next steps:
-   • 'connect notion' - Set up Notion
-   • 'connect airtable' - Set up Airtable
-   • 'connect slack' - Set up Slack
-   • 'connect google' - Set up Google Workspace (7 services)
-   • 'add integration' - Any other tool
+   • 'connect notion' / notion-connect
+   • 'connect airtable' / airtable-connect
+   • 'connect slack' / slack-connect
+   • 'connect google' / google-connect (Workspace)
+   • 'connect hubspot' / hubspot-connect
+   • 'add integration' - Other MCP tools
    • 'learn projects' or 'learn skills' - Continue learning
    ```
 
@@ -292,10 +295,11 @@ OTHER USE CASES:
 
 **Related Skills**:
 - `add-integration` - General MCP server setup
-- `notion-connect` - Notion-specific setup
-- `airtable-connect` - Airtable-specific setup
-- `notion-master` - Shared Notion resources
-- `airtable-master` - Shared Airtable resources
+- `notion-connect` / `notion-master` - Notion
+- `airtable-connect` / `airtable-master` - Airtable
+- `slack-connect` / `slack-master` - Slack
+- `google-connect` / `google-master` - Google Workspace
+- `hubspot-connect` / `hubspot-crm` - HubSpot
 
 **Resources**:
 - MCP Documentation: https://modelcontextprotocol.io/

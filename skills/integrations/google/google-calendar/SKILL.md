@@ -1,5 +1,6 @@
 ---
 name: google-calendar
+type: skill
 version: 1.0
 description: Read, create, and manage Google Calendar events. Load when user mentions
   'google calendar', 'calendar', 'schedule', 'meeting', 'event', 'appointment', 'book

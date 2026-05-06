@@ -1,25 +1,23 @@
 ---
 name: langfuse-connect
-version: '1.0'
+type: skill
+version: '2.0'
 description: langfuse, traces, observations, llm tracing.
 category: integrations
 tags:
 - connector
 - langfuse
 platform: Langfuse
-updated: '2026-02-24'
+updated: '2026-03-23'
 visibility: public
 ---
 # Langfuse Connect
 
-User-facing entry point for Langfuse integration. Routes to appropriate operation skills.
+User-facing entry point for Langfuse integration. Routes to consolidated operation skills.
 
-## Context Reference
+## Context reference
 
-For score config IDs, trace structure, and API patterns, load:
-```bash
-uv run python 00-system/core/beam-next-loader.py --skill langfuse-help
-```
+For score config IDs and API patterns, see **Patterns & score config reference** below. For shared client, references, and error handling, load `langfuse-master/`.
 
 ---
 
@@ -39,267 +37,192 @@ uv run python 00-system/skills/langfuse/langfuse-master/scripts/check_langfuse_c
 
 ## Routing Table
 
-### Core Operations (Project 08)
+All Langfuse operations are consolidated into 11 skills. Each uses `--resource` and `--action` arguments for dispatch.
 
-| User Says | Skill to Load | Endpoint |
-|-----------|---------------|----------|
-| "list traces", "show traces", "get traces" | langfuse-list-traces | GET /traces |
-| "get trace {id}", "trace details" | langfuse-get-trace | GET /traces/{id} |
-| "list observations", "show spans" | langfuse-list-observations | GET /v2/observations |
-| "get observation {id}" | langfuse-get-observation | GET /observations/{id} |
-| "list sessions", "show sessions" | langfuse-list-sessions | GET /sessions |
-| "get session {id}" | langfuse-get-session | GET /sessions/{id} |
-| "list scores", "show evaluations" | langfuse-list-scores | GET /v2/scores |
-| "get score {id}" | langfuse-get-score | GET /v2/scores/{id} |
-| "list models", "model costs" | langfuse-list-models | GET /models |
-| "get model {id}" | langfuse-get-model | GET /models/{id} |
-| "get project", "current project" | langfuse-get-project | GET /projects |
+### Traces, Observations & Sessions → `langfuse-traces`
 
-### Prompts (Phase 1)
+| User Says | Resource | Action |
+|-----------|----------|--------|
+| "list traces", "show traces" | traces | list |
+| "get trace {id}", "trace details" | traces | get |
+| "delete trace", "bulk delete traces" | traces | delete |
+| "list observations", "show spans" | observations | list |
+| "get observation {id}" | observations | get |
+| "list sessions", "show sessions" | sessions | list |
+| "get session {id}" | sessions | get |
 
-| User Says | Skill to Load | Endpoint |
-|-----------|---------------|----------|
-| "list prompts", "show prompts" | langfuse-list-prompts | GET /v2/prompts |
-| "create prompt", "new prompt" | langfuse-create-prompt | POST /v2/prompts |
-| "get prompt {name}", "show prompt" | langfuse-get-prompt | GET /v2/prompts/{name} |
-| "delete prompt", "remove prompt" | langfuse-delete-prompt | DELETE /v2/prompts/{name} |
-| "update prompt", "set prompt label" | langfuse-update-prompt-version | PATCH /v2/prompts/{name}/versions/{v} |
+### Datasets, Items, Runs → `langfuse-datasets`
 
-### Datasets (Phase 1)
+| User Says | Resource | Action |
+|-----------|----------|--------|
+| "list datasets", "show datasets" | datasets | list |
+| "create dataset", "new dataset" | datasets | create |
+| "get dataset {name}" | datasets | get |
+| "list dataset items", "show items" | items | list |
+| "create dataset item", "add item" | items | create |
+| "get dataset item {id}" | items | get |
+| "delete dataset item" | items | delete |
+| "list runs", "show runs" | runs | list |
+| "get run" | runs | get |
+| "delete run" | runs | delete |
+| "list run items", "show results" | run-items | list |
+| "create run item", "log evaluation" | run-items | create |
 
-| User Says | Skill to Load | Endpoint |
-|-----------|---------------|----------|
-| "list datasets", "show datasets" | langfuse-list-datasets | GET /v2/datasets |
-| "create dataset", "new dataset" | langfuse-create-dataset | POST /v2/datasets |
-| "get dataset {name}" | langfuse-get-dataset | GET /v2/datasets/{name} |
-| "list dataset runs", "show runs" | langfuse-list-dataset-runs | GET /datasets/{name}/runs |
-| "get dataset run" | langfuse-get-dataset-run | GET /datasets/{name}/runs/{run} |
-| "delete dataset run" | langfuse-delete-dataset-run | DELETE /datasets/{name}/runs/{run} |
+### Scores & Score Configs → `langfuse-scores`
 
-### Dataset Items (Phase 1)
+| User Says | Resource | Action |
+|-----------|----------|--------|
+| "list scores", "show evaluations" | scores | list |
+| "get score {id}" | scores | get |
+| "create score", "add score" | scores | create |
+| "delete score", "remove score" | scores | delete |
+| "list score configs", "show config" | configs | list |
+| "get score config {id}" | configs | get |
+| "create score config", "new config" | configs | create |
+| "update score config", "archive config" | configs | update |
 
-| User Says | Skill to Load | Endpoint |
-|-----------|---------------|----------|
-| "list dataset items", "show items" | langfuse-list-dataset-items | GET /dataset-items |
-| "create dataset item", "add item" | langfuse-create-dataset-item | POST /dataset-items |
-| "get dataset item {id}" | langfuse-get-dataset-item | GET /dataset-items/{id} |
-| "delete dataset item" | langfuse-delete-dataset-item | DELETE /dataset-items/{id} |
+### Annotation Queues → `langfuse-queues`
 
-### Dataset Run Items (Phase 1)
+| User Says | Resource | Action |
+|-----------|----------|--------|
+| "list queues", "annotation queues" | queues | list |
+| "create queue", "new queue" | queues | create |
+| "get queue {id}" | queues | get |
+| "list queue items" | items | list |
+| "add to queue" | items | create |
+| "get queue item" | items | get |
+| "update queue item", "annotate" | items | update |
+| "remove from queue" | items | delete |
+| "assign reviewer" | assignments | create |
+| "unassign reviewer" | assignments | delete |
 
-| User Says | Skill to Load | Endpoint |
-|-----------|---------------|----------|
-| "list run items", "show results" | langfuse-list-dataset-run-items | GET /dataset-run-items |
-| "create run item", "log evaluation" | langfuse-create-dataset-run-item | POST /dataset-run-items |
+### Prompts → `langfuse-prompts`
 
-### Score Configs (Phase 2)
+| User Says | Action |
+|-----------|--------|
+| "list prompts", "show prompts" | list |
+| "get prompt {name}" | get |
+| "create prompt", "new prompt" | create |
+| "delete prompt" | delete |
+| "update prompt version", "set labels" | update-version |
 
-| User Says | Skill to Load | Endpoint |
-|-----------|---------------|----------|
-| "list score configs", "show config" | langfuse-list-score-configs | GET /score-configs |
-| "create score config", "new config" | langfuse-create-score-config | POST /score-configs |
-| "get score config {id}" | langfuse-get-score-config | GET /score-configs/{id} |
-| "update score config" | langfuse-update-score-config | PATCH /score-configs/{id} |
+### Models → `langfuse-models`
 
-### Scores Write (Phase 2)
+| User Says | Action |
+|-----------|--------|
+| "list models", "model costs" | list |
+| "get model {id}" | get |
+| "create model" | create |
+| "delete model" | delete |
 
-| User Says | Skill to Load | Endpoint |
-|-----------|---------------|----------|
-| "create score", "add score" | langfuse-create-score | POST /scores |
-| "delete score", "remove score" | langfuse-delete-score | DELETE /scores/{id} |
+### Projects & Org Admin → `langfuse-admin`
 
-### Annotation Queues (Phase 2)
+| User Says | Resource | Action |
+|-----------|----------|--------|
+| "current project", "get project" | projects | get |
+| "create project" | projects | create |
+| "update project", "rename project" | projects | update |
+| "delete project" | projects | delete |
+| "list api keys" | api-keys | list |
+| "create api key" | api-keys | create |
+| "delete api key" | api-keys | delete |
+| "list members", "org members" | org | list-memberships |
+| "change role", "update member" | org | update-membership |
+| "remove member" | org | delete-membership |
+| "list org projects" | org | list-projects |
+| "org api keys" | org | list-api-keys |
 
-| User Says | Skill to Load | Endpoint |
-|-----------|---------------|----------|
-| "list queues", "annotation queues" | langfuse-list-annotation-queues | GET /annotation-queues |
-| "create queue", "new queue" | langfuse-create-annotation-queue | POST /annotation-queues |
-| "get queue {id}" | langfuse-get-annotation-queue | GET /annotation-queues/{id} |
-| "list queue items", "queue contents" | langfuse-list-queue-items | GET /annotation-queues/{id}/items |
-| "add to queue", "create queue item" | langfuse-create-queue-item | POST /annotation-queues/{id}/items |
-| "get queue item" | langfuse-get-queue-item | GET /annotation-queues/{id}/items/{item} |
-| "update queue item", "annotate item" | langfuse-update-queue-item | PATCH /annotation-queues/{id}/items/{item} |
-| "remove from queue" | langfuse-delete-queue-item | DELETE /annotation-queues/{id}/items/{item} |
-| "assign reviewer", "add assignment" | langfuse-create-queue-assignment | POST /annotation-queues/{id}/assignments |
-| "unassign reviewer" | langfuse-delete-queue-assignment | DELETE /annotation-queues/{id}/assignments |
+### Ingestion, Comments & Media → `langfuse-ingestion`
 
-### Comments (Phase 2)
+| User Says | Resource | Action |
+|-----------|----------|--------|
+| "batch ingest", "bulk import" | batch | ingest |
+| "otel ingest", "opentelemetry" | otel | ingest |
+| "list comments" | comments | list |
+| "get comment" | comments | get |
+| "create comment", "add comment" | comments | create |
+| "get media" | media | get |
+| "update media" | media | update |
+| "upload url", "media upload" | media | upload-url |
 
-| User Says | Skill to Load | Endpoint |
-|-----------|---------------|----------|
-| "list comments", "show comments" | langfuse-list-comments | GET /comments |
-| "create comment", "add comment" | langfuse-create-comment | POST /comments |
-| "get comment {id}" | langfuse-get-comment | GET /comments/{id} |
+### Health & Metrics → `langfuse-status`
 
-### Ingestion (Phase 3)
-
-| User Says | Skill to Load | Endpoint |
-|-----------|---------------|----------|
-| "batch ingest", "bulk import" | langfuse-batch-ingest | POST /ingestion |
-| "otel ingest", "opentelemetry" | langfuse-otel-ingest | POST /otel/v1/traces |
-
-### Media (Phase 3)
-
-| User Says | Skill to Load | Endpoint |
-|-----------|---------------|----------|
-| "get media", "download media" | langfuse-get-media | GET /media/{id} |
-| "update media" | langfuse-update-media | PATCH /media/{id} |
-| "upload url", "media upload" | langfuse-get-upload-url | POST /media |
-
-### Traces Write (Phase 3)
-
-| User Says | Skill to Load | Endpoint |
-|-----------|---------------|----------|
-| "delete trace" | langfuse-delete-trace | DELETE /traces/{id} |
-| "bulk delete traces", "purge" | langfuse-delete-traces | DELETE /traces |
-
-### Models Write (Phase 3)
-
-| User Says | Skill to Load | Endpoint |
-|-----------|---------------|----------|
-| "create model", "add model" | langfuse-create-model | POST /models |
-| "delete model" | langfuse-delete-model | DELETE /models/{id} |
-
-### Projects Admin (Phase 3)
-
-| User Says | Skill to Load | Endpoint |
-|-----------|---------------|----------|
-| "create project" | langfuse-create-project | POST /v2/projects |
-| "update project", "rename project" | langfuse-update-project | PUT /v2/projects/{id} |
-| "delete project" | langfuse-delete-project | DELETE /v2/projects/{id} |
-| "list api keys", "project keys" | langfuse-list-project-api-keys | GET /v2/projects/{id}/api-keys |
-| "create api key", "new key" | langfuse-create-project-api-key | POST /v2/projects/{id}/api-keys |
-| "delete api key", "revoke key" | langfuse-delete-project-api-key | DELETE /v2/projects/{id}/api-keys/{key} |
-
-### Organizations (Phase 3)
-
-| User Says | Skill to Load | Endpoint |
-|-----------|---------------|----------|
-| "list members", "org members" | langfuse-list-org-memberships | GET /v2/organizations/{id}/memberships |
-| "update member", "change role" | langfuse-update-org-membership | PUT /v2/organizations/{id}/memberships/{m} |
-| "remove member" | langfuse-delete-org-membership | DELETE /v2/organizations/{id}/memberships/{m} |
-| "list org projects" | langfuse-list-org-projects | GET /v2/organizations/{id}/projects |
-| "org api keys" | langfuse-list-org-api-keys | GET /v2/organizations/{id}/api-keys |
-
-### Utilities (Phase 3)
-
-| User Says | Skill to Load | Endpoint |
-|-----------|---------------|----------|
-| "health check", "is langfuse up" | langfuse-health | GET /health |
-| "metrics", "usage stats" | langfuse-metrics | GET /metrics |
+| User Says | Action |
+|-----------|--------|
+| "health check", "is langfuse up" | health |
+| "metrics", "usage stats" | metrics |
 
 ---
 
-## Workflows
-
-### Workflow 0: Config Check (Auto - ALWAYS FIRST)
-
-```bash
-uv run python 00-system/skills/langfuse/langfuse-master/scripts/check_langfuse_config.py --json
-```
-
-### Workflow 1: List Traces
-
-Show recent LLM traces.
-
-```bash
-uv run python 00-system/skills/langfuse/langfuse-list-traces/scripts/list_traces.py --limit 20
-```
-
-### Workflow 2: Get Trace Details
-
-Get detailed view of specific trace.
-
-```bash
-uv run python 00-system/skills/langfuse/langfuse-get-trace/scripts/get_trace.py --id <trace_id>
-```
-
-### Workflow 3: List Observations
-
-List spans, generations, and events.
-
-```bash
-uv run python 00-system/skills/langfuse/langfuse-list-observations/scripts/list_observations.py --limit 20
-```
-
-### Workflow 4: Get Observation
-
-Get specific observation details.
-
-```bash
-uv run python 00-system/skills/langfuse/langfuse-get-observation/scripts/get_observation.py --id <obs_id>
-```
-
-### Workflow 5: List Sessions
-
-List user sessions.
-
-```bash
-uv run python 00-system/skills/langfuse/langfuse-list-sessions/scripts/list_sessions.py --limit 20
-```
-
-### Workflow 6: Get Session
-
-Get session with traces.
-
-```bash
-uv run python 00-system/skills/langfuse/langfuse-get-session/scripts/get_session.py --id <session_id>
-```
-
-### Workflow 7: List Scores
-
-List evaluation scores.
-
-```bash
-uv run python 00-system/skills/langfuse/langfuse-list-scores/scripts/list_scores.py --limit 20
-```
-
-### Workflow 8: Get Score
-
-Get specific score.
-
-```bash
-uv run python 00-system/skills/langfuse/langfuse-get-score/scripts/get_score.py --id <score_id>
-```
-
-### Workflow 9: List Models
-
-List configured models (for cost tracking).
-
-```bash
-uv run python 00-system/skills/langfuse/langfuse-list-models/scripts/list_models.py
-```
-
-### Workflow 10: Get Model
-
-Get model details.
-
-```bash
-uv run python 00-system/skills/langfuse/langfuse-get-model/scripts/get_model.py --id <model_id>
-```
-
-### Workflow 11: Get Project
-
-Get current project info.
-
-```bash
-uv run python 00-system/skills/langfuse/langfuse-get-project/scripts/get_project.py
-```
-
----
-
-## Quick Reference
+## Quick Start
 
 ```bash
 # Check config
 uv run python 00-system/skills/langfuse/langfuse-master/scripts/check_langfuse_config.py --test
 
 # List recent traces
-uv run python 00-system/skills/langfuse/langfuse-list-traces/scripts/list_traces.py --limit 10
+uv run python scripts/traces.py --resource traces --action list --limit 10
 
 # Get specific trace
-uv run python 00-system/skills/langfuse/langfuse-get-trace/scripts/get_trace.py --id abc123
+uv run python scripts/traces.py --resource traces --action get --id abc123
+
+# Create a score
+uv run python scripts/scores.py --resource scores --action create --trace {id} --name tool_efficiency --value 0.85
 ```
+
+---
+
+## Patterns & score config reference
+
+### Critical patterns
+
+#### Observations require individual fetch
+
+```python
+# GET /sessions/{id} does NOT include observations
+# Must call GET /traces/{id} for each trace
+for trace in session["traces"]:
+    full = client.get(f"/traces/{trace['id']}")
+    obs = full.get("observations", [])
+```
+
+#### CATEGORICAL scores use string value
+
+```python
+# CORRECT
+{"value": "archive", "configId": "..."}
+
+# WRONG (400 error)
+{"value": 2, "stringValue": "archive"}
+```
+
+### Score config IDs
+
+```python
+CONFIG_IDS = {
+    # Quality Dimensions (NUMERIC 0-1 unless noted)
+    "goal_achievement": "68cfd90c-8c9e-4907-808d-869ccd9a4c07",      # CATEGORICAL
+    "tool_efficiency": "84965473-0f54-4248-999e-7b8627fc9c29",
+    "process_adherence": "651fc213-4750-4d4e-8155-270235c7cad8",
+    "context_efficiency": "ae22abed-bd4a-4926-af74-8d71edb1925d",
+    "error_handling": "96c290b7-e3a6-4caa-bace-93cf55f70f1c",        # CATEGORICAL
+    "output_quality": "d33b1fbf-d3c6-458c-90ca-0b515fe09aed",
+    "overall_quality": "793f09d9-0053-4310-ad32-00dc06c69a71",
+    # Meta Scores
+    "root_cause_issues": "669bead7-1936-4fc4-bae8-e7814c9eab04",     # CATEGORICAL
+    "session_improvements": "2e87193b-c853-4955-b2f0-9fa572531681",  # CATEGORICAL
+    "session_notes": "67640329-0c03-4be6-bc9f-49765a0462b5",         # NUMERIC (value=1 + comment/metadata)
+}
+```
+
+#### CATEGORICAL labels
+
+| Score | Labels |
+|-------|--------|
+| goal_achievement | failed, partial, complete, exceeded |
+| error_handling | poor, struggled, recovered, prevented |
+| root_cause_issues | none, tool_misuse, process_violation, context_waste, error_cascade, output_quality, multiple |
+| session_improvements | none, minor, moderate, significant, critical |
 
 ---
 
