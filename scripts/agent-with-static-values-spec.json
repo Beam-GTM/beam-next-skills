@@ -1,0 +1,175 @@
+{
+  "agentName": "agent with static values",
+  "agentDescription": "Takes two numbers, computes their sum, and routes to an 'even' or 'odd' reporter node based on the result.",
+  "personality": "Clear and direct.",
+  "restrictions": "",
+  "prompts": ["Check if the sum of the numbers is even or odd"],
+  "nodes": [
+    {
+      "key": "entry",
+      "objective": "Entry Node",
+      "is_entry": true,
+      "x": 250,
+      "y": 0,
+      "edges": [
+        { "target": "sum-calculator", "name": "", "condition": "" }
+      ]
+    },
+    {
+      "key": "sum-calculator",
+      "name": "Sum Calculator",
+      "objective": "Add the two input numbers and determine if their sum is even or odd.",
+      "is_entry": false,
+      "x": 250,
+      "y": 250,
+      "model": "BEDROCK_CLAUDE_SONNET_4",
+      "tool_name": "Sum Calculator",
+      "tool_description": "Adds two numbers and checks whether the result is even or odd",
+      "prompt": "Add the two input numbers together. Determine if the sum is even or odd. Output the sum as a number and the parity as either 'even' or 'odd'.",
+      "on_error": "STOP",
+      "enable_retry": false,
+      "retry_count": 1,
+      "retry_wait_ms": 1000,
+      "fallback_models": null,
+      "evaluation_criteria": [],
+      "input_params": [
+        {
+          "name": "number_a",
+          "description": "The first number",
+          "type": "number",
+          "is_array": false,
+          "fill_type": "static",
+          "static_value": "4",
+          "linked_node": null,
+          "linked_param": null,
+          "output_example": null,
+          "required": true,
+          "position": 0
+        },
+        {
+          "name": "number_b",
+          "description": "The second number",
+          "type": "number",
+          "is_array": false,
+          "fill_type": "static",
+          "static_value": "7",
+          "linked_node": null,
+          "linked_param": null,
+          "output_example": null,
+          "required": true,
+          "position": 1
+        }
+      ],
+      "output_params": [
+        {
+          "name": "sum",
+          "description": "The sum of the two numbers",
+          "type": "number",
+          "is_array": false,
+          "output_example": null,
+          "position": 0
+        },
+        {
+          "name": "parity",
+          "description": "Whether the sum is even or odd",
+          "type": "string",
+          "is_array": false,
+          "output_example": null,
+          "position": 1
+        }
+      ],
+      "edges": [
+        { "target": "even-reporter", "name": "Sum is even", "condition": "parity == 'even'" },
+        { "target": "odd-reporter", "name": "Sum is odd", "condition": "parity == 'odd'" }
+      ]
+    },
+    {
+      "key": "even-reporter",
+      "name": "Even Reporter",
+      "objective": "Report that the sum of the two numbers is even.",
+      "is_entry": false,
+      "x": 50,
+      "y": 500,
+      "model": "BEDROCK_CLAUDE_SONNET_4",
+      "tool_name": "Even Reporter",
+      "tool_description": "Reports that the sum is even",
+      "prompt": "Report the message provided in the input to the user as the final result.",
+      "on_error": "STOP",
+      "enable_retry": false,
+      "retry_count": 1,
+      "retry_wait_ms": 1000,
+      "fallback_models": null,
+      "evaluation_criteria": [],
+      "input_params": [
+        {
+          "name": "message",
+          "description": "The result message to report",
+          "type": "string",
+          "is_array": false,
+          "fill_type": "static",
+          "static_value": "The sum is even.",
+          "linked_node": null,
+          "linked_param": null,
+          "output_example": null,
+          "required": true,
+          "position": 0
+        }
+      ],
+      "output_params": [
+        {
+          "name": "result",
+          "description": "The final parity report message",
+          "type": "string",
+          "is_array": false,
+          "output_example": null,
+          "position": 0
+        }
+      ],
+      "edges": []
+    },
+    {
+      "key": "odd-reporter",
+      "name": "Odd Reporter",
+      "objective": "Report that the sum of the two numbers is odd.",
+      "is_entry": false,
+      "x": 450,
+      "y": 500,
+      "model": "BEDROCK_CLAUDE_SONNET_4",
+      "tool_name": "Odd Reporter",
+      "tool_description": "Reports that the sum is odd",
+      "prompt": "Report the message provided in the input to the user as the final result.",
+      "on_error": "STOP",
+      "enable_retry": false,
+      "retry_count": 1,
+      "retry_wait_ms": 1000,
+      "fallback_models": null,
+      "evaluation_criteria": [],
+      "input_params": [
+        {
+          "name": "message",
+          "description": "The result message to report",
+          "type": "string",
+          "is_array": false,
+          "fill_type": "static",
+          "static_value": "The sum is odd.",
+          "linked_node": null,
+          "linked_param": null,
+          "output_example": null,
+          "required": true,
+          "position": 0
+        }
+      ],
+      "output_params": [
+        {
+          "name": "result",
+          "description": "The final parity report message",
+          "type": "string",
+          "is_array": false,
+          "output_example": null,
+          "position": 0
+        }
+      ],
+      "edges": []
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-# Ruleset Template
+mport okr-self-reviewmport okr-self-review# Ruleset Template
 
 Use this exact structure when generating rulesets. Every section is required unless marked optional.
 
@@ -49,8 +49,8 @@ updated: [ISO 8601 date]
 
 **Content** — what information the entity contains:
 
-| Field | Type | Description | Constraints | Required |
-|-------|------|-------------|-------------|----------|
+| Field        | Type                      | Description   | Constraints                                            | Required |
+| ------------ | ------------------------- | ------------- | ------------------------------------------------------ | -------- |
 | [field_name] | [string/number/date/enum] | [description] | [length range, format rules, valid values, edge cases] | [yes/no] |
 
 > **Content Texture (CRITICAL):** Don't stop at field names and types. Describe what the content actually looks and feels like in production. For text fields: typical length range (e.g., "200-800 words"), structural characteristics (e.g., "may contain subheadings, bullet points, inline quotes, or data tables"), and stylistic variation (e.g., "wire-service style: short 1-2 sentence paragraphs, facts-first" vs "analytical style: longer paragraphs with market data and expert quotes"). For structured fields: value ranges with realistic distributions, not just the type. This texture is what the generator uses to produce realistic data — without it, all generated inputs look the same.
@@ -73,11 +73,12 @@ updated: [ISO 8601 date]
 
 **Format:** [JSON / plain text / markdown / code]
 
-| Field | Type | Description | Constraints | Required |
-|-------|------|-------------|-------------|----------|
+| Field        | Type   | Description   | Constraints                           | Required |
+| ------------ | ------ | ------------- | ------------------------------------- | -------- |
 | [field_name] | [type] | [description] | [operational constraints — see below] | [yes/no] |
 
 > **Operational Constraints (CRITICAL):** Every constraint should help the generator produce correct data. Don't just specify types — specify rules the generator can check mechanically.
+>
 > - **Length constraints**: exact ranges, not vague ("800-2500 chars per message" not "medium length")
 > - **Proportional rules**: formulas relating fields to each other ("~30-40s per item + 10s intro/outro" not "60-300 seconds")
 > - **Format rules**: exact patterns ("daily_news_YYYY-MM-DD.mp3" not "descriptive filename")
@@ -86,16 +87,17 @@ updated: [ISO 8601 date]
 
 **Quality Constraints:**
 
-| Constraint | Rule |
-|-----------|------|
+| Constraint        | Rule                               |
+| ----------------- | ---------------------------------- |
 | [constraint_name] | [specific, machine-checkable rule] |
 
 > Include output format specification (file format, filename pattern, delivery mechanism). Include constraints for specificity (e.g., "Each talking point must include at least one of: quantitative metric, named project, specific brand, or market reference").
 
 **Scoring formula** (if applicable):
-
 ```
+
 [Step-by-step formula with explicit bounds]
+
 ```
 
 ---
@@ -112,7 +114,9 @@ updated: [ISO 8601 date]
 **Intermediate artifact** (what the scoring worksheet looks like):
 
 ```
+
 [Show an example of the intermediate calculation, not just input → output]
+
 ```
 
 ---
@@ -165,16 +169,20 @@ updated: [ISO 8601 date]
 
 **Input:**
 ```
+
 [3-4 substantial paragraphs of realistic content with quotes, data, attributions]
 
 ...
 
 [Document continues with [remaining content summary] — ~N words total. Style: [content style from schema].]
+
 ```
 
 **Expected Output:**
 ```
+
 [Complete example output matching every OUTPUT SCHEMA constraint]
+
 ```
 
 **Derivation:** [Which scenario this covers + how output was derived step-by-step]
